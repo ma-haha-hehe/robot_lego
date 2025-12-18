@@ -1,0 +1,32 @@
+[2.844s] Invoking command in '/home/aaa/robot/ros2_ws/build/smach_demo': PYTHONPATH=/home/aaa/robot/ros2_ws/build/smach_demo/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/aaa/robot/ros2_ws/build/smach_demo/build
+[3.832s] running develop
+[4.342s] Removing /home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages/smach-demo.egg-link (link to .)
+[4.520s] Invoked command in '/home/aaa/robot/ros2_ws/build/smach_demo' returned '0': PYTHONPATH=/home/aaa/robot/ros2_ws/build/smach_demo/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/aaa/robot/ros2_ws/build/smach_demo/build
+[4.521s] Invoking command in '/home/aaa/robot/ros2_ws/src/smach_demo': PYTHONPATH=/home/aaa/robot/ros2_ws/build/smach_demo/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/smach_demo build --build-base /home/aaa/robot/ros2_ws/build/smach_demo/build install --record /home/aaa/robot/ros2_ws/build/smach_demo/install.log --single-version-externally-managed install_data --force
+[5.166s] running egg_info
+[5.169s] writing ../../build/smach_demo/smach_demo.egg-info/PKG-INFO
+[5.176s] writing dependency_links to ../../build/smach_demo/smach_demo.egg-info/dependency_links.txt
+[5.177s] writing entry points to ../../build/smach_demo/smach_demo.egg-info/entry_points.txt
+[5.177s] writing requirements to ../../build/smach_demo/smach_demo.egg-info/requires.txt
+[5.178s] writing top-level names to ../../build/smach_demo/smach_demo.egg-info/top_level.txt
+[5.179s] reading manifest file '../../build/smach_demo/smach_demo.egg-info/SOURCES.txt'
+[5.190s] writing manifest file '../../build/smach_demo/smach_demo.egg-info/SOURCES.txt'
+[5.191s] running build
+[5.191s] running build_py
+[5.191s] running install
+[5.192s] running install_lib
+[5.192s] creating /home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages/smach_demo
+[5.192s] copying /home/aaa/robot/ros2_ws/build/smach_demo/build/lib/smach_demo/__init__.py -> /home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages/smach_demo
+[5.193s] copying /home/aaa/robot/ros2_ws/build/smach_demo/build/lib/smach_demo/demo.py -> /home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages/smach_demo
+[5.193s] byte-compiling /home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages/smach_demo/__init__.py to __init__.cpython-310.pyc
+[5.194s] byte-compiling /home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages/smach_demo/demo.py to demo.cpython-310.pyc
+[5.194s] Sorry: IndentationError: expected an indented block after function definition on line 6 (demo.py, line 8)
+[5.194s] running install_data
+[5.194s] copying resource/smach_demo -> /home/aaa/robot/ros2_ws/install/smach_demo/share/ament_index/resource_index/packages
+[5.195s] copying package.xml -> /home/aaa/robot/ros2_ws/install/smach_demo/share/smach_demo
+[5.195s] running install_egg_info
+[5.196s] Copying ../../build/smach_demo/smach_demo.egg-info to /home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages/smach_demo-0.0.0-py3.10.egg-info
+[5.214s] running install_scripts
+[5.271s] Installing demo script to /home/aaa/robot/ros2_ws/install/smach_demo/lib/smach_demo
+[5.271s] writing list of installed files to '/home/aaa/robot/ros2_ws/build/smach_demo/install.log'
+[5.349s] Invoked command in '/home/aaa/robot/ros2_ws/src/smach_demo' returned '0': PYTHONPATH=/home/aaa/robot/ros2_ws/build/smach_demo/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/smach_demo build --build-base /home/aaa/robot/ros2_ws/build/smach_demo/build install --record /home/aaa/robot/ros2_ws/build/smach_demo/install.log --single-version-externally-managed install_data --force

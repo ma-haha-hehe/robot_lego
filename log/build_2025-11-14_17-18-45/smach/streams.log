@@ -1,0 +1,68 @@
+[0.487s] Invoking command in '/home/aaa/robot/ros2_ws/executive_smach/smach': PYTHONPATH=/home/aaa/robot/ros2_ws/build/smach/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/smach build --build-base /home/aaa/robot/ros2_ws/build/smach/build install --record /home/aaa/robot/ros2_ws/build/smach/install.log --install-scripts $base/lib/smach --single-version-externally-managed install_data
+[0.613s] /usr/lib/python3/dist-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[0.613s]   warnings.warn(
+[0.617s] running egg_info
+[0.617s] creating ../../build/smach/smach.egg-info
+[0.618s] writing ../../build/smach/smach.egg-info/PKG-INFO
+[0.618s] /usr/lib/python3/dist-packages/setuptools/dist.py:157: UserWarning: newlines not allowed and will break in the future
+[0.618s]   warnings.warn("newlines not allowed and will break in the future")
+[0.618s] writing dependency_links to ../../build/smach/smach.egg-info/dependency_links.txt
+[0.618s] writing requirements to ../../build/smach/smach.egg-info/requires.txt
+[0.618s] writing top-level names to ../../build/smach/smach.egg-info/top_level.txt
+[0.618s] writing manifest file '../../build/smach/smach.egg-info/SOURCES.txt'
+[0.619s] reading manifest file '../../build/smach/smach.egg-info/SOURCES.txt'
+[0.619s] writing manifest file '../../build/smach/smach.egg-info/SOURCES.txt'
+[0.619s] running build
+[0.620s] running build_py
+[0.620s] creating /home/aaa/robot/ros2_ws/build/smach/build
+[0.620s] creating /home/aaa/robot/ros2_ws/build/smach/build/lib
+[0.620s] creating /home/aaa/robot/ros2_ws/build/smach/build/lib/smach
+[0.620s] copying smach/user_data.py -> /home/aaa/robot/ros2_ws/build/smach/build/lib/smach
+[0.620s] copying smach/log.py -> /home/aaa/robot/ros2_ws/build/smach/build/lib/smach
+[0.620s] copying smach/state.py -> /home/aaa/robot/ros2_ws/build/smach/build/lib/smach
+[0.620s] copying smach/concurrence.py -> /home/aaa/robot/ros2_ws/build/smach/build/lib/smach
+[0.620s] copying smach/container.py -> /home/aaa/robot/ros2_ws/build/smach/build/lib/smach
+[0.620s] copying smach/__init__.py -> /home/aaa/robot/ros2_ws/build/smach/build/lib/smach
+[0.621s] copying smach/exceptions.py -> /home/aaa/robot/ros2_ws/build/smach/build/lib/smach
+[0.621s] copying smach/sequence.py -> /home/aaa/robot/ros2_ws/build/smach/build/lib/smach
+[0.621s] copying smach/util.py -> /home/aaa/robot/ros2_ws/build/smach/build/lib/smach
+[0.621s] copying smach/iterator.py -> /home/aaa/robot/ros2_ws/build/smach/build/lib/smach
+[0.621s] copying smach/state_machine.py -> /home/aaa/robot/ros2_ws/build/smach/build/lib/smach
+[0.622s] running install
+[0.622s] running install_lib
+[0.622s] creating /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach
+[0.622s] copying /home/aaa/robot/ros2_ws/build/smach/build/lib/smach/user_data.py -> /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach
+[0.622s] copying /home/aaa/robot/ros2_ws/build/smach/build/lib/smach/log.py -> /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach
+[0.622s] copying /home/aaa/robot/ros2_ws/build/smach/build/lib/smach/state.py -> /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach
+[0.622s] copying /home/aaa/robot/ros2_ws/build/smach/build/lib/smach/concurrence.py -> /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach
+[0.622s] copying /home/aaa/robot/ros2_ws/build/smach/build/lib/smach/container.py -> /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach
+[0.623s] copying /home/aaa/robot/ros2_ws/build/smach/build/lib/smach/__init__.py -> /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach
+[0.623s] copying /home/aaa/robot/ros2_ws/build/smach/build/lib/smach/exceptions.py -> /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach
+[0.623s] copying /home/aaa/robot/ros2_ws/build/smach/build/lib/smach/sequence.py -> /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach
+[0.623s] copying /home/aaa/robot/ros2_ws/build/smach/build/lib/smach/util.py -> /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach
+[0.623s] copying /home/aaa/robot/ros2_ws/build/smach/build/lib/smach/iterator.py -> /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach
+[0.623s] copying /home/aaa/robot/ros2_ws/build/smach/build/lib/smach/state_machine.py -> /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach
+[0.625s] byte-compiling /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach/user_data.py to user_data.cpython-310.pyc
+[0.625s] byte-compiling /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach/log.py to log.cpython-310.pyc
+[0.625s] byte-compiling /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach/state.py to state.cpython-310.pyc
+[0.625s] byte-compiling /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach/concurrence.py to concurrence.cpython-310.pyc
+[0.626s] byte-compiling /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach/container.py to container.cpython-310.pyc
+[0.626s] byte-compiling /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach/__init__.py to __init__.cpython-310.pyc
+[0.626s] byte-compiling /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach/exceptions.py to exceptions.cpython-310.pyc
+[0.627s] byte-compiling /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach/sequence.py to sequence.cpython-310.pyc
+[0.627s] byte-compiling /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach/util.py to util.cpython-310.pyc
+[0.630s] byte-compiling /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach/iterator.py to iterator.cpython-310.pyc
+[0.630s] byte-compiling /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach/state_machine.py to state_machine.cpython-310.pyc
+[0.630s] /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach/state_machine.py:77: SyntaxWarning: "is not" with a literal. Did you mean "!="?
+[0.630s]   return {k:v for (k, v) in self.__dict__.items() if k is not "_state_transitioning_lock"}
+[0.630s] running install_data
+[0.630s] creating /home/aaa/robot/ros2_ws/install/smach/share/ament_index
+[0.630s] creating /home/aaa/robot/ros2_ws/install/smach/share/ament_index/resource_index
+[0.630s] creating /home/aaa/robot/ros2_ws/install/smach/share/ament_index/resource_index/packages
+[0.630s] copying resource/smach -> /home/aaa/robot/ros2_ws/install/smach/share/ament_index/resource_index/packages
+[0.630s] copying package.xml -> /home/aaa/robot/ros2_ws/install/smach/share/smach
+[0.631s] running install_egg_info
+[0.632s] Copying ../../build/smach/smach.egg-info to /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach-3.0.3-py3.10.egg-info
+[0.632s] running install_scripts
+[0.643s] writing list of installed files to '/home/aaa/robot/ros2_ws/build/smach/install.log'
+[0.659s] Invoked command in '/home/aaa/robot/ros2_ws/executive_smach/smach' returned '0': PYTHONPATH=/home/aaa/robot/ros2_ws/build/smach/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/smach build --build-base /home/aaa/robot/ros2_ws/build/smach/build install --record /home/aaa/robot/ros2_ws/build/smach/install.log --install-scripts $base/lib/smach --single-version-externally-managed install_data

@@ -1,0 +1,441 @@
+[0.209s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--symlink-install']
+[0.209s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=True, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=2, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0xffffa1d42470>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0xffffa1d41ed0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0xffffa1d41ed0>>)
+[0.509s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.510s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.510s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.510s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.510s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.510s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.510s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/aaa/robot/ros2_ws'
+[0.510s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.510s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.510s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.510s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.510s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.510s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.510s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.510s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.510s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.519s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach) by extensions ['ignore', 'ignore_ament_install']
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach) by extension 'ignore'
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach) by extension 'ignore_ament_install'
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach) by extensions ['colcon_pkg']
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach) by extension 'colcon_pkg'
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach) by extensions ['colcon_meta']
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach) by extension 'colcon_meta'
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach) by extensions ['ros']
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach) by extension 'ros'
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach) by extensions ['cmake', 'python']
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach) by extension 'cmake'
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach) by extension 'python'
+[0.521s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach) by extensions ['python_setup_py']
+[0.521s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach) by extension 'python_setup_py'
+[0.521s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/executive_smach) by extensions ['ignore', 'ignore_ament_install']
+[0.521s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/executive_smach) by extension 'ignore'
+[0.521s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/executive_smach) by extension 'ignore_ament_install'
+[0.521s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/executive_smach) by extensions ['colcon_pkg']
+[0.521s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/executive_smach) by extension 'colcon_pkg'
+[0.521s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/executive_smach) by extensions ['colcon_meta']
+[0.521s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/executive_smach) by extension 'colcon_meta'
+[0.521s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/executive_smach) by extensions ['ros']
+[0.521s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/executive_smach) by extension 'ros'
+[0.523s] DEBUG:colcon.colcon_core.package_identification:Package 'executive_smach/executive_smach' with type 'ros.ament_cmake' and name 'executive_smach'
+[0.523s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach) by extensions ['ignore', 'ignore_ament_install']
+[0.523s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach) by extension 'ignore'
+[0.523s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach) by extension 'ignore_ament_install'
+[0.523s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach) by extensions ['colcon_pkg']
+[0.523s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach) by extension 'colcon_pkg'
+[0.523s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach) by extensions ['colcon_meta']
+[0.523s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach) by extension 'colcon_meta'
+[0.523s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach) by extensions ['ros']
+[0.523s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach) by extension 'ros'
+[0.524s] DEBUG:colcon.colcon_core.package_identification:Package 'executive_smach/smach' with type 'ros.ament_python' and name 'smach'
+[0.524s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach_msgs) by extensions ['ignore', 'ignore_ament_install']
+[0.524s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach_msgs) by extension 'ignore'
+[0.524s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach_msgs) by extension 'ignore_ament_install'
+[0.524s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach_msgs) by extensions ['colcon_pkg']
+[0.524s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach_msgs) by extension 'colcon_pkg'
+[0.524s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach_msgs) by extensions ['colcon_meta']
+[0.524s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach_msgs) by extension 'colcon_meta'
+[0.524s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach_msgs) by extensions ['ros']
+[0.524s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach_msgs) by extension 'ros'
+[0.525s] DEBUG:colcon.colcon_core.package_identification:Package 'executive_smach/smach_msgs' with type 'ros.ament_cmake' and name 'smach_msgs'
+[0.525s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach_ros) by extensions ['ignore', 'ignore_ament_install']
+[0.525s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach_ros) by extension 'ignore'
+[0.525s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach_ros) by extension 'ignore_ament_install'
+[0.525s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach_ros) by extensions ['colcon_pkg']
+[0.525s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach_ros) by extension 'colcon_pkg'
+[0.525s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach_ros) by extensions ['colcon_meta']
+[0.525s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach_ros) by extension 'colcon_meta'
+[0.525s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach_ros) by extensions ['ros']
+[0.525s] Level 1:colcon.colcon_core.package_identification:_identify(executive_smach/smach_ros) by extension 'ros'
+[0.526s] DEBUG:colcon.colcon_core.package_identification:Package 'executive_smach/smach_ros' with type 'ros.ament_python' and name 'smach_ros'
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(src/mj_bridge) by extensions ['ignore', 'ignore_ament_install']
+[0.527s] Level 1:colcon.colcon_core.package_identification:_identify(src/mj_bridge) by extension 'ignore'
+[0.527s] Level 1:colcon.colcon_core.package_identification:_identify(src/mj_bridge) by extension 'ignore_ament_install'
+[0.527s] Level 1:colcon.colcon_core.package_identification:_identify(src/mj_bridge) by extensions ['colcon_pkg']
+[0.527s] Level 1:colcon.colcon_core.package_identification:_identify(src/mj_bridge) by extension 'colcon_pkg'
+[0.527s] Level 1:colcon.colcon_core.package_identification:_identify(src/mj_bridge) by extensions ['colcon_meta']
+[0.527s] Level 1:colcon.colcon_core.package_identification:_identify(src/mj_bridge) by extension 'colcon_meta'
+[0.527s] Level 1:colcon.colcon_core.package_identification:_identify(src/mj_bridge) by extensions ['ros']
+[0.527s] Level 1:colcon.colcon_core.package_identification:_identify(src/mj_bridge) by extension 'ros'
+[0.527s] DEBUG:colcon.colcon_core.package_identification:Package 'src/mj_bridge' with type 'ros.ament_python' and name 'mj_bridge'
+[0.528s] Level 1:colcon.colcon_core.package_identification:_identify(src/smach_demo) by extensions ['ignore', 'ignore_ament_install']
+[0.528s] Level 1:colcon.colcon_core.package_identification:_identify(src/smach_demo) by extension 'ignore'
+[0.528s] Level 1:colcon.colcon_core.package_identification:_identify(src/smach_demo) by extension 'ignore_ament_install'
+[0.528s] Level 1:colcon.colcon_core.package_identification:_identify(src/smach_demo) by extensions ['colcon_pkg']
+[0.528s] Level 1:colcon.colcon_core.package_identification:_identify(src/smach_demo) by extension 'colcon_pkg'
+[0.528s] Level 1:colcon.colcon_core.package_identification:_identify(src/smach_demo) by extensions ['colcon_meta']
+[0.528s] Level 1:colcon.colcon_core.package_identification:_identify(src/smach_demo) by extension 'colcon_meta'
+[0.528s] Level 1:colcon.colcon_core.package_identification:_identify(src/smach_demo) by extensions ['ros']
+[0.528s] Level 1:colcon.colcon_core.package_identification:_identify(src/smach_demo) by extension 'ros'
+[0.528s] DEBUG:colcon.colcon_core.package_identification:Package 'src/smach_demo' with type 'ros.ament_python' and name 'smach_demo'
+[0.528s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.528s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.528s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.528s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.528s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.557s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.557s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.559s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 6 installed packages in /home/aaa/robot/ros2_ws/install
+[0.560s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 363 installed packages in /opt/ros/humble
+[0.561s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.637s] Level 5:colcon.colcon_core.verb:set package 'mj_bridge' build argument 'cmake_args' from command line to 'None'
+[0.637s] Level 5:colcon.colcon_core.verb:set package 'mj_bridge' build argument 'cmake_target' from command line to 'None'
+[0.638s] Level 5:colcon.colcon_core.verb:set package 'mj_bridge' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.638s] Level 5:colcon.colcon_core.verb:set package 'mj_bridge' build argument 'cmake_clean_cache' from command line to 'False'
+[0.638s] Level 5:colcon.colcon_core.verb:set package 'mj_bridge' build argument 'cmake_clean_first' from command line to 'False'
+[0.638s] Level 5:colcon.colcon_core.verb:set package 'mj_bridge' build argument 'cmake_force_configure' from command line to 'False'
+[0.638s] Level 5:colcon.colcon_core.verb:set package 'mj_bridge' build argument 'ament_cmake_args' from command line to 'None'
+[0.638s] Level 5:colcon.colcon_core.verb:set package 'mj_bridge' build argument 'catkin_cmake_args' from command line to 'None'
+[0.638s] Level 5:colcon.colcon_core.verb:set package 'mj_bridge' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.638s] DEBUG:colcon.colcon_core.verb:Building package 'mj_bridge' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/aaa/robot/ros2_ws/build/mj_bridge', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/aaa/robot/ros2_ws/install/mj_bridge', 'merge_install': False, 'path': '/home/aaa/robot/ros2_ws/src/mj_bridge', 'symlink_install': True, 'test_result_base': None}
+[0.638s] Level 5:colcon.colcon_core.verb:set package 'smach' build argument 'cmake_args' from command line to 'None'
+[0.638s] Level 5:colcon.colcon_core.verb:set package 'smach' build argument 'cmake_target' from command line to 'None'
+[0.638s] Level 5:colcon.colcon_core.verb:set package 'smach' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.638s] Level 5:colcon.colcon_core.verb:set package 'smach' build argument 'cmake_clean_cache' from command line to 'False'
+[0.638s] Level 5:colcon.colcon_core.verb:set package 'smach' build argument 'cmake_clean_first' from command line to 'False'
+[0.638s] Level 5:colcon.colcon_core.verb:set package 'smach' build argument 'cmake_force_configure' from command line to 'False'
+[0.638s] Level 5:colcon.colcon_core.verb:set package 'smach' build argument 'ament_cmake_args' from command line to 'None'
+[0.638s] Level 5:colcon.colcon_core.verb:set package 'smach' build argument 'catkin_cmake_args' from command line to 'None'
+[0.638s] Level 5:colcon.colcon_core.verb:set package 'smach' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.638s] DEBUG:colcon.colcon_core.verb:Building package 'smach' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/aaa/robot/ros2_ws/build/smach', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/aaa/robot/ros2_ws/install/smach', 'merge_install': False, 'path': '/home/aaa/robot/ros2_ws/executive_smach/smach', 'symlink_install': True, 'test_result_base': None}
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'smach_demo' build argument 'cmake_args' from command line to 'None'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'smach_demo' build argument 'cmake_target' from command line to 'None'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'smach_demo' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'smach_demo' build argument 'cmake_clean_cache' from command line to 'False'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'smach_demo' build argument 'cmake_clean_first' from command line to 'False'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'smach_demo' build argument 'cmake_force_configure' from command line to 'False'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'smach_demo' build argument 'ament_cmake_args' from command line to 'None'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'smach_demo' build argument 'catkin_cmake_args' from command line to 'None'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'smach_demo' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.639s] DEBUG:colcon.colcon_core.verb:Building package 'smach_demo' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/aaa/robot/ros2_ws/build/smach_demo', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/aaa/robot/ros2_ws/install/smach_demo', 'merge_install': False, 'path': '/home/aaa/robot/ros2_ws/src/smach_demo', 'symlink_install': True, 'test_result_base': None}
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'smach_msgs' build argument 'cmake_args' from command line to 'None'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'smach_msgs' build argument 'cmake_target' from command line to 'None'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'smach_msgs' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'smach_msgs' build argument 'cmake_clean_cache' from command line to 'False'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'smach_msgs' build argument 'cmake_clean_first' from command line to 'False'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'smach_msgs' build argument 'cmake_force_configure' from command line to 'False'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'smach_msgs' build argument 'ament_cmake_args' from command line to 'None'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'smach_msgs' build argument 'catkin_cmake_args' from command line to 'None'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'smach_msgs' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.639s] DEBUG:colcon.colcon_core.verb:Building package 'smach_msgs' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/aaa/robot/ros2_ws/build/smach_msgs', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/aaa/robot/ros2_ws/install/smach_msgs', 'merge_install': False, 'path': '/home/aaa/robot/ros2_ws/executive_smach/smach_msgs', 'symlink_install': True, 'test_result_base': None}
+[0.640s] Level 5:colcon.colcon_core.verb:set package 'smach_ros' build argument 'cmake_args' from command line to 'None'
+[0.640s] Level 5:colcon.colcon_core.verb:set package 'smach_ros' build argument 'cmake_target' from command line to 'None'
+[0.640s] Level 5:colcon.colcon_core.verb:set package 'smach_ros' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.640s] Level 5:colcon.colcon_core.verb:set package 'smach_ros' build argument 'cmake_clean_cache' from command line to 'False'
+[0.640s] Level 5:colcon.colcon_core.verb:set package 'smach_ros' build argument 'cmake_clean_first' from command line to 'False'
+[0.640s] Level 5:colcon.colcon_core.verb:set package 'smach_ros' build argument 'cmake_force_configure' from command line to 'False'
+[0.640s] Level 5:colcon.colcon_core.verb:set package 'smach_ros' build argument 'ament_cmake_args' from command line to 'None'
+[0.640s] Level 5:colcon.colcon_core.verb:set package 'smach_ros' build argument 'catkin_cmake_args' from command line to 'None'
+[0.640s] Level 5:colcon.colcon_core.verb:set package 'smach_ros' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.640s] DEBUG:colcon.colcon_core.verb:Building package 'smach_ros' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/aaa/robot/ros2_ws/build/smach_ros', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/aaa/robot/ros2_ws/install/smach_ros', 'merge_install': False, 'path': '/home/aaa/robot/ros2_ws/executive_smach/smach_ros', 'symlink_install': True, 'test_result_base': None}
+[0.640s] Level 5:colcon.colcon_core.verb:set package 'executive_smach' build argument 'cmake_args' from command line to 'None'
+[0.640s] Level 5:colcon.colcon_core.verb:set package 'executive_smach' build argument 'cmake_target' from command line to 'None'
+[0.640s] Level 5:colcon.colcon_core.verb:set package 'executive_smach' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.640s] Level 5:colcon.colcon_core.verb:set package 'executive_smach' build argument 'cmake_clean_cache' from command line to 'False'
+[0.640s] Level 5:colcon.colcon_core.verb:set package 'executive_smach' build argument 'cmake_clean_first' from command line to 'False'
+[0.640s] Level 5:colcon.colcon_core.verb:set package 'executive_smach' build argument 'cmake_force_configure' from command line to 'False'
+[0.640s] Level 5:colcon.colcon_core.verb:set package 'executive_smach' build argument 'ament_cmake_args' from command line to 'None'
+[0.640s] Level 5:colcon.colcon_core.verb:set package 'executive_smach' build argument 'catkin_cmake_args' from command line to 'None'
+[0.640s] Level 5:colcon.colcon_core.verb:set package 'executive_smach' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.640s] DEBUG:colcon.colcon_core.verb:Building package 'executive_smach' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/aaa/robot/ros2_ws/build/executive_smach', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/aaa/robot/ros2_ws/install/executive_smach', 'merge_install': False, 'path': '/home/aaa/robot/ros2_ws/executive_smach/executive_smach', 'symlink_install': True, 'test_result_base': None}
+[0.640s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.641s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.642s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/aaa/robot/ros2_ws/executive_smach/smach' with build type 'ament_python'
+[0.642s] Level 1:colcon.colcon_core.shell:create_environment_hook('smach', 'ament_prefix_path')
+[0.643s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.643s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/smach/share/smach/hook/ament_prefix_path.ps1'
+[0.644s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aaa/robot/ros2_ws/install/smach/share/smach/hook/ament_prefix_path.dsv'
+[0.645s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/smach/share/smach/hook/ament_prefix_path.sh'
+[0.645s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.646s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.651s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/aaa/robot/ros2_ws/executive_smach/smach_msgs' with build type 'ament_cmake'
+[0.651s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/aaa/robot/ros2_ws/executive_smach/smach_msgs'
+[0.651s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.651s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.089s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/aaa/robot/ros2_ws/executive_smach/smach'
+[1.089s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.089s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.097s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aaa/robot/ros2_ws/build/smach_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ /usr/bin/cmake --build /home/aaa/robot/ros2_ws/build/smach_msgs -- -j2 -l2
+[1.815s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aaa/robot/ros2_ws/build/smach': PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/smach/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aaa/robot/ros2_ws/build/smach/build --no-deps symlink_data
+[2.399s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aaa/robot/ros2_ws/build/smach_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ /usr/bin/cmake --build /home/aaa/robot/ros2_ws/build/smach_msgs -- -j2 -l2
+[2.433s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aaa/robot/ros2_ws/build/smach_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ /usr/bin/cmake --install /home/aaa/robot/ros2_ws/build/smach_msgs
+[2.599s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(smach_msgs)
+[2.600s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aaa/robot/ros2_ws/build/smach_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ /usr/bin/cmake --install /home/aaa/robot/ros2_ws/build/smach_msgs
+[2.604s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_msgs' for CMake module files
+[2.604s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_msgs' for CMake config files
+[2.606s] Level 1:colcon.colcon_core.shell:create_environment_hook('smach_msgs', 'cmake_prefix_path')
+[2.606s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/hook/cmake_prefix_path.ps1'
+[2.606s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/hook/cmake_prefix_path.dsv'
+[2.609s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/hook/cmake_prefix_path.sh'
+[2.613s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_msgs/lib'
+[2.613s] Level 1:colcon.colcon_core.shell:create_environment_hook('smach_msgs', 'ld_library_path_lib')
+[2.614s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/hook/ld_library_path_lib.ps1'
+[2.614s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/hook/ld_library_path_lib.dsv'
+[2.614s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/hook/ld_library_path_lib.sh'
+[2.615s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_msgs/bin'
+[2.615s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_msgs/lib/pkgconfig/smach_msgs.pc'
+[2.615s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_msgs/lib/python3.10/site-packages'
+[2.615s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_msgs/bin'
+[2.615s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/package.ps1'
+[2.616s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/package.dsv'
+[2.617s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/package.sh'
+[2.617s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/package.bash'
+[2.623s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/package.zsh'
+[2.624s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aaa/robot/ros2_ws/install/smach_msgs/share/colcon-core/packages/smach_msgs)
+[2.624s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(smach_msgs)
+[2.624s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_msgs' for CMake module files
+[2.625s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_msgs' for CMake config files
+[2.626s] Level 1:colcon.colcon_core.shell:create_environment_hook('smach_msgs', 'cmake_prefix_path')
+[2.626s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/hook/cmake_prefix_path.ps1'
+[2.626s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/hook/cmake_prefix_path.dsv'
+[2.627s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/hook/cmake_prefix_path.sh'
+[2.627s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_msgs/lib'
+[2.628s] Level 1:colcon.colcon_core.shell:create_environment_hook('smach_msgs', 'ld_library_path_lib')
+[2.628s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/hook/ld_library_path_lib.ps1'
+[2.628s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/hook/ld_library_path_lib.dsv'
+[2.631s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/hook/ld_library_path_lib.sh'
+[2.631s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_msgs/bin'
+[2.631s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_msgs/lib/pkgconfig/smach_msgs.pc'
+[2.632s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_msgs/lib/python3.10/site-packages'
+[2.632s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_msgs/bin'
+[2.632s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/package.ps1'
+[2.633s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/package.dsv'
+[2.633s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/package.sh'
+[2.637s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/package.bash'
+[2.638s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/package.zsh'
+[2.638s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aaa/robot/ros2_ws/install/smach_msgs/share/colcon-core/packages/smach_msgs)
+[2.638s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/aaa/robot/ros2_ws/src/mj_bridge' with build type 'ament_python'
+[2.639s] Level 1:colcon.colcon_core.shell:create_environment_hook('mj_bridge', 'ament_prefix_path')
+[2.639s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/mj_bridge/share/mj_bridge/hook/ament_prefix_path.ps1'
+[2.639s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aaa/robot/ros2_ws/install/mj_bridge/share/mj_bridge/hook/ament_prefix_path.dsv'
+[2.640s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/mj_bridge/share/mj_bridge/hook/ament_prefix_path.sh'
+[2.640s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.640s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[3.168s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/aaa/robot/ros2_ws/src/mj_bridge'
+[3.169s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[3.169s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[3.178s] Level 1:colcon.colcon_core.shell:create_environment_hook('smach', 'pythonpath_develop')
+[3.178s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aaa/robot/ros2_ws/build/smach' returned '0': PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/smach/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aaa/robot/ros2_ws/build/smach/build --no-deps symlink_data
+[3.179s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/build/smach/share/smach/hook/pythonpath_develop.ps1'
+[3.179s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aaa/robot/ros2_ws/build/smach/share/smach/hook/pythonpath_develop.dsv'
+[3.180s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/build/smach/share/smach/hook/pythonpath_develop.sh'
+[3.180s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach' for CMake module files
+[3.180s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach' for CMake config files
+[3.181s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach/lib'
+[3.181s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach/bin'
+[3.181s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach/lib/pkgconfig/smach.pc'
+[3.181s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages'
+[3.181s] Level 1:colcon.colcon_core.shell:create_environment_hook('smach', 'pythonpath')
+[3.181s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/smach/share/smach/hook/pythonpath.ps1'
+[3.182s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aaa/robot/ros2_ws/install/smach/share/smach/hook/pythonpath.dsv'
+[3.182s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/smach/share/smach/hook/pythonpath.sh'
+[3.182s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach/bin'
+[3.183s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(smach)
+[3.183s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/smach/share/smach/package.ps1'
+[3.183s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aaa/robot/ros2_ws/install/smach/share/smach/package.dsv'
+[3.184s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/smach/share/smach/package.sh'
+[3.184s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/smach/share/smach/package.bash'
+[3.184s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/smach/share/smach/package.zsh'
+[3.194s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aaa/robot/ros2_ws/install/smach/share/colcon-core/packages/smach)
+[3.195s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/aaa/robot/ros2_ws/executive_smach/smach_ros' with build type 'ament_python'
+[3.195s] Level 1:colcon.colcon_core.shell:create_environment_hook('smach_ros', 'ament_prefix_path')
+[3.196s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/smach_ros/share/smach_ros/hook/ament_prefix_path.ps1'
+[3.207s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aaa/robot/ros2_ws/install/smach_ros/share/smach_ros/hook/ament_prefix_path.dsv'
+[3.208s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/smach_ros/share/smach_ros/hook/ament_prefix_path.sh'
+[3.208s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[3.208s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[3.913s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/aaa/robot/ros2_ws/executive_smach/smach_ros'
+[3.914s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[3.914s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[3.938s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aaa/robot/ros2_ws/build/mj_bridge': PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/mj_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aaa/robot/ros2_ws/build/mj_bridge/build --no-deps symlink_data
+[4.642s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aaa/robot/ros2_ws/build/smach_ros': AMENT_PREFIX_PATH=/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble CMAKE_PREFIX_PATH=/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/executive_smach PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/smach_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aaa/robot/ros2_ws/build/smach_ros/build --no-deps symlink_data
+[5.020s] Level 1:colcon.colcon_core.shell:create_environment_hook('mj_bridge', 'pythonpath_develop')
+[5.020s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aaa/robot/ros2_ws/build/mj_bridge' returned '0': PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/mj_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aaa/robot/ros2_ws/build/mj_bridge/build --no-deps symlink_data
+[5.021s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/build/mj_bridge/share/mj_bridge/hook/pythonpath_develop.ps1'
+[5.021s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aaa/robot/ros2_ws/build/mj_bridge/share/mj_bridge/hook/pythonpath_develop.dsv'
+[5.021s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/build/mj_bridge/share/mj_bridge/hook/pythonpath_develop.sh'
+[5.022s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/mj_bridge' for CMake module files
+[5.022s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/mj_bridge' for CMake config files
+[5.023s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/mj_bridge/lib'
+[5.023s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/mj_bridge/bin'
+[5.023s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/mj_bridge/lib/pkgconfig/mj_bridge.pc'
+[5.023s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages'
+[5.023s] Level 1:colcon.colcon_core.shell:create_environment_hook('mj_bridge', 'pythonpath')
+[5.024s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/mj_bridge/share/mj_bridge/hook/pythonpath.ps1'
+[5.024s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aaa/robot/ros2_ws/install/mj_bridge/share/mj_bridge/hook/pythonpath.dsv'
+[5.024s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/mj_bridge/share/mj_bridge/hook/pythonpath.sh'
+[5.025s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/mj_bridge/bin'
+[5.025s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(mj_bridge)
+[5.025s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/mj_bridge/share/mj_bridge/package.ps1'
+[5.025s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aaa/robot/ros2_ws/install/mj_bridge/share/mj_bridge/package.dsv'
+[5.026s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/mj_bridge/share/mj_bridge/package.sh'
+[5.026s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/mj_bridge/share/mj_bridge/package.bash'
+[5.026s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/mj_bridge/share/mj_bridge/package.zsh'
+[5.027s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aaa/robot/ros2_ws/install/mj_bridge/share/colcon-core/packages/mj_bridge)
+[5.027s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/aaa/robot/ros2_ws/src/smach_demo' with build type 'ament_python'
+[5.027s] Level 1:colcon.colcon_core.shell:create_environment_hook('smach_demo', 'ament_prefix_path')
+[5.027s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/smach_demo/share/smach_demo/hook/ament_prefix_path.ps1'
+[5.028s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aaa/robot/ros2_ws/install/smach_demo/share/smach_demo/hook/ament_prefix_path.dsv'
+[5.028s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/smach_demo/share/smach_demo/hook/ament_prefix_path.sh'
+[5.029s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[5.029s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[5.544s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/aaa/robot/ros2_ws/src/smach_demo'
+[5.544s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[5.544s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[5.768s] Level 1:colcon.colcon_core.shell:create_environment_hook('smach_ros', 'pythonpath_develop')
+[5.769s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/build/smach_ros/share/smach_ros/hook/pythonpath_develop.ps1'
+[5.769s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aaa/robot/ros2_ws/build/smach_ros' returned '0': AMENT_PREFIX_PATH=/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble CMAKE_PREFIX_PATH=/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/executive_smach PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/smach_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aaa/robot/ros2_ws/build/smach_ros/build --no-deps symlink_data
+[5.770s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aaa/robot/ros2_ws/build/smach_ros/share/smach_ros/hook/pythonpath_develop.dsv'
+[5.770s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/build/smach_ros/share/smach_ros/hook/pythonpath_develop.sh'
+[5.771s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_ros' for CMake module files
+[5.771s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_ros' for CMake config files
+[5.771s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_ros/lib'
+[5.772s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_ros/bin'
+[5.772s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_ros/lib/pkgconfig/smach_ros.pc'
+[5.772s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages'
+[5.772s] Level 1:colcon.colcon_core.shell:create_environment_hook('smach_ros', 'pythonpath')
+[5.772s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/smach_ros/share/smach_ros/hook/pythonpath.ps1'
+[5.772s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aaa/robot/ros2_ws/install/smach_ros/share/smach_ros/hook/pythonpath.dsv'
+[5.773s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/smach_ros/share/smach_ros/hook/pythonpath.sh'
+[5.773s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_ros/bin'
+[5.773s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(smach_ros)
+[5.774s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/smach_ros/share/smach_ros/package.ps1'
+[5.774s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aaa/robot/ros2_ws/install/smach_ros/share/smach_ros/package.dsv'
+[5.774s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/smach_ros/share/smach_ros/package.sh'
+[5.775s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/smach_ros/share/smach_ros/package.bash'
+[5.779s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/smach_ros/share/smach_ros/package.zsh'
+[5.779s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aaa/robot/ros2_ws/install/smach_ros/share/colcon-core/packages/smach_ros)
+[5.780s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/aaa/robot/ros2_ws/executive_smach/executive_smach' with build type 'ament_cmake'
+[5.780s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/aaa/robot/ros2_ws/executive_smach/executive_smach'
+[5.780s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[5.780s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[5.936s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aaa/robot/ros2_ws/build/executive_smach': AMENT_PREFIX_PATH=/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble CMAKE_PREFIX_PATH=/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/cmake --build /home/aaa/robot/ros2_ws/build/executive_smach -- -j2 -l2
+[6.041s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aaa/robot/ros2_ws/build/executive_smach' returned '0': AMENT_PREFIX_PATH=/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble CMAKE_PREFIX_PATH=/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/cmake --build /home/aaa/robot/ros2_ws/build/executive_smach -- -j2 -l2
+[6.042s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aaa/robot/ros2_ws/build/executive_smach': AMENT_PREFIX_PATH=/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble CMAKE_PREFIX_PATH=/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/cmake --install /home/aaa/robot/ros2_ws/build/executive_smach
+[6.062s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(executive_smach)
+[6.063s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aaa/robot/ros2_ws/build/executive_smach' returned '0': AMENT_PREFIX_PATH=/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble CMAKE_PREFIX_PATH=/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/cmake --install /home/aaa/robot/ros2_ws/build/executive_smach
+[6.063s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/executive_smach' for CMake module files
+[6.064s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/executive_smach' for CMake config files
+[6.064s] Level 1:colcon.colcon_core.shell:create_environment_hook('executive_smach', 'cmake_prefix_path')
+[6.065s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/hook/cmake_prefix_path.ps1'
+[6.065s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/hook/cmake_prefix_path.dsv'
+[6.065s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/hook/cmake_prefix_path.sh'
+[6.066s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/executive_smach/bin'
+[6.066s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/executive_smach/lib/pkgconfig/executive_smach.pc'
+[6.066s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/executive_smach/lib/python3.10/site-packages'
+[6.067s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/executive_smach/bin'
+[6.067s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/package.ps1'
+[6.068s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/package.dsv'
+[6.068s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/package.sh'
+[6.068s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/package.bash'
+[6.069s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/package.zsh'
+[6.069s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aaa/robot/ros2_ws/install/executive_smach/share/colcon-core/packages/executive_smach)
+[6.069s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(executive_smach)
+[6.069s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/executive_smach' for CMake module files
+[6.070s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/executive_smach' for CMake config files
+[6.070s] Level 1:colcon.colcon_core.shell:create_environment_hook('executive_smach', 'cmake_prefix_path')
+[6.070s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/hook/cmake_prefix_path.ps1'
+[6.070s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/hook/cmake_prefix_path.dsv'
+[6.071s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/hook/cmake_prefix_path.sh'
+[6.071s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/executive_smach/bin'
+[6.071s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/executive_smach/lib/pkgconfig/executive_smach.pc'
+[6.071s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/executive_smach/lib/python3.10/site-packages'
+[6.072s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/executive_smach/bin'
+[6.072s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/package.ps1'
+[6.072s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/package.dsv'
+[6.073s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/package.sh'
+[6.073s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/package.bash'
+[6.073s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/package.zsh'
+[6.074s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aaa/robot/ros2_ws/install/executive_smach/share/colcon-core/packages/executive_smach)
+[6.143s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aaa/robot/ros2_ws/build/smach_demo': PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/smach_demo/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aaa/robot/ros2_ws/build/smach_demo/build --no-deps symlink_data
+[6.796s] Level 1:colcon.colcon_core.shell:create_environment_hook('smach_demo', 'pythonpath_develop')
+[6.797s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/build/smach_demo/share/smach_demo/hook/pythonpath_develop.ps1'
+[6.797s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aaa/robot/ros2_ws/build/smach_demo/share/smach_demo/hook/pythonpath_develop.dsv'
+[6.798s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/build/smach_demo/share/smach_demo/hook/pythonpath_develop.sh'
+[6.798s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_demo' for CMake module files
+[6.799s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aaa/robot/ros2_ws/build/smach_demo' returned '0': PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/smach_demo/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aaa/robot/ros2_ws/build/smach_demo/build --no-deps symlink_data
+[6.799s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_demo' for CMake config files
+[6.800s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_demo/lib'
+[6.800s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_demo/bin'
+[6.800s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_demo/lib/pkgconfig/smach_demo.pc'
+[6.807s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages'
+[6.808s] Level 1:colcon.colcon_core.shell:create_environment_hook('smach_demo', 'pythonpath')
+[6.808s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/smach_demo/share/smach_demo/hook/pythonpath.ps1'
+[6.808s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aaa/robot/ros2_ws/install/smach_demo/share/smach_demo/hook/pythonpath.dsv'
+[6.808s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aaa/robot/ros2_ws/install/smach_demo/share/smach_demo/hook/pythonpath.sh'
+[6.809s] Level 1:colcon.colcon_core.environment:checking '/home/aaa/robot/ros2_ws/install/smach_demo/bin'
+[6.809s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(smach_demo)
+[6.809s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/smach_demo/share/smach_demo/package.ps1'
+[6.810s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aaa/robot/ros2_ws/install/smach_demo/share/smach_demo/package.dsv'
+[6.812s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/smach_demo/share/smach_demo/package.sh'
+[6.812s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/smach_demo/share/smach_demo/package.bash'
+[6.815s] INFO:colcon.colcon_core.shell:Creating package script '/home/aaa/robot/ros2_ws/install/smach_demo/share/smach_demo/package.zsh'
+[6.815s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aaa/robot/ros2_ws/install/smach_demo/share/colcon-core/packages/smach_demo)
+[6.816s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[6.816s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[6.816s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[6.817s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[6.821s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[6.822s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[6.822s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[6.868s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[6.869s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/aaa/robot/ros2_ws/install/local_setup.ps1'
+[6.870s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/aaa/robot/ros2_ws/install/_local_setup_util_ps1.py'
+[6.871s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/aaa/robot/ros2_ws/install/setup.ps1'
+[6.872s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/aaa/robot/ros2_ws/install/local_setup.sh'
+[6.873s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/aaa/robot/ros2_ws/install/_local_setup_util_sh.py'
+[6.873s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/aaa/robot/ros2_ws/install/setup.sh'
+[6.874s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/aaa/robot/ros2_ws/install/local_setup.bash'
+[6.874s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/aaa/robot/ros2_ws/install/setup.bash'
+[6.878s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/aaa/robot/ros2_ws/install/local_setup.zsh'
+[6.878s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/aaa/robot/ros2_ws/install/setup.zsh'

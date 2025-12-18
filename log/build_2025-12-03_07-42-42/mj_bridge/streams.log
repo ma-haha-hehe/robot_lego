@@ -1,0 +1,20 @@
+[1.389s] Invoking command in '/home/aaa/robot/ros2_ws/build/mj_bridge': PS1=(mj) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/mj_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(mj) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aaa/robot/ros2_ws/build/mj_bridge/build --no-deps symlink_data --force
+[2.012s] running develop
+[2.408s] running egg_info
+[2.409s] writing mj_bridge.egg-info/PKG-INFO
+[2.415s] writing dependency_links to mj_bridge.egg-info/dependency_links.txt
+[2.415s] writing entry points to mj_bridge.egg-info/entry_points.txt
+[2.415s] writing requirements to mj_bridge.egg-info/requires.txt
+[2.416s] writing top-level names to mj_bridge.egg-info/top_level.txt
+[2.416s] reading manifest file 'mj_bridge.egg-info/SOURCES.txt'
+[2.418s] writing manifest file 'mj_bridge.egg-info/SOURCES.txt'
+[2.418s] running build_ext
+[2.418s] Creating /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj-bridge.egg-link (link to .)
+[2.419s] Installing mj_bridge script to /home/aaa/robot/ros2_ws/install/mj_bridge/lib/mj_bridge
+[2.419s] Installing pick_and_place script to /home/aaa/robot/ros2_ws/install/mj_bridge/lib/mj_bridge
+[2.419s] 
+[2.419s] Installed /home/aaa/robot/ros2_ws/build/mj_bridge
+[2.419s] running symlink_data
+[2.419s] symbolically linking /home/aaa/robot/ros2_ws/build/mj_bridge/resource/mj_bridge -> /home/aaa/robot/ros2_ws/install/mj_bridge/share/ament_index/resource_index/packages
+[2.420s] symbolically linking /home/aaa/robot/ros2_ws/build/mj_bridge/package.xml -> /home/aaa/robot/ros2_ws/install/mj_bridge/share/mj_bridge
+[2.477s] Invoked command in '/home/aaa/robot/ros2_ws/build/mj_bridge' returned '0': PS1=(mj) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/mj_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(mj) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aaa/robot/ros2_ws/build/mj_bridge/build --no-deps symlink_data --force

@@ -1,0 +1,19 @@
+[1.449s] Invoking command in '/home/aaa/robot/ros2_ws/build/mj_bridge': PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/mj_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aaa/robot/ros2_ws/build/mj_bridge/build --no-deps symlink_data --force
+[1.850s] running develop
+[2.069s] running egg_info
+[2.069s] writing mj_bridge.egg-info/PKG-INFO
+[2.070s] writing dependency_links to mj_bridge.egg-info/dependency_links.txt
+[2.079s] writing entry points to mj_bridge.egg-info/entry_points.txt
+[2.079s] writing requirements to mj_bridge.egg-info/requires.txt
+[2.079s] writing top-level names to mj_bridge.egg-info/top_level.txt
+[2.094s] reading manifest file 'mj_bridge.egg-info/SOURCES.txt'
+[2.099s] writing manifest file 'mj_bridge.egg-info/SOURCES.txt'
+[2.100s] running build_ext
+[2.100s] Creating /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj-bridge.egg-link (link to .)
+[2.101s] Installing mj_bridge script to /home/aaa/robot/ros2_ws/install/mj_bridge/lib/mj_bridge
+[2.102s] 
+[2.102s] Installed /home/aaa/robot/ros2_ws/build/mj_bridge
+[2.102s] running symlink_data
+[2.102s] symbolically linking /home/aaa/robot/ros2_ws/build/mj_bridge/resource/mj_bridge -> /home/aaa/robot/ros2_ws/install/mj_bridge/share/ament_index/resource_index/packages
+[2.102s] symbolically linking /home/aaa/robot/ros2_ws/build/mj_bridge/package.xml -> /home/aaa/robot/ros2_ws/install/mj_bridge/share/mj_bridge
+[2.143s] Invoked command in '/home/aaa/robot/ros2_ws/build/mj_bridge' returned '0': PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/mj_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aaa/robot/ros2_ws/build/mj_bridge/build --no-deps symlink_data --force

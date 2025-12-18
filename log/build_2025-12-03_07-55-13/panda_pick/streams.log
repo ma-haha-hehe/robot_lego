@@ -1,0 +1,372 @@
+[0.022s] Invoking command in '/home/aaa/robot/ros2_ws/build/panda_pick': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble PS1=(mj) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(mj) /usr/bin/cmake /home/aaa/robot/ros2_ws/src/panda_pick -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/aaa/robot/ros2_ws/install/panda_pick
+[0.036s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.157s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.160s] -- Found rclcpp: 16.0.15 (/opt/ros/humble/share/rclcpp/cmake)
+[0.194s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.195s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.198s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.218s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.229s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.244s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.245s] -- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.326s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.392s] -- Found geometry_msgs: 4.9.0 (/opt/ros/humble/share/geometry_msgs/cmake)
+[0.404s] -- Found moveit_ros_planning_interface: 2.5.9 (/opt/ros/humble/share/moveit_ros_planning_interface/cmake)
+[0.417s] -- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: date_time filesystem program_options system thread 
+[0.559s] -- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: chrono date_time filesystem iostreams program_options regex serialization system thread 
+[0.583s] -- Found parameter_traits: 0.5.0 (/opt/ros/humble/share/parameter_traits/cmake)
+[0.589s] -- Found rclcpp_lifecycle: 16.0.15 (/opt/ros/humble/share/rclcpp_lifecycle/cmake)
+[0.611s] -- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: filesystem 
+[0.663s] -- library: /usr/lib/aarch64-linux-gnu/libcurl.so
+[0.687s] -- Ensuring Eigen3 include directory is part of orocos-kdl CMake target
+[0.791s] -- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: system filesystem date_time program_options thread chrono 
+[0.824s] -- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: thread system filesystem regex date_time program_options 
+[0.850s] -- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: system filesystem date_time program_options thread 
+[0.975s] -- Configuring done
+[1.010s] -- Generating done
+[1.014s] -- Build files have been written to: /home/aaa/robot/ros2_ws/build/panda_pick
+[1.028s] Invoked command in '/home/aaa/robot/ros2_ws/build/panda_pick' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble PS1=(mj) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(mj) /usr/bin/cmake /home/aaa/robot/ros2_ws/src/panda_pick -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/aaa/robot/ros2_ws/install/panda_pick
+[1.029s] Invoking command in '/home/aaa/robot/ros2_ws/build/panda_pick': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble PS1=(mj) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(mj) /usr/bin/cmake --build /home/aaa/robot/ros2_ws/build/panda_pick -- -j2 -l2
+[1.157s] [ 50%] [32mBuilding CXX object CMakeFiles/pick_and_place_node.dir/src/pick_and_place.cpp.o[0m
+[4.629s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:[m[K In constructor ‘[01m[KPandaPickNode::PandaPickNode()[m[K’:
+[4.629s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:14:102:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[Kstd::shared_ptr<rclcpp::Node>::shared_ptr(std::shared_ptr<rclcpp::Node>, PandaPickNode::PandaPickNode()::<lambda(rclcpp::Node*)>)[m[K’
+[4.629s]    14 | de>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;31m[K)[m[K, "panda_arm"),
+[4.629s]       |                                                             [01;31m[K^[m[K
+[4.629s] 
+[4.629s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.629s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.629s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.629s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:408:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Alloc, class ... _Args> std::shared_ptr<_Tp>::shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...) [with _Alloc = _Alloc; _Args = {_Args ...}; _Tp = rclcpp::Node][m[K’
+[4.629s]   408 |         [01;36m[Kshared_ptr[m[K(_Sp_alloc_shared_tag<_Alloc> __tag, _Args&&... __args)
+[4.629s]       |         [01;36m[K^~~~~~~~~~[m[K
+[4.629s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:408:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.629s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:14:102:[m[K [01;36m[Knote: [m[K  ‘[01m[Kstd::shared_ptr<rclcpp::Node>[m[K’ is not derived from ‘[01m[Kstd::_Sp_alloc_shared_tag<_Tp>[m[K’
+[4.629s]    14 | de>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;36m[K)[m[K, "panda_arm"),
+[4.629s]       |                                                             [01;36m[K^[m[K
+[4.629s] 
+[4.629s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.629s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.630s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.630s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:340:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class _Del, class> std::shared_ptr<_Tp>::shared_ptr(std::unique_ptr<_Up, _Ep>&&) [with _Yp = _Yp; _Del = _Del; <template-parameter-2-3> = <template-parameter-1-3>; _Tp = rclcpp::Node][m[K’
+[4.630s]   340 |         [01;36m[Kshared_ptr[m[K(unique_ptr<_Yp, _Del>&& __r)
+[4.630s]       |         [01;36m[K^~~~~~~~~~[m[K
+[4.630s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:340:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.630s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:14:102:[m[K [01;36m[Knote: [m[K  ‘[01m[Kstd::shared_ptr<rclcpp::Node>[m[K’ is not derived from ‘[01m[Kstd::unique_ptr<_Tp, _Dp>[m[K’
+[4.630s]    14 | de>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;36m[K)[m[K, "panda_arm"),
+[4.630s]       |                                                             [01;36m[K^[m[K
+[4.630s] 
+[4.630s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.630s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.630s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.630s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:332:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(std::auto_ptr<_Up>&&) [with _Yp = _Tp1; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::Node][m[K’
+[4.630s]   332 |         [01;36m[Kshared_ptr[m[K(auto_ptr<_Yp>&& __r);
+[4.630s]       |         [01;36m[K^~~~~~~~~~[m[K
+[4.630s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:332:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.630s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:14:102:[m[K [01;36m[Knote: [m[K  ‘[01m[Kstd::shared_ptr<rclcpp::Node>[m[K’ is not derived from ‘[01m[Kstd::auto_ptr<_Up>[m[K’
+[4.630s]    14 | de>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;36m[K)[m[K, "panda_arm"),
+[4.630s]       |                                                             [01;36m[K^[m[K
+[4.630s] 
+[4.630s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.630s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.630s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.630s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:325:18:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(const std::weak_ptr<_Yp>&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::Node][m[K’
+[4.630s]   325 |         explicit [01;36m[Kshared_ptr[m[K(const weak_ptr<_Yp>& __r)
+[4.630s]       |                  [01;36m[K^~~~~~~~~~[m[K
+[4.630s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:325:18:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.630s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:14:102:[m[K [01;36m[Knote: [m[K  ‘[01m[Kstd::shared_ptr<rclcpp::Node>[m[K’ is not derived from ‘[01m[Kconst std::weak_ptr<_Tp>[m[K’
+[4.630s]    14 | de>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;36m[K)[m[K, "panda_arm"),
+[4.630s]       |                                                             [01;36m[K^[m[K
+[4.630s] 
+[4.631s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.631s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.631s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.631s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:313:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Yp>&&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::Node][m[K’
+[4.631s]   313 |         [01;36m[Kshared_ptr[m[K(shared_ptr<_Yp>&& __r) noexcept
+[4.631s]       |         [01;36m[K^~~~~~~~~~[m[K
+[4.631s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:313:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.631s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:14:102:[m[K [01;36m[Knote: [m[K  candidate expects 1 argument, 2 provided
+[4.631s]    14 | de>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;36m[K)[m[K, "panda_arm"),
+[4.631s]       |                                                             [01;36m[K^[m[K
+[4.631s] 
+[4.631s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.631s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.631s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.631s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:296:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Yp>&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::Node][m[K’
+[4.631s]   296 |         [01;36m[Kshared_ptr[m[K(const shared_ptr<_Yp>& __r) noexcept
+[4.631s]       |         [01;36m[K^~~~~~~~~~[m[K
+[4.631s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:296:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.631s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:14:102:[m[K [01;36m[Knote: [m[K  candidate expects 1 argument, 2 provided
+[4.631s]    14 | de>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;36m[K)[m[K, "panda_arm"),
+[4.631s]       |                                                             [01;36m[K^[m[K
+[4.631s] 
+[4.631s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.631s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.631s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.631s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:257:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Yp>&, std::shared_ptr<_Tp>::element_type*) [with _Yp = _Yp; _Tp = rclcpp::Node][m[K’
+[4.631s]   257 |         [01;36m[Kshared_ptr[m[K(const shared_ptr<_Yp>& __r, element_type* __p) noexcept
+[4.631s]       |         [01;36m[K^~~~~~~~~~[m[K
+[4.631s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:257:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.631s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:14:102:[m[K [01;36m[Knote: [m[K  cannot convert ‘[01m[K<lambda closure object>PandaPickNode::PandaPickNode()::<lambda(rclcpp::Node*)>{}[m[K’ (type ‘[01m[KPandaPickNode::PandaPickNode()::<lambda(rclcpp::Node*)>[m[K’) to type ‘[01m[Kstd::shared_ptr<rclcpp::Node>::element_type*[m[K’ {aka ‘[01m[Krclcpp::Node*[m[K’}
+[4.631s]    14 | de>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;36m[K)[m[K, "panda_arm"),
+[4.632s]       |                                                             [01;36m[K^[m[K
+[4.632s] 
+[4.632s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.632s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.632s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.632s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:233:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Deleter, class _Alloc> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter, _Alloc) [with _Deleter = _Deleter; _Alloc = _Alloc; _Tp = rclcpp::Node][m[K’
+[4.632s]   233 |         [01;36m[Kshared_ptr[m[K(nullptr_t __p, _Deleter __d, _Alloc __a)
+[4.632s]       |         [01;36m[K^~~~~~~~~~[m[K
+[4.632s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:233:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.632s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:14:102:[m[K [01;36m[Knote: [m[K  candidate expects 3 arguments, 2 provided
+[4.632s]    14 | de>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;36m[K)[m[K, "panda_arm"),
+[4.632s]       |                                                             [01;36m[K^[m[K
+[4.632s] 
+[4.632s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.632s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.632s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.632s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:214:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class _Deleter, class _Alloc, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*, _Deleter, _Alloc) [with _Yp = _Yp; _Deleter = _Deleter; _Alloc = _Alloc; <template-parameter-2-4> = <template-parameter-1-4>; _Tp = rclcpp::Node][m[K’
+[4.632s]   214 |         [01;36m[Kshared_ptr[m[K(_Yp* __p, _Deleter __d, _Alloc __a)
+[4.632s]       |         [01;36m[K^~~~~~~~~~[m[K
+[4.632s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:214:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.632s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:14:102:[m[K [01;36m[Knote: [m[K  mismatched types ‘[01m[K_Yp*[m[K’ and ‘[01m[Kstd::shared_ptr<rclcpp::Node>[m[K’
+[4.632s]    14 | de>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;36m[K)[m[K, "panda_arm"),
+[4.632s]       |                                                             [01;36m[K^[m[K
+[4.632s] 
+[4.632s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.632s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.632s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.632s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:194:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Deleter> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter) [with _Deleter = _Deleter; _Tp = rclcpp::Node][m[K’
+[4.632s]   194 |         [01;36m[Kshared_ptr[m[K(nullptr_t __p, _Deleter __d)
+[4.632s]       |         [01;36m[K^~~~~~~~~~[m[K
+[4.632s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:194:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.633s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:14:51:[m[K [01;36m[Knote: [m[K  cannot convert ‘[01m[Kstd::shared_ptr<rclcpp::Node>(((PandaPickNode*)this))[m[K’ (type ‘[01m[Kstd::shared_ptr<rclcpp::Node>[m[K’) to type ‘[01m[Kstd::nullptr_t[m[K’
+[4.633s]    14 |     arm_group_(std::shared_ptr<rclcpp::Node>(std::[01;36m[Kshared_ptr<rclcpp::Node>(this)[m[K, [](rclcpp::Node*){}), "panda_arm"),
+[4.633s]       |                                                   [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[4.633s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.633s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.633s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.633s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:177:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class _Deleter, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*, _Deleter) [with _Yp = _Yp; _Deleter = _Deleter; <template-parameter-2-3> = <template-parameter-1-3>; _Tp = rclcpp::Node][m[K’
+[4.633s]   177 |         [01;36m[Kshared_ptr[m[K(_Yp* __p, _Deleter __d)
+[4.633s]       |         [01;36m[K^~~~~~~~~~[m[K
+[4.633s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:177:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.633s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:14:102:[m[K [01;36m[Knote: [m[K  mismatched types ‘[01m[K_Yp*[m[K’ and ‘[01m[Kstd::shared_ptr<rclcpp::Node>[m[K’
+[4.633s]    14 | de>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;36m[K)[m[K, "panda_arm"),
+[4.633s]       |                                                             [01;36m[K^[m[K
+[4.633s] 
+[4.633s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.633s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.633s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.633s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:160:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::Node][m[K’
+[4.633s]   160 |         [01;36m[Kshared_ptr[m[K(_Yp* __p) : __shared_ptr<_Tp>(__p) { }
+[4.633s]       |         [01;36m[K^~~~~~~~~~[m[K
+[4.633s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:160:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.633s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:14:102:[m[K [01;36m[Knote: [m[K  mismatched types ‘[01m[K_Yp*[m[K’ and ‘[01m[Kstd::shared_ptr<rclcpp::Node>[m[K’
+[4.633s]    14 | de>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;36m[K)[m[K, "panda_arm"),
+[4.633s]       |                                                             [01;36m[K^[m[K
+[4.633s] 
+[4.633s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.633s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.633s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.633s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:417:7:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::shared_ptr<_Tp>::shared_ptr(const std::weak_ptr<_Tp>&, std::nothrow_t) [with _Tp = rclcpp::Node][m[K’
+[4.633s]   417 |       [01;36m[Kshared_ptr[m[K(const weak_ptr<_Tp>& __r, std::nothrow_t) noexcept
+[4.634s]       |       [01;36m[K^~~~~~~~~~[m[K
+[4.634s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:417:44:[m[K [01;36m[Knote: [m[K  no known conversion for argument 2 from ‘[01m[KPandaPickNode::PandaPickNode()::<lambda(rclcpp::Node*)>[m[K’ to ‘[01m[Kstd::nothrow_t[m[K’
+[4.634s]   417 |       shared_ptr(const weak_ptr<_Tp>& __r, [01;36m[Kstd::nothrow_t[m[K) noexcept
+[4.634s]       |                                            [01;36m[K^~~~~~~~~~~~~~[m[K
+[4.634s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:357:17:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kconstexpr std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t) [with _Tp = rclcpp::Node; std::nullptr_t = std::nullptr_t][m[K’
+[4.634s]   357 |       constexpr [01;36m[Kshared_ptr[m[K(nullptr_t) noexcept : shared_ptr() { }
+[4.634s]       |                 [01;36m[K^~~~~~~~~~[m[K
+[4.634s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:357:17:[m[K [01;36m[Knote: [m[K  candidate expects 1 argument, 2 provided
+[4.634s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:304:7:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Tp>&&) [with _Tp = rclcpp::Node][m[K’
+[4.634s]   304 |       [01;36m[Kshared_ptr[m[K(shared_ptr&& __r) noexcept
+[4.634s]       |       [01;36m[K^~~~~~~~~~[m[K
+[4.634s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:304:7:[m[K [01;36m[Knote: [m[K  candidate expects 1 argument, 2 provided
+[4.634s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:150:7:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Tp>&) [with _Tp = rclcpp::Node][m[K’
+[4.634s]   150 |       [01;36m[Kshared_ptr[m[K(const shared_ptr&) noexcept = default; ///< Copy constructor
+[4.634s]       |       [01;36m[K^~~~~~~~~~[m[K
+[4.634s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:150:7:[m[K [01;36m[Knote: [m[K  candidate expects 1 argument, 2 provided
+[4.634s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:148:17:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kconstexpr std::shared_ptr<_Tp>::shared_ptr() [with _Tp = rclcpp::Node][m[K’
+[4.634s]   148 |       constexpr [01;36m[Kshared_ptr[m[K() noexcept : __shared_ptr<_Tp>() { }
+[4.634s]       |                 [01;36m[K^~~~~~~~~~[m[K
+[4.634s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:148:17:[m[K [01;36m[Knote: [m[K  candidate expects 0 arguments, 2 provided
+[4.634s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:15:103:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[Kstd::shared_ptr<rclcpp::Node>::shared_ptr(std::shared_ptr<rclcpp::Node>, PandaPickNode::PandaPickNode()::<lambda(rclcpp::Node*)>)[m[K’
+[4.634s]    15 | ode>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;31m[K)[m[K, "hand")
+[4.634s]       |                                                              [01;31m[K^[m[K
+[4.634s] 
+[4.635s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.635s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.635s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.635s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:408:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Alloc, class ... _Args> std::shared_ptr<_Tp>::shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...) [with _Alloc = _Alloc; _Args = {_Args ...}; _Tp = rclcpp::Node][m[K’
+[4.635s]   408 |         [01;36m[Kshared_ptr[m[K(_Sp_alloc_shared_tag<_Alloc> __tag, _Args&&... __args)
+[4.635s]       |         [01;36m[K^~~~~~~~~~[m[K
+[4.635s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:408:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.635s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:15:103:[m[K [01;36m[Knote: [m[K  ‘[01m[Kstd::shared_ptr<rclcpp::Node>[m[K’ is not derived from ‘[01m[Kstd::_Sp_alloc_shared_tag<_Tp>[m[K’
+[4.635s]    15 | ode>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;36m[K)[m[K, "hand")
+[4.635s]       |                                                              [01;36m[K^[m[K
+[4.635s] 
+[4.635s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.635s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.635s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.635s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:340:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class _Del, class> std::shared_ptr<_Tp>::shared_ptr(std::unique_ptr<_Up, _Ep>&&) [with _Yp = _Yp; _Del = _Del; <template-parameter-2-3> = <template-parameter-1-3>; _Tp = rclcpp::Node][m[K’
+[4.635s]   340 |         [01;36m[Kshared_ptr[m[K(unique_ptr<_Yp, _Del>&& __r)
+[4.635s]       |         [01;36m[K^~~~~~~~~~[m[K
+[4.635s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:340:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.635s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:15:103:[m[K [01;36m[Knote: [m[K  ‘[01m[Kstd::shared_ptr<rclcpp::Node>[m[K’ is not derived from ‘[01m[Kstd::unique_ptr<_Tp, _Dp>[m[K’
+[4.635s]    15 | ode>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;36m[K)[m[K, "hand")
+[4.635s]       |                                                              [01;36m[K^[m[K
+[4.635s] 
+[4.635s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.635s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.635s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.635s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:332:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(std::auto_ptr<_Up>&&) [with _Yp = _Tp1; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::Node][m[K’
+[4.635s]   332 |         [01;36m[Kshared_ptr[m[K(auto_ptr<_Yp>&& __r);
+[4.635s]       |         [01;36m[K^~~~~~~~~~[m[K
+[4.635s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:332:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.635s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:15:103:[m[K [01;36m[Knote: [m[K  ‘[01m[Kstd::shared_ptr<rclcpp::Node>[m[K’ is not derived from ‘[01m[Kstd::auto_ptr<_Up>[m[K’
+[4.635s]    15 | ode>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;36m[K)[m[K, "hand")
+[4.636s]       |                                                              [01;36m[K^[m[K
+[4.636s] 
+[4.636s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.636s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.636s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.636s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:325:18:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(const std::weak_ptr<_Yp>&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::Node][m[K’
+[4.636s]   325 |         explicit [01;36m[Kshared_ptr[m[K(const weak_ptr<_Yp>& __r)
+[4.636s]       |                  [01;36m[K^~~~~~~~~~[m[K
+[4.636s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:325:18:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.636s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:15:103:[m[K [01;36m[Knote: [m[K  ‘[01m[Kstd::shared_ptr<rclcpp::Node>[m[K’ is not derived from ‘[01m[Kconst std::weak_ptr<_Tp>[m[K’
+[4.636s]    15 | ode>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;36m[K)[m[K, "hand")
+[4.636s]       |                                                              [01;36m[K^[m[K
+[4.636s] 
+[4.636s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.636s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.636s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.636s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:313:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Yp>&&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::Node][m[K’
+[4.636s]   313 |         [01;36m[Kshared_ptr[m[K(shared_ptr<_Yp>&& __r) noexcept
+[4.636s]       |         [01;36m[K^~~~~~~~~~[m[K
+[4.636s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:313:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.636s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:15:103:[m[K [01;36m[Knote: [m[K  candidate expects 1 argument, 2 provided
+[4.636s]    15 | ode>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;36m[K)[m[K, "hand")
+[4.636s]       |                                                              [01;36m[K^[m[K
+[4.636s] 
+[4.636s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.636s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.636s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.636s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:296:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Yp>&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::Node][m[K’
+[4.636s]   296 |         [01;36m[Kshared_ptr[m[K(const shared_ptr<_Yp>& __r) noexcept
+[4.636s]       |         [01;36m[K^~~~~~~~~~[m[K
+[4.636s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:296:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.637s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:15:103:[m[K [01;36m[Knote: [m[K  candidate expects 1 argument, 2 provided
+[4.637s]    15 | ode>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;36m[K)[m[K, "hand")
+[4.637s]       |                                                              [01;36m[K^[m[K
+[4.637s] 
+[4.637s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.637s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.637s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.637s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:257:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Yp>&, std::shared_ptr<_Tp>::element_type*) [with _Yp = _Yp; _Tp = rclcpp::Node][m[K’
+[4.637s]   257 |         [01;36m[Kshared_ptr[m[K(const shared_ptr<_Yp>& __r, element_type* __p) noexcept
+[4.637s]       |         [01;36m[K^~~~~~~~~~[m[K
+[4.637s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:257:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.637s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:15:103:[m[K [01;36m[Knote: [m[K  cannot convert ‘[01m[K<lambda closure object>PandaPickNode::PandaPickNode()::<lambda(rclcpp::Node*)>{}[m[K’ (type ‘[01m[KPandaPickNode::PandaPickNode()::<lambda(rclcpp::Node*)>[m[K’) to type ‘[01m[Kstd::shared_ptr<rclcpp::Node>::element_type*[m[K’ {aka ‘[01m[Krclcpp::Node*[m[K’}
+[4.637s]    15 | ode>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;36m[K)[m[K, "hand")
+[4.637s]       |                                                              [01;36m[K^[m[K
+[4.637s] 
+[4.637s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.637s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.637s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.637s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:233:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Deleter, class _Alloc> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter, _Alloc) [with _Deleter = _Deleter; _Alloc = _Alloc; _Tp = rclcpp::Node][m[K’
+[4.637s]   233 |         [01;36m[Kshared_ptr[m[K(nullptr_t __p, _Deleter __d, _Alloc __a)
+[4.637s]       |         [01;36m[K^~~~~~~~~~[m[K
+[4.637s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:233:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.637s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:15:103:[m[K [01;36m[Knote: [m[K  candidate expects 3 arguments, 2 provided
+[4.637s]    15 | ode>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;36m[K)[m[K, "hand")
+[4.637s]       |                                                              [01;36m[K^[m[K
+[4.637s] 
+[4.637s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.637s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.637s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.637s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:214:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class _Deleter, class _Alloc, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*, _Deleter, _Alloc) [with _Yp = _Yp; _Deleter = _Deleter; _Alloc = _Alloc; <template-parameter-2-4> = <template-parameter-1-4>; _Tp = rclcpp::Node][m[K’
+[4.637s]   214 |         [01;36m[Kshared_ptr[m[K(_Yp* __p, _Deleter __d, _Alloc __a)
+[4.638s]       |         [01;36m[K^~~~~~~~~~[m[K
+[4.638s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:214:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.638s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:15:103:[m[K [01;36m[Knote: [m[K  mismatched types ‘[01m[K_Yp*[m[K’ and ‘[01m[Kstd::shared_ptr<rclcpp::Node>[m[K’
+[4.638s]    15 | ode>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;36m[K)[m[K, "hand")
+[4.638s]       |                                                              [01;36m[K^[m[K
+[4.638s] 
+[4.638s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.638s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.638s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.638s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:194:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Deleter> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter) [with _Deleter = _Deleter; _Tp = rclcpp::Node][m[K’
+[4.638s]   194 |         [01;36m[Kshared_ptr[m[K(nullptr_t __p, _Deleter __d)
+[4.638s]       |         [01;36m[K^~~~~~~~~~[m[K
+[4.638s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:194:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.638s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:15:52:[m[K [01;36m[Knote: [m[K  cannot convert ‘[01m[Kstd::shared_ptr<rclcpp::Node>(((PandaPickNode*)this))[m[K’ (type ‘[01m[Kstd::shared_ptr<rclcpp::Node>[m[K’) to type ‘[01m[Kstd::nullptr_t[m[K’
+[4.638s]    15 |     hand_group_(std::shared_ptr<rclcpp::Node>(std::[01;36m[Kshared_ptr<rclcpp::Node>(this)[m[K, [](rclcpp::Node*){}), "hand")
+[4.638s]       |                                                    [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[4.638s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.638s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.638s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.638s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:177:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class _Deleter, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*, _Deleter) [with _Yp = _Yp; _Deleter = _Deleter; <template-parameter-2-3> = <template-parameter-1-3>; _Tp = rclcpp::Node][m[K’
+[4.638s]   177 |         [01;36m[Kshared_ptr[m[K(_Yp* __p, _Deleter __d)
+[4.638s]       |         [01;36m[K^~~~~~~~~~[m[K
+[4.638s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:177:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.638s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:15:103:[m[K [01;36m[Knote: [m[K  mismatched types ‘[01m[K_Yp*[m[K’ and ‘[01m[Kstd::shared_ptr<rclcpp::Node>[m[K’
+[4.638s]    15 | ode>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;36m[K)[m[K, "hand")
+[4.638s]       |                                                              [01;36m[K^[m[K
+[4.638s] 
+[4.638s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.638s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.638s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.638s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:160:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::Node][m[K’
+[4.638s]   160 |         [01;36m[Kshared_ptr[m[K(_Yp* __p) : __shared_ptr<_Tp>(__p) { }
+[4.638s]       |         [01;36m[K^~~~~~~~~~[m[K
+[4.638s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:160:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[4.642s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:15:103:[m[K [01;36m[Knote: [m[K  mismatched types ‘[01m[K_Yp*[m[K’ and ‘[01m[Kstd::shared_ptr<rclcpp::Node>[m[K’
+[4.642s]    15 | ode>(std::shared_ptr<rclcpp::Node>(this), [](rclcpp::Node*){}[01;36m[K)[m[K, "hand")
+[4.642s]       |                                                              [01;36m[K^[m[K
+[4.642s] 
+[4.642s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[4.642s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[4.642s]                  from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:1[m[K:
+[4.643s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:417:7:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::shared_ptr<_Tp>::shared_ptr(const std::weak_ptr<_Tp>&, std::nothrow_t) [with _Tp = rclcpp::Node][m[K’
+[4.643s]   417 |       [01;36m[Kshared_ptr[m[K(const weak_ptr<_Tp>& __r, std::nothrow_t) noexcept
+[4.643s]       |       [01;36m[K^~~~~~~~~~[m[K
+[4.643s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:417:44:[m[K [01;36m[Knote: [m[K  no known conversion for argument 2 from ‘[01m[KPandaPickNode::PandaPickNode()::<lambda(rclcpp::Node*)>[m[K’ to ‘[01m[Kstd::nothrow_t[m[K’
+[4.643s]   417 |       shared_ptr(const weak_ptr<_Tp>& __r, [01;36m[Kstd::nothrow_t[m[K) noexcept
+[4.643s]       |                                            [01;36m[K^~~~~~~~~~~~~~[m[K
+[4.643s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:357:17:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kconstexpr std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t) [with _Tp = rclcpp::Node; std::nullptr_t = std::nullptr_t][m[K’
+[4.643s]   357 |       constexpr [01;36m[Kshared_ptr[m[K(nullptr_t) noexcept : shared_ptr() { }
+[4.643s]       |                 [01;36m[K^~~~~~~~~~[m[K
+[4.643s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:357:17:[m[K [01;36m[Knote: [m[K  candidate expects 1 argument, 2 provided
+[4.643s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:304:7:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Tp>&&) [with _Tp = rclcpp::Node][m[K’
+[4.643s]   304 |       [01;36m[Kshared_ptr[m[K(shared_ptr&& __r) noexcept
+[4.643s]       |       [01;36m[K^~~~~~~~~~[m[K
+[4.643s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:304:7:[m[K [01;36m[Knote: [m[K  candidate expects 1 argument, 2 provided
+[4.643s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:150:7:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Tp>&) [with _Tp = rclcpp::Node][m[K’
+[4.643s]   150 |       [01;36m[Kshared_ptr[m[K(const shared_ptr&) noexcept = default; ///< Copy constructor
+[4.643s]       |       [01;36m[K^~~~~~~~~~[m[K
+[4.643s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:150:7:[m[K [01;36m[Knote: [m[K  candidate expects 1 argument, 2 provided
+[4.643s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:148:17:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kconstexpr std::shared_ptr<_Tp>::shared_ptr() [with _Tp = rclcpp::Node][m[K’
+[4.643s]   148 |       constexpr [01;36m[Kshared_ptr[m[K() noexcept : __shared_ptr<_Tp>() { }
+[4.643s]       |                 [01;36m[K^~~~~~~~~~[m[K
+[4.643s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:148:17:[m[K [01;36m[Knote: [m[K  candidate expects 0 arguments, 2 provided
+[4.643s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:[m[K In member function ‘[01m[Kbool PandaPickNode::planAndExecutePose(const PoseStamped&, const string&)[m[K’:
+[4.643s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:120:91:[m[K [01;35m[Kwarning: [m[K‘[01m[Kusing MoveItErrorCode = class moveit::core::MoveItErrorCode[m[K’ is deprecated: Use moveit::core::MoveItErrorCode [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wdeprecated-declarations-Wdeprecated-declarations]8;;[m[K]
+[4.643s]   120 | p_.plan(plan) == moveit::planning_interface::MoveItErrorCode::[01;35m[KSUCCESS[m[K);
+[4.643s]       |                                                               [01;35m[K^~~~~~~[m[K
+[4.643s] 
+[4.643s] In file included from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:4[m[K:
+[4.643s] [01m[K/opt/ros/humble/include/moveit/move_group_interface/move_group_interface.h:71:7:[m[K [01;36m[Knote: [m[Kdeclared here
+[4.643s]    71 | using [01;36m[KMoveItErrorCode[m[K [[deprecated("Use moveit::core::MoveItErrorCode")]] = moveit::core::MoveItErrorCode;
+[4.643s]       |       [01;36m[K^~~~~~~~~~~~~~~[m[K
+[4.644s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:134:69:[m[K [01;35m[Kwarning: [m[K‘[01m[Kusing MoveItErrorCode = class moveit::core::MoveItErrorCode[m[K’ is deprecated: Use moveit::core::MoveItErrorCode [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wdeprecated-declarations-Wdeprecated-declarations]8;;[m[K]
+[4.644s]   134 | f (exec_result != moveit::planning_interface::MoveItErrorCode::[01;35m[KSUCCESS[m[K)
+[4.644s]       |                                                                [01;35m[K^~~~~~~[m[K
+[4.644s] 
+[4.644s] In file included from [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/pick_and_place.cpp:4[m[K:
+[4.644s] [01m[K/opt/ros/humble/include/moveit/move_group_interface/move_group_interface.h:71:7:[m[K [01;36m[Knote: [m[Kdeclared here
+[4.644s]    71 | using [01;36m[KMoveItErrorCode[m[K [[deprecated("Use moveit::core::MoveItErrorCode")]] = moveit::core::MoveItErrorCode;
+[4.644s]       |       [01;36m[K^~~~~~~~~~~~~~~[m[K
+[6.113s] gmake[2]: *** [CMakeFiles/pick_and_place_node.dir/build.make:76: CMakeFiles/pick_and_place_node.dir/src/pick_and_place.cpp.o] Error 1
+[6.113s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/pick_and_place_node.dir/all] Error 2
+[6.113s] gmake: *** [Makefile:146: all] Error 2
+[6.118s] Invoked command in '/home/aaa/robot/ros2_ws/build/panda_pick' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble PS1=(mj) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(mj) /usr/bin/cmake --build /home/aaa/robot/ros2_ws/build/panda_pick -- -j2 -l2

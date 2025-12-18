@@ -1,0 +1,26 @@
+[0.033s] Invoking command in '/home/aaa/robot/ros2_ws/build/panda_pick': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble PS1=(mj) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(mj) /usr/bin/cmake --build /home/aaa/robot/ros2_ws/build/panda_pick -- -j2 -l2
+[0.083s] [35m[1mConsolidate compiler generated dependencies of target pick_and_place_node[0m
+[0.127s] [ 50%] [32mBuilding CXX object CMakeFiles/pick_and_place_node.dir/src/pick_and_place.cpp.o[0m
+[5.385s] [100%] [32m[1mLinking CXX executable pick_and_place_node[0m
+[5.691s] [100%] Built target pick_and_place_node
+[5.697s] Invoked command in '/home/aaa/robot/ros2_ws/build/panda_pick' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble PS1=(mj) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(mj) /usr/bin/cmake --build /home/aaa/robot/ros2_ws/build/panda_pick -- -j2 -l2
+[5.697s] Invoking command in '/home/aaa/robot/ros2_ws/build/panda_pick': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble PS1=(mj) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(mj) /usr/bin/cmake --install /home/aaa/robot/ros2_ws/build/panda_pick
+[5.699s] -- Install configuration: ""
+[5.700s] -- Execute custom install script
+[5.700s] -- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/lib/panda_pick/pick_and_place_node
+[5.704s] -- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/ament_index/resource_index/package_run_dependencies/panda_pick
+[5.707s] -- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/ament_index/resource_index/parent_prefix_path/panda_pick
+[5.710s] -- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/environment/ament_prefix_path.sh
+[5.715s] -- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/environment/ament_prefix_path.dsv
+[5.718s] -- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/environment/path.sh
+[5.720s] -- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/environment/path.dsv
+[5.723s] -- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/local_setup.bash
+[5.727s] -- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/local_setup.sh
+[5.728s] -- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/local_setup.zsh
+[5.730s] -- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/local_setup.dsv
+[5.737s] -- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/package.dsv
+[5.740s] -- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/ament_index/resource_index/packages/panda_pick
+[5.743s] -- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/cmake/panda_pickConfig.cmake
+[5.746s] -- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/cmake/panda_pickConfig-version.cmake
+[5.749s] -- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/package.xml
+[5.756s] Invoked command in '/home/aaa/robot/ros2_ws/build/panda_pick' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble PS1=(mj) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(mj) /usr/bin/cmake --install /home/aaa/robot/ros2_ws/build/panda_pick

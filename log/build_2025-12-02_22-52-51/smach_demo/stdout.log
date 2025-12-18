@@ -1,0 +1,28 @@
+running develop
+Removing /home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages/smach-demo.egg-link (link to .)
+running egg_info
+writing ../../build/smach_demo/smach_demo.egg-info/PKG-INFO
+writing dependency_links to ../../build/smach_demo/smach_demo.egg-info/dependency_links.txt
+writing entry points to ../../build/smach_demo/smach_demo.egg-info/entry_points.txt
+writing requirements to ../../build/smach_demo/smach_demo.egg-info/requires.txt
+writing top-level names to ../../build/smach_demo/smach_demo.egg-info/top_level.txt
+reading manifest file '../../build/smach_demo/smach_demo.egg-info/SOURCES.txt'
+writing manifest file '../../build/smach_demo/smach_demo.egg-info/SOURCES.txt'
+running build
+running build_py
+copying smach_demo/demo.py -> /home/aaa/robot/ros2_ws/build/smach_demo/build/lib/smach_demo
+running install
+running install_lib
+creating /home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages/smach_demo
+copying /home/aaa/robot/ros2_ws/build/smach_demo/build/lib/smach_demo/__init__.py -> /home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages/smach_demo
+copying /home/aaa/robot/ros2_ws/build/smach_demo/build/lib/smach_demo/demo.py -> /home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages/smach_demo
+byte-compiling /home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages/smach_demo/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages/smach_demo/demo.py to demo.cpython-310.pyc
+running install_data
+copying resource/smach_demo -> /home/aaa/robot/ros2_ws/install/smach_demo/share/ament_index/resource_index/packages
+copying package.xml -> /home/aaa/robot/ros2_ws/install/smach_demo/share/smach_demo
+running install_egg_info
+Copying ../../build/smach_demo/smach_demo.egg-info to /home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages/smach_demo-0.0.0-py3.10.egg-info
+running install_scripts
+Installing demo script to /home/aaa/robot/ros2_ws/install/smach_demo/lib/smach_demo
+writing list of installed files to '/home/aaa/robot/ros2_ws/build/smach_demo/install.log'

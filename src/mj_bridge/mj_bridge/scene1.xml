@@ -1,0 +1,110 @@
+<mujoco model="panda_scene">
+  <!-- 机械臂模型保持不动 -->
+  <include file="panda.xml"/>
+
+  <!-- 视角中心改到桌子附近 -->
+  <statistic center="0.4 0 0.4" extent="1"/>
+
+  <visual>
+    <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <global azimuth="120" elevation="-20"/>
+  </visual>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge"
+             rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3"
+             markrgb="0.8 0.8 0.8" width="300" height="300"/>
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+  </asset>
+
+  <!-- ===== 默认参数：统一设置 brick / rod 的属性 ===== -->
+  <default>
+    <!-- 所有几何体的默认接触参数 -->
+    <geom contype="1" conaffinity="1"
+          solref="0.002 1" solimp="0.8 0.8 0.01"
+          friction="1.0 0.005 0.0001"/>
+
+    <!-- 积木（类似 Duplo brick），可自由移动 -->
+    <default class="brick">
+      <joint type="free"/>
+      <!-- size 是半长、半宽、半高：这里是 4cm x 2cm x 2cm 的块 -->
+      <geom type="box" size="0.02 0.01 0.01"
+            density="800"
+            rgba="0.2 0.2 0.2 1.0"/>
+    </default>
+
+    <!-- 细杆（难度高的时候用） -->
+    <default class="rod">
+      <joint type="free"/>
+      <!-- cylinder: size = [半径, 半长] -->
+      <geom type="cylinder" size="0.005 0.04"
+            density="800"
+            rgba="0.1 0.1 0.1 1.0"/>
+    </default>
+  </default>
+
+  <worldbody>
+    <!-- Realsense 相机：俯视桌面，可以微调位置/姿态 -->
+    <camera name="realsense" pos="0.4 0 1.0" euler="-90 0 0" fovy="60"/>
+
+    <light pos="0 0 1.5" dir="0 0 -1" directional="true"/>
+
+    <!-- 地面 -->
+    <geom name="floor" type="plane" size="0 0 0.05" material="groundplane"/>
+
+    <!-- 桌子：放积木的工作台 -->
+    <!-- pos = [x, y, z]，z 是桌子中心高度；size 的第三个是半厚度 -->
+    <!-- 所以桌面高度 = 0.40 + 0.02 = 0.42 -->
+    <body name="table" pos="0.40 0 0.40">
+      <geom name="table_geom" type="box" size="0.30 0.30 0.02"
+            rgba="0.8 0.8 0.8 1.0"/>
+    </body>
+
+    <!-- ===== 可移动积木：easy / medium 难度主要用这些 ===== -->
+    <!-- 这里先放 5 块积木，初始位置略高于桌面，让它们掉落稳定下来 -->
+
+    <body name="brick1" class="brick" pos="0.35 -0.06 0.48"/>
+    <body name="brick2" class="brick" pos="0.45 -0.02 0.48"/>
+    <body name="brick3" class="brick" pos="0.35  0.02 0.48"/>
+    <body name="brick4" class="brick" pos="0.45  0.06 0.48"/>
+    <body name="brick5" class="brick" pos="0.40  0.00 0.52"/>
+
+    <!-- ===== 目标结构（ghost goal）：透明的参照结构，用于检测装配是否成功 ===== -->
+    <!-- 这里示例一个“门形”结构（类似中间那张图） -->
+
+    <body name="goal_structure" pos="0.40 0.0 0.44">
+      <!-- 左下块 -->
+      <body name="goal_b1" pos="-0.04 0 0">
+        <geom type="box" size="0.02 0.01 0.01"
+              rgba="0 1 0 0.3"
+              contype="0" conaffinity="0"/>
+        <site name="goal_site_b1" pos="0 0 0" size="0.002 0.002 0.002"/>
+      </body>
+
+      <!-- 右下块 -->
+      <body name="goal_b2" pos="0.04 0 0">
+        <geom type="box" size="0.02 0.01 0.01"
+              rgba="0 1 0 0.3"
+              contype="0" conaffinity="0"/>
+        <site name="goal_site_b2" pos="0 0 0" size="0.002 0.002 0.002"/>
+      </body>
+
+      <!-- 上面的横梁 -->
+      <body name="goal_b3" pos="0 0 0.04">
+        <geom type="box" size="0.06 0.01 0.01"
+              rgba="0 1 0 0.3"
+              contype="0" conaffinity="0"/>
+        <site name="goal_site_b3" pos="0 0 0" size="0.002 0.002 0.002"/>
+      </body>
+    </body>
+
+    <!-- ===== 预留：困难难度时用的 rods（先注释，后面要用再打开） ===== -->
+    <!--
+    <body name="rod1" class="rod" pos="0.40 0.00 0.55"/>
+    <body name="rod2" class="rod" pos="0.44 0.00 0.55"/>
+    -->
+
+  </worldbody>
+</mujoco>

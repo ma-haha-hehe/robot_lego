@@ -1,0 +1,8 @@
+{
+  "package_name": "smach_msgs",
+  "non_idl_tuples": [
+    "/home/aaa/robot/ros2_ws/executive_smach/smach_msgs:msg/SmachContainerInitialStatusCmd.msg",
+    "/home/aaa/robot/ros2_ws/executive_smach/smach_msgs:msg/SmachContainerStructure.msg",
+    "/home/aaa/robot/ros2_ws/executive_smach/smach_msgs:msg/SmachContainerStatus.msg"
+  ]
+}

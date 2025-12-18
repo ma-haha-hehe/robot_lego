@@ -1,0 +1,43 @@
+running develop
+Removing /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj-bridge.egg-link (link to .)
+running egg_info
+writing ../../build/mj_bridge/mj_bridge.egg-info/PKG-INFO
+writing dependency_links to ../../build/mj_bridge/mj_bridge.egg-info/dependency_links.txt
+writing entry points to ../../build/mj_bridge/mj_bridge.egg-info/entry_points.txt
+writing requirements to ../../build/mj_bridge/mj_bridge.egg-info/requires.txt
+writing top-level names to ../../build/mj_bridge/mj_bridge.egg-info/top_level.txt
+reading manifest file '../../build/mj_bridge/mj_bridge.egg-info/SOURCES.txt'
+writing manifest file '../../build/mj_bridge/mj_bridge.egg-info/SOURCES.txt'
+running build
+running build_py
+running install
+running install_lib
+copying /home/aaa/robot/ros2_ws/build/mj_bridge/build/lib/mj_bridge/pick1.py -> /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge
+copying /home/aaa/robot/ros2_ws/build/mj_bridge/build/lib/mj_bridge/vlm_node2.py -> /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge
+copying /home/aaa/robot/ros2_ws/build/mj_bridge/build/lib/mj_bridge/virtual_camera.py -> /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge
+copying /home/aaa/robot/ros2_ws/build/mj_bridge/build/lib/mj_bridge/vlm_node.py -> /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge
+copying /home/aaa/robot/ros2_ws/build/mj_bridge/build/lib/mj_bridge/__init__.py -> /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge
+copying /home/aaa/robot/ros2_ws/build/mj_bridge/build/lib/mj_bridge/yolo_sam.py -> /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge
+copying /home/aaa/robot/ros2_ws/build/mj_bridge/build/lib/mj_bridge/mj_bridge2.py -> /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge
+copying /home/aaa/robot/ros2_ws/build/mj_bridge/build/lib/mj_bridge/mj_bridge3.py -> /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge
+copying /home/aaa/robot/ros2_ws/build/mj_bridge/build/lib/mj_bridge/mj_bridge.py -> /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge
+copying /home/aaa/robot/ros2_ws/build/mj_bridge/build/lib/mj_bridge/test_panda.py -> /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge
+byte-compiling /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge/pick1.py to pick1.cpython-310.pyc
+byte-compiling /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge/vlm_node2.py to vlm_node2.cpython-310.pyc
+byte-compiling /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge/virtual_camera.py to virtual_camera.cpython-310.pyc
+byte-compiling /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge/vlm_node.py to vlm_node.cpython-310.pyc
+byte-compiling /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge/yolo_sam.py to yolo_sam.cpython-310.pyc
+byte-compiling /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge/mj_bridge2.py to mj_bridge2.cpython-310.pyc
+byte-compiling /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge/mj_bridge3.py to mj_bridge3.cpython-310.pyc
+byte-compiling /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge/mj_bridge.py to mj_bridge.cpython-310.pyc
+byte-compiling /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge/test_panda.py to test_panda.cpython-310.pyc
+running install_data
+copying resource/mj_bridge -> /home/aaa/robot/ros2_ws/install/mj_bridge/share/ament_index/resource_index/packages
+copying package.xml -> /home/aaa/robot/ros2_ws/install/mj_bridge/share/mj_bridge
+running install_egg_info
+Copying ../../build/mj_bridge/mj_bridge.egg-info to /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge-0.0.0-py3.10.egg-info
+running install_scripts
+Installing mj_bridge script to /home/aaa/robot/ros2_ws/install/mj_bridge/lib/mj_bridge
+Installing pick_and_place script to /home/aaa/robot/ros2_ws/install/mj_bridge/lib/mj_bridge
+writing list of installed files to '/home/aaa/robot/ros2_ws/build/mj_bridge/install.log'

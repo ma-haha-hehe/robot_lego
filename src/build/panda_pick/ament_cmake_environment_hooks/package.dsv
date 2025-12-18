@@ -1,0 +1,4 @@
+source;share/panda_pick/local_setup.bash
+source;share/panda_pick/local_setup.dsv
+source;share/panda_pick/local_setup.sh
+source;share/panda_pick/local_setup.zsh

@@ -1,0 +1,4 @@
+[console_scripts]
+mj_bridge = mj_bridge.mj_bridge3:main
+pick_and_place = mj_bridge.pick_and_place:main
+

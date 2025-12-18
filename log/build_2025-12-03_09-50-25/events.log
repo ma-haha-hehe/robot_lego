@@ -1,0 +1,716 @@
+[0.000000] (-) TimerEvent: {}
+[0.000825] (mj_bridge) JobQueued: {'identifier': 'mj_bridge', 'dependencies': OrderedDict()}
+[0.000849] (panda_pick) JobQueued: {'identifier': 'panda_pick', 'dependencies': OrderedDict()}
+[0.000857] (smach) JobQueued: {'identifier': 'smach', 'dependencies': OrderedDict()}
+[0.000864] (smach_demo) JobQueued: {'identifier': 'smach_demo', 'dependencies': OrderedDict()}
+[0.000871] (smach_msgs) JobQueued: {'identifier': 'smach_msgs', 'dependencies': OrderedDict()}
+[0.000878] (smach_ros) JobQueued: {'identifier': 'smach_ros', 'dependencies': OrderedDict([('smach', '/home/aaa/robot/ros2_ws/install/smach'), ('smach_msgs', '/home/aaa/robot/ros2_ws/install/smach_msgs')])}
+[0.000898] (executive_smach) JobQueued: {'identifier': 'executive_smach', 'dependencies': OrderedDict([('smach', '/home/aaa/robot/ros2_ws/install/smach'), ('smach_msgs', '/home/aaa/robot/ros2_ws/install/smach_msgs'), ('smach_ros', '/home/aaa/robot/ros2_ws/install/smach_ros')])}
+[0.000907] (smach) JobStarted: {'identifier': 'smach'}
+[0.076566] (smach_msgs) JobStarted: {'identifier': 'smach_msgs'}
+[0.103990] (-) TimerEvent: {}
+[0.205321] (-) TimerEvent: {}
+[0.306883] (-) TimerEvent: {}
+[0.407174] (-) TimerEvent: {}
+[0.507484] (-) TimerEvent: {}
+[0.611459] (-) TimerEvent: {}
+[0.712528] (-) TimerEvent: {}
+[0.812782] (-) TimerEvent: {}
+[0.913888] (-) TimerEvent: {}
+[1.014183] (-) TimerEvent: {}
+[1.100827] (smach_msgs) JobProgress: {'identifier': 'smach_msgs', 'progress': 'cmake'}
+[1.102388] (smach_msgs) Command: {'cmd': ['/usr/bin/cmake', '/home/aaa/robot/ros2_ws/executive_smach/smach_msgs', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/aaa/robot/ros2_ws/install/smach_msgs'], 'cwd': '/home/aaa/robot/ros2_ws/build/smach_msgs', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'aaa'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/aaa/robot/ros2_ws/install/smach_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/aaa'), ('OLDPWD', '/home/aaa/robot'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PS1', '(mj) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$'), ('SYSTEMD_EXEC_PID', '80626'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install:/home/aaa/robot/ros2_ws/src/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'aaa'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'aaa'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/aaa/venvs/mj/bin:/opt/ros/humble/bin:/home/aaa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/aaa:@/tmp/.ICE-unix/80127,unix/aaa:/tmp/.ICE-unix/80127'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/59c3bff6_9305_4dee_a4be_17fb9818cad2'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('MUJOCO_GL', 'osmesa'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('VIRTUAL_ENV_PROMPT', '(mj)'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.VSGQG3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.99'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VIRTUAL_ENV', '/home/aaa/venvs/mj'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/aaa/robot/ros2_ws/build/smach_msgs'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble')]), 'shell': False}
+[1.114304] (-) TimerEvent: {}
+[1.214763] (-) TimerEvent: {}
+[1.266189] (smach_msgs) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[1.314877] (-) TimerEvent: {}
+[1.415227] (-) TimerEvent: {}
+[1.515474] (-) TimerEvent: {}
+[1.615766] (-) TimerEvent: {}
+[1.716060] (-) TimerEvent: {}
+[1.816304] (-) TimerEvent: {}
+[1.916566] (-) TimerEvent: {}
+[1.995314] (smach_msgs) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[2.016665] (-) TimerEvent: {}
+[2.018094] (smach_msgs) StdoutLine: {'line': b'-- Found builtin_interfaces: 1.2.2 (/opt/ros/humble/share/builtin_interfaces/cmake)\n'}
+[2.116827] (-) TimerEvent: {}
+[2.179675] (smach_msgs) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[2.184588] (smach_msgs) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[2.209377] (smach_msgs) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[2.216879] (-) TimerEvent: {}
+[2.235032] (smach_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[2.302042] (smach_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[2.316978] (-) TimerEvent: {}
+[2.339063] (smach_msgs) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)\n'}
+[2.368032] (smach_msgs) StdoutLine: {'line': b'-- Found std_msgs: 4.9.0 (/opt/ros/humble/share/std_msgs/cmake)\n'}
+[2.418331] (-) TimerEvent: {}
+[2.518615] (-) TimerEvent: {}
+[2.618998] (-) TimerEvent: {}
+[2.720365] (-) TimerEvent: {}
+[2.811758] (smach) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/aaa/robot/ros2_ws/build/smach/build', '--no-deps', 'symlink_data', '--force'], 'cwd': '/home/aaa/robot/ros2_ws/build/smach', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'aaa', 'XDG_SESSION_TYPE': 'wayland', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/aaa/robot/ros2_ws/install/smach_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/aaa', 'OLDPWD': '/home/aaa/robot', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'PS1': '(mj) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$', 'SYSTEMD_EXEC_PID': '80626', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'IM_CONFIG_PHASE': '1', 'WAYLAND_DISPLAY': 'wayland-0', 'COLCON_PREFIX_PATH': '/home/aaa/robot/ros2_ws/install:/home/aaa/robot/ros2_ws/src/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'aaa', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'aaa', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/home/aaa/venvs/mj/bin:/opt/ros/humble/bin:/home/aaa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/aaa:@/tmp/.ICE-unix/80127,unix/aaa:/tmp/.ICE-unix/80127', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/59c3bff6_9305_4dee_a4be_17fb9818cad2', 'GNOME_SETUP_DISPLAY': ':1', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'MUJOCO_GL': 'osmesa', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'VIRTUAL_ENV_PROMPT': '(mj)', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/.mutter-Xwaylandauth.VSGQG3', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GNOME_TERMINAL_SERVICE': ':1.99', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VIRTUAL_ENV': '/home/aaa/venvs/mj', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/aaa/robot/ros2_ws/build/smach', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/aaa/robot/ros2_ws/build/smach/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'VTE_VERSION': '6800', 'CMAKE_PREFIX_PATH': '/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_msgs'}, 'shell': False}
+[2.831650] (-) TimerEvent: {}
+[2.932785] (-) TimerEvent: {}
+[3.033164] (-) TimerEvent: {}
+[3.133430] (-) TimerEvent: {}
+[3.233717] (-) TimerEvent: {}
+[3.334094] (-) TimerEvent: {}
+[3.435851] (-) TimerEvent: {}
+[3.536111] (-) TimerEvent: {}
+[3.585034] (smach_msgs) StdoutLine: {'line': b'-- Found ament_cmake_cppcheck: 0.12.14 (/opt/ros/humble/share/ament_cmake_cppcheck/cmake)\n'}
+[3.586402] (smach_msgs) StdoutLine: {'line': b'-- Found ament_cmake_cpplint: 0.12.14 (/opt/ros/humble/share/ament_cmake_cpplint/cmake)\n'}
+[3.587731] (smach_msgs) StdoutLine: {'line': b'-- Found ament_cmake_uncrustify: 0.12.14 (/opt/ros/humble/share/ament_cmake_uncrustify/cmake)\n'}
+[3.594276] (smach_msgs) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)\n'}
+[3.636204] (-) TimerEvent: {}
+[3.736469] (-) TimerEvent: {}
+[3.737900] (smach) StderrLine: {'line': b"/usr/lib/python3/dist-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead\n"}
+[3.738074] (smach) StderrLine: {'line': b'  warnings.warn(\n'}
+[3.836564] (-) TimerEvent: {}
+[3.915682] (smach) StdoutLine: {'line': b'running develop\n'}
+[3.936684] (-) TimerEvent: {}
+[4.037104] (-) TimerEvent: {}
+[4.137550] (-) TimerEvent: {}
+[4.237803] (-) TimerEvent: {}
+[4.338118] (-) TimerEvent: {}
+[4.438464] (-) TimerEvent: {}
+[4.538750] (-) TimerEvent: {}
+[4.593659] (smach) StdoutLine: {'line': b'running egg_info\n'}
+[4.599060] (smach) StdoutLine: {'line': b'writing smach.egg-info/PKG-INFO\n'}
+[4.599582] (smach) StderrLine: {'line': b'/usr/lib/python3/dist-packages/setuptools/dist.py:157: UserWarning: newlines not allowed and will break in the future\n'}
+[4.599632] (smach) StderrLine: {'line': b'  warnings.warn("newlines not allowed and will break in the future")\n'}
+[4.599666] (smach) StdoutLine: {'line': b'writing dependency_links to smach.egg-info/dependency_links.txt\n'}
+[4.600036] (smach) StdoutLine: {'line': b'writing requirements to smach.egg-info/requires.txt\n'}
+[4.600255] (smach) StdoutLine: {'line': b'writing top-level names to smach.egg-info/top_level.txt\n'}
+[4.601815] (smach) StdoutLine: {'line': b"reading manifest file 'smach.egg-info/SOURCES.txt'\n"}
+[4.607320] (smach) StdoutLine: {'line': b"writing manifest file 'smach.egg-info/SOURCES.txt'\n"}
+[4.617431] (smach) StdoutLine: {'line': b'running build_ext\n'}
+[4.618001] (smach) StdoutLine: {'line': b'Creating /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach.egg-link (link to .)\n'}
+[4.620591] (smach) StdoutLine: {'line': b'\n'}
+[4.620647] (smach) StdoutLine: {'line': b'Installed /home/aaa/robot/ros2_ws/build/smach\n'}
+[4.620672] (smach) StdoutLine: {'line': b'running symlink_data\n'}
+[4.621311] (smach) StdoutLine: {'line': b'symbolically linking /home/aaa/robot/ros2_ws/build/smach/resource/smach -> /home/aaa/robot/ros2_ws/install/smach/share/ament_index/resource_index/packages\n'}
+[4.635356] (smach) StdoutLine: {'line': b'symbolically linking /home/aaa/robot/ros2_ws/build/smach/package.xml -> /home/aaa/robot/ros2_ws/install/smach/share/smach\n'}
+[4.638827] (-) TimerEvent: {}
+[4.739565] (-) TimerEvent: {}
+[4.839821] (-) TimerEvent: {}
+[4.890754] (smach) CommandEnded: {'returncode': 0}
+[4.939889] (-) TimerEvent: {}
+[4.944429] (smach) JobEnded: {'identifier': 'smach', 'rc': 0}
+[4.947967] (mj_bridge) JobStarted: {'identifier': 'mj_bridge'}
+[5.039992] (-) TimerEvent: {}
+[5.140339] (-) TimerEvent: {}
+[5.243417] (-) TimerEvent: {}
+[5.346492] (-) TimerEvent: {}
+[5.446862] (-) TimerEvent: {}
+[5.547142] (-) TimerEvent: {}
+[5.648395] (-) TimerEvent: {}
+[5.748857] (-) TimerEvent: {}
+[5.768227] (smach_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[5.848948] (-) TimerEvent: {}
+[5.949350] (-) TimerEvent: {}
+[6.049587] (-) TimerEvent: {}
+[6.149835] (-) TimerEvent: {}
+[6.250083] (-) TimerEvent: {}
+[6.350325] (-) TimerEvent: {}
+[6.450577] (-) TimerEvent: {}
+[6.488928] (smach_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[6.555281] (-) TimerEvent: {}
+[6.592807] (smach_msgs) StdoutLine: {'line': b'-- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)\n'}
+[6.655386] (-) TimerEvent: {}
+[6.732919] (smach_msgs) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[6.733073] (smach_msgs) StdoutLine: {'line': b'-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10\n'}
+[6.733104] (smach_msgs) StdoutLine: {'line': b'-- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.10.so\n'}
+[6.755482] (-) TimerEvent: {}
+[6.855799] (-) TimerEvent: {}
+[6.898027] (smach_msgs) StdoutLine: {'line': b'-- Found ament_cmake_flake8: 0.12.14 (/opt/ros/humble/share/ament_cmake_flake8/cmake)\n'}
+[6.911965] (smach_msgs) StdoutLine: {'line': b'-- Found ament_cmake_pep257: 0.12.14 (/opt/ros/humble/share/ament_cmake_pep257/cmake)\n'}
+[6.955891] (-) TimerEvent: {}
+[6.994305] (smach_msgs) StdoutLine: {'line': b'-- Configuring done\n'}
+[7.055992] (-) TimerEvent: {}
+[7.156305] (-) TimerEvent: {}
+[7.256652] (-) TimerEvent: {}
+[7.356923] (smach_msgs) StdoutLine: {'line': b'-- Generating done\n'}
+[7.357102] (-) TimerEvent: {}
+[7.414418] (smach_msgs) StdoutLine: {'line': b'-- Build files have been written to: /home/aaa/robot/ros2_ws/build/smach_msgs\n'}
+[7.460455] (smach_msgs) CommandEnded: {'returncode': 0}
+[7.460711] (-) TimerEvent: {}
+[7.460889] (smach_msgs) JobProgress: {'identifier': 'smach_msgs', 'progress': 'build'}
+[7.460905] (smach_msgs) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/aaa/robot/ros2_ws/build/smach_msgs', '--', '-j2', '-l2'], 'cwd': '/home/aaa/robot/ros2_ws/build/smach_msgs', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'aaa'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/aaa/robot/ros2_ws/install/smach_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/aaa'), ('OLDPWD', '/home/aaa/robot'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PS1', '(mj) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$'), ('SYSTEMD_EXEC_PID', '80626'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install:/home/aaa/robot/ros2_ws/src/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'aaa'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'aaa'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/aaa/venvs/mj/bin:/opt/ros/humble/bin:/home/aaa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/aaa:@/tmp/.ICE-unix/80127,unix/aaa:/tmp/.ICE-unix/80127'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/59c3bff6_9305_4dee_a4be_17fb9818cad2'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('MUJOCO_GL', 'osmesa'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('VIRTUAL_ENV_PROMPT', '(mj)'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.VSGQG3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.99'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VIRTUAL_ENV', '/home/aaa/venvs/mj'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/aaa/robot/ros2_ws/build/smach_msgs'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble')]), 'shell': False}
+[7.560837] (-) TimerEvent: {}
+[7.661532] (-) TimerEvent: {}
+[7.762409] (-) TimerEvent: {}
+[7.810652] (smach_msgs) StdoutLine: {'line': b'[  2%] Built target smach_msgs__cpp\n'}
+[7.862507] (-) TimerEvent: {}
+[7.869282] (smach_msgs) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target smach_msgs__rosidl_generator_c\x1b[0m\n'}
+[7.962600] (-) TimerEvent: {}
+[7.973894] (smach_msgs) StdoutLine: {'line': b'[ 12%] Built target smach_msgs__rosidl_generator_c\n'}
+[8.062705] (-) TimerEvent: {}
+[8.162973] (-) TimerEvent: {}
+[8.170277] (smach_msgs) StdoutLine: {'line': b'[ 12%] Built target ament_cmake_python_symlink_smach_msgs\n'}
+[8.263050] (-) TimerEvent: {}
+[8.276068] (smach_msgs) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target smach_msgs__rosidl_typesupport_cpp\x1b[0m\n'}
+[8.363142] (-) TimerEvent: {}
+[8.388311] (smach_msgs) StdoutLine: {'line': b'[ 23%] Built target smach_msgs__rosidl_typesupport_cpp\n'}
+[8.422530] (mj_bridge) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/aaa/robot/ros2_ws/build/mj_bridge/build', '--no-deps', 'symlink_data', '--force'], 'cwd': '/home/aaa/robot/ros2_ws/build/mj_bridge', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'aaa', 'XDG_SESSION_TYPE': 'wayland', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/aaa/robot/ros2_ws/install/smach_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/aaa', 'OLDPWD': '/home/aaa/robot', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'PS1': '(mj) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$', 'SYSTEMD_EXEC_PID': '80626', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'IM_CONFIG_PHASE': '1', 'WAYLAND_DISPLAY': 'wayland-0', 'COLCON_PREFIX_PATH': '/home/aaa/robot/ros2_ws/install:/home/aaa/robot/ros2_ws/src/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'aaa', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'aaa', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/home/aaa/venvs/mj/bin:/opt/ros/humble/bin:/home/aaa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/aaa:@/tmp/.ICE-unix/80127,unix/aaa:/tmp/.ICE-unix/80127', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/59c3bff6_9305_4dee_a4be_17fb9818cad2', 'GNOME_SETUP_DISPLAY': ':1', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'MUJOCO_GL': 'osmesa', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'VIRTUAL_ENV_PROMPT': '(mj)', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/.mutter-Xwaylandauth.VSGQG3', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GNOME_TERMINAL_SERVICE': ':1.99', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VIRTUAL_ENV': '/home/aaa/venvs/mj', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/aaa/robot/ros2_ws/build/mj_bridge', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/aaa/robot/ros2_ws/build/mj_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'VTE_VERSION': '6800', 'CMAKE_PREFIX_PATH': '/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_msgs'}, 'shell': False}
+[8.463243] (-) TimerEvent: {}
+[8.467386] (smach_msgs) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target smach_msgs__rosidl_typesupport_fastrtps_c\x1b[0m\n'}
+[8.563347] (-) TimerEvent: {}
+[8.579505] (smach_msgs) StdoutLine: {'line': b'[ 34%] Built target smach_msgs__rosidl_typesupport_fastrtps_c\n'}
+[8.667264] (-) TimerEvent: {}
+[8.668030] (smach_msgs) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target smach_msgs__rosidl_typesupport_fastrtps_cpp\x1b[0m\n'}
+[8.743649] (smach_msgs) StdoutLine: {'line': b'[ 44%] Built target smach_msgs__rosidl_typesupport_fastrtps_cpp\n'}
+[8.767345] (-) TimerEvent: {}
+[8.818155] (smach_msgs) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target smach_msgs__rosidl_typesupport_introspection_c\x1b[0m\n'}
+[8.867486] (-) TimerEvent: {}
+[8.901110] (smach_msgs) StdoutLine: {'line': b'[ 55%] Built target smach_msgs__rosidl_typesupport_introspection_c\n'}
+[8.967883] (-) TimerEvent: {}
+[8.977042] (smach_msgs) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target smach_msgs__rosidl_typesupport_c\x1b[0m\n'}
+[9.049644] (smach_msgs) StdoutLine: {'line': b'[ 65%] Built target smach_msgs__rosidl_typesupport_c\n'}
+[9.067971] (-) TimerEvent: {}
+[9.126997] (smach_msgs) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target smach_msgs__rosidl_typesupport_introspection_cpp\x1b[0m\n'}
+[9.168070] (-) TimerEvent: {}
+[9.215993] (smach_msgs) StdoutLine: {'line': b'[ 76%] Built target smach_msgs__rosidl_typesupport_introspection_cpp\n'}
+[9.268158] (-) TimerEvent: {}
+[9.368407] (-) TimerEvent: {}
+[9.414729] (mj_bridge) StdoutLine: {'line': b'running develop\n'}
+[9.468553] (-) TimerEvent: {}
+[9.568996] (-) TimerEvent: {}
+[9.670169] (-) TimerEvent: {}
+[9.772681] (-) TimerEvent: {}
+[9.873131] (-) TimerEvent: {}
+[9.973435] (-) TimerEvent: {}
+[10.073709] (-) TimerEvent: {}
+[10.174016] (-) TimerEvent: {}
+[10.210011] (mj_bridge) StdoutLine: {'line': b'running egg_info\n'}
+[10.210337] (mj_bridge) StdoutLine: {'line': b'writing mj_bridge.egg-info/PKG-INFO\n'}
+[10.210708] (mj_bridge) StdoutLine: {'line': b'writing dependency_links to mj_bridge.egg-info/dependency_links.txt\n'}
+[10.210956] (mj_bridge) StdoutLine: {'line': b'writing entry points to mj_bridge.egg-info/entry_points.txt\n'}
+[10.211186] (mj_bridge) StdoutLine: {'line': b'writing requirements to mj_bridge.egg-info/requires.txt\n'}
+[10.211409] (mj_bridge) StdoutLine: {'line': b'writing top-level names to mj_bridge.egg-info/top_level.txt\n'}
+[10.224877] (mj_bridge) StdoutLine: {'line': b"reading manifest file 'mj_bridge.egg-info/SOURCES.txt'\n"}
+[10.250436] (mj_bridge) StdoutLine: {'line': b"writing manifest file 'mj_bridge.egg-info/SOURCES.txt'\n"}
+[10.251746] (mj_bridge) StdoutLine: {'line': b'running build_ext\n'}
+[10.252025] (mj_bridge) StdoutLine: {'line': b'Creating /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj-bridge.egg-link (link to .)\n'}
+[10.252631] (mj_bridge) StdoutLine: {'line': b'Installing mj_bridge script to /home/aaa/robot/ros2_ws/install/mj_bridge/lib/mj_bridge\n'}
+[10.252961] (mj_bridge) StdoutLine: {'line': b'Installing pick_and_place script to /home/aaa/robot/ros2_ws/install/mj_bridge/lib/mj_bridge\n'}
+[10.253284] (mj_bridge) StdoutLine: {'line': b'\n'}
+[10.253327] (mj_bridge) StdoutLine: {'line': b'Installed /home/aaa/robot/ros2_ws/build/mj_bridge\n'}
+[10.253349] (mj_bridge) StdoutLine: {'line': b'running symlink_data\n'}
+[10.253804] (mj_bridge) StdoutLine: {'line': b'symbolically linking /home/aaa/robot/ros2_ws/build/mj_bridge/resource/mj_bridge -> /home/aaa/robot/ros2_ws/install/mj_bridge/share/ament_index/resource_index/packages\n'}
+[10.254027] (mj_bridge) StdoutLine: {'line': b'symbolically linking /home/aaa/robot/ros2_ws/build/mj_bridge/package.xml -> /home/aaa/robot/ros2_ws/install/mj_bridge/share/mj_bridge\n'}
+[10.274752] (-) TimerEvent: {}
+[10.375879] (-) TimerEvent: {}
+[10.477027] (-) TimerEvent: {}
+[10.511877] (mj_bridge) CommandEnded: {'returncode': 0}
+[10.517368] (mj_bridge) JobEnded: {'identifier': 'mj_bridge', 'rc': 0}
+[10.517823] (panda_pick) JobStarted: {'identifier': 'panda_pick'}
+[10.536659] (panda_pick) JobProgress: {'identifier': 'panda_pick', 'progress': 'cmake'}
+[10.538879] (panda_pick) Command: {'cmd': ['/usr/bin/cmake', '/home/aaa/robot/ros2_ws/src/panda_pick', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/aaa/robot/ros2_ws/install/panda_pick'], 'cwd': '/home/aaa/robot/ros2_ws/build/panda_pick', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'aaa'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/aaa/robot/ros2_ws/install/smach_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/aaa'), ('OLDPWD', '/home/aaa/robot'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PS1', '(mj) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$'), ('SYSTEMD_EXEC_PID', '80626'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install:/home/aaa/robot/ros2_ws/src/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'aaa'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'aaa'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/aaa/venvs/mj/bin:/opt/ros/humble/bin:/home/aaa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/aaa:@/tmp/.ICE-unix/80127,unix/aaa:/tmp/.ICE-unix/80127'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/59c3bff6_9305_4dee_a4be_17fb9818cad2'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('MUJOCO_GL', 'osmesa'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('VIRTUAL_ENV_PROMPT', '(mj)'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.VSGQG3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.99'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VIRTUAL_ENV', '/home/aaa/venvs/mj'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/aaa/robot/ros2_ws/build/panda_pick'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble')]), 'shell': False}
+[10.577144] (-) TimerEvent: {}
+[10.613203] (smach_msgs) StdoutLine: {'line': b'running egg_info\n'}
+[10.644695] (smach_msgs) StdoutLine: {'line': b'writing smach_msgs.egg-info/PKG-INFO\n'}
+[10.645097] (smach_msgs) StdoutLine: {'line': b'writing dependency_links to smach_msgs.egg-info/dependency_links.txt\n'}
+[10.645441] (smach_msgs) StdoutLine: {'line': b'writing top-level names to smach_msgs.egg-info/top_level.txt\n'}
+[10.646872] (smach_msgs) StdoutLine: {'line': b"reading manifest file 'smach_msgs.egg-info/SOURCES.txt'\n"}
+[10.670799] (panda_pick) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[10.671463] (smach_msgs) StdoutLine: {'line': b"writing manifest file 'smach_msgs.egg-info/SOURCES.txt'\n"}
+[10.677253] (-) TimerEvent: {}
+[10.778888] (-) TimerEvent: {}
+[10.879448] (-) TimerEvent: {}
+[10.928879] (smach_msgs) StdoutLine: {'line': b'[ 76%] Built target ament_cmake_python_build_smach_msgs_egg\n'}
+[10.979913] (-) TimerEvent: {}
+[11.080492] (-) TimerEvent: {}
+[11.081045] (smach_msgs) StdoutLine: {'line': b'[ 76%] Built target smach_msgs\n'}
+[11.180588] (-) TimerEvent: {}
+[11.235418] (smach_msgs) StdoutLine: {'line': b'[ 78%] Built target smach_msgs__py\n'}
+[11.280712] (-) TimerEvent: {}
+[11.339424] (smach_msgs) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target smach_msgs__rosidl_generator_py\x1b[0m\n'}
+[11.380808] (-) TimerEvent: {}
+[11.383637] (panda_pick) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[11.387383] (panda_pick) StdoutLine: {'line': b'-- Found rclcpp: 16.0.15 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[11.447014] (smach_msgs) StdoutLine: {'line': b'[ 87%] Built target smach_msgs__rosidl_generator_py\n'}
+[11.480907] (-) TimerEvent: {}
+[11.524245] (smach_msgs) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target smach_msgs__rosidl_typesupport_fastrtps_c__pyext\x1b[0m\n'}
+[11.556431] (panda_pick) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[11.577335] (panda_pick) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[11.580979] (-) TimerEvent: {}
+[11.596729] (smach_msgs) StdoutLine: {'line': b'[ 91%] Built target smach_msgs__rosidl_typesupport_fastrtps_c__pyext\n'}
+[11.644003] (panda_pick) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[11.681198] (-) TimerEvent: {}
+[11.688284] (panda_pick) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[11.704128] (smach_msgs) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target smach_msgs__rosidl_typesupport_introspection_c__pyext\x1b[0m\n'}
+[11.721840] (panda_pick) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[11.781289] (-) TimerEvent: {}
+[11.785534] (smach_msgs) StdoutLine: {'line': b'[ 95%] Built target smach_msgs__rosidl_typesupport_introspection_c__pyext\n'}
+[11.881373] (-) TimerEvent: {}
+[11.887707] (panda_pick) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[11.889566] (panda_pick) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[11.902235] (smach_msgs) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target smach_msgs__rosidl_typesupport_c__pyext\x1b[0m\n'}
+[11.981512] (-) TimerEvent: {}
+[12.008004] (smach_msgs) StdoutLine: {'line': b'[100%] Built target smach_msgs__rosidl_typesupport_c__pyext\n'}
+[12.081595] (-) TimerEvent: {}
+[12.105674] (smach_msgs) CommandEnded: {'returncode': 0}
+[12.122960] (smach_msgs) JobProgress: {'identifier': 'smach_msgs', 'progress': 'install'}
+[12.164780] (smach_msgs) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/aaa/robot/ros2_ws/build/smach_msgs'], 'cwd': '/home/aaa/robot/ros2_ws/build/smach_msgs', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'aaa'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/aaa/robot/ros2_ws/install/smach_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/aaa'), ('OLDPWD', '/home/aaa/robot'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PS1', '(mj) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$'), ('SYSTEMD_EXEC_PID', '80626'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install:/home/aaa/robot/ros2_ws/src/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'aaa'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'aaa'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/aaa/venvs/mj/bin:/opt/ros/humble/bin:/home/aaa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/aaa:@/tmp/.ICE-unix/80127,unix/aaa:/tmp/.ICE-unix/80127'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/59c3bff6_9305_4dee_a4be_17fb9818cad2'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('MUJOCO_GL', 'osmesa'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('VIRTUAL_ENV_PROMPT', '(mj)'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.VSGQG3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.99'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VIRTUAL_ENV', '/home/aaa/venvs/mj'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/aaa/robot/ros2_ws/build/smach_msgs'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble')]), 'shell': False}
+[12.181689] (-) TimerEvent: {}
+[12.195885] (smach_msgs) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[12.205433] (smach_msgs) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[12.205692] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/ament_index/resource_index/rosidl_interfaces/smach_msgs\n'}
+[12.205998] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_initial_status_cmd__functions.h\n'}
+[12.206095] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_initial_status_cmd__struct.h\n'}
+[12.207116] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_initial_status_cmd__type_support.h\n'}
+[12.207213] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_status__functions.h\n'}
+[12.207299] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_status__struct.h\n'}
+[12.207386] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_status__type_support.h\n'}
+[12.207470] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_structure__functions.h\n'}
+[12.207554] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_structure__struct.h\n'}
+[12.207638] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_structure__type_support.h\n'}
+[12.207721] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/rosidl_generator_c__visibility_control.h\n'}
+[12.207802] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/smach_container_initial_status_cmd.h\n'}
+[12.207892] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/smach_container_status.h\n'}
+[12.207979] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/smach_container_structure.h\n'}
+[12.208090] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/environment/library_path.sh\n'}
+[12.208188] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/environment/library_path.dsv\n'}
+[12.209198] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_initial_status_cmd__rosidl_typesupport_fastrtps_c.h\n'}
+[12.209308] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_status__rosidl_typesupport_fastrtps_c.h\n'}
+[12.209401] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_structure__rosidl_typesupport_fastrtps_c.h\n'}
+[12.210486] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[12.210856] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_initial_status_cmd__builder.hpp\n'}
+[12.210987] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_initial_status_cmd__struct.hpp\n'}
+[12.211073] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_initial_status_cmd__traits.hpp\n'}
+[12.211846] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_initial_status_cmd__type_support.hpp\n'}
+[12.211938] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_status__builder.hpp\n'}
+[12.212021] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_status__struct.hpp\n'}
+[12.212115] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_status__traits.hpp\n'}
+[12.212198] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_status__type_support.hpp\n'}
+[12.212279] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_structure__builder.hpp\n'}
+[12.212363] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_structure__struct.hpp\n'}
+[12.212445] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_structure__traits.hpp\n'}
+[12.215867] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_structure__type_support.hpp\n'}
+[12.215985] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[12.216071] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/smach_container_initial_status_cmd.hpp\n'}
+[12.216153] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/smach_container_status.hpp\n'}
+[12.217470] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/smach_container_structure.hpp\n'}
+[12.219306] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_initial_status_cmd__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[12.219417] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_status__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[12.219505] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_structure__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[12.219591] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[12.219778] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_initial_status_cmd__rosidl_typesupport_introspection_c.h\n'}
+[12.219875] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_status__rosidl_typesupport_introspection_c.h\n'}
+[12.219961] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_structure__rosidl_typesupport_introspection_c.h\n'}
+[12.220042] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[12.220234] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_initial_status_cmd__rosidl_typesupport_introspection_cpp.hpp\n'}
+[12.220323] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_status__rosidl_typesupport_introspection_cpp.hpp\n'}
+[12.220405] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_structure__rosidl_typesupport_introspection_cpp.hpp\n'}
+[12.220506] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/environment/pythonpath.sh\n'}
+[12.220601] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/environment/pythonpath.dsv\n'}
+[12.220775] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs-3.0.3-py3.10.egg-info/PKG-INFO\n'}
+[12.223877] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs-3.0.3-py3.10.egg-info/SOURCES.txt\n'}
+[12.225411] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs-3.0.3-py3.10.egg-info/dependency_links.txt\n'}
+[12.225513] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs-3.0.3-py3.10.egg-info/top_level.txt\n'}
+[12.225816] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/__init__.py\n'}
+[12.225899] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/_smach_msgs_s.ep.rosidl_typesupport_c.c\n'}
+[12.225981] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/_smach_msgs_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[12.226062] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/_smach_msgs_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[12.226142] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/libsmach_msgs__rosidl_generator_py.so\n'}
+[12.226894] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/msg/__init__.py\n'}
+[12.227032] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/msg/_smach_container_initial_status_cmd.py\n'}
+[12.227173] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/msg/_smach_container_initial_status_cmd_s.c\n'}
+[12.227333] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/msg/_smach_container_status.py\n'}
+[12.227420] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/msg/_smach_container_status_s.c\n'}
+[12.227538] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/msg/_smach_container_structure.py\n'}
+[12.227641] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/msg/_smach_container_structure_s.c\n'}
+[12.227736] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/smach_msgs_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[12.227817] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/smach_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[12.227952] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/smach_msgs_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[12.229405] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/smach_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[12.229583] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/smach_msgs_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[12.231846] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/smach_msgs_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[12.231964] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/msg/SmachContainerInitialStatusCmd.idl\n'}
+[12.232063] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/msg/SmachContainerStructure.idl\n'}
+[12.232180] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/msg/SmachContainerStatus.idl\n'}
+[12.232300] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/msg/SmachContainerInitialStatusCmd.msg\n'}
+[12.232400] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/msg/SmachContainerStructure.msg\n'}
+[12.235856] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/msg/SmachContainerStatus.msg\n'}
+[12.235974] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/ament_index/resource_index/package_run_dependencies/smach_msgs\n'}
+[12.237212] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/ament_index/resource_index/parent_prefix_path/smach_msgs\n'}
+[12.237324] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/environment/ament_prefix_path.sh\n'}
+[12.237415] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/environment/ament_prefix_path.dsv\n'}
+[12.237510] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/environment/path.sh\n'}
+[12.237617] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/environment/path.dsv\n'}
+[12.237708] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/local_setup.bash\n'}
+[12.237797] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/local_setup.sh\n'}
+[12.237907] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/local_setup.zsh\n'}
+[12.238001] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/local_setup.dsv\n'}
+[12.238087] (smach_msgs) StdoutLine: {'line': b'-- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/package.dsv\n'}
+[12.276198] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/ament_index/resource_index/packages/smach_msgs\n'}
+[12.276447] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/rosidl_cmake-extras.cmake\n'}
+[12.276863] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[12.276973] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[12.277072] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[12.277171] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[12.277826] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[12.278027] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[12.278173] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/smach_msgsConfig.cmake\n'}
+[12.278263] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/smach_msgsConfig-version.cmake\n'}
+[12.278450] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/package.xml\n'}
+[12.279954] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_generator_c.so\n'}
+[12.280707] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_typesupport_fastrtps_c.so\n'}
+[12.281742] (-) TimerEvent: {}
+[12.281929] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_typesupport_fastrtps_cpp.so\n'}
+[12.283949] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_typesupport_introspection_c.so\n'}
+[12.284286] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_typesupport_c.so\n'}
+[12.285603] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_typesupport_introspection_cpp.so\n'}
+[12.285936] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_typesupport_cpp.so\n'}
+[12.381846] (-) TimerEvent: {}
+[12.399706] (panda_pick) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[12.474689] (smach_msgs) StdoutLine: {'line': b"Listing '/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs'...\n"}
+[12.475102] (smach_msgs) StdoutLine: {'line': b"Compiling '/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/__init__.py'...\n"}
+[12.475165] (smach_msgs) StdoutLine: {'line': b"Listing '/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/msg'...\n"}
+[12.481953] (-) TimerEvent: {}
+[12.492813] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_generator_py.so\n'}
+[12.493290] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/export_smach_msgs__rosidl_generator_cExport.cmake\n'}
+[12.493545] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/export_smach_msgs__rosidl_generator_cExport-noconfig.cmake\n'}
+[12.493811] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/export_smach_msgs__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[12.493872] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/export_smach_msgs__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[12.494280] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/export_smach_msgs__rosidl_generator_cppExport.cmake\n'}
+[12.494530] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/export_smach_msgs__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[12.494593] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/export_smach_msgs__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[12.495113] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/smach_msgs__rosidl_typesupport_introspection_cExport.cmake\n'}
+[12.495236] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/smach_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[12.495759] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/smach_msgs__rosidl_typesupport_cExport.cmake\n'}
+[12.495823] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/smach_msgs__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[12.496262] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/smach_msgs__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[12.496336] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/smach_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[12.496748] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/smach_msgs__rosidl_typesupport_cppExport.cmake\n'}
+[12.496805] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/smach_msgs__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[12.497215] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/export_smach_msgs__rosidl_generator_pyExport.cmake\n'}
+[12.497276] (smach_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/export_smach_msgs__rosidl_generator_pyExport-noconfig.cmake\n'}
+[12.502233] (smach_msgs) CommandEnded: {'returncode': 0}
+[12.532572] (smach_msgs) JobEnded: {'identifier': 'smach_msgs', 'rc': 0}
+[12.536149] (smach_ros) JobStarted: {'identifier': 'smach_ros'}
+[12.614003] (-) TimerEvent: {}
+[12.654920] (panda_pick) StdoutLine: {'line': b'-- Found geometry_msgs: 4.9.0 (/opt/ros/humble/share/geometry_msgs/cmake)\n'}
+[12.720332] (-) TimerEvent: {}
+[12.724108] (panda_pick) StdoutLine: {'line': b'-- Found moveit_ros_planning_interface: 2.5.9 (/opt/ros/humble/share/moveit_ros_planning_interface/cmake)\n'}
+[12.811943] (panda_pick) StdoutLine: {'line': b'-- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: date_time filesystem program_options system thread \n'}
+[12.820416] (-) TimerEvent: {}
+[12.920804] (-) TimerEvent: {}
+[13.021238] (-) TimerEvent: {}
+[13.121607] (-) TimerEvent: {}
+[13.221972] (-) TimerEvent: {}
+[13.322353] (-) TimerEvent: {}
+[13.422736] (-) TimerEvent: {}
+[13.423536] (panda_pick) StdoutLine: {'line': b'-- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: chrono date_time filesystem iostreams program_options regex serialization system thread \n'}
+[13.505443] (panda_pick) StdoutLine: {'line': b'-- Found parameter_traits: 0.5.0 (/opt/ros/humble/share/parameter_traits/cmake)\n'}
+[13.522833] (-) TimerEvent: {}
+[13.550888] (panda_pick) StdoutLine: {'line': b'-- Found rclcpp_lifecycle: 16.0.15 (/opt/ros/humble/share/rclcpp_lifecycle/cmake)\n'}
+[13.590898] (panda_pick) StdoutLine: {'line': b'-- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: filesystem \n'}
+[13.623482] (-) TimerEvent: {}
+[13.723890] (-) TimerEvent: {}
+[13.741700] (panda_pick) StdoutLine: {'line': b'-- library: /usr/lib/aarch64-linux-gnu/libcurl.so\n'}
+[13.822645] (panda_pick) StdoutLine: {'line': b'-- Ensuring Eigen3 include directory is part of orocos-kdl CMake target\n'}
+[13.823947] (-) TimerEvent: {}
+[13.924243] (-) TimerEvent: {}
+[14.025984] (-) TimerEvent: {}
+[14.126533] (-) TimerEvent: {}
+[14.227031] (-) TimerEvent: {}
+[14.327346] (-) TimerEvent: {}
+[14.337943] (panda_pick) StdoutLine: {'line': b'-- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: system filesystem date_time program_options thread chrono \n'}
+[14.427448] (-) TimerEvent: {}
+[14.472661] (panda_pick) StdoutLine: {'line': b'-- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: thread system filesystem regex date_time program_options \n'}
+[14.527557] (-) TimerEvent: {}
+[14.537600] (panda_pick) StdoutLine: {'line': b'-- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: system filesystem date_time program_options thread \n'}
+[14.627940] (-) TimerEvent: {}
+[14.728201] (-) TimerEvent: {}
+[14.828536] (-) TimerEvent: {}
+[14.928839] (-) TimerEvent: {}
+[15.031927] (-) TimerEvent: {}
+[15.076391] (panda_pick) StdoutLine: {'line': b'-- Configuring done\n'}
+[15.132194] (-) TimerEvent: {}
+[15.168920] (panda_pick) StdoutLine: {'line': b'-- Generating done\n'}
+[15.181863] (panda_pick) StdoutLine: {'line': b'-- Build files have been written to: /home/aaa/robot/ros2_ws/build/panda_pick\n'}
+[15.232338] (-) TimerEvent: {}
+[15.270338] (panda_pick) CommandEnded: {'returncode': 0}
+[15.271783] (panda_pick) JobProgress: {'identifier': 'panda_pick', 'progress': 'build'}
+[15.271799] (panda_pick) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/aaa/robot/ros2_ws/build/panda_pick', '--', '-j2', '-l2'], 'cwd': '/home/aaa/robot/ros2_ws/build/panda_pick', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'aaa'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/aaa/robot/ros2_ws/install/smach_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/aaa'), ('OLDPWD', '/home/aaa/robot'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PS1', '(mj) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$'), ('SYSTEMD_EXEC_PID', '80626'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install:/home/aaa/robot/ros2_ws/src/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'aaa'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'aaa'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/aaa/venvs/mj/bin:/opt/ros/humble/bin:/home/aaa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/aaa:@/tmp/.ICE-unix/80127,unix/aaa:/tmp/.ICE-unix/80127'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/59c3bff6_9305_4dee_a4be_17fb9818cad2'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('MUJOCO_GL', 'osmesa'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('VIRTUAL_ENV_PROMPT', '(mj)'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.VSGQG3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.99'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VIRTUAL_ENV', '/home/aaa/venvs/mj'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/aaa/robot/ros2_ws/build/panda_pick'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble')]), 'shell': False}
+[15.332437] (-) TimerEvent: {}
+[15.428204] (smach_ros) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/aaa/robot/ros2_ws/build/smach_ros/build', '--no-deps', 'symlink_data', '--force'], 'cwd': '/home/aaa/robot/ros2_ws/build/smach_ros', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'aaa', 'XDG_SESSION_TYPE': 'wayland', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/aaa/robot/ros2_ws/install/smach_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/aaa', 'OLDPWD': '/home/aaa/robot', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'PS1': '(mj) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$', 'SYSTEMD_EXEC_PID': '80626', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'IM_CONFIG_PHASE': '1', 'WAYLAND_DISPLAY': 'wayland-0', 'COLCON_PREFIX_PATH': '/home/aaa/robot/ros2_ws/install:/home/aaa/robot/ros2_ws/src/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'aaa', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'aaa', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/home/aaa/venvs/mj/bin:/opt/ros/humble/bin:/home/aaa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/aaa:@/tmp/.ICE-unix/80127,unix/aaa:/tmp/.ICE-unix/80127', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/59c3bff6_9305_4dee_a4be_17fb9818cad2', 'GNOME_SETUP_DISPLAY': ':1', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'MUJOCO_GL': 'osmesa', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'VIRTUAL_ENV_PROMPT': '(mj)', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/.mutter-Xwaylandauth.VSGQG3', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GNOME_TERMINAL_SERVICE': ':1.99', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VIRTUAL_ENV': '/home/aaa/venvs/mj', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/aaa/robot/ros2_ws/build/smach_ros', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/aaa/robot/ros2_ws/build/smach_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'VTE_VERSION': '6800', 'CMAKE_PREFIX_PATH': '/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach'}, 'shell': False}
+[15.432511] (-) TimerEvent: {}
+[15.476106] (panda_pick) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target pick_and_place_node\x1b[0m\n'}
+[15.535557] (-) TimerEvent: {}
+[15.635850] (-) TimerEvent: {}
+[15.645630] (panda_pick) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/pick_and_place_node.dir/src/pick_and_place.cpp.o\x1b[0m\n'}
+[15.735896] (-) TimerEvent: {}
+[15.836407] (-) TimerEvent: {}
+[15.936712] (-) TimerEvent: {}
+[16.037401] (-) TimerEvent: {}
+[16.137722] (-) TimerEvent: {}
+[16.237986] (-) TimerEvent: {}
+[16.338256] (-) TimerEvent: {}
+[16.438541] (-) TimerEvent: {}
+[16.466215] (smach_ros) StderrLine: {'line': b"/usr/lib/python3/dist-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead\n"}
+[16.466372] (smach_ros) StderrLine: {'line': b'  warnings.warn(\n'}
+[16.538636] (-) TimerEvent: {}
+[16.619495] (smach_ros) StdoutLine: {'line': b'running develop\n'}
+[16.638743] (-) TimerEvent: {}
+[16.743893] (-) TimerEvent: {}
+[16.844154] (-) TimerEvent: {}
+[16.955948] (-) TimerEvent: {}
+[17.056265] (-) TimerEvent: {}
+[17.156579] (-) TimerEvent: {}
+[17.260031] (-) TimerEvent: {}
+[17.275241] (smach_ros) StdoutLine: {'line': b'running egg_info\n'}
+[17.276953] (smach_ros) StderrLine: {'line': b'/usr/lib/python3/dist-packages/setuptools/dist.py:157: UserWarning: newlines not allowed and will break in the future\n'}
+[17.277051] (smach_ros) StdoutLine: {'line': b'writing smach_ros.egg-info/PKG-INFO\n'}
+[17.277283] (smach_ros) StderrLine: {'line': b'  warnings.warn("newlines not allowed and will break in the future")\n'}
+[17.281872] (smach_ros) StdoutLine: {'line': b'writing dependency_links to smach_ros.egg-info/dependency_links.txt\n'}
+[17.282918] (smach_ros) StdoutLine: {'line': b'writing requirements to smach_ros.egg-info/requires.txt\n'}
+[17.284046] (smach_ros) StdoutLine: {'line': b'writing top-level names to smach_ros.egg-info/top_level.txt\n'}
+[17.286033] (smach_ros) StdoutLine: {'line': b"reading manifest file 'smach_ros.egg-info/SOURCES.txt'\n"}
+[17.291649] (smach_ros) StdoutLine: {'line': b"writing manifest file 'smach_ros.egg-info/SOURCES.txt'\n"}
+[17.293184] (smach_ros) StdoutLine: {'line': b'running build_ext\n'}
+[17.293520] (smach_ros) StdoutLine: {'line': b'Creating /home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages/smach-ros.egg-link (link to .)\n'}
+[17.299887] (smach_ros) StdoutLine: {'line': b'\n'}
+[17.299991] (smach_ros) StdoutLine: {'line': b'Installed /home/aaa/robot/ros2_ws/build/smach_ros\n'}
+[17.300018] (smach_ros) StdoutLine: {'line': b'running symlink_data\n'}
+[17.300043] (smach_ros) StdoutLine: {'line': b'symbolically linking /home/aaa/robot/ros2_ws/build/smach_ros/resource/smach_ros -> /home/aaa/robot/ros2_ws/install/smach_ros/share/ament_index/resource_index/packages\n'}
+[17.300070] (smach_ros) StdoutLine: {'line': b'symbolically linking /home/aaa/robot/ros2_ws/build/smach_ros/package.xml -> /home/aaa/robot/ros2_ws/install/smach_ros/share/smach_ros\n'}
+[17.360162] (-) TimerEvent: {}
+[17.403865] (smach_ros) CommandEnded: {'returncode': 0}
+[17.404055] (smach_ros) JobEnded: {'identifier': 'smach_ros', 'rc': 0}
+[17.404204] (smach_demo) JobStarted: {'identifier': 'smach_demo'}
+[17.466572] (-) TimerEvent: {}
+[17.567385] (-) TimerEvent: {}
+[17.668349] (-) TimerEvent: {}
+[17.768964] (-) TimerEvent: {}
+[17.869747] (-) TimerEvent: {}
+[17.970443] (-) TimerEvent: {}
+[18.074518] (-) TimerEvent: {}
+[18.176439] (-) TimerEvent: {}
+[18.280385] (-) TimerEvent: {}
+[18.380907] (-) TimerEvent: {}
+[18.481445] (-) TimerEvent: {}
+[18.581859] (-) TimerEvent: {}
+[18.682445] (-) TimerEvent: {}
+[18.782925] (-) TimerEvent: {}
+[18.883375] (-) TimerEvent: {}
+[18.922636] (smach_demo) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/aaa/robot/ros2_ws/build/smach_demo/build', '--no-deps', 'symlink_data', '--force'], 'cwd': '/home/aaa/robot/ros2_ws/build/smach_demo', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'aaa', 'XDG_SESSION_TYPE': 'wayland', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/aaa/robot/ros2_ws/install/smach_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/aaa', 'OLDPWD': '/home/aaa/robot', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'PS1': '(mj) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$', 'SYSTEMD_EXEC_PID': '80626', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'IM_CONFIG_PHASE': '1', 'WAYLAND_DISPLAY': 'wayland-0', 'COLCON_PREFIX_PATH': '/home/aaa/robot/ros2_ws/install:/home/aaa/robot/ros2_ws/src/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'aaa', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'aaa', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/home/aaa/venvs/mj/bin:/opt/ros/humble/bin:/home/aaa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/aaa:@/tmp/.ICE-unix/80127,unix/aaa:/tmp/.ICE-unix/80127', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/59c3bff6_9305_4dee_a4be_17fb9818cad2', 'GNOME_SETUP_DISPLAY': ':1', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'MUJOCO_GL': 'osmesa', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'VIRTUAL_ENV_PROMPT': '(mj)', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/.mutter-Xwaylandauth.VSGQG3', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GNOME_TERMINAL_SERVICE': ':1.99', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VIRTUAL_ENV': '/home/aaa/venvs/mj', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/aaa/robot/ros2_ws/build/smach_demo', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/aaa/robot/ros2_ws/build/smach_demo/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'VTE_VERSION': '6800', 'CMAKE_PREFIX_PATH': '/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_msgs'}, 'shell': False}
+[18.983458] (-) TimerEvent: {}
+[19.083992] (-) TimerEvent: {}
+[19.184478] (-) TimerEvent: {}
+[19.284951] (-) TimerEvent: {}
+[19.385538] (-) TimerEvent: {}
+[19.447847] (smach_demo) StdoutLine: {'line': b'running develop\n'}
+[19.485621] (-) TimerEvent: {}
+[19.586005] (-) TimerEvent: {}
+[19.623403] (smach_demo) StdoutLine: {'line': b'running egg_info\n'}
+[19.623558] (smach_demo) StdoutLine: {'line': b'writing smach_demo.egg-info/PKG-INFO\n'}
+[19.623589] (smach_demo) StdoutLine: {'line': b'writing dependency_links to smach_demo.egg-info/dependency_links.txt\n'}
+[19.623919] (smach_demo) StdoutLine: {'line': b'writing entry points to smach_demo.egg-info/entry_points.txt\n'}
+[19.623944] (smach_demo) StdoutLine: {'line': b'writing requirements to smach_demo.egg-info/requires.txt\n'}
+[19.623968] (smach_demo) StdoutLine: {'line': b'writing top-level names to smach_demo.egg-info/top_level.txt\n'}
+[19.625402] (smach_demo) StdoutLine: {'line': b"reading manifest file 'smach_demo.egg-info/SOURCES.txt'\n"}
+[19.626111] (smach_demo) StdoutLine: {'line': b"writing manifest file 'smach_demo.egg-info/SOURCES.txt'\n"}
+[19.627113] (smach_demo) StdoutLine: {'line': b'running build_ext\n'}
+[19.627673] (smach_demo) StdoutLine: {'line': b'Creating /home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages/smach-demo.egg-link (link to .)\n'}
+[19.628087] (smach_demo) StdoutLine: {'line': b'Installing demo script to /home/aaa/robot/ros2_ws/install/smach_demo/lib/smach_demo\n'}
+[19.629499] (smach_demo) StdoutLine: {'line': b'\n'}
+[19.629838] (smach_demo) StdoutLine: {'line': b'Installed /home/aaa/robot/ros2_ws/build/smach_demo\n'}
+[19.630176] (smach_demo) StdoutLine: {'line': b'running symlink_data\n'}
+[19.630582] (smach_demo) StdoutLine: {'line': b'symbolically linking /home/aaa/robot/ros2_ws/build/smach_demo/resource/smach_demo -> /home/aaa/robot/ros2_ws/install/smach_demo/share/ament_index/resource_index/packages\n'}
+[19.631855] (smach_demo) StdoutLine: {'line': b'symbolically linking /home/aaa/robot/ros2_ws/build/smach_demo/package.xml -> /home/aaa/robot/ros2_ws/install/smach_demo/share/smach_demo\n'}
+[19.668131] (smach_demo) CommandEnded: {'returncode': 0}
+[19.672338] (smach_demo) JobEnded: {'identifier': 'smach_demo', 'rc': 0}
+[19.673655] (executive_smach) JobStarted: {'identifier': 'executive_smach'}
+[19.691971] (-) TimerEvent: {}
+[19.693643] (executive_smach) JobProgress: {'identifier': 'executive_smach', 'progress': 'cmake'}
+[19.696726] (executive_smach) Command: {'cmd': ['/usr/bin/cmake', '/home/aaa/robot/ros2_ws/executive_smach/executive_smach', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/aaa/robot/ros2_ws/install/executive_smach'], 'cwd': '/home/aaa/robot/ros2_ws/build/executive_smach', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'aaa'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/aaa/robot/ros2_ws/install/smach_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/aaa'), ('OLDPWD', '/home/aaa/robot'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PS1', '(mj) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$'), ('SYSTEMD_EXEC_PID', '80626'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install:/home/aaa/robot/ros2_ws/src/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'aaa'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'aaa'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/aaa/venvs/mj/bin:/opt/ros/humble/bin:/home/aaa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/aaa:@/tmp/.ICE-unix/80127,unix/aaa:/tmp/.ICE-unix/80127'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/59c3bff6_9305_4dee_a4be_17fb9818cad2'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('MUJOCO_GL', 'osmesa'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('VIRTUAL_ENV_PROMPT', '(mj)'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.VSGQG3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.99'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VIRTUAL_ENV', '/home/aaa/venvs/mj'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/aaa/robot/ros2_ws/build/executive_smach'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble')]), 'shell': False}
+[19.717778] (executive_smach) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[19.792067] (-) TimerEvent: {}
+[19.811008] (executive_smach) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[19.895913] (-) TimerEvent: {}
+[19.961646] (executive_smach) StdoutLine: {'line': b'-- Configuring done\n'}
+[19.974329] (executive_smach) StdoutLine: {'line': b'-- Generating done\n'}
+[19.979178] (executive_smach) StdoutLine: {'line': b'-- Build files have been written to: /home/aaa/robot/ros2_ws/build/executive_smach\n'}
+[19.992164] (executive_smach) CommandEnded: {'returncode': 0}
+[19.992632] (executive_smach) JobProgress: {'identifier': 'executive_smach', 'progress': 'build'}
+[19.992653] (executive_smach) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/aaa/robot/ros2_ws/build/executive_smach', '--', '-j2', '-l2'], 'cwd': '/home/aaa/robot/ros2_ws/build/executive_smach', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'aaa'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/aaa/robot/ros2_ws/install/smach_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/aaa'), ('OLDPWD', '/home/aaa/robot'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PS1', '(mj) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$'), ('SYSTEMD_EXEC_PID', '80626'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install:/home/aaa/robot/ros2_ws/src/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'aaa'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'aaa'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/aaa/venvs/mj/bin:/opt/ros/humble/bin:/home/aaa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/aaa:@/tmp/.ICE-unix/80127,unix/aaa:/tmp/.ICE-unix/80127'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/59c3bff6_9305_4dee_a4be_17fb9818cad2'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('MUJOCO_GL', 'osmesa'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('VIRTUAL_ENV_PROMPT', '(mj)'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.VSGQG3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.99'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VIRTUAL_ENV', '/home/aaa/venvs/mj'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/aaa/robot/ros2_ws/build/executive_smach'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble')]), 'shell': False}
+[19.995979] (-) TimerEvent: {}
+[20.070739] (executive_smach) CommandEnded: {'returncode': 0}
+[20.072915] (executive_smach) JobProgress: {'identifier': 'executive_smach', 'progress': 'install'}
+[20.072956] (executive_smach) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/aaa/robot/ros2_ws/build/executive_smach'], 'cwd': '/home/aaa/robot/ros2_ws/build/executive_smach', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'aaa'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/aaa/robot/ros2_ws/install/smach_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/aaa'), ('OLDPWD', '/home/aaa/robot'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PS1', '(mj) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$'), ('SYSTEMD_EXEC_PID', '80626'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install:/home/aaa/robot/ros2_ws/src/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'aaa'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'aaa'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/aaa/venvs/mj/bin:/opt/ros/humble/bin:/home/aaa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/aaa:@/tmp/.ICE-unix/80127,unix/aaa:/tmp/.ICE-unix/80127'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/59c3bff6_9305_4dee_a4be_17fb9818cad2'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('MUJOCO_GL', 'osmesa'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('VIRTUAL_ENV_PROMPT', '(mj)'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.VSGQG3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.99'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VIRTUAL_ENV', '/home/aaa/venvs/mj'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/aaa/robot/ros2_ws/build/executive_smach'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble')]), 'shell': False}
+[20.078953] (executive_smach) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[20.080929] (executive_smach) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[20.081190] (executive_smach) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/executive_smach/share/ament_index/resource_index/package_run_dependencies/executive_smach\n'}
+[20.081366] (executive_smach) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/executive_smach/share/ament_index/resource_index/parent_prefix_path/executive_smach\n'}
+[20.081536] (executive_smach) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/environment/ament_prefix_path.sh\n'}
+[20.081567] (executive_smach) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/environment/ament_prefix_path.dsv\n'}
+[20.081892] (executive_smach) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/environment/path.sh\n'}
+[20.081921] (executive_smach) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/environment/path.dsv\n'}
+[20.081946] (executive_smach) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/local_setup.bash\n'}
+[20.081978] (executive_smach) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/local_setup.sh\n'}
+[20.082511] (executive_smach) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/local_setup.zsh\n'}
+[20.082548] (executive_smach) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/local_setup.dsv\n'}
+[20.082573] (executive_smach) StdoutLine: {'line': b'-- Symlinking: /home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/package.dsv\n'}
+[20.087402] (executive_smach) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/executive_smach/share/ament_index/resource_index/packages/executive_smach\n'}
+[20.087981] (executive_smach) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/cmake/executive_smachConfig.cmake\n'}
+[20.088029] (executive_smach) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/cmake/executive_smachConfig-version.cmake\n'}
+[20.088060] (executive_smach) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/executive_smach/share/executive_smach/package.xml\n'}
+[20.091585] (executive_smach) CommandEnded: {'returncode': 0}
+[20.098640] (-) TimerEvent: {}
+[20.103055] (executive_smach) JobEnded: {'identifier': 'executive_smach', 'rc': 0}
+[20.198762] (-) TimerEvent: {}
+[20.301821] (-) TimerEvent: {}
+[20.403748] (-) TimerEvent: {}
+[20.507756] (-) TimerEvent: {}
+[20.608251] (-) TimerEvent: {}
+[20.708870] (-) TimerEvent: {}
+[20.809967] (-) TimerEvent: {}
+[20.910489] (-) TimerEvent: {}
+[21.011104] (-) TimerEvent: {}
+[21.111804] (-) TimerEvent: {}
+[21.212192] (-) TimerEvent: {}
+[21.312720] (-) TimerEvent: {}
+[21.413445] (-) TimerEvent: {}
+[21.513796] (-) TimerEvent: {}
+[21.614147] (-) TimerEvent: {}
+[21.714502] (-) TimerEvent: {}
+[21.814862] (-) TimerEvent: {}
+[21.915282] (-) TimerEvent: {}
+[22.015617] (-) TimerEvent: {}
+[22.116126] (-) TimerEvent: {}
+[22.216704] (-) TimerEvent: {}
+[22.317062] (-) TimerEvent: {}
+[22.417509] (-) TimerEvent: {}
+[22.517863] (-) TimerEvent: {}
+[22.619039] (-) TimerEvent: {}
+[22.723236] (-) TimerEvent: {}
+[22.823702] (-) TimerEvent: {}
+[22.924029] (-) TimerEvent: {}
+[23.024337] (-) TimerEvent: {}
+[23.124776] (-) TimerEvent: {}
+[23.225213] (-) TimerEvent: {}
+[23.325596] (-) TimerEvent: {}
+[23.426038] (-) TimerEvent: {}
+[23.526485] (-) TimerEvent: {}
+[23.626935] (-) TimerEvent: {}
+[23.727258] (-) TimerEvent: {}
+[23.827681] (-) TimerEvent: {}
+[23.928064] (-) TimerEvent: {}
+[24.028436] (-) TimerEvent: {}
+[24.128755] (-) TimerEvent: {}
+[24.229011] (-) TimerEvent: {}
+[24.329260] (-) TimerEvent: {}
+[24.429584] (-) TimerEvent: {}
+[24.530759] (-) TimerEvent: {}
+[24.630992] (-) TimerEvent: {}
+[24.731255] (-) TimerEvent: {}
+[24.831520] (-) TimerEvent: {}
+[24.931791] (-) TimerEvent: {}
+[25.032076] (-) TimerEvent: {}
+[25.132334] (-) TimerEvent: {}
+[25.232607] (-) TimerEvent: {}
+[25.332894] (-) TimerEvent: {}
+[25.433139] (-) TimerEvent: {}
+[25.533719] (-) TimerEvent: {}
+[25.634026] (-) TimerEvent: {}
+[25.734403] (-) TimerEvent: {}
+[25.835432] (-) TimerEvent: {}
+[25.936141] (-) TimerEvent: {}
+[26.036605] (-) TimerEvent: {}
+[26.136958] (-) TimerEvent: {}
+[26.237285] (-) TimerEvent: {}
+[26.337613] (-) TimerEvent: {}
+[26.438425] (-) TimerEvent: {}
+[26.538725] (-) TimerEvent: {}
+[26.639069] (-) TimerEvent: {}
+[26.739423] (-) TimerEvent: {}
+[26.839806] (-) TimerEvent: {}
+[26.940851] (-) TimerEvent: {}
+[27.041295] (-) TimerEvent: {}
+[27.143967] (-) TimerEvent: {}
+[27.244856] (-) TimerEvent: {}
+[27.345194] (-) TimerEvent: {}
+[27.445522] (-) TimerEvent: {}
+[27.545866] (-) TimerEvent: {}
+[27.646302] (-) TimerEvent: {}
+[27.746694] (-) TimerEvent: {}
+[27.853013] (-) TimerEvent: {}
+[27.953528] (-) TimerEvent: {}
+[28.054037] (-) TimerEvent: {}
+[28.154470] (-) TimerEvent: {}
+[28.254947] (-) TimerEvent: {}
+[28.355363] (-) TimerEvent: {}
+[28.455787] (-) TimerEvent: {}
+[28.556207] (-) TimerEvent: {}
+[28.656525] (-) TimerEvent: {}
+[28.756912] (-) TimerEvent: {}
+[28.857264] (-) TimerEvent: {}
+[28.959924] (-) TimerEvent: {}
+[29.060256] (-) TimerEvent: {}
+[29.160813] (-) TimerEvent: {}
+[29.261146] (-) TimerEvent: {}
+[29.361912] (-) TimerEvent: {}
+[29.462938] (-) TimerEvent: {}
+[29.563269] (-) TimerEvent: {}
+[29.663641] (-) TimerEvent: {}
+[29.764018] (-) TimerEvent: {}
+[29.864413] (-) TimerEvent: {}
+[29.964911] (-) TimerEvent: {}
+[30.065339] (-) TimerEvent: {}
+[30.165682] (-) TimerEvent: {}
+[30.266091] (-) TimerEvent: {}
+[30.366501] (-) TimerEvent: {}
+[30.467072] (-) TimerEvent: {}
+[30.567568] (-) TimerEvent: {}
+[30.667945] (-) TimerEvent: {}
+[30.768202] (-) TimerEvent: {}
+[30.868568] (-) TimerEvent: {}
+[30.968929] (-) TimerEvent: {}
+[31.069360] (-) TimerEvent: {}
+[31.170103] (-) TimerEvent: {}
+[31.270819] (-) TimerEvent: {}
+[31.371890] (-) TimerEvent: {}
+[31.472357] (-) TimerEvent: {}
+[31.474789] (panda_pick) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable pick_and_place_node\x1b[0m\n'}
+[31.572451] (-) TimerEvent: {}
+[31.672818] (-) TimerEvent: {}
+[31.773254] (-) TimerEvent: {}
+[31.876004] (-) TimerEvent: {}
+[31.980196] (-) TimerEvent: {}
+[32.081069] (-) TimerEvent: {}
+[32.181444] (-) TimerEvent: {}
+[32.281826] (-) TimerEvent: {}
+[32.382074] (-) TimerEvent: {}
+[32.482457] (-) TimerEvent: {}
+[32.583003] (-) TimerEvent: {}
+[32.683402] (-) TimerEvent: {}
+[32.783914] (-) TimerEvent: {}
+[32.884178] (-) TimerEvent: {}
+[32.986960] (-) TimerEvent: {}
+[33.049045] (panda_pick) StdoutLine: {'line': b'Built target pick_and_place_node\n'}
+[33.091183] (panda_pick) CommandEnded: {'returncode': 0}
+[33.091682] (-) TimerEvent: {}
+[33.091759] (panda_pick) JobProgress: {'identifier': 'panda_pick', 'progress': 'install'}
+[33.091773] (panda_pick) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/aaa/robot/ros2_ws/build/panda_pick'], 'cwd': '/home/aaa/robot/ros2_ws/build/panda_pick', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'aaa'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/aaa/robot/ros2_ws/install/smach_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/aaa'), ('OLDPWD', '/home/aaa/robot'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PS1', '(mj) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$'), ('SYSTEMD_EXEC_PID', '80626'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install:/home/aaa/robot/ros2_ws/src/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'aaa'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'aaa'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/aaa/venvs/mj/bin:/opt/ros/humble/bin:/home/aaa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/aaa:@/tmp/.ICE-unix/80127,unix/aaa:/tmp/.ICE-unix/80127'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/59c3bff6_9305_4dee_a4be_17fb9818cad2'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('MUJOCO_GL', 'osmesa'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('VIRTUAL_ENV_PROMPT', '(mj)'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.VSGQG3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.99'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VIRTUAL_ENV', '/home/aaa/venvs/mj'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/aaa/robot/ros2_ws/build/panda_pick'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/src/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/home/aaa/robot/ros2_ws/src/install/smach_demo:/home/aaa/robot/ros2_ws/src/install/mj_bridge:/opt/ros/humble')]), 'shell': False}
+[33.110170] (panda_pick) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[33.110359] (panda_pick) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[33.110391] (panda_pick) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/panda_pick/lib/panda_pick/pick_and_place_node\n'}
+[33.110418] (panda_pick) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/panda_pick/share/ament_index/resource_index/package_run_dependencies/panda_pick\n'}
+[33.110442] (panda_pick) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/panda_pick/share/ament_index/resource_index/parent_prefix_path/panda_pick\n'}
+[33.110466] (panda_pick) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/environment/ament_prefix_path.sh\n'}
+[33.110489] (panda_pick) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/environment/ament_prefix_path.dsv\n'}
+[33.110511] (panda_pick) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/environment/path.sh\n'}
+[33.110534] (panda_pick) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/environment/path.dsv\n'}
+[33.110565] (panda_pick) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/local_setup.bash\n'}
+[33.110587] (panda_pick) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/local_setup.sh\n'}
+[33.110610] (panda_pick) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/local_setup.zsh\n'}
+[33.110638] (panda_pick) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/local_setup.dsv\n'}
+[33.110664] (panda_pick) StdoutLine: {'line': b'-- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/package.dsv\n'}
+[33.129856] (panda_pick) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/panda_pick/share/ament_index/resource_index/packages/panda_pick\n'}
+[33.130005] (panda_pick) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/cmake/panda_pickConfig.cmake\n'}
+[33.130036] (panda_pick) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/cmake/panda_pickConfig-version.cmake\n'}
+[33.130065] (panda_pick) StdoutLine: {'line': b'-- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/package.xml\n'}
+[33.134698] (panda_pick) CommandEnded: {'returncode': 0}
+[33.157580] (panda_pick) JobEnded: {'identifier': 'panda_pick', 'rc': 0}
+[33.158539] (-) EventReactorShutdown: {}

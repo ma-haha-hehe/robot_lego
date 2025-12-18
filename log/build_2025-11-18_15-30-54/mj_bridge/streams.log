@@ -1,0 +1,17 @@
+[1.299s] Invoking command in '/home/aaa/robot/ros2_ws/build/mj_bridge': PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/mj_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aaa/robot/ros2_ws/build/mj_bridge/build --no-deps symlink_data
+[1.949s] running develop
+[2.308s] running egg_info
+[2.312s] writing mj_bridge.egg-info/PKG-INFO
+[2.312s] writing dependency_links to mj_bridge.egg-info/dependency_links.txt
+[2.312s] writing entry points to mj_bridge.egg-info/entry_points.txt
+[2.312s] writing requirements to mj_bridge.egg-info/requires.txt
+[2.313s] writing top-level names to mj_bridge.egg-info/top_level.txt
+[2.315s] reading manifest file 'mj_bridge.egg-info/SOURCES.txt'
+[2.315s] writing manifest file 'mj_bridge.egg-info/SOURCES.txt'
+[2.319s] running build_ext
+[2.319s] Creating /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj-bridge.egg-link (link to .)
+[2.319s] Installing mj_bridge script to /home/aaa/robot/ros2_ws/install/mj_bridge/lib/mj_bridge
+[2.320s] 
+[2.324s] Installed /home/aaa/robot/ros2_ws/build/mj_bridge
+[2.324s] running symlink_data
+[2.381s] Invoked command in '/home/aaa/robot/ros2_ws/build/mj_bridge' returned '0': PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/mj_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aaa/robot/ros2_ws/build/mj_bridge/build --no-deps symlink_data

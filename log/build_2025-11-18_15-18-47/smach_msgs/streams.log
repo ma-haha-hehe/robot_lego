@@ -1,0 +1,259 @@
+[0.639s] Invoking command in '/home/aaa/robot/ros2_ws/build/smach_msgs': CMAKE_PREFIX_PATH=/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ /usr/bin/cmake /home/aaa/robot/ros2_ws/executive_smach/smach_msgs -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/aaa/robot/ros2_ws/install/smach_msgs
+[1.194s] -- The C compiler identification is GNU 11.4.0
+[1.633s] -- The CXX compiler identification is GNU 11.4.0
+[1.695s] -- Detecting C compiler ABI info
+[1.974s] -- Detecting C compiler ABI info - done
+[1.982s] -- Check for working C compiler: /usr/bin/cc - skipped
+[1.982s] -- Detecting C compile features
+[1.984s] -- Detecting C compile features - done
+[1.987s] -- Detecting CXX compiler ABI info
+[2.083s] -- Detecting CXX compiler ABI info - done
+[2.091s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[2.092s] -- Detecting CXX compile features
+[2.092s] -- Detecting CXX compile features - done
+[2.107s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[2.670s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[2.827s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[2.924s] -- Found builtin_interfaces: 1.2.2 (/opt/ros/humble/share/builtin_interfaces/cmake)
+[3.071s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[3.092s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[3.121s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[3.214s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[3.297s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[3.340s] -- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+[3.375s] -- Found std_msgs: 4.9.0 (/opt/ros/humble/share/std_msgs/cmake)
+[4.072s] -- Found ament_cmake_cppcheck: 0.12.14 (/opt/ros/humble/share/ament_cmake_cppcheck/cmake)
+[4.086s] -- Found ament_cmake_cpplint: 0.12.14 (/opt/ros/humble/share/ament_cmake_cpplint/cmake)
+[4.091s] -- Found ament_cmake_uncrustify: 0.12.14 (/opt/ros/humble/share/ament_cmake_uncrustify/cmake)
+[4.095s] -- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+[4.963s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[5.351s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[5.394s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") 
+[5.398s] -- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+[5.490s] -- Found PythonLibs: /usr/lib/aarch64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") 
+[5.490s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[5.490s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+[5.490s] -- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.10.so
+[5.589s] -- Found PythonExtra: .so  
+[5.711s] -- Found ament_cmake_flake8: 0.12.14 (/opt/ros/humble/share/ament_cmake_flake8/cmake)
+[5.718s] -- Found ament_cmake_pep257: 0.12.14 (/opt/ros/humble/share/ament_cmake_pep257/cmake)
+[5.738s] -- Configuring done
+[5.877s] -- Generating done
+[5.901s] -- Build files have been written to: /home/aaa/robot/ros2_ws/build/smach_msgs
+[5.935s] Invoked command in '/home/aaa/robot/ros2_ws/build/smach_msgs' returned '0': CMAKE_PREFIX_PATH=/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ /usr/bin/cmake /home/aaa/robot/ros2_ws/executive_smach/smach_msgs -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/aaa/robot/ros2_ws/install/smach_msgs
+[5.937s] Invoking command in '/home/aaa/robot/ros2_ws/build/smach_msgs': CMAKE_PREFIX_PATH=/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ /usr/bin/cmake --build /home/aaa/robot/ros2_ws/build/smach_msgs -- -j2 -l2
+[6.147s] [  2%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[7.483s] [  2%] Built target smach_msgs__cpp
+[7.534s] [  4%] [34m[1mGenerating C code for ROS interfaces[0m
+[8.437s] [  6%] [32mBuilding C object CMakeFiles/smach_msgs__rosidl_generator_c.dir/rosidl_generator_c/smach_msgs/msg/detail/smach_container_initial_status_cmd__functions.c.o[0m
+[8.569s] [  8%] [32mBuilding C object CMakeFiles/smach_msgs__rosidl_generator_c.dir/rosidl_generator_c/smach_msgs/msg/detail/smach_container_structure__functions.c.o[0m
+[8.657s] [ 10%] [32mBuilding C object CMakeFiles/smach_msgs__rosidl_generator_c.dir/rosidl_generator_c/smach_msgs/msg/detail/smach_container_status__functions.c.o[0m
+[8.722s] [ 12%] [32m[1mLinking C shared library libsmach_msgs__rosidl_generator_c.so[0m
+[8.755s] [ 12%] Built target smach_msgs__rosidl_generator_c
+[8.790s] [ 12%] Built target ament_cmake_python_symlink_smach_msgs
+[8.799s] [ 14%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[9.636s] [ 17%] [32mBuilding CXX object CMakeFiles/smach_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/smach_msgs/msg/smach_container_initial_status_cmd__type_support.cpp.o[0m
+[10.164s] [ 19%] [32mBuilding CXX object CMakeFiles/smach_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/smach_msgs/msg/smach_container_structure__type_support.cpp.o[0m
+[10.537s] [ 21%] [32mBuilding CXX object CMakeFiles/smach_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/smach_msgs/msg/smach_container_status__type_support.cpp.o[0m
+[10.865s] [ 23%] [32m[1mLinking CXX shared library libsmach_msgs__rosidl_typesupport_cpp.so[0m
+[10.931s] [ 23%] Built target smach_msgs__rosidl_typesupport_cpp
+[10.940s] [ 25%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[11.670s] [ 27%] [32mBuilding CXX object CMakeFiles/smach_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/smach_msgs/msg/detail/smach_container_initial_status_cmd__type_support_c.cpp.o[0m
+[12.148s] [ 29%] [32mBuilding CXX object CMakeFiles/smach_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/smach_msgs/msg/detail/smach_container_structure__type_support_c.cpp.o[0m
+[12.550s] [ 31%] [32mBuilding CXX object CMakeFiles/smach_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/smach_msgs/msg/detail/smach_container_status__type_support_c.cpp.o[0m
+[12.946s] [ 34%] [32m[1mLinking CXX shared library libsmach_msgs__rosidl_typesupport_fastrtps_c.so[0m
+[13.067s] [ 34%] Built target smach_msgs__rosidl_typesupport_fastrtps_c
+[13.074s] [ 36%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[13.756s] [ 38%] [32mBuilding CXX object CMakeFiles/smach_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/smach_msgs/msg/detail/dds_fastrtps/smach_container_initial_status_cmd__type_support.cpp.o[0m
+[14.436s] [ 40%] [32mBuilding CXX object CMakeFiles/smach_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/smach_msgs/msg/detail/dds_fastrtps/smach_container_structure__type_support.cpp.o[0m
+[14.941s] [ 42%] [32mBuilding CXX object CMakeFiles/smach_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/smach_msgs/msg/detail/dds_fastrtps/smach_container_status__type_support.cpp.o[0m
+[15.465s] [ 44%] [32m[1mLinking CXX shared library libsmach_msgs__rosidl_typesupport_fastrtps_cpp.so[0m
+[15.542s] [ 44%] Built target smach_msgs__rosidl_typesupport_fastrtps_cpp
+[15.551s] [ 46%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[16.091s] [ 48%] [32mBuilding C object CMakeFiles/smach_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/smach_msgs/msg/detail/smach_container_initial_status_cmd__type_support.c.o[0m
+[16.140s] [ 51%] [32mBuilding C object CMakeFiles/smach_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/smach_msgs/msg/detail/smach_container_structure__type_support.c.o[0m
+[16.196s] [ 53%] [32mBuilding C object CMakeFiles/smach_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/smach_msgs/msg/detail/smach_container_status__type_support.c.o[0m
+[16.251s] [ 55%] [32m[1mLinking C shared library libsmach_msgs__rosidl_typesupport_introspection_c.so[0m
+[16.272s] [ 55%] Built target smach_msgs__rosidl_typesupport_introspection_c
+[16.279s] [ 57%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[16.688s] [ 59%] [32mBuilding CXX object CMakeFiles/smach_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/smach_msgs/msg/smach_container_initial_status_cmd__type_support.cpp.o[0m
+[16.725s] [ 61%] [32mBuilding CXX object CMakeFiles/smach_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/smach_msgs/msg/smach_container_structure__type_support.cpp.o[0m
+[16.773s] [ 63%] [32mBuilding CXX object CMakeFiles/smach_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/smach_msgs/msg/smach_container_status__type_support.cpp.o[0m
+[16.810s] [ 65%] [32m[1mLinking CXX shared library libsmach_msgs__rosidl_typesupport_c.so[0m
+[16.875s] [ 65%] Built target smach_msgs__rosidl_typesupport_c
+[16.891s] [ 68%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[17.411s] [ 70%] [32mBuilding CXX object CMakeFiles/smach_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/smach_msgs/msg/detail/smach_container_initial_status_cmd__type_support.cpp.o[0m
+[17.823s] [ 72%] [32mBuilding CXX object CMakeFiles/smach_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/smach_msgs/msg/detail/smach_container_structure__type_support.cpp.o[0m
+[18.218s] [ 74%] [32mBuilding CXX object CMakeFiles/smach_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/smach_msgs/msg/detail/smach_container_status__type_support.cpp.o[0m
+[18.657s] [ 76%] [32m[1mLinking CXX shared library libsmach_msgs__rosidl_typesupport_introspection_cpp.so[0m
+[18.735s] [ 76%] Built target smach_msgs__rosidl_typesupport_introspection_cpp
+[18.970s] running egg_info
+[18.971s] creating smach_msgs.egg-info
+[18.971s] writing smach_msgs.egg-info/PKG-INFO
+[18.971s] writing dependency_links to smach_msgs.egg-info/dependency_links.txt
+[18.971s] writing top-level names to smach_msgs.egg-info/top_level.txt
+[18.971s] writing manifest file 'smach_msgs.egg-info/SOURCES.txt'
+[18.973s] reading manifest file 'smach_msgs.egg-info/SOURCES.txt'
+[18.973s] writing manifest file 'smach_msgs.egg-info/SOURCES.txt'
+[18.999s] [ 76%] Built target ament_cmake_python_build_smach_msgs_egg
+[19.014s] [ 76%] Built target smach_msgs
+[19.032s] [ 78%] [34m[1mGenerating Python code for ROS interfaces[0m
+[19.802s] [ 78%] Built target smach_msgs__py
+[19.809s] [ 80%] [32mBuilding C object CMakeFiles/smach_msgs__rosidl_generator_py.dir/rosidl_generator_py/smach_msgs/msg/_smach_container_initial_status_cmd_s.c.o[0m
+[19.938s] [ 82%] [32mBuilding C object CMakeFiles/smach_msgs__rosidl_generator_py.dir/rosidl_generator_py/smach_msgs/msg/_smach_container_structure_s.c.o[0m
+[20.056s] [ 85%] [32mBuilding C object CMakeFiles/smach_msgs__rosidl_generator_py.dir/rosidl_generator_py/smach_msgs/msg/_smach_container_status_s.c.o[0m
+[20.210s] [ 87%] [32m[1mLinking C shared library rosidl_generator_py/smach_msgs/libsmach_msgs__rosidl_generator_py.so[0m
+[20.255s] [ 87%] Built target smach_msgs__rosidl_generator_py
+[20.292s] [ 89%] [32mBuilding C object CMakeFiles/smach_msgs__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/smach_msgs/_smach_msgs_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[20.423s] [ 91%] [32m[1mLinking C shared library rosidl_generator_py/smach_msgs/smach_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so[0m
+[20.468s] [ 91%] Built target smach_msgs__rosidl_typesupport_fastrtps_c__pyext
+[20.499s] [ 93%] [32mBuilding C object CMakeFiles/smach_msgs__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/smach_msgs/_smach_msgs_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[20.609s] [ 95%] [32m[1mLinking C shared library rosidl_generator_py/smach_msgs/smach_msgs_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so[0m
+[20.647s] [ 95%] Built target smach_msgs__rosidl_typesupport_introspection_c__pyext
+[20.669s] [ 97%] [32mBuilding C object CMakeFiles/smach_msgs__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/smach_msgs/_smach_msgs_s.ep.rosidl_typesupport_c.c.o[0m
+[20.767s] [100%] [32m[1mLinking C shared library rosidl_generator_py/smach_msgs/smach_msgs_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so[0m
+[20.798s] [100%] Built target smach_msgs__rosidl_typesupport_c__pyext
+[20.810s] Invoked command in '/home/aaa/robot/ros2_ws/build/smach_msgs' returned '0': CMAKE_PREFIX_PATH=/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ /usr/bin/cmake --build /home/aaa/robot/ros2_ws/build/smach_msgs -- -j2 -l2
+[20.818s] Invoking command in '/home/aaa/robot/ros2_ws/build/smach_msgs': CMAKE_PREFIX_PATH=/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ /usr/bin/cmake --install /home/aaa/robot/ros2_ws/build/smach_msgs
+[20.829s] -- Install configuration: ""
+[20.830s] -- Execute custom install script
+[20.830s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/ament_index/resource_index/rosidl_interfaces/smach_msgs
+[20.836s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_initial_status_cmd__functions.h
+[20.846s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_initial_status_cmd__struct.h
+[20.850s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_initial_status_cmd__type_support.h
+[20.855s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_status__functions.h
+[20.866s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_status__struct.h
+[20.876s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_status__type_support.h
+[20.885s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_structure__functions.h
+[20.892s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_structure__struct.h
+[20.898s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_structure__type_support.h
+[20.905s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/rosidl_generator_c__visibility_control.h
+[20.911s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/smach_container_initial_status_cmd.h
+[20.917s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/smach_container_status.h
+[20.922s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/smach_container_structure.h
+[20.928s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/environment/library_path.sh
+[20.935s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/environment/library_path.dsv
+[20.942s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_initial_status_cmd__rosidl_typesupport_fastrtps_c.h
+[20.947s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_status__rosidl_typesupport_fastrtps_c.h
+[20.952s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_structure__rosidl_typesupport_fastrtps_c.h
+[20.970s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[20.977s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_initial_status_cmd__builder.hpp
+[20.983s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_initial_status_cmd__struct.hpp
+[20.989s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_initial_status_cmd__traits.hpp
+[20.994s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_initial_status_cmd__type_support.hpp
+[20.999s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_status__builder.hpp
+[21.004s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_status__struct.hpp
+[21.010s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_status__traits.hpp
+[21.016s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_status__type_support.hpp
+[21.022s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_structure__builder.hpp
+[21.027s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_structure__struct.hpp
+[21.032s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_structure__traits.hpp
+[21.038s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_structure__type_support.hpp
+[21.044s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
+[21.050s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/smach_container_initial_status_cmd.hpp
+[21.055s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/smach_container_status.hpp
+[21.069s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/smach_container_structure.hpp
+[21.080s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_initial_status_cmd__rosidl_typesupport_fastrtps_cpp.hpp
+[21.087s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_status__rosidl_typesupport_fastrtps_cpp.hpp
+[21.092s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_structure__rosidl_typesupport_fastrtps_cpp.hpp
+[21.100s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[21.113s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_initial_status_cmd__rosidl_typesupport_introspection_c.h
+[21.119s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_status__rosidl_typesupport_introspection_c.h
+[21.133s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_structure__rosidl_typesupport_introspection_c.h
+[21.140s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[21.147s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_initial_status_cmd__rosidl_typesupport_introspection_cpp.hpp
+[21.152s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_status__rosidl_typesupport_introspection_cpp.hpp
+[21.158s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/include/smach_msgs/smach_msgs/msg/detail/smach_container_structure__rosidl_typesupport_introspection_cpp.hpp
+[21.170s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/environment/pythonpath.sh
+[21.179s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/environment/pythonpath.dsv
+[21.185s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs-3.0.3-py3.10.egg-info/PKG-INFO
+[21.190s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs-3.0.3-py3.10.egg-info/SOURCES.txt
+[21.195s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs-3.0.3-py3.10.egg-info/dependency_links.txt
+[21.201s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs-3.0.3-py3.10.egg-info/top_level.txt
+[21.207s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/__init__.py
+[21.213s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/_smach_msgs_s.ep.rosidl_typesupport_c.c
+[21.219s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/_smach_msgs_s.ep.rosidl_typesupport_fastrtps_c.c
+[21.224s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/_smach_msgs_s.ep.rosidl_typesupport_introspection_c.c
+[21.229s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/libsmach_msgs__rosidl_generator_py.so
+[21.234s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/msg/__init__.py
+[21.240s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/msg/_smach_container_initial_status_cmd.py
+[21.245s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/msg/_smach_container_initial_status_cmd_s.c
+[21.251s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/msg/_smach_container_status.py
+[21.256s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/msg/_smach_container_status_s.c
+[21.265s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/msg/_smach_container_structure.py
+[21.274s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/msg/_smach_container_structure_s.c
+[21.282s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/smach_msgs_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+[21.288s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/smach_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+[21.294s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/smach_msgs_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+[21.301s] -- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/smach_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+[21.301s] -- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/smach_msgs_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+[21.301s] -- Up-to-date symlink: /home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/smach_msgs_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+[21.301s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/msg/SmachContainerInitialStatusCmd.idl
+[21.307s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/msg/SmachContainerStructure.idl
+[21.312s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/msg/SmachContainerStatus.idl
+[21.317s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/msg/SmachContainerInitialStatusCmd.msg
+[21.322s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/msg/SmachContainerStructure.msg
+[21.328s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/msg/SmachContainerStatus.msg
+[21.334s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/ament_index/resource_index/package_run_dependencies/smach_msgs
+[21.340s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/ament_index/resource_index/parent_prefix_path/smach_msgs
+[21.345s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/environment/ament_prefix_path.sh
+[21.350s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/environment/ament_prefix_path.dsv
+[21.355s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/environment/path.sh
+[21.370s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/environment/path.dsv
+[21.377s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/local_setup.bash
+[21.383s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/local_setup.sh
+[21.389s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/local_setup.zsh
+[21.394s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/local_setup.dsv
+[21.399s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/package.dsv
+[21.404s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/ament_index/resource_index/packages/smach_msgs
+[21.410s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/rosidl_cmake-extras.cmake
+[21.415s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/ament_cmake_export_dependencies-extras.cmake
+[21.421s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/ament_cmake_export_include_directories-extras.cmake
+[21.427s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/ament_cmake_export_libraries-extras.cmake
+[21.432s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/ament_cmake_export_targets-extras.cmake
+[21.437s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[21.448s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[21.454s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/smach_msgsConfig.cmake
+[21.460s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/smach_msgsConfig-version.cmake
+[21.487s] -- Symlinking: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/package.xml
+[21.493s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_generator_c.so
+[21.493s] -- Set runtime path of "/home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_generator_c.so" to ""
+[21.493s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_typesupport_fastrtps_c.so
+[21.494s] -- Set runtime path of "/home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_typesupport_fastrtps_c.so" to ""
+[21.494s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_typesupport_fastrtps_cpp.so
+[21.494s] -- Set runtime path of "/home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_typesupport_fastrtps_cpp.so" to ""
+[21.494s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_typesupport_introspection_c.so
+[21.494s] -- Set runtime path of "/home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_typesupport_introspection_c.so" to ""
+[21.494s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_typesupport_c.so
+[21.495s] -- Set runtime path of "/home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_typesupport_c.so" to ""
+[21.495s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_typesupport_introspection_cpp.so
+[21.495s] -- Set runtime path of "/home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_typesupport_introspection_cpp.so" to ""
+[21.495s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_typesupport_cpp.so
+[21.495s] -- Set runtime path of "/home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_typesupport_cpp.so" to ""
+[21.548s] Listing '/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs'...
+[21.548s] Compiling '/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/__init__.py'...
+[21.548s] Listing '/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/msg'...
+[21.548s] Compiling '/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/msg/__init__.py'...
+[21.548s] Compiling '/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/msg/_smach_container_initial_status_cmd.py'...
+[21.548s] Compiling '/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/msg/_smach_container_status.py'...
+[21.548s] Compiling '/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages/smach_msgs/msg/_smach_container_structure.py'...
+[21.553s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_generator_py.so
+[21.554s] -- Set runtime path of "/home/aaa/robot/ros2_ws/install/smach_msgs/lib/libsmach_msgs__rosidl_generator_py.so" to ""
+[21.554s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/export_smach_msgs__rosidl_generator_cExport.cmake
+[21.554s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/export_smach_msgs__rosidl_generator_cExport-noconfig.cmake
+[21.554s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/export_smach_msgs__rosidl_typesupport_fastrtps_cExport.cmake
+[21.554s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/export_smach_msgs__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+[21.554s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/export_smach_msgs__rosidl_generator_cppExport.cmake
+[21.554s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/export_smach_msgs__rosidl_typesupport_fastrtps_cppExport.cmake
+[21.554s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/export_smach_msgs__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+[21.554s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/smach_msgs__rosidl_typesupport_introspection_cExport.cmake
+[21.554s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/smach_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[21.555s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/smach_msgs__rosidl_typesupport_cExport.cmake
+[21.555s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/smach_msgs__rosidl_typesupport_cExport-noconfig.cmake
+[21.555s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/smach_msgs__rosidl_typesupport_introspection_cppExport.cmake
+[21.555s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/smach_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[21.555s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/smach_msgs__rosidl_typesupport_cppExport.cmake
+[21.555s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/smach_msgs__rosidl_typesupport_cppExport-noconfig.cmake
+[21.555s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/export_smach_msgs__rosidl_generator_pyExport.cmake
+[21.555s] -- Installing: /home/aaa/robot/ros2_ws/install/smach_msgs/share/smach_msgs/cmake/export_smach_msgs__rosidl_generator_pyExport-noconfig.cmake
+[21.558s] Invoked command in '/home/aaa/robot/ros2_ws/build/smach_msgs' returned '0': CMAKE_PREFIX_PATH=/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ /usr/bin/cmake --install /home/aaa/robot/ros2_ws/build/smach_msgs

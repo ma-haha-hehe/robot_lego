@@ -1,0 +1,8 @@
+/usr/lib/python3/dist-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+  warnings.warn(
+/usr/lib/python3/dist-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+  warnings.warn(
+/usr/lib/python3/dist-packages/setuptools/dist.py:157: UserWarning: newlines not allowed and will break in the future
+  warnings.warn("newlines not allowed and will break in the future")
+/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach/state_machine.py:77: SyntaxWarning: "is not" with a literal. Did you mean "!="?
+  return {k:v for (k, v) in self.__dict__.items() if k is not "_state_transitioning_lock"}

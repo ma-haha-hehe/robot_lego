@@ -1,0 +1,21 @@
+[2.811s] Invoking command in '/home/aaa/robot/ros2_ws/build/smach': PS1=(mj) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/smach/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(mj) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aaa/robot/ros2_ws/build/smach/build --no-deps symlink_data --force
+[3.737s] /usr/lib/python3/dist-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[3.737s]   warnings.warn(
+[3.915s] running develop
+[4.593s] running egg_info
+[4.598s] writing smach.egg-info/PKG-INFO
+[4.599s] /usr/lib/python3/dist-packages/setuptools/dist.py:157: UserWarning: newlines not allowed and will break in the future
+[4.599s]   warnings.warn("newlines not allowed and will break in the future")
+[4.599s] writing dependency_links to smach.egg-info/dependency_links.txt
+[4.599s] writing requirements to smach.egg-info/requires.txt
+[4.599s] writing top-level names to smach.egg-info/top_level.txt
+[4.601s] reading manifest file 'smach.egg-info/SOURCES.txt'
+[4.607s] writing manifest file 'smach.egg-info/SOURCES.txt'
+[4.617s] running build_ext
+[4.617s] Creating /home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages/smach.egg-link (link to .)
+[4.620s] 
+[4.620s] Installed /home/aaa/robot/ros2_ws/build/smach
+[4.620s] running symlink_data
+[4.620s] symbolically linking /home/aaa/robot/ros2_ws/build/smach/resource/smach -> /home/aaa/robot/ros2_ws/install/smach/share/ament_index/resource_index/packages
+[4.635s] symbolically linking /home/aaa/robot/ros2_ws/build/smach/package.xml -> /home/aaa/robot/ros2_ws/install/smach/share/smach
+[4.890s] Invoked command in '/home/aaa/robot/ros2_ws/build/smach' returned '0': PS1=(mj) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/smach/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(mj) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aaa/robot/ros2_ws/build/smach/build --no-deps symlink_data --force

@@ -1,0 +1,49 @@
+[2.659s] Invoking command in '/home/aaa/robot/ros2_ws/build/mj_bridge': PYTHONPATH=/home/aaa/robot/ros2_ws/build/mj_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/aaa/robot/ros2_ws/build/mj_bridge/build
+[3.529s] running develop
+[4.066s] Removing /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj-bridge.egg-link (link to .)
+[4.231s] Invoked command in '/home/aaa/robot/ros2_ws/build/mj_bridge' returned '0': PYTHONPATH=/home/aaa/robot/ros2_ws/build/mj_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/aaa/robot/ros2_ws/build/mj_bridge/build
+[4.231s] Invoking command in '/home/aaa/robot/ros2_ws/src/mj_bridge': PYTHONPATH=/home/aaa/robot/ros2_ws/build/mj_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/mj_bridge build --build-base /home/aaa/robot/ros2_ws/build/mj_bridge/build install --record /home/aaa/robot/ros2_ws/build/mj_bridge/install.log --single-version-externally-managed install_data --force
+[4.903s] running egg_info
+[4.904s] writing ../../build/mj_bridge/mj_bridge.egg-info/PKG-INFO
+[4.905s] writing dependency_links to ../../build/mj_bridge/mj_bridge.egg-info/dependency_links.txt
+[4.905s] writing entry points to ../../build/mj_bridge/mj_bridge.egg-info/entry_points.txt
+[4.905s] writing requirements to ../../build/mj_bridge/mj_bridge.egg-info/requires.txt
+[4.906s] writing top-level names to ../../build/mj_bridge/mj_bridge.egg-info/top_level.txt
+[4.909s] reading manifest file '../../build/mj_bridge/mj_bridge.egg-info/SOURCES.txt'
+[4.910s] writing manifest file '../../build/mj_bridge/mj_bridge.egg-info/SOURCES.txt'
+[4.913s] running build
+[4.913s] running build_py
+[4.913s] running install
+[4.914s] running install_lib
+[4.914s] copying /home/aaa/robot/ros2_ws/build/mj_bridge/build/lib/mj_bridge/pick1.py -> /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge
+[4.914s] copying /home/aaa/robot/ros2_ws/build/mj_bridge/build/lib/mj_bridge/vlm_node2.py -> /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge
+[4.914s] copying /home/aaa/robot/ros2_ws/build/mj_bridge/build/lib/mj_bridge/virtual_camera.py -> /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge
+[4.914s] copying /home/aaa/robot/ros2_ws/build/mj_bridge/build/lib/mj_bridge/vlm_node.py -> /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge
+[4.914s] copying /home/aaa/robot/ros2_ws/build/mj_bridge/build/lib/mj_bridge/__init__.py -> /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge
+[4.914s] copying /home/aaa/robot/ros2_ws/build/mj_bridge/build/lib/mj_bridge/yolo_sam.py -> /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge
+[4.915s] copying /home/aaa/robot/ros2_ws/build/mj_bridge/build/lib/mj_bridge/mj_bridge2.py -> /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge
+[4.915s] copying /home/aaa/robot/ros2_ws/build/mj_bridge/build/lib/mj_bridge/mj_bridge3.py -> /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge
+[4.915s] copying /home/aaa/robot/ros2_ws/build/mj_bridge/build/lib/mj_bridge/mj_bridge.py -> /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge
+[4.915s] copying /home/aaa/robot/ros2_ws/build/mj_bridge/build/lib/mj_bridge/pick_and_place.py -> /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge
+[4.915s] copying /home/aaa/robot/ros2_ws/build/mj_bridge/build/lib/mj_bridge/test_panda.py -> /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge
+[4.915s] byte-compiling /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge/pick1.py to pick1.cpython-310.pyc
+[4.916s] byte-compiling /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge/vlm_node2.py to vlm_node2.cpython-310.pyc
+[4.917s] byte-compiling /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge/virtual_camera.py to virtual_camera.cpython-310.pyc
+[4.917s] byte-compiling /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge/vlm_node.py to vlm_node.cpython-310.pyc
+[4.918s] byte-compiling /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge/__init__.py to __init__.cpython-310.pyc
+[4.918s] byte-compiling /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge/yolo_sam.py to yolo_sam.cpython-310.pyc
+[4.922s] byte-compiling /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge/mj_bridge2.py to mj_bridge2.cpython-310.pyc
+[4.922s] byte-compiling /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge/mj_bridge3.py to mj_bridge3.cpython-310.pyc
+[4.923s] byte-compiling /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge/mj_bridge.py to mj_bridge.cpython-310.pyc
+[4.933s] byte-compiling /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge/pick_and_place.py to pick_and_place.cpython-310.pyc
+[4.934s] byte-compiling /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge/test_panda.py to test_panda.cpython-310.pyc
+[4.935s] running install_data
+[4.935s] copying resource/mj_bridge -> /home/aaa/robot/ros2_ws/install/mj_bridge/share/ament_index/resource_index/packages
+[4.937s] copying package.xml -> /home/aaa/robot/ros2_ws/install/mj_bridge/share/mj_bridge
+[4.937s] running install_egg_info
+[4.938s] Copying ../../build/mj_bridge/mj_bridge.egg-info to /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge-0.0.0-py3.10.egg-info
+[4.942s] running install_scripts
+[4.997s] Installing mj_bridge script to /home/aaa/robot/ros2_ws/install/mj_bridge/lib/mj_bridge
+[4.998s] Installing pick_and_place script to /home/aaa/robot/ros2_ws/install/mj_bridge/lib/mj_bridge
+[4.998s] writing list of installed files to '/home/aaa/robot/ros2_ws/build/mj_bridge/install.log'
+[5.141s] Invoked command in '/home/aaa/robot/ros2_ws/src/mj_bridge' returned '0': PYTHONPATH=/home/aaa/robot/ros2_ws/build/mj_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/mj_bridge build --build-base /home/aaa/robot/ros2_ws/build/mj_bridge/build install --record /home/aaa/robot/ros2_ws/build/mj_bridge/install.log --single-version-externally-managed install_data --force

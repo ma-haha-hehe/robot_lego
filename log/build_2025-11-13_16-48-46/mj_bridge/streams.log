@@ -1,0 +1,24 @@
+[0.636s] Invoking command in '/home/aaa/robot/ros2_ws/src/mj_bridge': PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/mj_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/mj_bridge build --build-base /home/aaa/robot/ros2_ws/build/mj_bridge/build install --record /home/aaa/robot/ros2_ws/build/mj_bridge/install.log --single-version-externally-managed install_data
+[0.820s] running egg_info
+[0.821s] writing ../../build/mj_bridge/mj_bridge.egg-info/PKG-INFO
+[0.821s] writing dependency_links to ../../build/mj_bridge/mj_bridge.egg-info/dependency_links.txt
+[0.822s] writing entry points to ../../build/mj_bridge/mj_bridge.egg-info/entry_points.txt
+[0.822s] writing requirements to ../../build/mj_bridge/mj_bridge.egg-info/requires.txt
+[0.822s] writing top-level names to ../../build/mj_bridge/mj_bridge.egg-info/top_level.txt
+[0.823s] reading manifest file '../../build/mj_bridge/mj_bridge.egg-info/SOURCES.txt'
+[0.823s] writing manifest file '../../build/mj_bridge/mj_bridge.egg-info/SOURCES.txt'
+[0.823s] running build
+[0.824s] running build_py
+[0.824s] copying mj_bridge/mj_bridge.py -> /home/aaa/robot/ros2_ws/build/mj_bridge/build/lib/mj_bridge
+[0.824s] running install
+[0.824s] running install_lib
+[0.825s] copying /home/aaa/robot/ros2_ws/build/mj_bridge/build/lib/mj_bridge/mj_bridge.py -> /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge
+[0.825s] byte-compiling /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge/mj_bridge.py to mj_bridge.cpython-310.pyc
+[0.825s] running install_data
+[0.826s] running install_egg_info
+[0.827s] removing '/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge-0.0.0-py3.10.egg-info' (and everything under it)
+[0.827s] Copying ../../build/mj_bridge/mj_bridge.egg-info to /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge-0.0.0-py3.10.egg-info
+[0.832s] running install_scripts
+[0.843s] Installing mj_bridge script to /home/aaa/robot/ros2_ws/install/mj_bridge/lib/mj_bridge
+[0.844s] writing list of installed files to '/home/aaa/robot/ros2_ws/build/mj_bridge/install.log'
+[0.865s] Invoked command in '/home/aaa/robot/ros2_ws/src/mj_bridge' returned '0': PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/mj_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/mj_bridge build --build-base /home/aaa/robot/ros2_ws/build/mj_bridge/build install --record /home/aaa/robot/ros2_ws/build/mj_bridge/install.log --single-version-externally-managed install_data

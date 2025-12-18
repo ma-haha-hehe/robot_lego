@@ -1,0 +1,1 @@
+/home/aaa/robot/ros2_ws/build/panda_pick/ament_cmake_environment_hooks/local_setup.zsh

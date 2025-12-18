@@ -1,0 +1,17 @@
+[1.115s] Invoking command in '/home/aaa/robot/ros2_ws/build/smach_demo': PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/smach_demo/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aaa/robot/ros2_ws/build/smach_demo/build --no-deps symlink_data
+[1.452s] running develop
+[1.698s] running egg_info
+[1.698s] writing smach_demo.egg-info/PKG-INFO
+[1.699s] writing dependency_links to smach_demo.egg-info/dependency_links.txt
+[1.699s] writing entry points to smach_demo.egg-info/entry_points.txt
+[1.700s] writing requirements to smach_demo.egg-info/requires.txt
+[1.700s] writing top-level names to smach_demo.egg-info/top_level.txt
+[1.702s] reading manifest file 'smach_demo.egg-info/SOURCES.txt'
+[1.702s] writing manifest file 'smach_demo.egg-info/SOURCES.txt'
+[1.704s] running build_ext
+[1.704s] Creating /home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages/smach-demo.egg-link (link to .)
+[1.705s] Installing demo script to /home/aaa/robot/ros2_ws/install/smach_demo/lib/smach_demo
+[1.705s] 
+[1.705s] Installed /home/aaa/robot/ros2_ws/build/smach_demo
+[1.705s] running symlink_data
+[1.771s] Invoked command in '/home/aaa/robot/ros2_ws/build/smach_demo' returned '0': PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/aaa/robot/ros2_ws/build/smach_demo/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aaa/robot/ros2_ws/build/smach_demo/build --no-deps symlink_data

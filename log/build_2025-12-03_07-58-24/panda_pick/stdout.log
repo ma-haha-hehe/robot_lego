@@ -1,0 +1,22 @@
+[35m[1mConsolidate compiler generated dependencies of target pick_and_place_node[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/pick_and_place_node.dir/src/pick_and_place.cpp.o[0m
+[100%] [32m[1mLinking CXX executable pick_and_place_node[0m
+[100%] Built target pick_and_place_node
+-- Install configuration: ""
+-- Execute custom install script
+-- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/lib/panda_pick/pick_and_place_node
+-- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/ament_index/resource_index/package_run_dependencies/panda_pick
+-- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/ament_index/resource_index/parent_prefix_path/panda_pick
+-- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/environment/ament_prefix_path.sh
+-- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/environment/ament_prefix_path.dsv
+-- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/environment/path.sh
+-- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/environment/path.dsv
+-- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/local_setup.bash
+-- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/local_setup.sh
+-- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/local_setup.zsh
+-- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/local_setup.dsv
+-- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/package.dsv
+-- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/ament_index/resource_index/packages/panda_pick
+-- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/cmake/panda_pickConfig.cmake
+-- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/cmake/panda_pickConfig-version.cmake
+-- Symlinking: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/package.xml

@@ -1,0 +1,1 @@
+/home/aaa/robot/ros2_ws/build/executive_smach/ament_cmake_environment_hooks/local_setup.zsh
