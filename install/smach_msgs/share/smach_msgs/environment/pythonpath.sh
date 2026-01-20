@@ -1,1 +1,0 @@
-/home/aaa/robot/ros2_ws/build/smach_msgs/ament_cmake_environment_hooks/pythonpath.sh

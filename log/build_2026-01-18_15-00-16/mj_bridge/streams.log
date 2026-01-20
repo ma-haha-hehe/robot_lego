@@ -1,0 +1,22 @@
+[0.958s] Invoking command in '/home/aaa/robot/ros2_ws/src/mj_bridge': PYTHONPATH=/home/aaa/robot/ros2_ws/build/mj_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/mj_bridge build --build-base /home/aaa/robot/ros2_ws/build/mj_bridge/build install --record /home/aaa/robot/ros2_ws/build/mj_bridge/install.log --single-version-externally-managed install_data
+[1.117s] running egg_info
+[1.118s] writing ../../build/mj_bridge/mj_bridge.egg-info/PKG-INFO
+[1.118s] writing dependency_links to ../../build/mj_bridge/mj_bridge.egg-info/dependency_links.txt
+[1.119s] writing entry points to ../../build/mj_bridge/mj_bridge.egg-info/entry_points.txt
+[1.119s] writing requirements to ../../build/mj_bridge/mj_bridge.egg-info/requires.txt
+[1.119s] writing top-level names to ../../build/mj_bridge/mj_bridge.egg-info/top_level.txt
+[1.121s] reading manifest file '../../build/mj_bridge/mj_bridge.egg-info/SOURCES.txt'
+[1.124s] writing manifest file '../../build/mj_bridge/mj_bridge.egg-info/SOURCES.txt'
+[1.125s] running build
+[1.125s] running build_py
+[1.128s] running install
+[1.136s] running install_lib
+[1.143s] running install_data
+[1.143s] running install_egg_info
+[1.146s] removing '/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge-0.0.0-py3.10.egg-info' (and everything under it)
+[1.146s] Copying ../../build/mj_bridge/mj_bridge.egg-info to /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge-0.0.0-py3.10.egg-info
+[1.148s] running install_scripts
+[1.162s] Installing mj_bridge script to /home/aaa/robot/ros2_ws/install/mj_bridge/lib/mj_bridge
+[1.163s] Installing pick_and_place script to /home/aaa/robot/ros2_ws/install/mj_bridge/lib/mj_bridge
+[1.164s] writing list of installed files to '/home/aaa/robot/ros2_ws/build/mj_bridge/install.log'
+[1.183s] Invoked command in '/home/aaa/robot/ros2_ws/src/mj_bridge' returned '0': PYTHONPATH=/home/aaa/robot/ros2_ws/build/mj_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/mj_bridge build --build-base /home/aaa/robot/ros2_ws/build/mj_bridge/build install --record /home/aaa/robot/ros2_ws/build/mj_bridge/install.log --single-version-externally-managed install_data

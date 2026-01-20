@@ -1,0 +1,300 @@
+[0.000000] (-) TimerEvent: {}
+[0.000395] (-) JobUnselected: {'identifier': 'executive_smach'}
+[0.000440] (-) JobUnselected: {'identifier': 'smach'}
+[0.000482] (-) JobUnselected: {'identifier': 'smach_msgs'}
+[0.000562] (-) JobUnselected: {'identifier': 'smach_ros'}
+[0.000640] (mj_bridge) JobQueued: {'identifier': 'mj_bridge', 'dependencies': OrderedDict()}
+[0.000705] (panda_pick) JobQueued: {'identifier': 'panda_pick', 'dependencies': OrderedDict()}
+[0.000755] (mj_bridge) JobStarted: {'identifier': 'mj_bridge'}
+[0.004696] (panda_pick) JobStarted: {'identifier': 'panda_pick'}
+[0.099839] (-) TimerEvent: {}
+[0.130692] (panda_pick) JobProgress: {'identifier': 'panda_pick', 'progress': 'cmake'}
+[0.131025] (panda_pick) JobProgress: {'identifier': 'panda_pick', 'progress': 'build'}
+[0.131526] (panda_pick) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/aaa/robot/ros2_ws/build/panda_pick', '--', '-j2', '-l2'], 'cwd': '/home/aaa/robot/ros2_ws/build/panda_pick', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'aaa'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LIBGL_ALWAYS_SOFTWARE', '1'), ('LD_LIBRARY_PATH', '/home/aaa/robot/ros2_ws/install/smach_msgs/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_visualization/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_demo/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_capabilities/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core/lib:/home/aaa/robot/ros2_ws/install/rviz_marker_tools/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/aaa'), ('OLDPWD', '/home/aaa/robot/ros2_ws'), ('DESKTOP_SESSION', 'ubuntu-xorg'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '181634'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'aaa'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'aaa'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/humble/bin:/home/aaa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/aaa:@/tmp/.ICE-unix/181613,unix/aaa:/tmp/.ICE-unix/181613'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/ff107968_29bc_4b37_9296_df1a5b2eb70b'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('MUJOCO_GL', 'osmesa'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu-xorg'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.91'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_visualization:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_demo:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_capabilities:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core:/home/aaa/robot/ros2_ws/install/rviz_marker_tools:/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_msgs:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu-xorg'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('CMAKE_MODULE_PATH', '/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core/share/moveit_task_constructor_core/cmake'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/aaa/robot/ros2_ws/build/panda_pick'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu-xorg:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_visualization:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_demo:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_capabilities:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core:/home/aaa/robot/ros2_ws/install/rviz_marker_tools:/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_msgs:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble')]), 'shell': False}
+[0.178891] (panda_pick) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.199926] (-) TimerEvent: {}
+[0.300218] (-) TimerEvent: {}
+[0.400634] (-) TimerEvent: {}
+[0.426004] (panda_pick) StdoutLine: {'line': b'-- Found rclcpp: 16.0.15 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[0.471657] (mj_bridge) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/mj_bridge', 'build', '--build-base', '/home/aaa/robot/ros2_ws/build/mj_bridge/build', 'install', '--record', '/home/aaa/robot/ros2_ws/build/mj_bridge/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/aaa/robot/ros2_ws/src/mj_bridge', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'aaa', 'XDG_SESSION_TYPE': 'x11', 'SHLVL': '1', 'LIBGL_ALWAYS_SOFTWARE': '1', 'LD_LIBRARY_PATH': '/home/aaa/robot/ros2_ws/install/smach_msgs/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_visualization/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_demo/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_capabilities/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core/lib:/home/aaa/robot/ros2_ws/install/rviz_marker_tools/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/aaa', 'OLDPWD': '/home/aaa/robot/ros2_ws', 'DESKTOP_SESSION': 'ubuntu-xorg', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'SYSTEMD_EXEC_PID': '181634', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'COLCON_PREFIX_PATH': '/home/aaa/robot/ros2_ws/install', 'ROS_DISTRO': 'humble', 'GTK_IM_MODULE': 'ibus', 'LOGNAME': 'aaa', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'aaa', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'PATH': '/opt/ros/humble/bin:/home/aaa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/aaa:@/tmp/.ICE-unix/181613,unix/aaa:/tmp/.ICE-unix/181613', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/ff107968_29bc_4b37_9296_df1a5b2eb70b', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'MUJOCO_GL': 'osmesa', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu-xorg', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GNOME_TERMINAL_SERVICE': ':1.91', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_visualization:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_demo:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_capabilities:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core:/home/aaa/robot/ros2_ws/install/rviz_marker_tools:/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_msgs:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu-xorg', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'CMAKE_MODULE_PATH': '/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core/share/moveit_task_constructor_core/cmake', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/aaa/robot/ros2_ws/build/mj_bridge', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu-xorg:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/aaa/robot/ros2_ws/build/mj_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'VTE_VERSION': '6800', 'CMAKE_PREFIX_PATH': '/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_visualization:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_demo:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_capabilities:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core:/home/aaa/robot/ros2_ws/install/rviz_marker_tools:/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_msgs'}, 'shell': False}
+[0.473948] (panda_pick) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.477446] (panda_pick) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.482792] (panda_pick) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.500731] (-) TimerEvent: {}
+[0.502159] (panda_pick) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.520563] (panda_pick) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.600834] (-) TimerEvent: {}
+[0.634915] (panda_pick) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[0.635726] (panda_pick) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[0.700919] (-) TimerEvent: {}
+[0.778551] (mj_bridge) StdoutLine: {'line': b'running egg_info\n'}
+[0.780368] (mj_bridge) StdoutLine: {'line': b'writing ../../build/mj_bridge/mj_bridge.egg-info/PKG-INFO\n'}
+[0.780833] (mj_bridge) StdoutLine: {'line': b'writing dependency_links to ../../build/mj_bridge/mj_bridge.egg-info/dependency_links.txt\n'}
+[0.781270] (mj_bridge) StdoutLine: {'line': b'writing entry points to ../../build/mj_bridge/mj_bridge.egg-info/entry_points.txt\n'}
+[0.781641] (mj_bridge) StdoutLine: {'line': b'writing requirements to ../../build/mj_bridge/mj_bridge.egg-info/requires.txt\n'}
+[0.781945] (mj_bridge) StdoutLine: {'line': b'writing top-level names to ../../build/mj_bridge/mj_bridge.egg-info/top_level.txt\n'}
+[0.783222] (mj_bridge) StdoutLine: {'line': b"reading manifest file '../../build/mj_bridge/mj_bridge.egg-info/SOURCES.txt'\n"}
+[0.793967] (mj_bridge) StdoutLine: {'line': b"writing manifest file '../../build/mj_bridge/mj_bridge.egg-info/SOURCES.txt'\n"}
+[0.794406] (mj_bridge) StdoutLine: {'line': b'running build\n'}
+[0.794602] (mj_bridge) StdoutLine: {'line': b'running build_py\n'}
+[0.798306] (mj_bridge) StdoutLine: {'line': b'running install\n'}
+[0.798867] (mj_bridge) StdoutLine: {'line': b'running install_lib\n'}
+[0.801951] (-) TimerEvent: {}
+[0.802844] (mj_bridge) StdoutLine: {'line': b'running install_data\n'}
+[0.803203] (mj_bridge) StdoutLine: {'line': b'running install_egg_info\n'}
+[0.810446] (mj_bridge) StdoutLine: {'line': b"removing '/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[0.812259] (mj_bridge) StdoutLine: {'line': b'Copying ../../build/mj_bridge/mj_bridge.egg-info to /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge-0.0.0-py3.10.egg-info\n'}
+[0.812881] (mj_bridge) StdoutLine: {'line': b'running install_scripts\n'}
+[0.836154] (mj_bridge) StdoutLine: {'line': b'Installing mj_bridge script to /home/aaa/robot/ros2_ws/install/mj_bridge/lib/mj_bridge\n'}
+[0.836640] (mj_bridge) StdoutLine: {'line': b'Installing pick_and_place script to /home/aaa/robot/ros2_ws/install/mj_bridge/lib/mj_bridge\n'}
+[0.837130] (mj_bridge) StdoutLine: {'line': b"writing list of installed files to '/home/aaa/robot/ros2_ws/build/mj_bridge/install.log'\n"}
+[0.849796] (panda_pick) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.868551] (mj_bridge) CommandEnded: {'returncode': 0}
+[0.879760] (mj_bridge) JobEnded: {'identifier': 'mj_bridge', 'rc': 0}
+[0.896706] (panda_pick) StdoutLine: {'line': b'-- Found moveit_ros_planning_interface: 2.5.9 (/opt/ros/humble/share/moveit_ros_planning_interface/cmake)\n'}
+[0.902103] (-) TimerEvent: {}
+[0.905121] (panda_pick) StdoutLine: {'line': b'-- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: date_time filesystem program_options system thread \n'}
+[0.994264] (panda_pick) StdoutLine: {'line': b'-- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: chrono date_time filesystem iostreams program_options regex serialization system thread \n'}
+[1.002159] (-) TimerEvent: {}
+[1.004700] (panda_pick) StdoutLine: {'line': b'-- Found parameter_traits: 0.5.0 (/opt/ros/humble/share/parameter_traits/cmake)\n'}
+[1.008742] (panda_pick) StdoutLine: {'line': b'-- Found rclcpp_lifecycle: 16.0.15 (/opt/ros/humble/share/rclcpp_lifecycle/cmake)\n'}
+[1.020150] (panda_pick) StdoutLine: {'line': b'-- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: filesystem \n'}
+[1.047435] (panda_pick) StdoutLine: {'line': b'-- library: /usr/lib/aarch64-linux-gnu/libcurl.so\n'}
+[1.068872] (panda_pick) StdoutLine: {'line': b'-- Ensuring Eigen3 include directory is part of orocos-kdl CMake target\n'}
+[1.102278] (-) TimerEvent: {}
+[1.158361] (panda_pick) StdoutLine: {'line': b'-- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: system filesystem date_time program_options thread chrono \n'}
+[1.176520] (panda_pick) StdoutLine: {'line': b'-- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: thread system filesystem regex date_time program_options \n'}
+[1.189723] (panda_pick) StdoutLine: {'line': b'-- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: system filesystem date_time program_options thread \n'}
+[1.202354] (-) TimerEvent: {}
+[1.254948] (panda_pick) StdoutLine: {'line': b'-- Configuring done\n'}
+[1.298206] (panda_pick) StdoutLine: {'line': b'-- Generating done\n'}
+[1.302460] (-) TimerEvent: {}
+[1.304869] (panda_pick) StdoutLine: {'line': b'-- Build files have been written to: /home/aaa/robot/ros2_ws/build/panda_pick\n'}
+[1.320472] (panda_pick) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target cpp_pick_node\x1b[0m\n'}
+[1.387110] (panda_pick) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o\x1b[0m\n'}
+[1.402604] (-) TimerEvent: {}
+[1.502795] (-) TimerEvent: {}
+[1.603004] (-) TimerEvent: {}
+[1.703253] (-) TimerEvent: {}
+[1.803500] (-) TimerEvent: {}
+[1.903827] (-) TimerEvent: {}
+[2.004192] (-) TimerEvent: {}
+[2.104537] (-) TimerEvent: {}
+[2.204943] (-) TimerEvent: {}
+[2.305548] (-) TimerEvent: {}
+[2.408471] (-) TimerEvent: {}
+[2.512453] (-) TimerEvent: {}
+[2.613105] (-) TimerEvent: {}
+[2.716323] (-) TimerEvent: {}
+[2.816838] (-) TimerEvent: {}
+[2.917308] (-) TimerEvent: {}
+[3.017824] (-) TimerEvent: {}
+[3.118261] (-) TimerEvent: {}
+[3.219011] (-) TimerEvent: {}
+[3.322245] (-) TimerEvent: {}
+[3.425858] (-) TimerEvent: {}
+[3.526231] (-) TimerEvent: {}
+[3.632563] (-) TimerEvent: {}
+[3.732926] (-) TimerEvent: {}
+[3.833334] (-) TimerEvent: {}
+[3.933846] (-) TimerEvent: {}
+[4.036601] (-) TimerEvent: {}
+[4.138466] (-) TimerEvent: {}
+[4.239045] (-) TimerEvent: {}
+[4.339524] (-) TimerEvent: {}
+[4.441230] (-) TimerEvent: {}
+[4.541668] (-) TimerEvent: {}
+[4.644029] (-) TimerEvent: {}
+[4.744331] (-) TimerEvent: {}
+[4.844626] (-) TimerEvent: {}
+[4.944871] (-) TimerEvent: {}
+[5.045110] (-) TimerEvent: {}
+[5.145586] (-) TimerEvent: {}
+[5.246024] (-) TimerEvent: {}
+[5.346303] (-) TimerEvent: {}
+[5.446653] (-) TimerEvent: {}
+[5.546993] (-) TimerEvent: {}
+[5.647481] (-) TimerEvent: {}
+[5.747799] (-) TimerEvent: {}
+[5.848310] (-) TimerEvent: {}
+[5.948575] (-) TimerEvent: {}
+[6.048815] (-) TimerEvent: {}
+[6.149143] (-) TimerEvent: {}
+[6.249936] (-) TimerEvent: {}
+[6.350611] (-) TimerEvent: {}
+[6.451126] (-) TimerEvent: {}
+[6.551531] (-) TimerEvent: {}
+[6.651994] (-) TimerEvent: {}
+[6.752514] (-) TimerEvent: {}
+[6.853339] (-) TimerEvent: {}
+[6.954076] (-) TimerEvent: {}
+[7.054490] (-) TimerEvent: {}
+[7.154792] (-) TimerEvent: {}
+[7.255092] (-) TimerEvent: {}
+[7.355533] (-) TimerEvent: {}
+[7.456005] (-) TimerEvent: {}
+[7.556327] (-) TimerEvent: {}
+[7.656660] (-) TimerEvent: {}
+[7.757019] (-) TimerEvent: {}
+[7.857255] (-) TimerEvent: {}
+[7.957544] (-) TimerEvent: {}
+[8.057823] (-) TimerEvent: {}
+[8.158129] (-) TimerEvent: {}
+[8.258650] (-) TimerEvent: {}
+[8.359100] (-) TimerEvent: {}
+[8.459579] (-) TimerEvent: {}
+[8.559903] (-) TimerEvent: {}
+[8.660195] (-) TimerEvent: {}
+[8.760452] (-) TimerEvent: {}
+[8.861425] (-) TimerEvent: {}
+[8.961779] (-) TimerEvent: {}
+[9.062174] (-) TimerEvent: {}
+[9.162397] (-) TimerEvent: {}
+[9.262654] (-) TimerEvent: {}
+[9.362895] (-) TimerEvent: {}
+[9.463195] (-) TimerEvent: {}
+[9.563435] (-) TimerEvent: {}
+[9.663884] (-) TimerEvent: {}
+[9.764144] (-) TimerEvent: {}
+[9.858406] (panda_pick) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable cpp_pick_node\x1b[0m\n'}
+[9.872387] (-) TimerEvent: {}
+[9.972713] (-) TimerEvent: {}
+[10.073116] (-) TimerEvent: {}
+[10.173551] (-) TimerEvent: {}
+[10.273982] (-) TimerEvent: {}
+[10.374393] (-) TimerEvent: {}
+[10.423775] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `load_tasks_from_yaml(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)':\n"}
+[10.425666] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text+0x48): undefined reference to `YAML::LoadFile(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)'\n"}
+[10.425709] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::Exception::Exception(YAML::Mark const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)':\n"}
+[10.425813] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZN4YAML9ExceptionC2ERKNS_4MarkERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE[_ZN4YAML9ExceptionC5ERKNS_4MarkERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE]+0x60): undefined reference to `vtable for YAML::Exception'\n"}
+[10.425839] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML9ExceptionC2ERKNS_4MarkERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE[_ZN4YAML9ExceptionC5ERKNS_4MarkERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE]+0x64): undefined reference to `vtable for YAML::Exception'\n"}
+[10.425890] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::RepresentationException::RepresentationException(YAML::Mark const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)':\n"}
+[10.425981] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZN4YAML23RepresentationExceptionC2ERKNS_4MarkERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE[_ZN4YAML23RepresentationExceptionC5ERKNS_4MarkERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE]+0x24): undefined reference to `vtable for YAML::RepresentationException'\n"}
+[10.426042] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML23RepresentationExceptionC2ERKNS_4MarkERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE[_ZN4YAML23RepresentationExceptionC5ERKNS_4MarkERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE]+0x28): undefined reference to `vtable for YAML::RepresentationException'\n"}
+[10.426105] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::InvalidNode::InvalidNode(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)':\n"}
+[10.426164] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZN4YAML11InvalidNodeC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE[_ZN4YAML11InvalidNodeC5ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE]+0x7c): undefined reference to `vtable for YAML::InvalidNode'\n"}
+[10.426186] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML11InvalidNodeC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE[_ZN4YAML11InvalidNodeC5ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE]+0x80): undefined reference to `vtable for YAML::InvalidNode'\n"}
+[10.426207] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::BadConversion::BadConversion(YAML::Mark const&)':\n"}
+[10.426228] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZN4YAML13BadConversionC2ERKNS_4MarkE[_ZN4YAML13BadConversionC5ERKNS_4MarkE]+0x78): undefined reference to `vtable for YAML::BadConversion'\n"}
+[10.426249] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML13BadConversionC2ERKNS_4MarkE[_ZN4YAML13BadConversionC5ERKNS_4MarkE]+0x7c): undefined reference to `vtable for YAML::BadConversion'\n"}
+[10.426269] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::memory_holder::create_node()':\n"}
+[10.426289] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZN4YAML6detail13memory_holder11create_nodeEv[_ZN4YAML6detail13memory_holder11create_nodeEv]+0x14): undefined reference to `YAML::detail::memory::create_node()'\n"}
+[10.426309] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node_ref::mark_defined()':\n"}
+[10.426329] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZN4YAML6detail8node_ref12mark_definedEv[_ZN4YAML6detail8node_ref12mark_definedEv]+0x14): undefined reference to `YAML::detail::node_data::mark_defined()'\n"}
+[10.426357] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node_ref::set_null()':\n"}
+[10.426378] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZN4YAML6detail8node_ref8set_nullEv[_ZN4YAML6detail8node_ref8set_nullEv]+0x14): undefined reference to `YAML::detail::node_data::set_null()'\n"}
+[10.426397] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node_ref::set_scalar(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)':\n"}
+[10.426418] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZN4YAML6detail8node_ref10set_scalarERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE[_ZN4YAML6detail8node_ref10set_scalarERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE]+0x1c): undefined reference to `YAML::detail::node_data::set_scalar(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)'\n"}
+[10.426456] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node_ref::begin()':\n"}
+[10.426478] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZN4YAML6detail8node_ref5beginEv[_ZN4YAML6detail8node_ref5beginEv]+0x38): undefined reference to `YAML::detail::node_data::begin()'\n"}
+[10.426498] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node_ref::end()':\n"}
+[10.426517] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZN4YAML6detail8node_ref3endEv[_ZN4YAML6detail8node_ref3endEv]+0x38): undefined reference to `YAML::detail::node_data::end()'\n"}
+[10.426542] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::Node::EnsureNodeExists() const':\n"}
+[10.426577] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZNK4YAML4Node16EnsureNodeExistsEv[_ZNK4YAML4Node16EnsureNodeExistsEv]+0x48): undefined reference to `YAML::InvalidNode::~InvalidNode()'\n"}
+[10.426599] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node16EnsureNodeExistsEv[_ZNK4YAML4Node16EnsureNodeExistsEv]+0x4c): undefined reference to `YAML::InvalidNode::~InvalidNode()'\n"}
+[10.426621] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node16EnsureNodeExistsEv[_ZNK4YAML4Node16EnsureNodeExistsEv]+0x50): undefined reference to `typeinfo for YAML::InvalidNode'\n"}
+[10.426641] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node16EnsureNodeExistsEv[_ZNK4YAML4Node16EnsureNodeExistsEv]+0x54): undefined reference to `typeinfo for YAML::InvalidNode'\n"}
+[10.426661] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::Node::Mark() const':\n"}
+[10.426680] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZNK4YAML4Node4MarkEv[_ZNK4YAML4Node4MarkEv]+0x4c): undefined reference to `YAML::InvalidNode::~InvalidNode()'\n"}
+[10.426710] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node4MarkEv[_ZNK4YAML4Node4MarkEv]+0x50): undefined reference to `YAML::InvalidNode::~InvalidNode()'\n"}
+[10.426751] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node4MarkEv[_ZNK4YAML4Node4MarkEv]+0x54): undefined reference to `typeinfo for YAML::InvalidNode'\n"}
+[10.426781] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node4MarkEv[_ZNK4YAML4Node4MarkEv]+0x58): undefined reference to `typeinfo for YAML::InvalidNode'\n"}
+[10.426801] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::Node::Type() const':\n"}
+[10.426821] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZNK4YAML4Node4TypeEv[_ZNK4YAML4Node4TypeEv]+0x48): undefined reference to `YAML::InvalidNode::~InvalidNode()'\n"}
+[10.426842] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node4TypeEv[_ZNK4YAML4Node4TypeEv]+0x4c): undefined reference to `YAML::InvalidNode::~InvalidNode()'\n"}
+[10.426863] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node4TypeEv[_ZNK4YAML4Node4TypeEv]+0x50): undefined reference to `typeinfo for YAML::InvalidNode'\n"}
+[10.426887] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node4TypeEv[_ZNK4YAML4Node4TypeEv]+0x54): undefined reference to `typeinfo for YAML::InvalidNode'\n"}
+[10.426907] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::Node::Scalar[abi:cxx11]() const':\n"}
+[10.426926] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZNK4YAML4Node6ScalarB5cxx11Ev[_ZNK4YAML4Node6ScalarB5cxx11Ev]+0x48): undefined reference to `YAML::InvalidNode::~InvalidNode()'\n"}
+[10.426946] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node6ScalarB5cxx11Ev[_ZNK4YAML4Node6ScalarB5cxx11Ev]+0x4c): undefined reference to `YAML::InvalidNode::~InvalidNode()'\n"}
+[10.426971] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node6ScalarB5cxx11Ev[_ZNK4YAML4Node6ScalarB5cxx11Ev]+0x50): undefined reference to `typeinfo for YAML::InvalidNode'\n"}
+[10.427000] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node6ScalarB5cxx11Ev[_ZNK4YAML4Node6ScalarB5cxx11Ev]+0x54): undefined reference to `typeinfo for YAML::InvalidNode'\n"}
+[10.427020] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node6ScalarB5cxx11Ev[_ZNK4YAML4Node6ScalarB5cxx11Ev]+0x80): undefined reference to `YAML::detail::node_data::empty_scalar[abi:cxx11]()'\n"}
+[10.427097] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `int YAML::Node::as<int>() const':\n"}
+[10.427155] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asIiEET_v[_ZNK4YAML4Node2asIiEET_v]+0x60): undefined reference to `YAML::InvalidNode::~InvalidNode()'\n"}
+[10.427226] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asIiEET_v[_ZNK4YAML4Node2asIiEET_v]+0x64): undefined reference to `YAML::InvalidNode::~InvalidNode()'\n"}
+[10.427252] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asIiEET_v[_ZNK4YAML4Node2asIiEET_v]+0x68): undefined reference to `typeinfo for YAML::InvalidNode'\n"}
+[10.427272] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asIiEET_v[_ZNK4YAML4Node2asIiEET_v]+0x6c): undefined reference to `typeinfo for YAML::InvalidNode'\n"}
+[10.427292] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > YAML::Node::as<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >() const':\n"}
+[10.427313] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEET_v[_ZNK4YAML4Node2asINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEET_v]+0x64): undefined reference to `YAML::InvalidNode::~InvalidNode()'\n"}
+[10.427381] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEET_v[_ZNK4YAML4Node2asINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEET_v]+0x68): undefined reference to `YAML::InvalidNode::~InvalidNode()'\n"}
+[10.427406] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEET_v[_ZNK4YAML4Node2asINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEET_v]+0x6c): undefined reference to `typeinfo for YAML::InvalidNode'\n"}
+[10.427458] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEET_v[_ZNK4YAML4Node2asINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEET_v]+0x70): undefined reference to `typeinfo for YAML::InvalidNode'\n"}
+[10.427541] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `double YAML::Node::as<double>() const':\n"}
+[10.427570] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asIdEET_v[_ZNK4YAML4Node2asIdEET_v]+0x60): undefined reference to `YAML::InvalidNode::~InvalidNode()'\n"}
+[10.427638] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asIdEET_v[_ZNK4YAML4Node2asIdEET_v]+0x64): undefined reference to `YAML::InvalidNode::~InvalidNode()'\n"}
+[10.427687] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asIdEET_v[_ZNK4YAML4Node2asIdEET_v]+0x68): undefined reference to `typeinfo for YAML::InvalidNode'\n"}
+[10.427735] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asIdEET_v[_ZNK4YAML4Node2asIdEET_v]+0x6c): undefined reference to `typeinfo for YAML::InvalidNode'\n"}
+[10.428199] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::TypedBadConversion<int>::~TypedBadConversion()':\n"}
+[10.428222] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZN4YAML18TypedBadConversionIiED2Ev[_ZN4YAML18TypedBadConversionIiED5Ev]+0x20): undefined reference to `YAML::BadConversion::~BadConversion()'\n"}
+[10.428315] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::TypedBadConversion<double>::~TypedBadConversion()':\n"}
+[10.428367] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZN4YAML18TypedBadConversionIdED2Ev[_ZN4YAML18TypedBadConversionIdED5Ev]+0x20): undefined reference to `YAML::BadConversion::~BadConversion()'\n"}
+[10.429096] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node& YAML::detail::node_data::get<char [6]>(char const (&) [6], std::shared_ptr<YAML::detail::memory_holder>)':\n"}
+[10.429135] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xd8): undefined reference to `YAML::detail::node_data::convert_to_map(std::shared_ptr<YAML::detail::memory_holder> const&)'\n"}
+[10.429229] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x104): undefined reference to `YAML::BadSubscript::~BadSubscript()'\n"}
+[10.429391] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x108): undefined reference to `YAML::BadSubscript::~BadSubscript()'\n"}
+[10.429418] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x10c): undefined reference to `typeinfo for YAML::BadSubscript'\n"}
+[10.429438] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x110): undefined reference to `typeinfo for YAML::BadSubscript'\n"}
+[10.429463] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x1d8): undefined reference to `YAML::detail::node_data::insert_map_pair(YAML::detail::node&, YAML::detail::node&)'\n"}
+[10.429541] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node* YAML::detail::node_data::get<char [3]>(char const (&) [3], std::shared_ptr<YAML::detail::memory_holder>) const':\n"}
+[10.429565] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA3_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA3_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xf8): undefined reference to `YAML::BadSubscript::~BadSubscript()'\n"}
+[10.429610] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA3_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA3_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xfc): undefined reference to `YAML::BadSubscript::~BadSubscript()'\n"}
+[10.429685] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA3_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA3_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x100): undefined reference to `typeinfo for YAML::BadSubscript'\n"}
+[10.429739] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA3_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA3_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x104): undefined reference to `typeinfo for YAML::BadSubscript'\n"}
+[10.429814] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node* YAML::detail::node_data::get<char [5]>(char const (&) [5], std::shared_ptr<YAML::detail::memory_holder>) const':\n"}
+[10.429836] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA5_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA5_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xf8): undefined reference to `YAML::BadSubscript::~BadSubscript()'\n"}
+[10.429913] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA5_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA5_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xfc): undefined reference to `YAML::BadSubscript::~BadSubscript()'\n"}
+[10.429961] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA5_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA5_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x100): undefined reference to `typeinfo for YAML::BadSubscript'\n"}
+[10.430062] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA5_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA5_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x104): undefined reference to `typeinfo for YAML::BadSubscript'\n"}
+[10.430084] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node* YAML::detail::node_data::get<char [4]>(char const (&) [4], std::shared_ptr<YAML::detail::memory_holder>) const':\n"}
+[10.430109] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA4_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA4_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xf8): undefined reference to `YAML::BadSubscript::~BadSubscript()'\n"}
+[10.430178] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA4_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA4_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xfc): undefined reference to `YAML::BadSubscript::~BadSubscript()'\n"}
+[10.430242] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA4_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA4_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x100): undefined reference to `typeinfo for YAML::BadSubscript'\n"}
+[10.430295] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA4_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA4_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x104): undefined reference to `typeinfo for YAML::BadSubscript'\n"}
+[10.430390] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node* YAML::detail::node_data::get<char [12]>(char const (&) [12], std::shared_ptr<YAML::detail::memory_holder>) const':\n"}
+[10.430422] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA12_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA12_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xf8): undefined reference to `YAML::BadSubscript::~BadSubscript()'\n"}
+[10.430506] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA12_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA12_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xfc): undefined reference to `YAML::BadSubscript::~BadSubscript()'\n"}
+[10.430555] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA12_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA12_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x100): undefined reference to `typeinfo for YAML::BadSubscript'\n"}
+[10.430603] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA12_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA12_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x104): undefined reference to `typeinfo for YAML::BadSubscript'\n"}
+[10.430713] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node& YAML::detail::node_data::get<int>(int const&, std::shared_ptr<YAML::detail::memory_holder>)':\n"}
+[10.430783] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xd8): undefined reference to `YAML::detail::node_data::convert_to_map(std::shared_ptr<YAML::detail::memory_holder> const&)'\n"}
+[10.430820] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x104): undefined reference to `YAML::BadSubscript::~BadSubscript()'\n"}
+[10.430883] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x108): undefined reference to `YAML::BadSubscript::~BadSubscript()'\n"}
+[10.430931] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x10c): undefined reference to `typeinfo for YAML::BadSubscript'\n"}
+[10.431033] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x110): undefined reference to `typeinfo for YAML::BadSubscript'\n"}
+[10.431092] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x1d8): undefined reference to `YAML::detail::node_data::insert_map_pair(YAML::detail::node&, YAML::detail::node&)'\n"}
+[10.431174] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node* YAML::detail::node_data::get<char [6]>(char const (&) [6], std::shared_ptr<YAML::detail::memory_holder>) const':\n"}
+[10.431196] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA6_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA6_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xf8): undefined reference to `YAML::BadSubscript::~BadSubscript()'\n"}
+[10.431243] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA6_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA6_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xfc): undefined reference to `YAML::BadSubscript::~BadSubscript()'\n"}
+[10.431292] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA6_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA6_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x100): undefined reference to `typeinfo for YAML::BadSubscript'\n"}
+[10.431340] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA6_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA6_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x104): undefined reference to `typeinfo for YAML::BadSubscript'\n"}
+[10.431569] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::BadSubscript::BadSubscript<char [6]>(YAML::Mark const&, char const (&) [6])':\n"}
+[10.431604] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZN4YAML12BadSubscriptC2IA6_cEERKNS_4MarkERKT_[_ZN4YAML12BadSubscriptC5IA6_cEERKNS_4MarkERKT_]+0x60): undefined reference to `vtable for YAML::BadSubscript'\n"}
+[10.431658] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML12BadSubscriptC2IA6_cEERKNS_4MarkERKT_[_ZN4YAML12BadSubscriptC5IA6_cEERKNS_4MarkERKT_]+0x64): undefined reference to `vtable for YAML::BadSubscript'\n"}
+[10.431762] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node& YAML::detail::node_data::convert_to_node<char [6]>(char const (&) [6], std::shared_ptr<YAML::detail::memory_holder>)':\n"}
+[10.431786] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data15convert_to_nodeIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data15convert_to_nodeIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x64): undefined reference to `YAML::detail::memory_holder::merge(YAML::detail::memory_holder&)'\n"}
+[10.431860] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::BadSubscript::BadSubscript<char [3]>(YAML::Mark const&, char const (&) [3])':\n"}
+[10.431882] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZN4YAML12BadSubscriptC2IA3_cEERKNS_4MarkERKT_[_ZN4YAML12BadSubscriptC5IA3_cEERKNS_4MarkERKT_]+0x60): undefined reference to `vtable for YAML::BadSubscript'\n"}
+[10.431933] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML12BadSubscriptC2IA3_cEERKNS_4MarkERKT_[_ZN4YAML12BadSubscriptC5IA3_cEERKNS_4MarkERKT_]+0x64): undefined reference to `vtable for YAML::BadSubscript'\n"}
+[10.432011] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::BadSubscript::BadSubscript<char [5]>(YAML::Mark const&, char const (&) [5])':\n"}
+[10.432033] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZN4YAML12BadSubscriptC2IA5_cEERKNS_4MarkERKT_[_ZN4YAML12BadSubscriptC5IA5_cEERKNS_4MarkERKT_]+0x60): undefined reference to `vtable for YAML::BadSubscript'\n"}
+[10.432081] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML12BadSubscriptC2IA5_cEERKNS_4MarkERKT_[_ZN4YAML12BadSubscriptC5IA5_cEERKNS_4MarkERKT_]+0x64): undefined reference to `vtable for YAML::BadSubscript'\n"}
+[10.432159] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::BadSubscript::BadSubscript<char [4]>(YAML::Mark const&, char const (&) [4])':\n"}
+[10.432181] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZN4YAML12BadSubscriptC2IA4_cEERKNS_4MarkERKT_[_ZN4YAML12BadSubscriptC5IA4_cEERKNS_4MarkERKT_]+0x60): undefined reference to `vtable for YAML::BadSubscript'\n"}
+[10.432234] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o:cpp_pick_node.cpp:(.text._ZN4YAML12BadSubscriptC2IA4_cEERKNS_4MarkERKT_[_ZN4YAML12BadSubscriptC5IA4_cEERKNS_4MarkERKT_]+0x64): more undefined references to `vtable for YAML::BadSubscript' follow\n"}
+[10.432325] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node& YAML::detail::node_data::convert_to_node<int>(int const&, std::shared_ptr<YAML::detail::memory_holder>)':\n"}
+[10.432346] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data15convert_to_nodeIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data15convert_to_nodeIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x64): undefined reference to `YAML::detail::memory_holder::merge(YAML::detail::memory_holder&)'\n"}
+[10.432853] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::TypedBadConversion<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::~TypedBadConversion()':\n"}
+[10.432875] (panda_pick) StderrLine: {'line': b"cpp_pick_node.cpp:(.text._ZN4YAML18TypedBadConversionINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEED2Ev[_ZN4YAML18TypedBadConversionINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEED5Ev]+0x20): undefined reference to `YAML::BadConversion::~BadConversion()'\n"}
+[10.432974] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o:(.data.rel.ro._ZTIN4YAML18TypedBadConversionIdEE[_ZTIN4YAML18TypedBadConversionIdEE]+0x10): undefined reference to `typeinfo for YAML::BadConversion'\n"}
+[10.433043] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o:(.data.rel.ro._ZTIN4YAML18TypedBadConversionIiEE[_ZTIN4YAML18TypedBadConversionIiEE]+0x10): undefined reference to `typeinfo for YAML::BadConversion'\n"}
+[10.433115] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o:(.data.rel.ro._ZTIN4YAML18TypedBadConversionINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEE[_ZTIN4YAML18TypedBadConversionINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEE]+0x10): undefined reference to `typeinfo for YAML::BadConversion'\n"}
+[10.433313] (panda_pick) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o:(.data.rel.local.DW.ref._ZTIN4YAML9ExceptionE[DW.ref._ZTIN4YAML9ExceptionE]+0x0): undefined reference to `typeinfo for YAML::Exception'\n"}
+[10.440682] (panda_pick) StderrLine: {'line': b'collect2: error: ld returned 1 exit status\n'}
+[10.442201] (panda_pick) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/cpp_pick_node.dir/build.make:355: cpp_pick_node] Error 1\n'}
+[10.442732] (panda_pick) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/cpp_pick_node.dir/all] Error 2\n'}
+[10.443106] (panda_pick) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[10.469926] (panda_pick) CommandEnded: {'returncode': 2}
+[10.478891] (-) TimerEvent: {}
+[10.518317] (panda_pick) JobEnded: {'identifier': 'panda_pick', 'rc': 2}
+[10.531403] (-) EventReactorShutdown: {}

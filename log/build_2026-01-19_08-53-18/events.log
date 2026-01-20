@@ -1,0 +1,230 @@
+[0.000000] (-) TimerEvent: {}
+[0.000155] (-) JobUnselected: {'identifier': 'executive_smach'}
+[0.000205] (-) JobUnselected: {'identifier': 'smach'}
+[0.000215] (-) JobUnselected: {'identifier': 'smach_msgs'}
+[0.000222] (-) JobUnselected: {'identifier': 'smach_ros'}
+[0.000230] (mj_bridge) JobQueued: {'identifier': 'mj_bridge', 'dependencies': OrderedDict()}
+[0.000239] (panda_pick) JobQueued: {'identifier': 'panda_pick', 'dependencies': OrderedDict()}
+[0.000246] (mj_bridge) JobStarted: {'identifier': 'mj_bridge'}
+[0.012513] (panda_pick) JobStarted: {'identifier': 'panda_pick'}
+[0.099238] (-) TimerEvent: {}
+[0.203776] (-) TimerEvent: {}
+[0.304154] (-) TimerEvent: {}
+[0.404451] (-) TimerEvent: {}
+[0.505160] (-) TimerEvent: {}
+[0.607648] (-) TimerEvent: {}
+[0.708223] (-) TimerEvent: {}
+[0.783259] (panda_pick) JobProgress: {'identifier': 'panda_pick', 'progress': 'cmake'}
+[0.784664] (panda_pick) JobProgress: {'identifier': 'panda_pick', 'progress': 'build'}
+[0.786211] (panda_pick) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/aaa/robot/ros2_ws/build/panda_pick', '--', '-j2', '-l2'], 'cwd': '/home/aaa/robot/ros2_ws/build/panda_pick', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'aaa'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LIBGL_ALWAYS_SOFTWARE', '1'), ('LD_LIBRARY_PATH', '/home/aaa/robot/ros2_ws/install/smach_msgs/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_visualization/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_demo/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_capabilities/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core/lib:/home/aaa/robot/ros2_ws/install/rviz_marker_tools/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/aaa'), ('OLDPWD', '/home/aaa/robot/ros2_ws'), ('DESKTOP_SESSION', 'ubuntu-xorg'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '181634'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'aaa'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'aaa'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/humble/bin:/home/aaa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/aaa:@/tmp/.ICE-unix/181613,unix/aaa:/tmp/.ICE-unix/181613'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/ff107968_29bc_4b37_9296_df1a5b2eb70b'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('MUJOCO_GL', 'osmesa'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu-xorg'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.91'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_visualization:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_demo:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_capabilities:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core:/home/aaa/robot/ros2_ws/install/rviz_marker_tools:/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_msgs:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu-xorg'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('CMAKE_MODULE_PATH', '/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core/share/moveit_task_constructor_core/cmake'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/aaa/robot/ros2_ws/build/panda_pick'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu-xorg:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_visualization:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_demo:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_capabilities:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core:/home/aaa/robot/ros2_ws/install/rviz_marker_tools:/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_msgs:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble')]), 'shell': False}
+[0.808273] (-) TimerEvent: {}
+[0.908625] (-) TimerEvent: {}
+[1.009033] (-) TimerEvent: {}
+[1.109323] (-) TimerEvent: {}
+[1.211455] (-) TimerEvent: {}
+[1.311863] (-) TimerEvent: {}
+[1.413540] (-) TimerEvent: {}
+[1.516124] (-) TimerEvent: {}
+[1.617460] (-) TimerEvent: {}
+[1.718092] (-) TimerEvent: {}
+[1.751990] (panda_pick) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o\x1b[0m\n'}
+[1.818805] (-) TimerEvent: {}
+[1.919449] (-) TimerEvent: {}
+[2.019761] (-) TimerEvent: {}
+[2.120461] (-) TimerEvent: {}
+[2.221078] (-) TimerEvent: {}
+[2.321908] (-) TimerEvent: {}
+[2.422581] (-) TimerEvent: {}
+[2.523088] (-) TimerEvent: {}
+[2.625355] (-) TimerEvent: {}
+[2.637985] (mj_bridge) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/mj_bridge', 'build', '--build-base', '/home/aaa/robot/ros2_ws/build/mj_bridge/build', 'install', '--record', '/home/aaa/robot/ros2_ws/build/mj_bridge/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/aaa/robot/ros2_ws/src/mj_bridge', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'aaa', 'XDG_SESSION_TYPE': 'x11', 'SHLVL': '1', 'LIBGL_ALWAYS_SOFTWARE': '1', 'LD_LIBRARY_PATH': '/home/aaa/robot/ros2_ws/install/smach_msgs/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_visualization/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_demo/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_capabilities/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core/lib:/home/aaa/robot/ros2_ws/install/rviz_marker_tools/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/aaa', 'OLDPWD': '/home/aaa/robot/ros2_ws', 'DESKTOP_SESSION': 'ubuntu-xorg', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'SYSTEMD_EXEC_PID': '181634', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'COLCON_PREFIX_PATH': '/home/aaa/robot/ros2_ws/install', 'ROS_DISTRO': 'humble', 'GTK_IM_MODULE': 'ibus', 'LOGNAME': 'aaa', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'aaa', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'PATH': '/opt/ros/humble/bin:/home/aaa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/aaa:@/tmp/.ICE-unix/181613,unix/aaa:/tmp/.ICE-unix/181613', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/ff107968_29bc_4b37_9296_df1a5b2eb70b', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'MUJOCO_GL': 'osmesa', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu-xorg', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GNOME_TERMINAL_SERVICE': ':1.91', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_visualization:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_demo:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_capabilities:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core:/home/aaa/robot/ros2_ws/install/rviz_marker_tools:/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_msgs:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu-xorg', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'CMAKE_MODULE_PATH': '/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core/share/moveit_task_constructor_core/cmake', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/aaa/robot/ros2_ws/build/mj_bridge', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu-xorg:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/aaa/robot/ros2_ws/build/mj_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'VTE_VERSION': '6800', 'CMAKE_PREFIX_PATH': '/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_visualization:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_demo:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_capabilities:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core:/home/aaa/robot/ros2_ws/install/rviz_marker_tools:/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_msgs'}, 'shell': False}
+[2.725442] (-) TimerEvent: {}
+[2.825708] (-) TimerEvent: {}
+[2.838794] (mj_bridge) StdoutLine: {'line': b'running egg_info\n'}
+[2.840183] (mj_bridge) StdoutLine: {'line': b'writing ../../build/mj_bridge/mj_bridge.egg-info/PKG-INFO\n'}
+[2.840485] (mj_bridge) StdoutLine: {'line': b'writing dependency_links to ../../build/mj_bridge/mj_bridge.egg-info/dependency_links.txt\n'}
+[2.840612] (mj_bridge) StdoutLine: {'line': b'writing entry points to ../../build/mj_bridge/mj_bridge.egg-info/entry_points.txt\n'}
+[2.840681] (mj_bridge) StdoutLine: {'line': b'writing requirements to ../../build/mj_bridge/mj_bridge.egg-info/requires.txt\n'}
+[2.840750] (mj_bridge) StdoutLine: {'line': b'writing top-level names to ../../build/mj_bridge/mj_bridge.egg-info/top_level.txt\n'}
+[2.842322] (mj_bridge) StdoutLine: {'line': b"reading manifest file '../../build/mj_bridge/mj_bridge.egg-info/SOURCES.txt'\n"}
+[2.842804] (mj_bridge) StdoutLine: {'line': b"writing manifest file '../../build/mj_bridge/mj_bridge.egg-info/SOURCES.txt'\n"}
+[2.843011] (mj_bridge) StdoutLine: {'line': b'running build\n'}
+[2.843041] (mj_bridge) StdoutLine: {'line': b'running build_py\n'}
+[2.843571] (mj_bridge) StdoutLine: {'line': b'running install\n'}
+[2.843829] (mj_bridge) StdoutLine: {'line': b'running install_lib\n'}
+[2.844554] (mj_bridge) StdoutLine: {'line': b'running install_data\n'}
+[2.844766] (mj_bridge) StdoutLine: {'line': b'running install_egg_info\n'}
+[2.845772] (mj_bridge) StdoutLine: {'line': b"removing '/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[2.846273] (mj_bridge) StdoutLine: {'line': b'Copying ../../build/mj_bridge/mj_bridge.egg-info to /home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages/mj_bridge-0.0.0-py3.10.egg-info\n'}
+[2.846722] (mj_bridge) StdoutLine: {'line': b'running install_scripts\n'}
+[2.864101] (mj_bridge) StdoutLine: {'line': b'Installing mj_bridge script to /home/aaa/robot/ros2_ws/install/mj_bridge/lib/mj_bridge\n'}
+[2.864229] (mj_bridge) StdoutLine: {'line': b'Installing pick_and_place script to /home/aaa/robot/ros2_ws/install/mj_bridge/lib/mj_bridge\n'}
+[2.864487] (mj_bridge) StdoutLine: {'line': b"writing list of installed files to '/home/aaa/robot/ros2_ws/build/mj_bridge/install.log'\n"}
+[2.884223] (mj_bridge) CommandEnded: {'returncode': 0}
+[2.897325] (mj_bridge) JobEnded: {'identifier': 'mj_bridge', 'rc': 0}
+[2.925879] (-) TimerEvent: {}
+[3.026092] (-) TimerEvent: {}
+[3.126345] (-) TimerEvent: {}
+[3.226714] (-) TimerEvent: {}
+[3.327195] (-) TimerEvent: {}
+[3.427496] (-) TimerEvent: {}
+[3.527871] (-) TimerEvent: {}
+[3.628249] (-) TimerEvent: {}
+[3.728691] (-) TimerEvent: {}
+[3.829077] (-) TimerEvent: {}
+[3.929649] (-) TimerEvent: {}
+[4.029991] (-) TimerEvent: {}
+[4.130319] (-) TimerEvent: {}
+[4.230670] (-) TimerEvent: {}
+[4.331055] (-) TimerEvent: {}
+[4.431441] (-) TimerEvent: {}
+[4.531992] (-) TimerEvent: {}
+[4.633372] (-) TimerEvent: {}
+[4.733802] (-) TimerEvent: {}
+[4.834116] (-) TimerEvent: {}
+[4.934439] (-) TimerEvent: {}
+[5.035646] (-) TimerEvent: {}
+[5.136641] (-) TimerEvent: {}
+[5.237342] (-) TimerEvent: {}
+[5.339855] (-) TimerEvent: {}
+[5.440184] (-) TimerEvent: {}
+[5.540436] (-) TimerEvent: {}
+[5.640702] (-) TimerEvent: {}
+[5.740988] (-) TimerEvent: {}
+[5.841266] (-) TimerEvent: {}
+[5.941534] (-) TimerEvent: {}
+[6.041790] (-) TimerEvent: {}
+[6.142125] (-) TimerEvent: {}
+[6.242921] (-) TimerEvent: {}
+[6.343201] (-) TimerEvent: {}
+[6.443546] (-) TimerEvent: {}
+[6.543958] (-) TimerEvent: {}
+[6.645225] (-) TimerEvent: {}
+[6.746443] (-) TimerEvent: {}
+[6.847653] (-) TimerEvent: {}
+[6.947918] (-) TimerEvent: {}
+[7.048324] (-) TimerEvent: {}
+[7.148670] (-) TimerEvent: {}
+[7.249859] (-) TimerEvent: {}
+[7.350124] (-) TimerEvent: {}
+[7.450798] (-) TimerEvent: {}
+[7.551466] (-) TimerEvent: {}
+[7.651915] (-) TimerEvent: {}
+[7.754339] (-) TimerEvent: {}
+[7.854597] (-) TimerEvent: {}
+[7.954871] (-) TimerEvent: {}
+[8.055148] (-) TimerEvent: {}
+[8.155463] (-) TimerEvent: {}
+[8.255763] (-) TimerEvent: {}
+[8.356054] (-) TimerEvent: {}
+[8.456529] (-) TimerEvent: {}
+[8.556825] (-) TimerEvent: {}
+[8.657206] (-) TimerEvent: {}
+[8.757550] (-) TimerEvent: {}
+[8.857892] (-) TimerEvent: {}
+[8.958200] (-) TimerEvent: {}
+[9.058576] (-) TimerEvent: {}
+[9.158913] (-) TimerEvent: {}
+[9.259320] (-) TimerEvent: {}
+[9.359858] (-) TimerEvent: {}
+[9.460311] (-) TimerEvent: {}
+[9.560668] (-) TimerEvent: {}
+[9.660982] (-) TimerEvent: {}
+[9.761313] (-) TimerEvent: {}
+[9.861658] (-) TimerEvent: {}
+[9.962043] (-) TimerEvent: {}
+[10.062350] (-) TimerEvent: {}
+[10.162696] (-) TimerEvent: {}
+[10.263122] (-) TimerEvent: {}
+[10.388839] (-) TimerEvent: {}
+[10.489335] (-) TimerEvent: {}
+[10.589709] (-) TimerEvent: {}
+[10.690094] (-) TimerEvent: {}
+[10.790464] (-) TimerEvent: {}
+[10.890737] (-) TimerEvent: {}
+[11.080483] (-) TimerEvent: {}
+[11.180811] (-) TimerEvent: {}
+[11.281094] (-) TimerEvent: {}
+[11.381780] (-) TimerEvent: {}
+[11.489409] (-) TimerEvent: {}
+[11.592030] (-) TimerEvent: {}
+[11.693859] (-) TimerEvent: {}
+[11.794316] (-) TimerEvent: {}
+[11.895226] (-) TimerEvent: {}
+[11.995525] (-) TimerEvent: {}
+[12.096069] (-) TimerEvent: {}
+[12.199360] (-) TimerEvent: {}
+[12.299748] (-) TimerEvent: {}
+[12.400143] (-) TimerEvent: {}
+[12.500524] (-) TimerEvent: {}
+[12.601032] (-) TimerEvent: {}
+[12.701432] (-) TimerEvent: {}
+[12.802118] (-) TimerEvent: {}
+[12.902579] (-) TimerEvent: {}
+[13.002969] (-) TimerEvent: {}
+[13.103291] (-) TimerEvent: {}
+[13.204737] (-) TimerEvent: {}
+[13.305168] (-) TimerEvent: {}
+[13.405657] (-) TimerEvent: {}
+[13.506310] (-) TimerEvent: {}
+[13.607549] (-) TimerEvent: {}
+[13.708081] (-) TimerEvent: {}
+[13.808614] (-) TimerEvent: {}
+[13.909149] (-) TimerEvent: {}
+[14.009588] (-) TimerEvent: {}
+[14.110088] (-) TimerEvent: {}
+[14.210497] (-) TimerEvent: {}
+[14.310864] (-) TimerEvent: {}
+[14.411522] (-) TimerEvent: {}
+[14.512336] (-) TimerEvent: {}
+[14.603713] (panda_pick) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable cpp_pick_node\x1b[0m\n'}
+[14.665850] (-) TimerEvent: {}
+[14.766158] (-) TimerEvent: {}
+[14.866654] (-) TimerEvent: {}
+[14.967025] (-) TimerEvent: {}
+[15.067489] (-) TimerEvent: {}
+[15.167746] (-) TimerEvent: {}
+[15.268066] (-) TimerEvent: {}
+[15.368430] (-) TimerEvent: {}
+[15.468913] (-) TimerEvent: {}
+[15.569840] (-) TimerEvent: {}
+[15.670155] (-) TimerEvent: {}
+[15.770511] (-) TimerEvent: {}
+[15.810367] (panda_pick) StdoutLine: {'line': b'[100%] Built target cpp_pick_node\n'}
+[15.870607] (-) TimerEvent: {}
+[15.981215] (-) TimerEvent: {}
+[16.042950] (panda_pick) CommandEnded: {'returncode': 0}
+[16.121734] (-) TimerEvent: {}
+[16.142778] (panda_pick) JobProgress: {'identifier': 'panda_pick', 'progress': 'install'}
+[16.205994] (panda_pick) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/aaa/robot/ros2_ws/build/panda_pick'], 'cwd': '/home/aaa/robot/ros2_ws/build/panda_pick', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'aaa'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LIBGL_ALWAYS_SOFTWARE', '1'), ('LD_LIBRARY_PATH', '/home/aaa/robot/ros2_ws/install/smach_msgs/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_visualization/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_demo/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_capabilities/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core/lib:/home/aaa/robot/ros2_ws/install/rviz_marker_tools/lib:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/aaa'), ('OLDPWD', '/home/aaa/robot/ros2_ws'), ('DESKTOP_SESSION', 'ubuntu-xorg'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '181634'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'aaa'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'aaa'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/humble/bin:/home/aaa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/aaa:@/tmp/.ICE-unix/181613,unix/aaa:/tmp/.ICE-unix/181613'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/ff107968_29bc_4b37_9296_df1a5b2eb70b'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('MUJOCO_GL', 'osmesa'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu-xorg'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.91'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_visualization:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_demo:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_capabilities:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core:/home/aaa/robot/ros2_ws/install/rviz_marker_tools:/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_msgs:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu-xorg'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('CMAKE_MODULE_PATH', '/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core/share/moveit_task_constructor_core/cmake'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/aaa/robot/ros2_ws/build/panda_pick'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu-xorg:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/aaa/robot/ros2_ws/build/smach_ros:/home/aaa/robot/ros2_ws/install/smach_ros/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/smach_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/build/smach_demo:/home/aaa/robot/ros2_ws/install/smach_demo/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/build/smach:/home/aaa/robot/ros2_ws/install/smach/lib/python3.10/site-packages:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_msgs/local/lib/python3.10/dist-packages:/home/aaa/robot/ros2_ws/build/mj_bridge:/home/aaa/robot/ros2_ws/install/mj_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/aaa/robot/ros2_ws/install/executive_smach:/home/aaa/robot/ros2_ws/install/smach_msgs:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_visualization:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_demo:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_capabilities:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_core:/home/aaa/robot/ros2_ws/install/rviz_marker_tools:/home/aaa/robot/ros2_ws/install/panda_pick:/home/aaa/robot/ros2_ws/install/moveit_task_constructor_msgs:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble')]), 'shell': False}
+[16.228480] (-) TimerEvent: {}
+[16.242564] (panda_pick) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[16.243363] (panda_pick) StdoutLine: {'line': b'-- Installing: /home/aaa/robot/ros2_ws/install/panda_pick/lib/panda_pick/cpp_pick_node\n'}
+[16.243434] (panda_pick) StdoutLine: {'line': b'-- Set runtime path of "/home/aaa/robot/ros2_ws/install/panda_pick/lib/panda_pick/cpp_pick_node" to ""\n'}
+[16.243484] (panda_pick) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/launch\n'}
+[16.244521] (panda_pick) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/launch/demo.launch1.py\n'}
+[16.244581] (panda_pick) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/launch/cpp_node.launch.py\n'}
+[16.244616] (panda_pick) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/launch/__pycache__\n'}
+[16.245497] (panda_pick) StdoutLine: {'line': b'-- Installing: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/launch/__pycache__/demo.launch1.cpython-310.pyc\n'}
+[16.248441] (panda_pick) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/config\n'}
+[16.250269] (panda_pick) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/config/ros2_controllers.yaml\n'}
+[16.250570] (panda_pick) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/config/moveit_controllers.yaml\n'}
+[16.253689] (panda_pick) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/ament_index/resource_index/package_run_dependencies/panda_pick\n'}
+[16.254425] (panda_pick) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/ament_index/resource_index/parent_prefix_path/panda_pick\n'}
+[16.259933] (panda_pick) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/environment/ament_prefix_path.sh\n'}
+[16.260970] (panda_pick) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/environment/ament_prefix_path.dsv\n'}
+[16.261292] (panda_pick) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/environment/path.sh\n'}
+[16.261562] (panda_pick) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/environment/path.dsv\n'}
+[16.261808] (panda_pick) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/local_setup.bash\n'}
+[16.262061] (panda_pick) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/local_setup.sh\n'}
+[16.262282] (panda_pick) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/local_setup.zsh\n'}
+[16.262544] (panda_pick) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/local_setup.dsv\n'}
+[16.262682] (panda_pick) StdoutLine: {'line': b'-- Installing: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/package.dsv\n'}
+[16.265396] (panda_pick) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/ament_index/resource_index/packages/panda_pick\n'}
+[16.269048] (panda_pick) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/cmake/panda_pickConfig.cmake\n'}
+[16.269848] (panda_pick) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/cmake/panda_pickConfig-version.cmake\n'}
+[16.274888] (panda_pick) StdoutLine: {'line': b'-- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/package.xml\n'}
+[16.285741] (panda_pick) CommandEnded: {'returncode': 0}
+[16.334606] (-) TimerEvent: {}
+[16.418190] (panda_pick) JobEnded: {'identifier': 'panda_pick', 'rc': 0}
+[16.429198] (-) EventReactorShutdown: {}

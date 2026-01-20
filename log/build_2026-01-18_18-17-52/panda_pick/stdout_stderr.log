@@ -1,0 +1,158 @@
+-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found rclcpp: 16.0.15 (/opt/ros/humble/share/rclcpp/cmake)
+-- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+-- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+-- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+-- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Found moveit_ros_planning_interface: 2.5.9 (/opt/ros/humble/share/moveit_ros_planning_interface/cmake)
+-- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: date_time filesystem program_options system thread 
+-- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: chrono date_time filesystem iostreams program_options regex serialization system thread 
+-- Found parameter_traits: 0.5.0 (/opt/ros/humble/share/parameter_traits/cmake)
+-- Found rclcpp_lifecycle: 16.0.15 (/opt/ros/humble/share/rclcpp_lifecycle/cmake)
+-- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: filesystem 
+-- library: /usr/lib/aarch64-linux-gnu/libcurl.so
+-- Ensuring Eigen3 include directory is part of orocos-kdl CMake target
+-- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: system filesystem date_time program_options thread chrono 
+-- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: thread system filesystem regex date_time program_options 
+-- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: system filesystem date_time program_options thread 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/aaa/robot/ros2_ws/build/panda_pick
+[35m[1mConsolidate compiler generated dependencies of target cpp_pick_node[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o[0m
+[100%] [32m[1mLinking CXX executable cpp_pick_node[0m
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `load_tasks_from_yaml(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)':
+cpp_pick_node.cpp:(.text+0x48): undefined reference to `YAML::LoadFile(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::Exception::Exception(YAML::Mark const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)':
+cpp_pick_node.cpp:(.text._ZN4YAML9ExceptionC2ERKNS_4MarkERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE[_ZN4YAML9ExceptionC5ERKNS_4MarkERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE]+0x60): undefined reference to `vtable for YAML::Exception'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML9ExceptionC2ERKNS_4MarkERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE[_ZN4YAML9ExceptionC5ERKNS_4MarkERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE]+0x64): undefined reference to `vtable for YAML::Exception'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::RepresentationException::RepresentationException(YAML::Mark const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)':
+cpp_pick_node.cpp:(.text._ZN4YAML23RepresentationExceptionC2ERKNS_4MarkERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE[_ZN4YAML23RepresentationExceptionC5ERKNS_4MarkERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE]+0x24): undefined reference to `vtable for YAML::RepresentationException'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML23RepresentationExceptionC2ERKNS_4MarkERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE[_ZN4YAML23RepresentationExceptionC5ERKNS_4MarkERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE]+0x28): undefined reference to `vtable for YAML::RepresentationException'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::InvalidNode::InvalidNode(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)':
+cpp_pick_node.cpp:(.text._ZN4YAML11InvalidNodeC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE[_ZN4YAML11InvalidNodeC5ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE]+0x7c): undefined reference to `vtable for YAML::InvalidNode'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML11InvalidNodeC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE[_ZN4YAML11InvalidNodeC5ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE]+0x80): undefined reference to `vtable for YAML::InvalidNode'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::BadConversion::BadConversion(YAML::Mark const&)':
+cpp_pick_node.cpp:(.text._ZN4YAML13BadConversionC2ERKNS_4MarkE[_ZN4YAML13BadConversionC5ERKNS_4MarkE]+0x78): undefined reference to `vtable for YAML::BadConversion'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML13BadConversionC2ERKNS_4MarkE[_ZN4YAML13BadConversionC5ERKNS_4MarkE]+0x7c): undefined reference to `vtable for YAML::BadConversion'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::memory_holder::create_node()':
+cpp_pick_node.cpp:(.text._ZN4YAML6detail13memory_holder11create_nodeEv[_ZN4YAML6detail13memory_holder11create_nodeEv]+0x14): undefined reference to `YAML::detail::memory::create_node()'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node_ref::mark_defined()':
+cpp_pick_node.cpp:(.text._ZN4YAML6detail8node_ref12mark_definedEv[_ZN4YAML6detail8node_ref12mark_definedEv]+0x14): undefined reference to `YAML::detail::node_data::mark_defined()'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node_ref::set_null()':
+cpp_pick_node.cpp:(.text._ZN4YAML6detail8node_ref8set_nullEv[_ZN4YAML6detail8node_ref8set_nullEv]+0x14): undefined reference to `YAML::detail::node_data::set_null()'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node_ref::set_scalar(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)':
+cpp_pick_node.cpp:(.text._ZN4YAML6detail8node_ref10set_scalarERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE[_ZN4YAML6detail8node_ref10set_scalarERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE]+0x1c): undefined reference to `YAML::detail::node_data::set_scalar(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node_ref::begin()':
+cpp_pick_node.cpp:(.text._ZN4YAML6detail8node_ref5beginEv[_ZN4YAML6detail8node_ref5beginEv]+0x38): undefined reference to `YAML::detail::node_data::begin()'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node_ref::end()':
+cpp_pick_node.cpp:(.text._ZN4YAML6detail8node_ref3endEv[_ZN4YAML6detail8node_ref3endEv]+0x38): undefined reference to `YAML::detail::node_data::end()'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::Node::EnsureNodeExists() const':
+cpp_pick_node.cpp:(.text._ZNK4YAML4Node16EnsureNodeExistsEv[_ZNK4YAML4Node16EnsureNodeExistsEv]+0x48): undefined reference to `YAML::InvalidNode::~InvalidNode()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node16EnsureNodeExistsEv[_ZNK4YAML4Node16EnsureNodeExistsEv]+0x4c): undefined reference to `YAML::InvalidNode::~InvalidNode()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node16EnsureNodeExistsEv[_ZNK4YAML4Node16EnsureNodeExistsEv]+0x50): undefined reference to `typeinfo for YAML::InvalidNode'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node16EnsureNodeExistsEv[_ZNK4YAML4Node16EnsureNodeExistsEv]+0x54): undefined reference to `typeinfo for YAML::InvalidNode'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::Node::Mark() const':
+cpp_pick_node.cpp:(.text._ZNK4YAML4Node4MarkEv[_ZNK4YAML4Node4MarkEv]+0x4c): undefined reference to `YAML::InvalidNode::~InvalidNode()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node4MarkEv[_ZNK4YAML4Node4MarkEv]+0x50): undefined reference to `YAML::InvalidNode::~InvalidNode()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node4MarkEv[_ZNK4YAML4Node4MarkEv]+0x54): undefined reference to `typeinfo for YAML::InvalidNode'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node4MarkEv[_ZNK4YAML4Node4MarkEv]+0x58): undefined reference to `typeinfo for YAML::InvalidNode'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::Node::Type() const':
+cpp_pick_node.cpp:(.text._ZNK4YAML4Node4TypeEv[_ZNK4YAML4Node4TypeEv]+0x48): undefined reference to `YAML::InvalidNode::~InvalidNode()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node4TypeEv[_ZNK4YAML4Node4TypeEv]+0x4c): undefined reference to `YAML::InvalidNode::~InvalidNode()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node4TypeEv[_ZNK4YAML4Node4TypeEv]+0x50): undefined reference to `typeinfo for YAML::InvalidNode'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node4TypeEv[_ZNK4YAML4Node4TypeEv]+0x54): undefined reference to `typeinfo for YAML::InvalidNode'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::Node::Scalar[abi:cxx11]() const':
+cpp_pick_node.cpp:(.text._ZNK4YAML4Node6ScalarB5cxx11Ev[_ZNK4YAML4Node6ScalarB5cxx11Ev]+0x48): undefined reference to `YAML::InvalidNode::~InvalidNode()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node6ScalarB5cxx11Ev[_ZNK4YAML4Node6ScalarB5cxx11Ev]+0x4c): undefined reference to `YAML::InvalidNode::~InvalidNode()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node6ScalarB5cxx11Ev[_ZNK4YAML4Node6ScalarB5cxx11Ev]+0x50): undefined reference to `typeinfo for YAML::InvalidNode'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node6ScalarB5cxx11Ev[_ZNK4YAML4Node6ScalarB5cxx11Ev]+0x54): undefined reference to `typeinfo for YAML::InvalidNode'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node6ScalarB5cxx11Ev[_ZNK4YAML4Node6ScalarB5cxx11Ev]+0x80): undefined reference to `YAML::detail::node_data::empty_scalar[abi:cxx11]()'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `int YAML::Node::as<int>() const':
+cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asIiEET_v[_ZNK4YAML4Node2asIiEET_v]+0x60): undefined reference to `YAML::InvalidNode::~InvalidNode()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asIiEET_v[_ZNK4YAML4Node2asIiEET_v]+0x64): undefined reference to `YAML::InvalidNode::~InvalidNode()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asIiEET_v[_ZNK4YAML4Node2asIiEET_v]+0x68): undefined reference to `typeinfo for YAML::InvalidNode'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asIiEET_v[_ZNK4YAML4Node2asIiEET_v]+0x6c): undefined reference to `typeinfo for YAML::InvalidNode'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > YAML::Node::as<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >() const':
+cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEET_v[_ZNK4YAML4Node2asINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEET_v]+0x64): undefined reference to `YAML::InvalidNode::~InvalidNode()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEET_v[_ZNK4YAML4Node2asINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEET_v]+0x68): undefined reference to `YAML::InvalidNode::~InvalidNode()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEET_v[_ZNK4YAML4Node2asINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEET_v]+0x6c): undefined reference to `typeinfo for YAML::InvalidNode'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEET_v[_ZNK4YAML4Node2asINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEET_v]+0x70): undefined reference to `typeinfo for YAML::InvalidNode'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `double YAML::Node::as<double>() const':
+cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asIdEET_v[_ZNK4YAML4Node2asIdEET_v]+0x60): undefined reference to `YAML::InvalidNode::~InvalidNode()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asIdEET_v[_ZNK4YAML4Node2asIdEET_v]+0x64): undefined reference to `YAML::InvalidNode::~InvalidNode()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asIdEET_v[_ZNK4YAML4Node2asIdEET_v]+0x68): undefined reference to `typeinfo for YAML::InvalidNode'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML4Node2asIdEET_v[_ZNK4YAML4Node2asIdEET_v]+0x6c): undefined reference to `typeinfo for YAML::InvalidNode'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::TypedBadConversion<int>::~TypedBadConversion()':
+cpp_pick_node.cpp:(.text._ZN4YAML18TypedBadConversionIiED2Ev[_ZN4YAML18TypedBadConversionIiED5Ev]+0x20): undefined reference to `YAML::BadConversion::~BadConversion()'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::TypedBadConversion<double>::~TypedBadConversion()':
+cpp_pick_node.cpp:(.text._ZN4YAML18TypedBadConversionIdED2Ev[_ZN4YAML18TypedBadConversionIdED5Ev]+0x20): undefined reference to `YAML::BadConversion::~BadConversion()'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node& YAML::detail::node_data::get<char [6]>(char const (&) [6], std::shared_ptr<YAML::detail::memory_holder>)':
+cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xd8): undefined reference to `YAML::detail::node_data::convert_to_map(std::shared_ptr<YAML::detail::memory_holder> const&)'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x104): undefined reference to `YAML::BadSubscript::~BadSubscript()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x108): undefined reference to `YAML::BadSubscript::~BadSubscript()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x10c): undefined reference to `typeinfo for YAML::BadSubscript'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x110): undefined reference to `typeinfo for YAML::BadSubscript'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x1d8): undefined reference to `YAML::detail::node_data::insert_map_pair(YAML::detail::node&, YAML::detail::node&)'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node* YAML::detail::node_data::get<char [3]>(char const (&) [3], std::shared_ptr<YAML::detail::memory_holder>) const':
+cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA3_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA3_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xf8): undefined reference to `YAML::BadSubscript::~BadSubscript()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA3_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA3_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xfc): undefined reference to `YAML::BadSubscript::~BadSubscript()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA3_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA3_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x100): undefined reference to `typeinfo for YAML::BadSubscript'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA3_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA3_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x104): undefined reference to `typeinfo for YAML::BadSubscript'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node* YAML::detail::node_data::get<char [5]>(char const (&) [5], std::shared_ptr<YAML::detail::memory_holder>) const':
+cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA5_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA5_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xf8): undefined reference to `YAML::BadSubscript::~BadSubscript()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA5_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA5_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xfc): undefined reference to `YAML::BadSubscript::~BadSubscript()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA5_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA5_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x100): undefined reference to `typeinfo for YAML::BadSubscript'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA5_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA5_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x104): undefined reference to `typeinfo for YAML::BadSubscript'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node* YAML::detail::node_data::get<char [4]>(char const (&) [4], std::shared_ptr<YAML::detail::memory_holder>) const':
+cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA4_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA4_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xf8): undefined reference to `YAML::BadSubscript::~BadSubscript()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA4_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA4_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xfc): undefined reference to `YAML::BadSubscript::~BadSubscript()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA4_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA4_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x100): undefined reference to `typeinfo for YAML::BadSubscript'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA4_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA4_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x104): undefined reference to `typeinfo for YAML::BadSubscript'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node* YAML::detail::node_data::get<char [12]>(char const (&) [12], std::shared_ptr<YAML::detail::memory_holder>) const':
+cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA12_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA12_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xf8): undefined reference to `YAML::BadSubscript::~BadSubscript()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA12_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA12_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xfc): undefined reference to `YAML::BadSubscript::~BadSubscript()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA12_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA12_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x100): undefined reference to `typeinfo for YAML::BadSubscript'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA12_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA12_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x104): undefined reference to `typeinfo for YAML::BadSubscript'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node& YAML::detail::node_data::get<int>(int const&, std::shared_ptr<YAML::detail::memory_holder>)':
+cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xd8): undefined reference to `YAML::detail::node_data::convert_to_map(std::shared_ptr<YAML::detail::memory_holder> const&)'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x104): undefined reference to `YAML::BadSubscript::~BadSubscript()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x108): undefined reference to `YAML::BadSubscript::~BadSubscript()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x10c): undefined reference to `typeinfo for YAML::BadSubscript'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x110): undefined reference to `typeinfo for YAML::BadSubscript'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x1d8): undefined reference to `YAML::detail::node_data::insert_map_pair(YAML::detail::node&, YAML::detail::node&)'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node* YAML::detail::node_data::get<char [6]>(char const (&) [6], std::shared_ptr<YAML::detail::memory_holder>) const':
+cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA6_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA6_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xf8): undefined reference to `YAML::BadSubscript::~BadSubscript()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA6_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA6_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xfc): undefined reference to `YAML::BadSubscript::~BadSubscript()'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA6_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA6_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x100): undefined reference to `typeinfo for YAML::BadSubscript'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZNK4YAML6detail9node_data3getIA6_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZNK4YAML6detail9node_data3getIA6_cEEPNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x104): undefined reference to `typeinfo for YAML::BadSubscript'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::BadSubscript::BadSubscript<char [6]>(YAML::Mark const&, char const (&) [6])':
+cpp_pick_node.cpp:(.text._ZN4YAML12BadSubscriptC2IA6_cEERKNS_4MarkERKT_[_ZN4YAML12BadSubscriptC5IA6_cEERKNS_4MarkERKT_]+0x60): undefined reference to `vtable for YAML::BadSubscript'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML12BadSubscriptC2IA6_cEERKNS_4MarkERKT_[_ZN4YAML12BadSubscriptC5IA6_cEERKNS_4MarkERKT_]+0x64): undefined reference to `vtable for YAML::BadSubscript'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node& YAML::detail::node_data::convert_to_node<char [6]>(char const (&) [6], std::shared_ptr<YAML::detail::memory_holder>)':
+cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data15convert_to_nodeIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data15convert_to_nodeIA6_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x64): undefined reference to `YAML::detail::memory_holder::merge(YAML::detail::memory_holder&)'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::BadSubscript::BadSubscript<char [3]>(YAML::Mark const&, char const (&) [3])':
+cpp_pick_node.cpp:(.text._ZN4YAML12BadSubscriptC2IA3_cEERKNS_4MarkERKT_[_ZN4YAML12BadSubscriptC5IA3_cEERKNS_4MarkERKT_]+0x60): undefined reference to `vtable for YAML::BadSubscript'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML12BadSubscriptC2IA3_cEERKNS_4MarkERKT_[_ZN4YAML12BadSubscriptC5IA3_cEERKNS_4MarkERKT_]+0x64): undefined reference to `vtable for YAML::BadSubscript'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::BadSubscript::BadSubscript<char [5]>(YAML::Mark const&, char const (&) [5])':
+cpp_pick_node.cpp:(.text._ZN4YAML12BadSubscriptC2IA5_cEERKNS_4MarkERKT_[_ZN4YAML12BadSubscriptC5IA5_cEERKNS_4MarkERKT_]+0x60): undefined reference to `vtable for YAML::BadSubscript'
+/usr/bin/ld: cpp_pick_node.cpp:(.text._ZN4YAML12BadSubscriptC2IA5_cEERKNS_4MarkERKT_[_ZN4YAML12BadSubscriptC5IA5_cEERKNS_4MarkERKT_]+0x64): undefined reference to `vtable for YAML::BadSubscript'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::BadSubscript::BadSubscript<char [4]>(YAML::Mark const&, char const (&) [4])':
+cpp_pick_node.cpp:(.text._ZN4YAML12BadSubscriptC2IA4_cEERKNS_4MarkERKT_[_ZN4YAML12BadSubscriptC5IA4_cEERKNS_4MarkERKT_]+0x60): undefined reference to `vtable for YAML::BadSubscript'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o:cpp_pick_node.cpp:(.text._ZN4YAML12BadSubscriptC2IA4_cEERKNS_4MarkERKT_[_ZN4YAML12BadSubscriptC5IA4_cEERKNS_4MarkERKT_]+0x64): more undefined references to `vtable for YAML::BadSubscript' follow
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::detail::node& YAML::detail::node_data::convert_to_node<int>(int const&, std::shared_ptr<YAML::detail::memory_holder>)':
+cpp_pick_node.cpp:(.text._ZN4YAML6detail9node_data15convert_to_nodeIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data15convert_to_nodeIiEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x64): undefined reference to `YAML::detail::memory_holder::merge(YAML::detail::memory_holder&)'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o: in function `YAML::TypedBadConversion<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::~TypedBadConversion()':
+cpp_pick_node.cpp:(.text._ZN4YAML18TypedBadConversionINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEED2Ev[_ZN4YAML18TypedBadConversionINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEED5Ev]+0x20): undefined reference to `YAML::BadConversion::~BadConversion()'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o:(.data.rel.ro._ZTIN4YAML18TypedBadConversionIdEE[_ZTIN4YAML18TypedBadConversionIdEE]+0x10): undefined reference to `typeinfo for YAML::BadConversion'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o:(.data.rel.ro._ZTIN4YAML18TypedBadConversionIiEE[_ZTIN4YAML18TypedBadConversionIiEE]+0x10): undefined reference to `typeinfo for YAML::BadConversion'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o:(.data.rel.ro._ZTIN4YAML18TypedBadConversionINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEE[_ZTIN4YAML18TypedBadConversionINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEE]+0x10): undefined reference to `typeinfo for YAML::BadConversion'
+/usr/bin/ld: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o:(.data.rel.local.DW.ref._ZTIN4YAML9ExceptionE[DW.ref._ZTIN4YAML9ExceptionE]+0x0): undefined reference to `typeinfo for YAML::Exception'
+collect2: error: ld returned 1 exit status
+gmake[2]: *** [CMakeFiles/cpp_pick_node.dir/build.make:355: cpp_pick_node] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/cpp_pick_node.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

@@ -1,0 +1,33 @@
+<mujocoinclude>
+  
+  <worldbody>
+    <body name="leg_left" pos="0.3000 -0.2000 0.4660">
+      <geom type="box" size="0.0150 0.0150 0.0450" rgba="0.2 0.6 0.8 1" mass="0.05" friction="1 0.005 0.0001"/>
+      <freejoint/>
+    </body>
+    <body name="leg_right" pos="0.3000 -0.1400 0.4660">
+      <geom type="box" size="0.0150 0.0150 0.0450" rgba="0.2 0.6 0.8 1" mass="0.05" friction="1 0.005 0.0001"/>
+      <freejoint/>
+    </body>
+    <body name="hips" pos="0.3000 -0.0800 0.4360">
+      <geom type="box" size="0.0150 0.0450 0.0150" rgba="0.2 0.6 0.8 1" mass="0.05" friction="1 0.005 0.0001"/>
+      <freejoint/>
+    </body>
+    <body name="torso" pos="0.3000 -0.0200 0.4360">
+      <geom type="box" size="0.0150 0.0750 0.0150" rgba="0.2 0.6 0.8 1" mass="0.05" friction="1 0.005 0.0001"/>
+      <freejoint/>
+    </body>
+    <body name="hand_left" pos="0.3000 0.0400 0.4360">
+      <geom type="box" size="0.0150 0.0150 0.0150" rgba="0.2 0.6 0.8 1" mass="0.05" friction="1 0.005 0.0001"/>
+      <freejoint/>
+    </body>
+    <body name="hand_right" pos="0.3000 0.1000 0.4360">
+      <geom type="box" size="0.0150 0.0150 0.0150" rgba="0.2 0.6 0.8 1" mass="0.05" friction="1 0.005 0.0001"/>
+      <freejoint/>
+    </body>
+    <body name="head" pos="0.3000 0.1600 0.4660">
+      <geom type="box" size="0.0150 0.0150 0.0450" rgba="0.2 0.6 0.8 1" mass="0.05" friction="1 0.005 0.0001"/>
+      <freejoint/>
+    </body>
+  </worldbody>
+</mujocoinclude>

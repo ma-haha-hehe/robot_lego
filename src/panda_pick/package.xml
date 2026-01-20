@@ -3,15 +3,18 @@
 <package format="3">
   <name>panda_pick</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="aaa@todo.todo">aaa</maintainer>
+  <description>Panda Pick and Place Demo using MoveGroupInterface</description>
+  <maintainer email="user@todo.todo">user</maintainer>
   <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
   <depend>rclcpp</depend>
-  <depend>geometry_msgs</depend>
   <depend>moveit_ros_planning_interface</depend>
+  <depend>yaml-cpp</depend>
+  <depend>geometry_msgs</depend>
+  <depend>moveit_msgs</depend>
+  <depend>tf2_geometry_msgs</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

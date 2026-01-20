@@ -1,0 +1,31 @@
+<body name="lego_base" pos="0.5 0 0.42">
+      
+      <body name="leg_left" pos="0.000 0.030 0.045">
+        <geom type="box" size="0.015 0.015 0.045" rgba="0.8 0.2 0.2 1" group="1" mass="0.15" friction="1.5 0.005 0.0001" />
+      </body>
+
+      <body name="leg_right" pos="0.000 -0.030 0.045">
+        <geom type="box" size="0.015 0.015 0.045" rgba="0.8 0.2 0.2 1" group="1" mass="0.15" friction="1.5 0.005 0.0001" />
+      </body>
+
+      <body name="hips" pos="0.000 0.000 0.105">
+        <geom type="box" size="0.015 0.045 0.015" rgba="0.2 0.8 0.2 1" group="1" mass="0.15" friction="1.5 0.005 0.0001" />
+      </body>
+
+      <body name="torso" pos="0.000 0.000 0.135">
+        <geom type="box" size="0.015 0.075 0.015" rgba="0.8 0.8 0.2 1" group="1" mass="0.25" friction="1.5 0.005 0.0001" />
+      </body>
+
+      <body name="hand_left" pos="0.000 0.060 0.165">
+        <geom type="box" size="0.015 0.015 0.015" rgba="0.8 0.2 0.8 1" group="1" mass="0.05" friction="1.5 0.005 0.0001" />
+      </body>
+
+      <body name="hand_right" pos="0.000 -0.060 0.165">
+        <geom type="box" size="0.015 0.015 0.015" rgba="0.8 0.2 0.8 1" group="1" mass="0.05" friction="1.5 0.005 0.0001" />
+      </body>
+
+      <body name="head" pos="0.000 0.000 0.195">
+        <geom type="box" size="0.015 0.015 0.045" rgba="0.8 0.5 0.2 1" group="1" mass="0.15" friction="1.5 0.005 0.0001" />
+      </body>
+
+    </body>

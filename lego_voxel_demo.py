@@ -1,257 +1,285 @@
 import numpy as np
 import yaml
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D  # noqa
+from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 
-# ------------------------------
-# 1. 砖块尺寸定义（单位：stud）
-# ------------------------------
-BRICK_SHAPES = {
-    "1x1": (1, 1, 1),
-    "1x2": (1, 2, 1),
-    "2x2": (2, 2, 1),
-    "2x4": (2, 4, 1),
+# ==========================================
+# 1. 输入数据 (YAML String)
+# ==========================================
+YAML_DATA = """
+common_properties:
+  color: [0.1, 0.1, 0.1, 1.0]
+  unit_size: 0.03
+
+bricks:
+  # --- 1. 双腿 (Legs) ---
+  - name: "leg_left_1"
+    type: "brick_2x2"
+    position: [0.0, 0.04, 0.015]
+    orientation: [0, 0, 0]
+  - name: "leg_left_2"
+    type: "brick_2x2"
+    position: [0.0, 0.04, 0.045]
+  - name: "leg_left_3"
+    type: "brick_2x2"
+    position: [0.0, 0.04, 0.075]
+
+  - name: "leg_right_1"
+    type: "brick_2x2"
+    position: [0.0, -0.04, 0.015]
+  - name: "leg_right_2"
+    type: "brick_2x2"
+    position: [0.0, -0.04, 0.045]
+  - name: "leg_right_3"
+    type: "brick_2x2"
+    position: [0.0, -0.04, 0.075]
+
+  # --- 2. 躯干 (Torso) ---
+  - name: "torso_bridge_left"
+    type: "brick_2x2"
+    position: [0.0, 0.04, 0.105]
+  - name: "torso_bridge_center"
+    type: "brick_2x2"
+    position: [0.0, 0.0, 0.105]
+  - name: "torso_bridge_right"
+    type: "brick_2x2"
+    position: [0.0, -0.04, 0.105]
+
+  # --- 3. 肩膀/手臂 (Shoulders) ---
+  - name: "shoulder_left_far"
+    type: "brick_2x2"
+    position: [0.0, 0.08, 0.135]
+  - name: "shoulder_left_inner"
+    type: "brick_2x2"
+    position: [0.0, 0.04, 0.135]
+  - name: "shoulder_center"
+    type: "brick_2x2"
+    position: [0.0, 0.0, 0.135]
+  - name: "shoulder_right_inner"
+    type: "brick_2x2"
+    position: [0.0, -0.04, 0.135]
+  - name: "shoulder_right_far"
+    type: "brick_2x2"
+    position: [0.0, -0.08, 0.135]
+
+  # --- 4. 手部突起 (Hands) ---
+  - name: "hand_tip_left"
+    type: "brick_1x2"
+    position: [0.0, 0.08, 0.165]
+  - name: "hand_tip_right"
+    type: "brick_1x2"
+    position: [0.0, -0.08, 0.165]
+
+  # --- 5. 头部 (Head) ---
+  - name: "neck"
+    type: "brick_2x2"
+    position: [0.0, 0.0, 0.165]
+  
+  - name: "head_base"
+    type: "brick_2x4"
+    position: [0.0, 0.0, 0.195]
+    orientation: [0, 0, 1.57] # 90度旋转
+
+  - name: "head_top"
+    type: "brick_2x2"
+    position: [0.0, 0.0, 0.225]
+"""
+
+# ==========================================
+# 2. 配置与定义
+# ==========================================
+
+# 定义体素缩放比例：1个单位代表多少米
+# 这里设定 0.01m (1cm) = 1个体素单位
+VOXEL_SCALE = 100 
+
+# 定义不同类型积木的体素尺寸 (长, 宽, 高)
+# 假设 2x2 积木大约是 3cm x 3cm x 3cm (为了配合 YAML 中的 0.03 pos 步长)
+BRICK_DIMS = {
+    "brick_2x2": np.array([3, 3, 3]),
+    "brick_1x2": np.array([2, 3, 3]), # 稍微窄一点
+    "brick_2x4": np.array([3, 6, 3]), # 长一点
 }
 
-# ------------------------------
-# 2. 示例 YAML
-# ------------------------------
-YAML_EXAMPLE = """
-bricks:
-  # --- Layer 0 ---
-  - id: 1
-    type: "2x4"
-    color: "blue"
-    pos: [0, 0, 0]
-    yaw: 0
-
-  - id: 2
-    type: "2x2"
-    color: "green"
-    pos: [3, 0, 0]
-    yaw: 0
-
-  - id: 3
-    type: "2x2"
-    color: "yellow"
-    pos: [1, 3, 0]
-    yaw: 0
-
-  # --- Layer 1 (stacked on blocks 1 & 2) ---
-  - id: 4
-    type: "1x2"
-    color: "orange"
-    pos: [0, 1, 1]   # partly above block 1
-    yaw: 0
-
-  - id: 5
-    type: "2x2"
-    color: "red"
-    pos: [3, 1, 1]   # directly above green block
-    yaw: 0
-
-  # --- Layer 2 (one more stacked brick) ---
-  - id: 6
-    type: "1x1"
-    color: "pink"
-    pos: [3, 1, 2]   # on top of red block
-    yaw: 0
-
-  # --- A block isolated to test free space ---
-  - id: 7
-    type: "2x2"
-    color: "purple"
-    pos: [6, 4, 0]
-    yaw: 0
-
-  # --- Floating block to test air gaps ---
-  - id: 8
-    type: "2x2"
-    color: "lightblue"
-    pos: [6, 4, 2]   # floating above purple block (air gap)
-    yaw: 0
-
-  # --- Block touching only corner ---
-  - id: 9
-    type: "1x1"
-    color: "gray"
-    pos: [5, 3, 0]
-    yaw: 0
- """   
-
-def load_yaml_string(yaml_str):
+def load_bricks_from_yaml(yaml_str):
     data = yaml.safe_load(yaml_str)
     return data["bricks"]
 
-# ------------------------------
-# 3. 构建体素网格
-# ------------------------------
-def compute_grid_size(bricks):
-    max_x = max_y = max_z = 0
-    for b in bricks:
-        x0, y0, z0 = b["pos"]
-        sx, sy, sz = BRICK_SHAPES[b["type"]]
-        max_x = max(max_x, x0 + sx)
-        max_y = max(max_y, y0 + sy)
-        max_z = max(max_z, z0 + sz)
-    # 多留点边界
-    return max_x + 3, max_y + 3, max_z + 3
+# ==========================================
+# 3. 核心逻辑：坐标转换与体素化
+# ==========================================
 
-def bricks_to_voxels(bricks):
-    gx, gy, gz = compute_grid_size(bricks)
-    vox = np.zeros((gx, gy, gz), dtype=int)
+class VoxelWorld:
+    def __init__(self, bricks):
+        self.bricks = bricks
+        self.processed_bricks = [] # 存储转换后的整数坐标积木
+        self.voxel_grid = None
+        self.offsets = np.array([10, 15, 0]) # x, y, z 偏移量，防止负坐标越界
+        
+        self._process_bricks()
+        self._build_grid()
 
-    for b in bricks:
-        bid = b["id"]
-        x0, y0, z0 = b["pos"]
-        yaw = b.get("yaw", 0)
-        sx, sy, sz = BRICK_SHAPES[b["type"]]
+    def _process_bricks(self):
+        """将世界坐标(float)转换为网格坐标(int)，并处理旋转"""
+        for i, b in enumerate(self.bricks):
+            b_type = b["type"]
+            pos = np.array(b["position"])
+            orientation = b.get("orientation", [0, 0, 0])
+            
+            # 1. 确定尺寸
+            dims = BRICK_DIMS.get(b_type, np.array([3, 3, 3])).copy()
+            
+            # 2. 处理旋转 (简单的 90度 check)
+            # 如果 yaw (z轴旋转) 接近 1.57 (pi/2) 或 -1.57，交换 x 和 y 尺寸
+            yaw = orientation[2] if len(orientation) > 2 else 0
+            if abs(abs(yaw) - 1.57) < 0.1: 
+                dims[0], dims[1] = dims[1], dims[0]
 
-        if yaw != 0:
-            raise NotImplementedError("示例只支持 yaw=0")
+            # 3. 坐标转换
+            # 世界坐标通常是中心点，体素坐标通常是左下角
+            # grid_pos = (world_pos * scale) - (size / 2) + offset
+            grid_center = pos * VOXEL_SCALE
+            grid_corner = grid_center - (dims / 2)
+            grid_corner_int = np.round(grid_corner + self.offsets).astype(int)
+            
+            self.processed_bricks.append({
+                "id": i + 1, # ID从1开始，0是空
+                "name": b["name"],
+                "origin": grid_corner_int,
+                "dims": dims
+            })
 
-        for i in range(sx):
-            for j in range(sy):
-                for k in range(sz):
-                    vox[x0 + i, y0 + j, z0 + k] = bid
+    def _build_grid(self):
+        """创建 3D numpy 数组"""
+        # 计算边界
+        max_x, max_y, max_z = 0, 0, 0
+        for b in self.processed_bricks:
+            end = b["origin"] + b["dims"]
+            max_x = max(max_x, end[0])
+            max_y = max(max_y, end[1])
+            max_z = max(max_z, end[2])
+        
+        # 增加一些 Padding
+        self.grid_shape = (max_x + 2, max_y + 2, max_z + 2)
+        self.voxel_grid = np.zeros(self.grid_shape, dtype=int)
 
-    return vox
+        # 填充
+        for b in self.processed_bricks:
+            x, y, z = b["origin"]
+            dx, dy, dz = b["dims"]
+            self.voxel_grid[x:x+dx, y:y+dy, z:z+dz] = b["id"]
 
-# ------------------------------
-# 4. 小工具
-# ------------------------------
-def is_inside(vox, x, y, z):
-    X, Y, Z = vox.shape
-    return (0 <= x < X) and (0 <= y < Y) and (0 <= z < Z)
+    def is_empty(self, x, y, z):
+        """检查某个体素是否为空"""
+        if x < 0 or y < 0 or z < 0: return True
+        if x >= self.grid_shape[0] or y >= self.grid_shape[1] or z >= self.grid_shape[2]: return True
+        return self.voxel_grid[x, y, z] == 0
 
-def voxel_center(x, y, z):
-    return np.array([x + 0.5, y + 0.5, z + 0.5], dtype=float)
+    def get_voxel_center(self, x, y, z):
+        return np.array([x + 0.5, y + 0.5, z + 0.5])
 
-def brick_bbox(brick):
-    x0, y0, z0 = brick["pos"]
-    sx, sy, sz = BRICK_SHAPES[brick["type"]]   # 修正：用 brick 而不是 b
-    yaw = brick.get("yaw", 0)
-    if yaw != 0:
-        raise NotImplementedError("示例只支持 yaw=0")
-    return x0, y0, z0, sx, sy, sz
+# ==========================================
+# 4. 抓取检测算法
+# ==========================================
 
-# ------------------------------
-# 5. 沿整条边逐格检查：每一行 x / y 若两侧外邻都空，就各画一颗黑点
-# ------------------------------
-def scan_edge_pairs_for_brick(vox, brick, check_z=False):
+def find_grasp_points(world):
     """
-    对一块砖：
-      - X 方向：对每个 (y,z) 行，如果 x_min-1 和 x_max+1 都是空的，就在这两个空 voxel 中心画点；
-      - Y 方向：对每个 (x,z) 行同理；
-      - Z 方向可选。
+    遍历每个积木，检测 X 轴和 Y 轴方向是否可以抓取。
+    规则：积木某一行 (voxel row) 的左边是空的 AND 右边是空的 -> 这是一个抓取点对。
     """
-    x0, y0, z0, sx, sy, sz = brick_bbox(brick)
-    pts = []
+    grasp_points = [] # list of coordinates
 
-    x_min = x0
-    x_max = x0 + sx - 1
-    y_min = y0
-    y_max = y0 + sy - 1
-    z_min = z0
-    z_max = z0 + sz - 1
+    for b in world.processed_bricks:
+        x0, y0, z0 = b["origin"]
+        dx, dy, dz = b["dims"]
+        
+        # --- 扫描 X 轴方向抓取 (夹子在左右两侧) ---
+        # 我们遍历该积木 Y-Z 平面上的每一个点
+        for y in range(y0, y0 + dy):
+            for z in range(z0, z0 + dz):
+                # 检查积木左侧面外一格 (x0 - 1) 和 右侧面外一格 (x0 + dx)
+                left_voxel_x = x0 - 1
+                right_voxel_x = x0 + dx
+                
+                if world.is_empty(left_voxel_x, y, z) and world.is_empty(right_voxel_x, y, z):
+                    # 记录两个点：抓取点左 和 抓取点右
+                    grasp_points.append(world.get_voxel_center(left_voxel_x, y, z))
+                    grasp_points.append(world.get_voxel_center(right_voxel_x, y, z))
 
-    X, Y, Z = vox.shape
+        # --- 扫描 Y 轴方向抓取 (夹子在前后两侧) ---
+        # 我们遍历该积木 X-Z 平面上的每一个点
+        for x in range(x0, x0 + dx):
+            for z in range(z0, z0 + dz):
+                # 检查积木前侧面外一格 (y0 - 1) 和 后侧面外一格 (y0 + dy)
+                front_voxel_y = y0 - 1
+                back_voxel_y = y0 + dy
+                
+                if world.is_empty(x, front_voxel_y, z) and world.is_empty(x, back_voxel_y, z):
+                    grasp_points.append(world.get_voxel_center(x, front_voxel_y, z))
+                    grasp_points.append(world.get_voxel_center(x, back_voxel_y, z))
 
-    # ---- X 方向：对每个 (y,z) 行检查两侧外邻 ----
-    for y in range(y_min, y_max + 1):
-        for z in range(z_min, z_max + 1):
-            nx_left  = x_min - 1
-            nx_right = x_max + 1
-            # 越界 = 墙/地面 = 占用
-            if not (is_inside(vox, nx_left,  y, z) and is_inside(vox, nx_right, y, z)):
-                continue
-            if vox[nx_left,  y, z] == 0 and vox[nx_right, y, z] == 0:
-                pts.append(voxel_center(nx_left,  y, z))
-                pts.append(voxel_center(nx_right, y, z))
+    return np.array(grasp_points)
 
-    # ---- Y 方向：对每个 (x,z) 行检查两侧外邻 ----
-    for x in range(x_min, x_max + 1):
-        for z in range(z_min, z_max + 1):
-            ny_down = y_min - 1
-            ny_up   = y_max + 1
-            if not (is_inside(vox, x, ny_down, z) and is_inside(vox, x, ny_up, z)):
-                continue
-            if vox[x, ny_down, z] == 0 and vox[x, ny_up, z] == 0:
-                pts.append(voxel_center(x, ny_down, z))
-                pts.append(voxel_center(x, ny_up,   z))
+# ==========================================
+# 5. 可视化
+# ==========================================
 
-    # ---- Z 方向（如果你之后要处理上下夹取，可以打开）----
-    if check_z:
-        for x in range(x_min, x_max + 1):
-            for y in range(y_min, y_max + 1):
-                nz_down = z_min - 1
-                nz_up   = z_max + 1
-                if not (is_inside(vox, x, y, nz_down) and is_inside(vox, x, y, nz_up)):
-                    continue
-                if vox[x, y, nz_down] == 0 and vox[x, y, nz_up] == 0:
-                    pts.append(voxel_center(x, y, nz_down))
-                    pts.append(voxel_center(x, y, nz_up))
+def visualize(world, grasp_points):
+    fig = plt.figure(figsize=(10, 8))
+    ax = fig.add_subplot(111, projection='3d')
+    
+    # 颜色映射
+    cmap = cm.get_cmap("tab20")
+    
+    # 1. 绘制积木
+    for b in world.processed_bricks:
+        x, y, z = b["origin"]
+        dx, dy, dz = b["dims"]
+        
+        color = cmap((b["id"] * 3) % 20) # 随机取色
+        
+        # bar3d 绘制长方体
+        # 注意：bar3d 需要底面坐标和长宽高
+        ax.bar3d(x, y, z, dx, dy, dz, color=color, alpha=0.8, edgecolor='k', linewidth=0.5)
 
-    return pts
+    # 2. 绘制抓取点
+    if len(grasp_points) > 0:
+        # 为了美观，过滤掉重叠的点或稍微随机化一点点
+        ax.scatter(grasp_points[:, 0], grasp_points[:, 1], grasp_points[:, 2], 
+                   color="black", s=30, marker='o', depthshade=False, label="Valid Grasp Void")
 
-# ------------------------------
-# 6. 可视化
-# ------------------------------
-def plot_bricks_with_edge_scan_points(vox, bricks, check_z=False):
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection="3d")
+    # 设置轴
+    ax.set_xlabel("X (Voxel)")
+    ax.set_ylabel("Y (Voxel)")
+    ax.set_zlabel("Z (Voxel)")
+    ax.set_title(f"Lego Voxel Analysis: {len(world.processed_bricks)} Bricks\nBlack dots = Valid Grasp Space")
+    
+    # 设置比例一致，防止拉伸
+    try:
+        ax.set_box_aspect((np.ptp(world.voxel_grid.shape[0]), 
+                           np.ptp(world.voxel_grid.shape[1]), 
+                           np.ptp(world.voxel_grid.shape[2])))
+    except:
+        pass
 
-    cmap = cm.get_cmap("tab10")
-    id_to_color = {}
-
-    # 画砖块
-    for idx, b in enumerate(bricks):
-        bid = b["id"]
-        if bid not in id_to_color:
-            id_to_color[bid] = cmap(idx % 10)
-        color = id_to_color[bid]
-
-        x0, y0, z0, sx, sy, sz = brick_bbox(b)
-        ax.bar3d(
-            x0, y0, z0,
-            sx, sy, sz,
-            color=color,
-            alpha=0.6,
-            shade=True,
-            edgecolor="k",
-            linewidth=0.5,
-        )
-
-    # 画黑点
-    for b in bricks:
-        pts = scan_edge_pairs_for_brick(vox, b, check_z=check_z)
-        print(f"Brick {b['id']} points:", len(pts))
-        if not pts:
-            continue
-        pts = np.array(pts)
-        ax.scatter(pts[:, 0], pts[:, 1], pts[:, 2],
-                   color="black", s=60, zorder=10)
-
-    ax.set_xlabel("X (stud)")
-    ax.set_ylabel("Y (stud)")
-    ax.set_zlabel("Z (layer)")
-    ax.set_title("LEGO bricks + edge scan grasp points")
-
-    X, Y, Z = vox.shape
-    ax.set_xlim(0, X)
-    ax.set_ylim(0, Y)
-    ax.set_zlim(0, Z)
-
-    plt.tight_layout()
+    plt.legend()
     plt.show()
 
-# ------------------------------
-# 7. main
-# ------------------------------
+# ==========================================
+# 6. Main
+# ==========================================
 if __name__ == "__main__":
-    bricks = load_yaml_string(YAML_EXAMPLE)
-    vox = bricks_to_voxels(bricks)
-    print("Voxel grid shape:", vox.shape)
-    # 先只看侧面抓取
-    plot_bricks_with_edge_scan_points(vox, bricks, check_z=False)
+    # 加载数据
+    raw_bricks = load_bricks_from_yaml(YAML_DATA)
+    
+    # 构建世界
+    world = VoxelWorld(raw_bricks)
+    print(f"Grid Shape: {world.grid_shape}")
+    
+    # 计算抓取点
+    points = find_grasp_points(world)
+    print(f"Found {len(points)} potential grasp contact points (voxel faces).")
+    
+    # 绘图
+    visualize(world, points)

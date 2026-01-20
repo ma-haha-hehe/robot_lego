@@ -1,0 +1,18 @@
+[35m[1mConsolidate compiler generated dependencies of target cpp_pick_node[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o[0m
+[01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:314:43:[m[K [01;31m[Kerror: [m[Kredeclaration of ‘[01m[Kstd::vector<geometry_msgs::msg::Pose_<std::allocator<void> > > waypoints_down[m[K’
+  314 |     std::vector<geometry_msgs::msg::Pose> [01;31m[Kwaypoints_down[m[K;
+      |                                           [01;31m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:260:43:[m[K [01;36m[Knote: [m[K‘[01m[Kstd::vector<geometry_msgs::msg::Pose_<std::allocator<void> > > waypoints_down[m[K’ previously declared here
+  260 |     std::vector<geometry_msgs::msg::Pose> [01;36m[Kwaypoints_down[m[K;
+      |                                           [01;36m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:400:39:[m[K [01;31m[Kerror: [m[Kredeclaration of ‘[01m[Kmoveit_msgs::msg::RobotTrajectory trajectory_drop[m[K’
+  400 |     moveit_msgs::msg::RobotTrajectory [01;31m[Ktrajectory_drop[m[K;
+      |                                       [01;31m[K^~~~~~~~~~~~~~~[m[K
+[01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:294:39:[m[K [01;36m[Knote: [m[K‘[01m[Kmoveit_msgs::msg::RobotTrajectory trajectory_drop[m[K’ previously declared here
+  294 |     moveit_msgs::msg::RobotTrajectory [01;36m[Ktrajectory_drop[m[K;
+      |                                       [01;36m[K^~~~~~~~~~~~~~~[m[K
+gmake[2]: *** [CMakeFiles/cpp_pick_node.dir/build.make:76: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/cpp_pick_node.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

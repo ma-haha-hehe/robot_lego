@@ -1,6 +1,6 @@
 /home/aaa/robot/ros2_ws/build/panda_pick/CMakeFiles/uninstall.dir
 /home/aaa/robot/ros2_ws/build/panda_pick/CMakeFiles/panda_pick_uninstall.dir
-/home/aaa/robot/ros2_ws/build/panda_pick/CMakeFiles/pick_and_place_node.dir
+/home/aaa/robot/ros2_ws/build/panda_pick/CMakeFiles/cpp_pick_node.dir
 /home/aaa/robot/ros2_ws/build/panda_pick/CMakeFiles/test.dir
 /home/aaa/robot/ros2_ws/build/panda_pick/CMakeFiles/edit_cache.dir
 /home/aaa/robot/ros2_ws/build/panda_pick/CMakeFiles/rebuild_cache.dir

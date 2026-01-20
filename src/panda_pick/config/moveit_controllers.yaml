@@ -1,0 +1,38 @@
+trajectory_execution:
+  allowed_execution_duration_scaling: 1.2
+  allowed_goal_duration_margin: 0.5
+  
+  # [🔥关键修改] 将容差设为 0.0
+  # 设为 0.0 意味着告诉 MoveIt：“不要试图修改轨迹的起点了，直接按规划好的执行！”
+  # 这能有效防止 MoveIt 插入一个重复的 t=0.0 的点
+  allowed_start_tolerance: 0.0
+  
+  trajectory_duration_monitoring: true
+
+moveit_controller_manager: moveit_simple_controller_manager/MoveItSimpleControllerManager
+
+moveit_simple_controller_manager:
+  controller_names:
+    - panda_arm_controller
+    - panda_hand_controller
+
+panda_arm_controller:
+  action_ns: follow_joint_trajectory
+  type: FollowJointTrajectory
+  default: true
+  joints:
+    - panda_joint1
+    - panda_joint2
+    - panda_joint3
+    - panda_joint4
+    - panda_joint5
+    - panda_joint6
+    - panda_joint7
+
+panda_hand_controller:
+  action_ns: follow_joint_trajectory
+  type: FollowJointTrajectory
+  default: true
+  joints:
+    - panda_finger_joint1
+    - panda_finger_joint2

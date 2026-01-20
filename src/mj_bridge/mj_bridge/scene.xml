@@ -1,5 +1,4 @@
 <mujoco model="panda_scene">
-  <!-- 保留你的 Panda 模型 -->
   <include file="panda.xml"/>
 
   <statistic center="0.4 0 0.4" extent="1"/>
@@ -18,83 +17,60 @@
     <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
   </asset>
 
-  <!-- 只保留一个通用的 geom 默认设置 -->
   <default>
     <geom contype="1" conaffinity="1"
-          solref="0.002 1" solimp="0.8 0.8 0.01"
-          friction="1.0 0.005 0.0001"/>
+          solref="0.001 1" solimp="0.9 0.95 0.001"
+          friction="1.5 0.01 0.0001" 
+          condim="3" 
+          margin="0.001"/>
   </default>
 
   <worldbody>
-    <!-- Realsense 相机：俯视工作台 -->
-    <camera name="realsense" pos="0.4 0 1.0" euler="-90 0 0" fovy="60"/>
+    <camera name="realsense" pos="0.4 0 1.2" euler="0 0 0" fovy="60"/>
 
     <light pos="0 0 1.5" dir="0 0 -1" directional="true"/>
 
-    <!-- 地面 -->
     <geom name="floor" type="plane" size="0 0 0.05" material="groundplane"/>
-
-    <!-- 桌子：放积木的工作台 -->
-    <!-- 桌子中心高度 0.40，厚度半高 0.02，所以桌面在 z = 0.42 左右 -->
+ 
     <body name="table" pos="0.40 0 0.40">
-      <geom name="table_geom" type="box" size="0.30 0.30 0.02"
-            rgba="0.8 0.8 0.8 1.0"/>
+      <geom name="table_geom" type="box" size="0.30 0.50 0.02" rgba="0.8 0.8 0.8 1.0"/>
     </body>
 
-    <!-- ===== 积木：每个 body 都显式写 joint + geom ===== -->
-
-    <body name="brick1" pos="0.35 -0.06 0.48">
-      <joint type="free"/>
-      <geom type="box" size="0.02 0.01 0.01"
-            density="800"
-            rgba="0.2 0.2 0.2 1.0"/>
+    <body name="leg_left" pos="0.55 0.25 0.465">
+        <freejoint/>
+        <geom type="box" size="0.015 0.015 0.045" rgba="0.2 0.2 0.8 1" mass="0.1" friction="1 0.005 0.0001"/>
     </body>
 
-    <body name="brick2" pos="0.45 -0.02 0.48">
-      <joint type="free"/>
-      <geom type="box" size="0.02 0.01 0.01"
-            density="800"
-            rgba="0.2 0.2 0.2 1.0"/>
+    <body name="leg_right" pos="0.55 0.15 0.465">
+        <freejoint/>
+        <geom type="box" size="0.015 0.015 0.045" rgba="0.2 0.2 0.8 1" mass="0.1" friction="1 0.005 0.0001"/>
     </body>
 
-    <body name="brick3" pos="0.35  0.02 0.48">
-      <joint type="free"/>
-      <geom type="box" size="0.02 0.01 0.01"
-            density="800"
-            rgba="0.2 0.2 0.2 1.0"/>
+    <body name="hips" pos="0.55 -0.3 0.435">
+        <freejoint/>
+        <geom type="box" size="0.015 0.045 0.015" rgba="0.8 0.2 0.2 1" mass="0.1" friction="1 0.005 0.0001"/>
     </body>
 
-    <body name="brick4" pos="0.45  0.06 0.48">
-      <joint type="free"/>
-      <geom type="box" size="0.02 0.01 0.01"
-            density="800"
-            rgba="0.2 0.2 0.2 1.0"/>
+    <body name="torso" pos="0.55 -0.15 0.435">
+        <freejoint/>
+        <geom type="box" size="0.015 0.075 0.015" rgba="0.2 0.8 0.2 1" mass="0.1" friction="1 0.005 0.0001"/>
     </body>
 
-    <body name="brick5" pos="0.40  0.00 0.52">
-      <joint type="free"/>
-      <geom type="box" size="0.02 0.01 0.01"
-            density="800"
-            rgba="0.2 0.2 0.2 1.0"/>
+    <body name="head" pos="0.62 0.0 0.465">
+        <freejoint/>
+        <geom type="box" size="0.015 0.015 0.045" rgba="0.8 0.2 0.8 1" mass="0.1" friction="1 0.005 0.0001"/>
     </body>
 
-   
-    <!-- ===== 细杆（高难度）：先留着注释，需要时再打开 ===== -->
-    <!--
-    <body name="rod1" pos="0.40 0.00 0.55">
-      <joint type="free"/>
-      <geom type="cylinder" size="0.005 0.04"
-            density="800"
-            rgba="0.1 0.1 0.1 1.0"/>
+    <body name="hand_left" pos="0.62 0.15 0.435">
+        <freejoint/>
+        <geom type="box" size="0.015 0.015 0.015" rgba="0.8 0.8 0.2 1" mass="0.1" friction="1 0.005 0.0001"/>
     </body>
 
-    <body name="rod2" pos="0.44 0.00 0.55">
-      <joint type="free"/>
-      <geom type="cylinder" size="0.005 0.04"
-            density="800"
-            rgba="0.1 0.1 0.1 1.0"/>
+    <body name="hand_right" pos="0.62 -0.15 0.435">
+        <freejoint/>
+        <geom type="box" size="0.015 0.015 0.015" rgba="0.8 0.8 0.2 1" mass="0.1" friction="1 0.005 0.0001"/>
     </body>
-    -->
 
-  </worldbody>
-</mujoco>
+    </worldbody>
+
+  </mujoco>

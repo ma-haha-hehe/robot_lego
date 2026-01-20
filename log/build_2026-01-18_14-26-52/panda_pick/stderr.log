@@ -1,0 +1,34 @@
+[01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:314:43:[m[K [01;31m[Kerror: [m[Kredeclaration of ‘[01m[Kstd::vector<geometry_msgs::msg::Pose_<std::allocator<void> > > waypoints_down[m[K’
+  314 |     std::vector<geometry_msgs::msg::Pose> [01;31m[Kwaypoints_down[m[K;
+      |                                           [01;31m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:260:43:[m[K [01;36m[Knote: [m[K‘[01m[Kstd::vector<geometry_msgs::msg::Pose_<std::allocator<void> > > waypoints_down[m[K’ previously declared here
+  260 |     std::vector<geometry_msgs::msg::Pose> [01;36m[Kwaypoints_down[m[K;
+      |                                           [01;36m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:397:43:[m[K [01;31m[Kerror: [m[Kredeclaration of ‘[01m[Kstd::vector<geometry_msgs::msg::Pose_<std::allocator<void> > > waypoints_drop[m[K’
+  397 |     std::vector<geometry_msgs::msg::Pose> [01;31m[Kwaypoints_drop[m[K;
+      |                                           [01;31m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:291:43:[m[K [01;36m[Knote: [m[K‘[01m[Kstd::vector<geometry_msgs::msg::Pose_<std::allocator<void> > > waypoints_drop[m[K’ previously declared here
+  291 |     std::vector<geometry_msgs::msg::Pose> [01;36m[Kwaypoints_drop[m[K;
+      |                                           [01;36m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:400:39:[m[K [01;31m[Kerror: [m[Kredeclaration of ‘[01m[Kmoveit_msgs::msg::RobotTrajectory trajectory_drop[m[K’
+  400 |     moveit_msgs::msg::RobotTrajectory [01;31m[Ktrajectory_drop[m[K;
+      |                                       [01;31m[K^~~~~~~~~~~~~~~[m[K
+[01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:294:39:[m[K [01;36m[Knote: [m[K‘[01m[Kmoveit_msgs::msg::RobotTrajectory trajectory_drop[m[K’ previously declared here
+  294 |     moveit_msgs::msg::RobotTrajectory [01;36m[Ktrajectory_drop[m[K;
+      |                                       [01;36m[K^~~~~~~~~~~~~~~[m[K
+[01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:402:12:[m[K [01;31m[Kerror: [m[Kredeclaration of ‘[01m[Kdouble fraction_drop[m[K’
+  402 |     double [01;31m[Kfraction_drop[m[K = arm_group.computeCartesianPath(waypoints_drop, 0.01, 0.0, trajectory_drop);
+      |            [01;31m[K^~~~~~~~~~~~~[m[K
+[01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:296:12:[m[K [01;36m[Knote: [m[K‘[01m[Kdouble fraction_drop[m[K’ previously declared here
+  296 |     double [01;36m[Kfraction_drop[m[K = arm_group.computeCartesianPath(waypoints_drop, 0.01, 0.0, trajectory_drop);
+      |            [01;36m[K^~~~~~~~~~~~~[m[K
+[01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:420:43:[m[K [01;31m[Kerror: [m[Kredeclaration of ‘[01m[Kstd::vector<geometry_msgs::msg::Pose_<std::allocator<void> > > waypoints_down[m[K’
+  420 |     std::vector<geometry_msgs::msg::Pose> [01;31m[Kwaypoints_down[m[K;
+      |                                           [01;31m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:260:43:[m[K [01;36m[Knote: [m[K‘[01m[Kstd::vector<geometry_msgs::msg::Pose_<std::allocator<void> > > waypoints_down[m[K’ previously declared here
+  260 |     std::vector<geometry_msgs::msg::Pose> [01;36m[Kwaypoints_down[m[K;
+      |                                           [01;36m[K^~~~~~~~~~~~~~[m[K
+gmake[2]: *** [CMakeFiles/cpp_pick_node.dir/build.make:76: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/cpp_pick_node.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

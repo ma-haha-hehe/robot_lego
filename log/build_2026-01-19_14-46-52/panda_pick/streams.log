@@ -1,0 +1,34 @@
+[0.003s] Invoking command in '/home/aaa/robot/ros2_ws/build/panda_pick': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble /usr/bin/cmake --build /home/aaa/robot/ros2_ws/build/panda_pick -- -j2 -l2
+[0.182s] [35m[1mConsolidate compiler generated dependencies of target cpp_pick_node[0m
+[0.258s] [ 50%] [32mBuilding CXX object CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o[0m
+[12.941s] [100%] [32m[1mLinking CXX executable cpp_pick_node[0m
+[13.710s] [100%] Built target cpp_pick_node
+[13.807s] Invoked command in '/home/aaa/robot/ros2_ws/build/panda_pick' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble /usr/bin/cmake --build /home/aaa/robot/ros2_ws/build/panda_pick -- -j2 -l2
+[13.847s] Invoking command in '/home/aaa/robot/ros2_ws/build/panda_pick': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble /usr/bin/cmake --install /home/aaa/robot/ros2_ws/build/panda_pick
+[13.855s] -- Install configuration: ""
+[13.856s] -- Installing: /home/aaa/robot/ros2_ws/install/panda_pick/lib/panda_pick/cpp_pick_node
+[13.857s] -- Set runtime path of "/home/aaa/robot/ros2_ws/install/panda_pick/lib/panda_pick/cpp_pick_node" to ""
+[13.857s] -- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/launch
+[13.857s] -- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/launch/demo.launch1.py
+[13.858s] -- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/launch/cpp_node.launch.py
+[13.858s] -- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/launch/__pycache__
+[13.858s] -- Installing: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/launch/__pycache__/demo.launch1.cpython-310.pyc
+[13.858s] -- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/config
+[13.859s] -- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/config/ros2_controllers.yaml
+[13.859s] -- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/config/moveit_controllers.yaml
+[13.860s] -- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/ament_index/resource_index/package_run_dependencies/panda_pick
+[13.860s] -- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/ament_index/resource_index/parent_prefix_path/panda_pick
+[13.861s] -- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/environment/ament_prefix_path.sh
+[13.862s] -- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/environment/ament_prefix_path.dsv
+[13.862s] -- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/environment/path.sh
+[13.862s] -- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/environment/path.dsv
+[13.862s] -- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/local_setup.bash
+[13.862s] -- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/local_setup.sh
+[13.862s] -- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/local_setup.zsh
+[13.862s] -- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/local_setup.dsv
+[13.862s] -- Installing: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/package.dsv
+[13.863s] -- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/ament_index/resource_index/packages/panda_pick
+[13.864s] -- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/cmake/panda_pickConfig.cmake
+[13.864s] -- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/cmake/panda_pickConfig-version.cmake
+[13.864s] -- Up-to-date: /home/aaa/robot/ros2_ws/install/panda_pick/share/panda_pick/package.xml
+[13.872s] Invoked command in '/home/aaa/robot/ros2_ws/build/panda_pick' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble /usr/bin/cmake --install /home/aaa/robot/ros2_ws/build/panda_pick

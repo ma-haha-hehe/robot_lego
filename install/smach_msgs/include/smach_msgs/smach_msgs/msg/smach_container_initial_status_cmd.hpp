@@ -1,1 +1,0 @@
-/home/aaa/robot/ros2_ws/build/smach_msgs/rosidl_generator_cpp/smach_msgs/msg/smach_container_initial_status_cmd.hpp

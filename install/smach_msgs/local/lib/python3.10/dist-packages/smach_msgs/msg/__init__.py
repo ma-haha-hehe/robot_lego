@@ -1,1 +1,0 @@
-/home/aaa/robot/ros2_ws/build/smach_msgs/rosidl_generator_py/smach_msgs/msg/__init__.py

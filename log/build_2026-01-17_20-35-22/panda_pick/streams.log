@@ -1,0 +1,10 @@
+[0.005s] Invoking command in '/home/aaa/robot/ros2_ws/build/panda_pick': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble /usr/bin/cmake --build /home/aaa/robot/ros2_ws/build/panda_pick -- -j2 -l2
+[0.325s] [ 50%] [32mBuilding CXX object CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o[0m
+[0.655s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:2:10:[m[K [01;31m[Kfatal error: [m[Kmoveit/move_group_interface/move_group_interface.hpp: No such file or directory
+[0.655s]     2 | #include [01;31m[K<moveit/move_group_interface/move_group_interface.hpp>[m[K
+[0.655s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.655s] compilation terminated.
+[0.658s] gmake[2]: *** [CMakeFiles/cpp_pick_node.dir/build.make:76: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o] Error 1
+[0.658s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/cpp_pick_node.dir/all] Error 2
+[0.658s] gmake: *** [Makefile:146: all] Error 2
+[0.659s] Invoked command in '/home/aaa/robot/ros2_ws/build/panda_pick' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble /usr/bin/cmake --build /home/aaa/robot/ros2_ws/build/panda_pick -- -j2 -l2

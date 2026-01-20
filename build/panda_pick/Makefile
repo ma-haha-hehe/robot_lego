@@ -198,41 +198,41 @@ panda_pick_uninstall/fast:
 .PHONY : panda_pick_uninstall/fast
 
 #=============================================================================
-# Target rules for targets named pick_and_place_node
+# Target rules for targets named cpp_pick_node
 
 # Build rule for target.
-pick_and_place_node: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pick_and_place_node
-.PHONY : pick_and_place_node
+cpp_pick_node: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 cpp_pick_node
+.PHONY : cpp_pick_node
 
 # fast build rule for target.
-pick_and_place_node/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pick_and_place_node.dir/build.make CMakeFiles/pick_and_place_node.dir/build
-.PHONY : pick_and_place_node/fast
+cpp_pick_node/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp_pick_node.dir/build.make CMakeFiles/cpp_pick_node.dir/build
+.PHONY : cpp_pick_node/fast
 
-src/pick_and_place.o: src/pick_and_place.cpp.o
-.PHONY : src/pick_and_place.o
+src/cpp_pick_node.o: src/cpp_pick_node.cpp.o
+.PHONY : src/cpp_pick_node.o
 
 # target to build an object file
-src/pick_and_place.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pick_and_place_node.dir/build.make CMakeFiles/pick_and_place_node.dir/src/pick_and_place.cpp.o
-.PHONY : src/pick_and_place.cpp.o
+src/cpp_pick_node.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp_pick_node.dir/build.make CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o
+.PHONY : src/cpp_pick_node.cpp.o
 
-src/pick_and_place.i: src/pick_and_place.cpp.i
-.PHONY : src/pick_and_place.i
+src/cpp_pick_node.i: src/cpp_pick_node.cpp.i
+.PHONY : src/cpp_pick_node.i
 
 # target to preprocess a source file
-src/pick_and_place.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pick_and_place_node.dir/build.make CMakeFiles/pick_and_place_node.dir/src/pick_and_place.cpp.i
-.PHONY : src/pick_and_place.cpp.i
+src/cpp_pick_node.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp_pick_node.dir/build.make CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.i
+.PHONY : src/cpp_pick_node.cpp.i
 
-src/pick_and_place.s: src/pick_and_place.cpp.s
-.PHONY : src/pick_and_place.s
+src/cpp_pick_node.s: src/cpp_pick_node.cpp.s
+.PHONY : src/cpp_pick_node.s
 
 # target to generate assembly for a file
-src/pick_and_place.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pick_and_place_node.dir/build.make CMakeFiles/pick_and_place_node.dir/src/pick_and_place.cpp.s
-.PHONY : src/pick_and_place.cpp.s
+src/cpp_pick_node.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp_pick_node.dir/build.make CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.s
+.PHONY : src/cpp_pick_node.cpp.s
 
 # Help Target
 help:
@@ -249,10 +249,10 @@ help:
 	@echo "... test"
 	@echo "... panda_pick_uninstall"
 	@echo "... uninstall"
-	@echo "... pick_and_place_node"
-	@echo "... src/pick_and_place.o"
-	@echo "... src/pick_and_place.i"
-	@echo "... src/pick_and_place.s"
+	@echo "... cpp_pick_node"
+	@echo "... src/cpp_pick_node.o"
+	@echo "... src/cpp_pick_node.i"
+	@echo "... src/cpp_pick_node.s"
 .PHONY : help
 
 

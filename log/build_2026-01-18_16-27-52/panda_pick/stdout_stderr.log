@@ -1,0 +1,9 @@
+[35m[1mConsolidate compiler generated dependencies of target cpp_pick_node[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o[0m
+[01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:320:35:[m[K [01;31m[Kerror: [m[K‘[01m[Kpsi[m[K’ was not declared in this scope
+  320 |     disable_collision_checks(node,[01;31m[Kpsi[m[K,arm_group);
+      |                                   [01;31m[K^~~[m[K
+gmake[2]: *** [CMakeFiles/cpp_pick_node.dir/build.make:76: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/cpp_pick_node.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

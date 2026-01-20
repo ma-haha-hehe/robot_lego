@@ -209,6 +209,7 @@
                     <geom mesh="link7_c" class="collision"/>
                     <body name="hand" pos="0 0 0.107" quat="0.9238795 0 0 -0.3826834">
                       <inertial mass="0.73" pos="-0.01 0 0.03" diaginertia="0.001 0.0025 0.0017"/>
+                      <camera name="hand_camera" pos="0 0 0.13" quat="0 0 0 1" fovy="75"/>
                       <geom mesh="hand_0" material="off_white" class="visual"/>
                       <geom mesh="hand_1" material="black" class="visual"/>
                       <geom mesh="hand_2" material="black" class="visual"/>
@@ -263,20 +264,17 @@
 
   <actuator>
     <general class="panda" name="actuator1" joint="panda_joint1" gainprm="4500" biasprm="0 -4500 -450"/>
-    <general class="panda" name="actuator2" joint="panda_joint2" gainprm="4500" biasprm="0 -4500 -450"
-      ctrlrange="-1.7628 1.7628"/>
+    <general class="panda" name="actuator2" joint="panda_joint2" gainprm="4500" biasprm="0 -4500 -450" ctrlrange="-1.7628 1.7628"/>
     <general class="panda" name="actuator3" joint="panda_joint3" gainprm="3500" biasprm="0 -3500 -350"/>
-    <general class="panda" name="actuator4" joint="panda_joint4" gainprm="3500" biasprm="0 -3500 -350"
-      ctrlrange="-3.0718 -0.0698"/>
+    <general class="panda" name="actuator4" joint="panda_joint4" gainprm="3500" biasprm="0 -3500 -350" ctrlrange="-3.0718 -0.0698"/>
     <general class="panda" name="actuator5" joint="panda_joint5" gainprm="2000" biasprm="0 -2000 -200" forcerange="-12 12"/>
-    <general class="panda" name="actuator6" joint="panda_joint6" gainprm="2000" biasprm="0 -2000 -200" forcerange="-12 12"
-      ctrlrange="-0.0175 3.7525"/>
+    <general class="panda" name="actuator6" joint="panda_joint6" gainprm="2000" biasprm="0 -2000 -200" forcerange="-12 12" ctrlrange="-0.0175 3.7525"/>
     <general class="panda" name="actuator7" joint="panda_joint7" gainprm="2000" biasprm="0 -2000 -200" forcerange="-12 12"/>
-    <!-- Remap original ctrlrange (0, 0.04) to (0, 255): 0.04 * 100 / 255 = 0.01568627451 -->
-    <general class="panda" name="actuator8" tendon="split" forcerange="-100 100" ctrlrange="0 255"
-      gainprm="0.01568627451 0 0" biasprm="0 -100 -10"/>
-  </actuator>
 
+    
+    <position name="finger_actuator1" joint="panda_finger_joint1" kp="10000" forcerange="-20 20" ctrlrange="0 0.04"/>
+    <position name="finger_actuator2" joint="panda_finger_joint2" kp="10000" forcerange="-20 20" ctrlrange="0 0.04"/>
+  </actuator>
 
   <keyframe>
     <key name="home" qpos="0 0 0 -1.57079 0 1.57079 -0.7853 0.04 0.04" ctrl="0 0 0 -1.57079 0 1.57079 -0.7853 255"/>

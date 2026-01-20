@@ -1,0 +1,24 @@
+[0.006s] Invoking command in '/home/aaa/robot/ros2_ws/build/panda_pick': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble /usr/bin/cmake --build /home/aaa/robot/ros2_ws/build/panda_pick -- -j2 -l2
+[0.231s] [35m[1mConsolidate compiler generated dependencies of target cpp_pick_node[0m
+[0.284s] [ 50%] [32mBuilding CXX object CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o[0m
+[5.718s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:[m[K In function ‘[01m[Kvoid disable_collision_checks(rclcpp::Node::SharedPtr, const std::vector<Task>&)[m[K’:
+[5.719s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:203:1:[m[K [01;31m[Kerror: [m[Ka function-definition is not allowed here before ‘[01m[K{[m[K’ token
+[5.719s]   203 | [01;31m[K{[m[K
+[5.719s]       | [01;31m[K^[m[K
+[5.719s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:228:1:[m[K [01;31m[Kerror: [m[Ka function-definition is not allowed here before ‘[01m[K{[m[K’ token
+[5.719s]   228 | [01;31m[K{[m[K
+[5.719s]       | [01;31m[K^[m[K
+[5.719s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:286:33:[m[K [01;31m[Kerror: [m[Ka function-definition is not allowed here before ‘[01m[K{[m[K’ token
+[5.719s]   286 | int main(int argc, char** argv) [01;31m[K{[m[K
+[5.719s]       |                                 [01;31m[K^[m[K
+[5.719s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:345:2:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K}[m[K’ at end of input
+[5.719s]   345 | }
+[5.719s]       |  [01;31m[K^[m[K
+[5.719s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:125:93:[m[K [01;36m[Knote: [m[Kto match this ‘[01m[K{[m[K’
+[5.719s]   125 | collision_checks(rclcpp::Node::SharedPtr node, const std::vector<Task>& tasks) [01;36m[K{[m[K
+[5.719s]       |                                                                                [01;36m[K^[m[K
+[5.719s] 
+[9.341s] gmake[2]: *** [CMakeFiles/cpp_pick_node.dir/build.make:76: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o] Error 1
+[9.343s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/cpp_pick_node.dir/all] Error 2
+[9.343s] gmake: *** [Makefile:146: all] Error 2
+[9.354s] Invoked command in '/home/aaa/robot/ros2_ws/build/panda_pick' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble /usr/bin/cmake --build /home/aaa/robot/ros2_ws/build/panda_pick -- -j2 -l2

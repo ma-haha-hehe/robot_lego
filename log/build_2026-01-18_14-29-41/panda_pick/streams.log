@@ -1,0 +1,20 @@
+[0.173s] Invoking command in '/home/aaa/robot/ros2_ws/build/panda_pick': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble /usr/bin/cmake --build /home/aaa/robot/ros2_ws/build/panda_pick -- -j2 -l2
+[0.273s] [35m[1mConsolidate compiler generated dependencies of target cpp_pick_node[0m
+[0.313s] [ 50%] [32mBuilding CXX object CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o[0m
+[3.215s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[3.216s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:314:43:[m[K [01;31m[Kerror: [m[Kredeclaration of ‘[01m[Kstd::vector<geometry_msgs::msg::Pose_<std::allocator<void> > > waypoints_down[m[K’
+[3.216s]   314 |     std::vector<geometry_msgs::msg::Pose> [01;31m[Kwaypoints_down[m[K;
+[3.216s]       |                                           [01;31m[K^~~~~~~~~~~~~~[m[K
+[3.216s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:260:43:[m[K [01;36m[Knote: [m[K‘[01m[Kstd::vector<geometry_msgs::msg::Pose_<std::allocator<void> > > waypoints_down[m[K’ previously declared here
+[3.216s]   260 |     std::vector<geometry_msgs::msg::Pose> [01;36m[Kwaypoints_down[m[K;
+[3.216s]       |                                           [01;36m[K^~~~~~~~~~~~~~[m[K
+[3.217s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:400:39:[m[K [01;31m[Kerror: [m[Kredeclaration of ‘[01m[Kmoveit_msgs::msg::RobotTrajectory trajectory_drop[m[K’
+[3.217s]   400 |     moveit_msgs::msg::RobotTrajectory [01;31m[Ktrajectory_drop[m[K;
+[3.218s]       |                                       [01;31m[K^~~~~~~~~~~~~~~[m[K
+[3.218s] [01m[K/home/aaa/robot/ros2_ws/src/panda_pick/src/cpp_pick_node.cpp:294:39:[m[K [01;36m[Knote: [m[K‘[01m[Kmoveit_msgs::msg::RobotTrajectory trajectory_drop[m[K’ previously declared here
+[3.218s]   294 |     moveit_msgs::msg::RobotTrajectory [01;36m[Ktrajectory_drop[m[K;
+[3.218s]       |                                       [01;36m[K^~~~~~~~~~~~~~~[m[K
+[5.837s] gmake[2]: *** [CMakeFiles/cpp_pick_node.dir/build.make:76: CMakeFiles/cpp_pick_node.dir/src/cpp_pick_node.cpp.o] Error 1
+[5.838s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/cpp_pick_node.dir/all] Error 2
+[5.839s] gmake: *** [Makefile:146: all] Error 2
+[5.854s] Invoked command in '/home/aaa/robot/ros2_ws/build/panda_pick' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/aaa/robot/ros2_ws/install/smach_ros:/home/aaa/robot/ros2_ws/install/smach_demo:/home/aaa/robot/ros2_ws/install/smach:/home/aaa/robot/ros2_ws/install/mj_bridge:/opt/ros/humble /usr/bin/cmake --build /home/aaa/robot/ros2_ws/build/panda_pick -- -j2 -l2
