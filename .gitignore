@@ -1,7 +1,19 @@
+# ROS 2 核心构建文件夹
 build/
-devel/
 install/
-*.o
-*.pyc
+log/
+
+# Python 缓存
 __pycache__/
+*.pyc
+*.pyo
+
+# C++ 编译中间文件
+*.o
+*.obj
+
+# IDE 和系统文件
 .vscode/
+.DS_Store
+.idea/
+.history/

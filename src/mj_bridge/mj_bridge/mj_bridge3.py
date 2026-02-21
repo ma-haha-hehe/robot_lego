@@ -18,7 +18,7 @@ from control_msgs.action import FollowJointTrajectory
 from trajectory_msgs.msg import JointTrajectoryPoint
 
 # ================= 配置区域 =================
-SOURCE_DIR = "/home/aaa/robot/ros2_ws/src/mj_bridge/mj_bridge" 
+SOURCE_DIR = "//home/i6user/Desktop/robot_lego/src/mj_bridge/mj_bridge" 
 MODEL_XML_PATH = os.path.join(SOURCE_DIR, "scene.xml")
 YAML_CONFIG_PATH = os.path.join(SOURCE_DIR, "initial_positions.yaml")
 

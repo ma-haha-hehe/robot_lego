@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/aaa/robot/ros2_ws/src/panda_pick
+CMAKE_SOURCE_DIR = /home/i6user/Desktop/robot_lego/src/panda_pick
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/aaa/robot/ros2_ws/build/panda_pick
+CMAKE_BINARY_DIR = /home/i6user/Desktop/robot_lego/build/panda_pick
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -142,9 +142,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/aaa/robot/ros2_ws/build/panda_pick/CMakeFiles /home/aaa/robot/ros2_ws/build/panda_pick//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/i6user/Desktop/robot_lego/build/panda_pick/CMakeFiles /home/i6user/Desktop/robot_lego/build/panda_pick//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/aaa/robot/ros2_ws/build/panda_pick/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/i6user/Desktop/robot_lego/build/panda_pick/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

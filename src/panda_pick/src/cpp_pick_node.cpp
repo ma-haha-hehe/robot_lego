@@ -1,5 +1,9 @@
 #include <rclcpp/rclcpp.hpp>
 #include <moveit/move_group_interface/move_group_interface.h>
+#include <rclcpp_action/rclcpp_action.hpp>
+//#include <franka_msgs/action/gripper_command.hpp>
+//#include <franka_msgs/action/grasp.hpp>
+//#include <franka_msgs/action/move.hpp>
 #include <moveit/planning_scene_interface/planning_scene_interface.h>
 #include <geometry_msgs/msg/pose.hpp>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
@@ -235,6 +239,10 @@ void execute_task(rclcpp::Node::SharedPtr node,
     // 2. Open Hand
     hand_group.setJointValueTarget("panda_finger_joint1", 0.04);
     hand_group.setJointValueTarget("panda_finger_joint2", 0.04);
+
+    // the error distance
+    hand_group.setGoalJointTolerance(0.01);
+    RCLCPP_INFO(node->get_logger(),"Attempting to grasp...");
     hand_group.move();
 
     // 3. Descend
@@ -304,7 +312,7 @@ int main(int argc, char** argv) {
 
     // 1. 加载任务
     // 建议：不要硬编码，使用参数或相对路径。这里为了保持你代码逻辑，仍使用硬编码，请根据实际情况修改。
-    std::string yaml_path = "/home/aaa/robot/ros2_ws/src/panda_pick/src/tasks.yaml";
+    std::string yaml_path = "/home/i6user/Desktop/robot_lego/src/panda_pick/src/task.yaml";
     RCLCPP_INFO(node->get_logger(), "Loading tasks from: %s", yaml_path.c_str());
     
     std::vector<Task> task_list = load_tasks_from_yaml(yaml_path);

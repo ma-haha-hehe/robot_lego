@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/aaa/robot/ros2_ws/src/panda_pick
+CMAKE_SOURCE_DIR = /home/i6user/Desktop/robot_lego/src/panda_pick
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/aaa/robot/ros2_ws/build/panda_pick
+CMAKE_BINARY_DIR = /home/i6user/Desktop/robot_lego/build/panda_pick
 
 # Utility rule file for panda_pick_uninstall.
 
@@ -67,7 +67,7 @@ include CMakeFiles/panda_pick_uninstall.dir/compiler_depend.make
 include CMakeFiles/panda_pick_uninstall.dir/progress.make
 
 CMakeFiles/panda_pick_uninstall:
-	/usr/bin/cmake -P /home/aaa/robot/ros2_ws/build/panda_pick/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
+	/usr/bin/cmake -P /home/i6user/Desktop/robot_lego/build/panda_pick/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
 
 panda_pick_uninstall: CMakeFiles/panda_pick_uninstall
 panda_pick_uninstall: CMakeFiles/panda_pick_uninstall.dir/build.make
@@ -82,6 +82,6 @@ CMakeFiles/panda_pick_uninstall.dir/clean:
 .PHONY : CMakeFiles/panda_pick_uninstall.dir/clean
 
 CMakeFiles/panda_pick_uninstall.dir/depend:
-	cd /home/aaa/robot/ros2_ws/build/panda_pick && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/aaa/robot/ros2_ws/src/panda_pick /home/aaa/robot/ros2_ws/src/panda_pick /home/aaa/robot/ros2_ws/build/panda_pick /home/aaa/robot/ros2_ws/build/panda_pick /home/aaa/robot/ros2_ws/build/panda_pick/CMakeFiles/panda_pick_uninstall.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/i6user/Desktop/robot_lego/build/panda_pick && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/i6user/Desktop/robot_lego/src/panda_pick /home/i6user/Desktop/robot_lego/src/panda_pick /home/i6user/Desktop/robot_lego/build/panda_pick /home/i6user/Desktop/robot_lego/build/panda_pick /home/i6user/Desktop/robot_lego/build/panda_pick/CMakeFiles/panda_pick_uninstall.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/panda_pick_uninstall.dir/depend
 

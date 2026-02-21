@@ -11,6 +11,7 @@
 
   <depend>rclcpp</depend>
   <depend>moveit_ros_planning_interface</depend>
+  <depend>franka_msgs</depend>
   <depend>yaml-cpp</depend>
   <depend>geometry_msgs</depend>
   <depend>moveit_msgs</depend>

@@ -1,1 +1,1 @@
-rclcpp;moveit_ros_planning_interface;yaml-cpp;geometry_msgs;moveit_msgs;tf2_geometry_msgs;ament_lint_auto;ament_lint_common
+rclcpp;moveit_ros_planning_interface;franka_msgs;yaml-cpp;geometry_msgs;moveit_msgs;tf2_geometry_msgs;ament_lint_auto;ament_lint_common
