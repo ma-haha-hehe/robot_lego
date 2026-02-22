@@ -1,5 +1,9 @@
 #include <rclcpp/rclcpp.hpp>
 #include <moveit/move_group_interface/move_group_interface.h>
+#include <rclcpp_action/rclcpp_action.hpp>
+//#include <franka_msgs/action/gripper_command.hpp>
+//#include <franka_msgs/action/grasp.hpp>
+//#include <franka_msgs/action/move.hpp>
 #include <moveit/planning_scene_interface/planning_scene_interface.h>
 #include <geometry_msgs/msg/pose.hpp>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
@@ -229,24 +233,28 @@ void execute_task(rclcpp::Node::SharedPtr node,
     // --- PICK ---
     // 1. Hover Pick
     geometry_msgs::msg::Pose hover_pick = task.pick_pose;
-    hover_pick.position.z += GRIPPER_HEIGHT + 0.05; // 抓取高度 + 10cm
+    hover_pick.position.z += GRIPPER_HEIGHT + 0.05; // +0.05
     if (!move_to_pose(arm_group, hover_pick, node->get_logger(), "Hover Pick")) return;
 
     // 2. Open Hand
     hand_group.setJointValueTarget("panda_finger_joint1", 0.04);
     hand_group.setJointValueTarget("panda_finger_joint2", 0.04);
+
+    // the error distance
+    hand_group.setGoalJointTolerance(0.01);
+    RCLCPP_INFO(node->get_logger(),"Attempting to grasp...");
     hand_group.move();
 
     // 3. Descend
     geometry_msgs::msg::Pose grasp = task.pick_pose;
-    grasp.position.z += GRIPPER_HEIGHT + 0.015; // 抓取高度
+    grasp.position.z += GRIPPER_HEIGHT; // 抓取高度 0.015
     if (!move_to_pose(arm_group, grasp, node->get_logger(), "Descend Pick")) return;
 
     // 4. Grasp (Attach)
     // 注意：Attach 会修改 PlanningScene，告诉系统这个物体现在连在机器人手上
     
-    hand_group.setJointValueTarget("panda_finger_joint1", 0.01); // 尝试闭合
-    hand_group.setJointValueTarget("panda_finger_joint2", 0.01);
+    hand_group.setJointValueTarget("panda_finger_joint1", 0.006); // 尝试闭合
+    hand_group.setJointValueTarget("panda_finger_joint2", 0.006);
     // 使用 move 而不是 grasp action，因为我们模拟的是简单抓取
     hand_group.move(); 
     arm_group.attachObject(task.name, "panda_link8"); 
@@ -264,7 +272,7 @@ void execute_task(rclcpp::Node::SharedPtr node,
 
     // 7. Descend Place
     geometry_msgs::msg::Pose place_target = task.place_pose;
-    place_target.position.z += GRIPPER_HEIGHT + 0.02;
+    place_target.position.z += GRIPPER_HEIGHT; 
     if (!move_to_pose(arm_group, place_target, node->get_logger(), "Descend Place")) return;
 
     // 8. Release (Detach)
@@ -304,7 +312,7 @@ int main(int argc, char** argv) {
 
     // 1. 加载任务
     // 建议：不要硬编码，使用参数或相对路径。这里为了保持你代码逻辑，仍使用硬编码，请根据实际情况修改。
-    std::string yaml_path = "/home/aaa/robot/ros2_ws/src/panda_pick/src/tasks.yaml";
+    std::string yaml_path = "/home/i6user/Desktop/robot_lego/src/panda_pick/src/task.yaml";
     RCLCPP_INFO(node->get_logger(), "Loading tasks from: %s", yaml_path.c_str());
     
     std::vector<Task> task_list = load_tasks_from_yaml(yaml_path);

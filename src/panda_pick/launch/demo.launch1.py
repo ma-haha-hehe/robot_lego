@@ -65,6 +65,7 @@ def generate_launch_description():
         output="screen",
         parameters=[
             moveit_config.to_dict(),
+            {"robot_description_kinematics.panda_arm.kinematics_solver_timeout": 0.05},
             moveit_controllers_overrides,
             {"moveit_manage_controllers": True},
         ],
@@ -123,6 +124,7 @@ def generate_launch_description():
             moveit_config.robot_description,
             moveit_config.robot_description_semantic,
             moveit_config.planning_pipelines,
+            {"robot_description_kinematics.panda_arm.kinematics_solver_timeout": 0.05},
             moveit_config.robot_description_kinematics,
         ]
     )
