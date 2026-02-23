@@ -19,15 +19,22 @@ def generate_launch_description():
     srdf_config = xacro.process_file(srdf_filepath, mappings={'arm_id': 'panda'})
     robot_description_semantic = {'robot_description_semantic': srdf_config.toxml()}
 
-    return LaunchDescription([
-        Node(
-            package='panda_pick',
-            executable='cpp_pick_node',
-            output='screen',
-            parameters=[
-                robot_description,
-                robot_description_semantic,
-                {'use_sim_time': False}
-            ],
-        )
-    ])
+    # 5. 定义节点
+    pick_node = Node(
+        package='panda_pick',
+        executable='cpp_pick_node',
+        output='screen',
+        parameters=[
+            robot_description,
+            robot_description_semantic,
+            {'use_sim_time': False}
+        ],
+        # 6. 话题重映射：解决夹爪不动
+        # 将 MoveIt 寻找的默认动作话题重定向到 franka_gripper 节点提供的真实话题
+        remappings=[
+            ('/panda_hand/gripper_action', '/panda_gripper/gripper_action'),
+            ('/joint_states', '/franka/joint_states')
+        ]
+    )
+
+    return LaunchDescription([pick_node])
