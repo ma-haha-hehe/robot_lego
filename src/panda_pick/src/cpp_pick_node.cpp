@@ -9,12 +9,17 @@
 #include <filesystem>
 #include <vector>
 #include <thread>
-#include <fstream>  // 必须添加这一行来修复编译错误
 
-// 定义 Grasp Action 类型别名
+// 时间参数化相关头文件，确保速度缩放生效
+#include <moveit/trajectory_processing/iterative_time_parameterization.h>
+#include <moveit_msgs/msg/robot_trajectory.hpp>
+
 using GraspAction = franka_msgs::action::Grasp;
 
-const double GRIPPER_HEIGHT = 0.103; 
+// 物理参数常量
+const double GRIPPER_HEIGHT = 0.103; // 夹爪法兰到指尖的距离
+const double ARM_VEL_DEFAULT = 0.4;
+const double ARM_ACC_DEFAULT = 0.3;
 
 struct Task {
     std::string name;
@@ -22,138 +27,128 @@ struct Task {
     geometry_msgs::msg::Pose place_pose;
 };
 
-// ================= 1. 读取单任务 YAML (适配图片中的扁平结构) =================
-bool load_active_task(const std::string& file_path, Task& task) {
-    if (!std::filesystem::exists(file_path)) return false;
-    //强制刷新文件缓冲区，确保读取的是最新写入的内容
-    std::ifstream fin(file_path);
-    if (!fin.is_open()) return false;
+// ================= 1. 批量 YAML 加载逻辑 =================
+// 专门适配你提供的 tasks: 列表结构
+std::vector<Task> load_all_tasks(const std::string& file_path) {
+    std::vector<Task> tasks;
+    if (!std::filesystem::exists(file_path)) return tasks;
 
     try {
         YAML::Node config = YAML::LoadFile(file_path);
-        task.name = config["name"].as<std::string>();
+        for (const auto& item : config["tasks"]) {
+            Task t;
+            t.name = item["name"].as<std::string>();
 
-        // 解析 Pick
-        auto p_pos = config["pick"]["pos"];
-        auto p_ori = config["pick"]["orientation"];
-        task.pick_pose.position.x = p_pos[0].as<double>();
-        task.pick_pose.position.y = p_pos[1].as<double>();
-        task.pick_pose.position.z = p_pos[2].as<double>();
-        task.pick_pose.orientation.x = p_ori[0].as<double>();
-        task.pick_pose.orientation.y = p_ori[1].as<double>();
-        task.pick_pose.orientation.z = p_ori[2].as<double>();
-        task.pick_pose.orientation.w = p_ori[3].as<double>();
+            auto fill_pose = [](YAML::Node node, geometry_msgs::msg::Pose& pose) {
+                pose.position.x = node["pos"][0].as<double>();
+                pose.position.y = node["pos"][1].as<double>();
+                pose.position.z = node["pos"][2].as<double>();
+                pose.orientation.x = node["orientation"][0].as<double>();
+                pose.orientation.y = node["orientation"][1].as<double>();
+                pose.orientation.z = node["orientation"][2].as<double>();
+                pose.orientation.w = node["orientation"][3].as<double>();
+            };
 
-        // 解析 Place
-        auto l_pos = config["place"]["pos"];
-        auto l_ori = config["place"]["orientation"];
-        task.place_pose.position.x = l_pos[0].as<double>();
-        task.place_pose.position.y = l_pos[1].as<double>();
-        task.place_pose.position.z = l_pos[2].as<double>();
-        task.place_pose.orientation.x = l_ori[0].as<double>();
-        task.place_pose.orientation.y = l_ori[1].as<double>();
-        task.place_pose.orientation.z = l_ori[2].as<double>();
-        task.place_pose.orientation.w = l_ori[3].as<double>();
-        return true;
-    } catch (...) { return false; }
+            fill_pose(item["pick"], t.pick_pose);
+            fill_pose(item["place"], t.place_pose);
+            tasks.push_back(t);
+        }
+    } catch (const std::exception& e) {
+        RCLCPP_ERROR(rclcpp::get_logger("yaml_loader"), "YAML 解析失败: %s", e.what());
+    }
+    return tasks;
 }
 
-// ================= 2. 持续力抓取函数 (让夹爪持续施压) =================
+// ================= 2. 持续力抓取 (Grasp Action) =================
 bool grasp_with_force(rclcpp::Node::SharedPtr node, double target_width, double force) {
     auto client = rclcpp_action::create_client<GraspAction>(node, "/panda_gripper/grasp");
-    
-    if (!client->wait_for_action_server(std::chrono::seconds(5))) {
-        RCLCPP_ERROR(node->get_logger(), "无法连接到 Grasp Action Server");
-        return false;
-    }
+    if (!client->wait_for_action_server(std::chrono::seconds(5))) return false;
 
-    auto goal_msg = GraspAction::Goal();
-    // target_width 必须小于积木实际宽度以维持压力
-    goal_msg.width = target_width; 
-    goal_msg.speed = 0.05;         
-    goal_msg.force = force;        // 设置持续夹紧力（单位：牛顿）
-    goal_msg.epsilon.inner = 0.05; 
+    GraspAction::Goal goal_msg;
+    goal_msg.width = target_width; // 设置为比物体窄的值以维持压力
+    goal_msg.speed = 0.05;
+    goal_msg.force = force;        // 持续夹紧力 (N)
+    goal_msg.epsilon.inner = 0.05;
     goal_msg.epsilon.outer = 0.05;
 
-    RCLCPP_INFO(node->get_logger(), ">>> 正在执行持续力抓取: %.1f N", force);
-    auto send_goal_future = client->async_send_goal(goal_msg);
-    // 这里简单等待一秒以确保动作发起
-    rclcpp::sleep_for(std::chrono::seconds(1));
-    return true; 
+    RCLCPP_INFO(node->get_logger(), ">>> 执行持续力抓取: %.1f N", force);
+    auto future = client->async_send_goal(goal_msg);
+    rclcpp::sleep_for(std::chrono::seconds(1)); // 给予硬件反应时间
+    return true;
 }
 
-// ================= 3. 直线运动辅助函数 (Straight Move) =================
-bool move_linear(moveit::planning_interface::MoveGroupInterface& arm, double z_delta) {
+// ================= 3. 线性移动函数 (含速度缩放) =================
+bool move_linear(moveit::planning_interface::MoveGroupInterface& arm, 
+                 double z_delta, double vel_scale, double acc_scale) {
     std::vector<geometry_msgs::msg::Pose> waypoints;
-    geometry_msgs::msg::Pose current_pose = arm.getCurrentPose().pose;
-    
-    // 设定目标高度
-    current_pose.position.z += z_delta;
-    waypoints.push_back(current_pose);
+    geometry_msgs::msg::Pose target = arm.getCurrentPose().pose;
+    target.position.z += z_delta;
+    waypoints.push_back(target);
 
-    moveit_msgs::msg::RobotTrajectory trajectory;
-    // 计算笛卡尔路径
-    double fraction = arm.computeCartesianPath(waypoints, 0.01, 0.0, trajectory);
+    moveit_msgs::msg::RobotTrajectory trajectory_msg;
+    double fraction = arm.computeCartesianPath(waypoints, 0.005, 0.0, trajectory_msg);
+    if (fraction < 0.9) return false;
 
-    if (fraction >= 0.9) {
-        arm.execute(trajectory);
+    // 时间参数化：让速度缩放对直线运动生效
+    robot_trajectory::RobotTrajectory rt(arm.getRobotModel(), arm.getName());
+    rt.setRobotTrajectoryMsg(*arm.getCurrentState(), trajectory_msg);
+    trajectory_processing::IterativeParabolicTimeParameterization iptp;
+    if (iptp.computeTimeStamps(rt, vel_scale, acc_scale)) {
+        rt.getRobotTrajectoryMsg(trajectory_msg);
+        arm.execute(trajectory_msg);
         return true;
     }
     return false;
 }
 
-// ================= 4. 辅助夹爪控制 (普通位置控制，用于张开) =================
-void control_gripper(moveit::planning_interface::MoveGroupInterface& hand, double width) {
-    double pos = width / 2.0; 
-    hand.setJointValueTarget("panda_finger_joint1", pos);
-    hand.setJointValueTarget("panda_finger_joint2", pos);
-    hand.setGoalJointTolerance(0.01);
-    hand.move();
-}
-
-// ================= 5. 核心执行逻辑 =================
+// ================= 4. 单个积木执行逻辑 =================
 void execute_single_task(rclcpp::Node::SharedPtr node,
                          moveit::planning_interface::MoveGroupInterface& arm,
                          moveit::planning_interface::MoveGroupInterface& hand,
-                         const Task& task)
-{
-    RCLCPP_INFO(node->get_logger(), ">>> 开始任务: %s", task.name.c_str());
+                         const Task& task) {
+    RCLCPP_INFO(node->get_logger(), "### 正在处理积木: %s ###", task.name.c_str());
 
-    // --- STEP 1: 移动到抓取点上方 (普通规划) ---
+    // STEP 1: 预抓取 (移动到上方 15cm 并对齐姿态)
     geometry_msgs::msg::Pose h_pick = task.pick_pose;
-    h_pick.position.z += GRIPPER_HEIGHT + 0.15; // 预抓取高度 15cm
+    h_pick.position.z += GRIPPER_HEIGHT + 0.15;
     arm.setPoseTarget(h_pick);
     arm.move();
 
-    // --- STEP 2: 张开夹爪 ---
-    control_gripper(hand, 0.08); // 张开至 8cm
+    // STEP 2: 开爪
+    hand.setJointValueTarget("panda_finger_joint1", 0.04);
+    hand.setJointValueTarget("panda_finger_joint2", 0.04);
+    hand.move();
 
-    // --- STEP 3: 垂直直线下降 ---
-    move_linear(arm, -0.15); 
+    // STEP 3: 直线下降 15cm
+    move_linear(arm, -0.15, 0.2, 0.2);
 
-    // --- STEP 4: 持续力抓取并垂直抬起 ---
-    // 假设积木宽度约为 0.03m，设置 target 为 0.01m 强制施加压力
-    grasp_with_force(node, 0.01, 40.0); 
-    move_linear(arm, 0.15); // 直线抬起 15cm
+    // STEP 4: 持续力抓持 (40N) 并直线抬起
+    grasp_with_force(node, 0.01, 40.0);
+    move_linear(arm, 0.15, 0.3, 0.3);
 
-    // --- STEP 5: 移动到放置点上方 ---
+    // STEP 5: 移动到放置点上方 15cm
     geometry_msgs::msg::Pose h_place = task.place_pose;
     h_place.position.z += GRIPPER_HEIGHT + 0.15;
     arm.setPoseTarget(h_place);
     arm.move();
 
-    // --- STEP 6: 直线下降放置 ---
-    move_linear(arm, -0.15);
+    // STEP 6: 慢速直线放置
+    move_linear(arm, -0.12, 0.2, 0.2); // 快速下降
+    move_linear(arm, -0.03, 0.02, 0.02); // 极慢触碰
 
-    // --- STEP 7: 释放并直线撤回 ---
-    control_gripper(hand, 0.08);
-    move_linear(arm, 0.15); 
+    // STEP 7: 释放并撤回
+    hand.setJointValueTarget("panda_finger_joint1", 0.04);
+    hand.setJointValueTarget("panda_finger_joint2", 0.04);
+    hand.move();
+    move_linear(arm, 0.15, 0.3, 0.3);
 }
 
+// ================= 5. MAIN 主函数 =================
 int main(int argc, char** argv) {
     rclcpp::init(argc, argv);
-    auto node = rclcpp::Node::make_shared("lego_executor_final");
+    auto node = rclcpp::Node::make_shared("lego_batch_executor");
 
+    // 必须使用多线程执行器处理 Action 回调
     rclcpp::executors::MultiThreadedExecutor executor;
     executor.add_node(node);
     std::thread executor_thread([&executor]() { executor.spin(); });
@@ -161,19 +156,30 @@ int main(int argc, char** argv) {
     moveit::planning_interface::MoveGroupInterface arm(node, "panda_arm");
     moveit::planning_interface::MoveGroupInterface hand(node, "hand"); // 请确保与 SRDF 一致
 
-    std::string yaml_path = "/home/i6user/Desktop/robot_lego/src/panda_pick/src/active_task.yaml";
+    // 路径：请确保指向你存储 7 个任务的那个 tasks.yaml
+    const std::string yaml_path = "/home/i6user/Desktop/robot_lego/src/panda_pick/src/tasks.yaml";
 
-    while (rclcpp::ok()) {
-        Task current_task;
-        if (load_active_task(yaml_path, current_task)) {
-            execute_single_task(node, arm, hand, current_task);
-            std::filesystem::remove(yaml_path);
-            RCLCPP_INFO(node->get_logger(), "任务成功完成，已删除 YAML。");
+    RCLCPP_INFO(node->get_logger(), ">>> 正在加载批量任务列表: %s", yaml_path.c_str());
+    std::vector<Task> task_list = load_all_tasks(yaml_path);
+
+    if (task_list.empty()) {
+        RCLCPP_ERROR(node->get_logger(), "未找到任务列表或格式错误。程序退出。");
+    } else {
+        RCLCPP_INFO(node->get_logger(), "共加载 %zu 个任务。开始顺序执行...", task_list.size());
+        
+        for (size_t i = 0; i < task_list.size(); ++i) {
+            if (!rclcpp::ok()) break;
+            
+            RCLCPP_INFO(node->get_logger(), "[任务进度 %zu/%zu]", i + 1, task_list.size());
+            execute_single_task(node, arm, hand, task_list[i]);
+            
+            RCLCPP_INFO(node->get_logger(), "任务 %zu 完成。等待系统稳定...", i + 1);
+            rclcpp::sleep_for(std::chrono::seconds(2)); // 每个积木间的安全停顿
         }
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
 
+    RCLCPP_INFO(node->get_logger(), "### 所有批量任务已完成！ ###");
     rclcpp::shutdown();
-    executor_thread.join();
+    if (executor_thread.joinable()) executor_thread.join();
     return 0;
 }
