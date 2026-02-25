@@ -59,6 +59,65 @@ std::vector<Task> load_all_tasks(const std::string& file_path) {
     return tasks;
 }
 
+// ================= 场景构建函数 =================
+void setup_planning_scene(moveit::planning_interface::PlanningSceneInterface& psi) {
+    std::vector<moveit_msgs::msg::CollisionObject> collision_objects;
+
+    // --- 1. 地面 (Ground Plane) ---
+    moveit_msgs::msg::CollisionObject ground;
+    ground.id = "ground";
+    ground.header.frame_id = "world";
+    shape_msgs::msg::SolidPrimitive ground_prim;
+    ground_prim.type = shape_msgs::msg::SolidPrimitive::BOX;
+    ground_prim.dimensions = {2.0, 2.0, 0.01}; // 2米见方，厚度1cm
+    
+    geometry_msgs::msg::Pose ground_pose;
+    ground_pose.position.z = -0.005; // 稍微向下偏移，避免与机械臂底座z=0完全重合
+    ground.primitives.push_back(ground_prim);
+    ground.primitive_poses.push_back(ground_pose);
+    ground.operation = ground.ADD;
+    collision_objects.push_back(ground);
+
+    // --- 2. 四周防护罩 (Square Cage) ---
+    // 我们用 4 个薄板围成一个正方形
+    auto create_wall = [&](std::string id, double x, double y, double dx, double dy, double dz) {
+        moveit_msgs::msg::CollisionObject wall;
+        wall.id = id;
+        wall.header.frame_id = "world";
+        shape_msgs::msg::SolidPrimitive wall_prim;
+        wall_prim.type = shape_msgs::msg::SolidPrimitive::BOX;
+        wall_prim.dimensions = {dx, dy, dz};
+        
+        geometry_msgs::msg::Pose wall_pose;
+        wall_pose.position.x = x;
+        wall_pose.position.y = y;
+        wall_pose.position.z = dz / 2.0;
+        wall.primitives.push_back(wall_prim);
+        wall.primitive_poses.push_back(wall_pose);
+        wall.operation = wall.ADD;
+        return wall;
+    };
+
+    double cage_size = 1.2; // 罩子边长
+    double wall_thickness = 0.02;
+    double wall_height = 1.0;
+    double offset = cage_size / 2.0;
+
+    collision_objects.push_back(create_wall("wall_front",  offset, 0, wall_thickness, cage_size, wall_height));
+    collision_objects.push_back(create_wall("wall_back",  -offset, 0, wall_thickness, cage_size, wall_height));
+    collision_objects.push_back(create_wall("wall_left",   0,  offset, cage_size, wall_thickness, wall_height));
+    collision_objects.push_back(create_wall("wall_right",  0, -offset, cage_size, wall_thickness, wall_height));
+
+    // --- 3. 积木 (Blocks) ---
+    // 这里我们把任务列表中的积木预先生成在场景中
+    // 假设积木尺寸为 3cm x 3cm x 3cm
+    // 注意：任务执行时需要 attach 它们，否则机械臂碰到积木会认为发生碰撞
+    // 如果你只想避障而不 attach，请确保抓取姿态非常精准
+    
+    // 提交所有物体
+    psi.applyCollisionObjects(collision_objects);
+}
+
 // ================= 2. 持续力抓取 (Grasp Action) =================
 bool grasp_with_force(rclcpp::Node::SharedPtr node, double target_width, double force) {
     auto client = rclcpp_action::create_client<GraspAction>(node, "/panda_gripper/grasp");
@@ -155,6 +214,12 @@ int main(int argc, char** argv) {
 
     moveit::planning_interface::MoveGroupInterface arm(node, "panda_arm");
     moveit::planning_interface::MoveGroupInterface hand(node, "hand"); // 请确保与 SRDF 一致
+
+    //实例化场景接口
+    moveit::planning_interface::PlanningSceneInterface planning_scene_interface;
+    // 1. 设置碰撞环境
+    RCLCPP_INFO(node->get_logger(), "正在初始化规划场景（地面与防护罩）...");
+    setup_planning_scene(planning_scene_interface);
 
     // 路径：请确保指向你存储 7 个任务的那个 tasks.yaml
     const std::string yaml_path = "/home/i6user/Desktop/robot_lego/src/panda_pick/src/tasks.yaml";
