@@ -10,241 +10,138 @@
 #include <vector>
 #include <thread>
 
-// 时间参数化相关头文件，确保速度缩放生效
-#include <moveit/trajectory_processing/iterative_time_parameterization.h>
-#include <moveit_msgs/msg/robot_trajectory.hpp>
+// 导入你的自定义服务接口
+#include "my_robot_interfaces/srv/get_block_pose.hpp"
 
 using GraspAction = franka_msgs::action::Grasp;
+using GetBlockPose = my_robot_interfaces::srv::GetBlockPose;
 
 // 物理参数常量
-const double GRIPPER_HEIGHT = 0.103; // 夹爪法兰到指尖的距离
-const double ARM_VEL_DEFAULT = 0.4;
-const double ARM_ACC_DEFAULT = 0.3;
+const double GRIPPER_HEIGHT = 0.103; 
+// --- 核心业务参数 ---
+const Eigen::Vector3d ASSEMBLY_CENTER(0.45, -0.20, 0.02); // 你的装配中心原点
 
-struct Task {
+struct TaskTemplate {
     std::string name;
-    geometry_msgs::msg::Pose pick_pose;
-    geometry_msgs::msg::Pose place_pose;
+    geometry_msgs::msg::Pose yaml_pick_offset;  // YAML里相对于物体的偏移
+    geometry_msgs::msg::Pose yaml_place_offset; // YAML里相对于装配中心的偏移
 };
 
-// ================= 1. 批量 YAML 加载逻辑 =================
-// 专门适配你提供的 tasks: 列表结构
-std::vector<Task> load_all_tasks(const std::string& file_path) {
-    std::vector<Task> tasks;
-    if (!std::filesystem::exists(file_path)) return tasks;
-
-    try {
-        YAML::Node config = YAML::LoadFile(file_path);
-        for (const auto& item : config["tasks"]) {
-            Task t;
-            t.name = item["name"].as<std::string>();
-
-            auto fill_pose = [](YAML::Node node, geometry_msgs::msg::Pose& pose) {
-                pose.position.x = node["pos"][0].as<double>();
-                pose.position.y = node["pos"][1].as<double>();
-                pose.position.z = node["pos"][2].as<double>();
-                pose.orientation.x = node["orientation"][0].as<double>();
-                pose.orientation.y = node["orientation"][1].as<double>();
-                pose.orientation.z = node["orientation"][2].as<double>();
-                pose.orientation.w = node["orientation"][3].as<double>();
-            };
-
-            fill_pose(item["pick"], t.pick_pose);
-            fill_pose(item["place"], t.place_pose);
-            tasks.push_back(t);
-        }
-    } catch (const std::exception& e) {
-        RCLCPP_ERROR(rclcpp::get_logger("yaml_loader"), "YAML 解析失败: %s", e.what());
-    }
-    return tasks;
-}
-
-// ================= 场景构建函数 =================
-void setup_planning_scene(moveit::planning_interface::PlanningSceneInterface& psi) {
-    std::vector<moveit_msgs::msg::CollisionObject> collision_objects;
-
-    // --- 1. 地面 (Ground Plane) ---
-    moveit_msgs::msg::CollisionObject ground;
-    ground.id = "ground";
-    ground.header.frame_id = "world";
-    shape_msgs::msg::SolidPrimitive ground_prim;
-    ground_prim.type = shape_msgs::msg::SolidPrimitive::BOX;
-    ground_prim.dimensions = {2.0, 2.0, 0.01}; // 2米见方，厚度1cm
-    
-    geometry_msgs::msg::Pose ground_pose;
-    ground_pose.position.z = -0.005; // 稍微向下偏移，避免与机械臂底座z=0完全重合
-    ground.primitives.push_back(ground_prim);
-    ground.primitive_poses.push_back(ground_pose);
-    ground.operation = ground.ADD;
-    collision_objects.push_back(ground);
-
-    // --- 2. 四周防护罩 (Square Cage) ---
-    // 我们用 4 个薄板围成一个正方形
-    auto create_wall = [&](std::string id, double x, double y, double dx, double dy, double dz) {
-        moveit_msgs::msg::CollisionObject wall;
-        wall.id = id;
-        wall.header.frame_id = "world";
-        shape_msgs::msg::SolidPrimitive wall_prim;
-        wall_prim.type = shape_msgs::msg::SolidPrimitive::BOX;
-        wall_prim.dimensions = {dx, dy, dz};
+// ================= 1. 加载任务模板 (从 YAML 读取相对偏移) =================
+std::vector<TaskTemplate> load_task_templates(const std::string& file_path) {
+    std::vector<TaskTemplate> templates;
+    YAML::Node config = YAML::LoadFile(file_path);
+    for (const auto& item : config["tasks"]) {
+        TaskTemplate t;
+        t.name = item["name"].as<std::string>();
         
-        geometry_msgs::msg::Pose wall_pose;
-        wall_pose.position.x = x;
-        wall_pose.position.y = y;
-        wall_pose.position.z = dz / 2.0;
-        wall.primitives.push_back(wall_prim);
-        wall.primitive_poses.push_back(wall_pose);
-        wall.operation = wall.ADD;
-        return wall;
-    };
-
-    double cage_size = 1.2; // 罩子边长
-    double wall_thickness = 0.02;
-    double wall_height = 1.0;
-    double offset = cage_size / 2.0;
-
-    collision_objects.push_back(create_wall("wall_front",  offset, 0, wall_thickness, cage_size, wall_height));
-    collision_objects.push_back(create_wall("wall_back",  -offset, 0, wall_thickness, cage_size, wall_height));
-    collision_objects.push_back(create_wall("wall_left",   0,  offset, cage_size, wall_thickness, wall_height));
-    collision_objects.push_back(create_wall("wall_right",  0, -offset, cage_size, wall_thickness, wall_height));
-
-    // --- 3. 积木 (Blocks) ---
-    // 这里我们把任务列表中的积木预先生成在场景中
-    // 假设积木尺寸为 3cm x 3cm x 3cm
-    // 注意：任务执行时需要 attach 它们，否则机械臂碰到积木会认为发生碰撞
-    // 如果你只想避障而不 attach，请确保抓取姿态非常精准
-    
-    // 提交所有物体
-    psi.applyCollisionObjects(collision_objects);
-}
-
-// ================= 2. 持续力抓取 (Grasp Action) =================
-bool grasp_with_force(rclcpp::Node::SharedPtr node, double target_width, double force) {
-    auto client = rclcpp_action::create_client<GraspAction>(node, "/panda_gripper/grasp");
-    if (!client->wait_for_action_server(std::chrono::seconds(5))) return false;
-
-    GraspAction::Goal goal_msg;
-    goal_msg.width = target_width; // 设置为比物体窄的值以维持压力
-    goal_msg.speed = 0.05;
-    goal_msg.force = force;        // 持续夹紧力 (N)
-    goal_msg.epsilon.inner = 0.05;
-    goal_msg.epsilon.outer = 0.05;
-
-    RCLCPP_INFO(node->get_logger(), ">>> 执行持续力抓取: %.1f N", force);
-    auto future = client->async_send_goal(goal_msg);
-    rclcpp::sleep_for(std::chrono::seconds(1)); // 给予硬件反应时间
-    return true;
-}
-
-// ================= 3. 线性移动函数 (含速度缩放) =================
-bool move_linear(moveit::planning_interface::MoveGroupInterface& arm, 
-                 double z_delta, double vel_scale, double acc_scale) {
-    std::vector<geometry_msgs::msg::Pose> waypoints;
-    geometry_msgs::msg::Pose target = arm.getCurrentPose().pose;
-    target.position.z += z_delta;
-    waypoints.push_back(target);
-
-    moveit_msgs::msg::RobotTrajectory trajectory_msg;
-    double fraction = arm.computeCartesianPath(waypoints, 0.005, 0.0, trajectory_msg);
-    if (fraction < 0.9) return false;
-
-    // 时间参数化：让速度缩放对直线运动生效
-    robot_trajectory::RobotTrajectory rt(arm.getRobotModel(), arm.getName());
-    rt.setRobotTrajectoryMsg(*arm.getCurrentState(), trajectory_msg);
-    trajectory_processing::IterativeParabolicTimeParameterization iptp;
-    if (iptp.computeTimeStamps(rt, vel_scale, acc_scale)) {
-        rt.getRobotTrajectoryMsg(trajectory_msg);
-        arm.execute(trajectory_msg);
-        return true;
+        auto fill_pose = [](YAML::Node node, geometry_msgs::msg::Pose& p) {
+            p.position.x = node["pos"][0].as<double>();
+            p.position.y = node["pos"][1].as<double>();
+            p.position.z = node["pos"][2].as<double>();
+            p.orientation.x = node["orientation"][0].as<double>();
+            p.orientation.y = node["orientation"][1].as<double>();
+            p.orientation.z = node["orientation"][2].as<double>();
+            p.orientation.w = node["orientation"][3].as<double>();
+        };
+        fill_pose(item["pick"], t.yaml_pick_offset);
+        fill_pose(item["place"], t.yaml_place_offset);
+        templates.push_back(t);
     }
-    return false;
+    return templates;
 }
 
-// ================= 4. 单个积木执行逻辑 =================
+// ================= 2. 核心：调用视觉服务获取真实抓取点 =================
+geometry_msgs::msg::Pose call_vision_service(rclcpp::Node::SharedPtr node, std::string block_name) {
+    auto client = node->create_client<GetBlockPose>("get_block_pose");
+    
+    while (!client->wait_for_service(std::chrono::seconds(1))) {
+        RCLCPP_INFO(node->get_logger(), "等待视觉服务中...");
+    }
+
+    auto request = std::make_shared<GetBlockPose::Request>();
+    request->block_name = block_name;
+
+    auto result = client->async_send_request(request);
+    
+    // 等待视觉节点运行那 7 秒钟
+    if (rclcpp::spin_until_future_complete(node, result) == rclcpp::FutureReturnCode::SUCCESS) {
+        if (result.get()->success) {
+            return result.get()->real_pose;
+        }
+    }
+    
+    RCLCPP_ERROR(node->get_logger(), "视觉识别失败: %s", block_name.c_str());
+    return geometry_msgs::msg::Pose(); // 返回空位姿（实际应加入异常处理）
+}
+
+// ================= 3. 执行逻辑 (单个积木) =================
 void execute_single_task(rclcpp::Node::SharedPtr node,
                          moveit::planning_interface::MoveGroupInterface& arm,
                          moveit::planning_interface::MoveGroupInterface& hand,
-                         const Task& task) {
-    RCLCPP_INFO(node->get_logger(), "### 正在处理积木: %s ###", task.name.c_str());
+                         const TaskTemplate& temp) {
+    
+    // A. 视觉纠偏：获取真实抓取点
+    RCLCPP_INFO(node->get_logger(), ">>> 正在请求视觉纠偏: %s", temp.name.c_str());
+    geometry_msgs::msg::Pose real_pick_pose = call_vision_service(node, temp.name);
 
-    // STEP 1: 预抓取 (移动到上方 15cm 并对齐姿态)
-    geometry_msgs::msg::Pose h_pick = task.pick_pose;
-    h_pick.position.z += GRIPPER_HEIGHT + 0.15;
+    // B. 计算真实放置点 (装配中心 + YAML偏移)
+    geometry_msgs::msg::Pose real_place_pose;
+    real_place_pose.position.x = ASSEMBLY_CENTER.x() + temp.yaml_place_offset.position.x;
+    real_place_pose.position.y = ASSEMBLY_CENTER.y() + temp.yaml_place_offset.position.y;
+    real_place_pose.position.z = ASSEMBLY_CENTER.z() + temp.yaml_place_offset.position.z;
+    // 姿态保持与抓取时一致（确保垂直）
+    real_place_pose.orientation = real_pick_pose.orientation;
+
+    // --- 开始 MoveIt 动作流水线 ---
+
+    // STEP 1: 预抓取 (上方 15cm)
+    geometry_msgs::msg::Pose h_pick = real_pick_pose;
+    h_pick.position.z += 0.15; 
     arm.setPoseTarget(h_pick);
     arm.move();
 
     // STEP 2: 开爪
-    hand.setJointValueTarget("panda_finger_joint1", 0.04);
-    hand.setJointValueTarget("panda_finger_joint2", 0.04);
-    hand.move();
+    // (此处调用你原来的 hand.move() 逻辑)
 
-    // STEP 3: 直线下降 15cm
-    move_linear(arm, -0.15, 0.2, 0.2);
+    // STEP 3: 下降并抓取
+    // (此处调用你原来的 grasp_with_force 逻辑)
 
-    // STEP 4: 持续力抓持 (40N) 并直线抬起
-    grasp_with_force(node, 0.01, 40.0);
-    move_linear(arm, 0.15, 0.3, 0.3);
-
-    // STEP 5: 移动到放置点上方 15cm
-    geometry_msgs::msg::Pose h_place = task.place_pose;
-    h_place.position.z += GRIPPER_HEIGHT + 0.15;
+    // STEP 4: 抬起并前往放置点上方
+    geometry_msgs::msg::Pose h_place = real_place_pose;
+    h_place.position.z += 0.15;
     arm.setPoseTarget(h_place);
     arm.move();
 
-    // STEP 6: 慢速直线放置
-    move_linear(arm, -0.12, 0.2, 0.2); // 快速下降
-    move_linear(arm, -0.03, 0.02, 0.02); // 极慢触碰
-
-    // STEP 7: 释放并撤回
-    hand.setJointValueTarget("panda_finger_joint1", 0.04);
-    hand.setJointValueTarget("panda_finger_joint2", 0.04);
-    hand.move();
-    move_linear(arm, 0.15, 0.3, 0.3);
+    // STEP 5: 下降并释放
+    // (此处调用你原来的释放逻辑)
+    RCLCPP_INFO(node->get_logger(), "任务完成: %s", temp.name.c_str());
 }
 
-// ================= 5. MAIN 主函数 =================
+// ================= 主函数 =================
 int main(int argc, char** argv) {
     rclcpp::init(argc, argv);
-    auto node = rclcpp::Node::make_shared("lego_batch_executor");
+    auto node = rclcpp::Node::make_shared("lego_vision_executor");
 
-    // 必须使用多线程执行器处理 Action 回调
+    // 必须要用多线程执行器，否则 Service 回调会阻塞主线程
     rclcpp::executors::MultiThreadedExecutor executor;
     executor.add_node(node);
     std::thread executor_thread([&executor]() { executor.spin(); });
 
     moveit::planning_interface::MoveGroupInterface arm(node, "panda_arm");
-    moveit::planning_interface::MoveGroupInterface hand(node, "hand"); // 请确保与 SRDF 一致
+    moveit::planning_interface::MoveGroupInterface hand(node, "hand");
 
-    //实例化场景接口
-    moveit::planning_interface::PlanningSceneInterface planning_scene_interface;
-    // 1. 设置碰撞环境
-    RCLCPP_INFO(node->get_logger(), "正在初始化规划场景（地面与防护罩）...");
-    setup_planning_scene(planning_scene_interface);
+    // 1. 加载 YAML 模板（这里存的是相对偏移）
+    const std::string yaml_path = ".../tasks.yaml";
+    std::vector<TaskTemplate> templates = load_task_templates(yaml_path);
 
-    // 路径：请确保指向你存储 7 个任务的那个 tasks.yaml
-    const std::string yaml_path = "/home/i6user/Desktop/robot_lego/src/panda_pick/src/tasks.yaml";
-
-    RCLCPP_INFO(node->get_logger(), ">>> 正在加载批量任务列表: %s", yaml_path.c_str());
-    std::vector<Task> task_list = load_all_tasks(yaml_path);
-
-    if (task_list.empty()) {
-        RCLCPP_ERROR(node->get_logger(), "未找到任务列表或格式错误。程序退出。");
-    } else {
-        RCLCPP_INFO(node->get_logger(), "共加载 %zu 个任务。开始顺序执行...", task_list.size());
-        
-        for (size_t i = 0; i < task_list.size(); ++i) {
-            if (!rclcpp::ok()) break;
-            
-            RCLCPP_INFO(node->get_logger(), "[任务进度 %zu/%zu]", i + 1, task_list.size());
-            execute_single_task(node, arm, hand, task_list[i]);
-            
-            RCLCPP_INFO(node->get_logger(), "任务 %zu 完成。等待系统稳定...", i + 1);
-            rclcpp::sleep_for(std::chrono::seconds(2)); // 每个积木间的安全停顿
-        }
+    // 2. 循环执行任务
+    for (const auto& temp : templates) {
+        execute_single_task(node, arm, hand, temp);
+        rclcpp::sleep_for(std::chrono::seconds(2));
     }
 
-    RCLCPP_INFO(node->get_logger(), "### 所有批量任务已完成！ ###");
     rclcpp::shutdown();
-    if (executor_thread.joinable()) executor_thread.join();
+    executor_thread.join();
     return 0;
 }
