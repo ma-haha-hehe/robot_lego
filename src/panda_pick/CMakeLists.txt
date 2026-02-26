@@ -15,6 +15,7 @@ find_package(tf2_geometry_msgs REQUIRED)
 find_package(yaml-cpp REQUIRED)
 find_package(franka_msgs REQUIRED)
 find_package(rclcpp_action REQUIRED)
+find_package(my_robot_interfaces REQUIRED)
 
 # 2. 定义可执行文件
 add_executable(cpp_pick_node src/cpp_pick_node.cpp)
@@ -29,6 +30,7 @@ ament_target_dependencies(cpp_pick_node
   yaml-cpp
   franka_msgs
   rclcpp_action
+  my_robot_interfaces
 )
 
 target_link_libraries(cpp_pick_node yaml-cpp)

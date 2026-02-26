@@ -1,0 +1,9 @@
+# Request (请求部分)
+string block_name    # 积木的名称，例如 "leg_right"
+
+---
+
+# Response (响应部分)
+geometry_msgs/Pose real_pose  # 视觉算出的物体在机器人基座下的 6D 位姿
+bool success                  # 是否成功识别
+string message                # 错误信息或状态描述 (可选)

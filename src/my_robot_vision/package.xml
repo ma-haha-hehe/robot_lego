@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>my_robot_vision</name>
+  <version>0.0.0</version>
+  <description>Python vision node for real-time pose estimation</description>
+  <maintainer email="aaa@todo.todo">aaa</maintainer>
+  <license>Apache License 2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclpy</depend>
+  <depend>my_robot_interfaces</depend>
+  <depend>geometry_msgs</depend>
+  <depend>python3-numpy</depend>
+  <depend>python3-yaml</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
