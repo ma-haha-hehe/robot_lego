@@ -156,7 +156,10 @@ void execute_single_task(rclcpp::Node::SharedPtr node,
     hand.move();
     move_linear(arm, -0.15, 0.2, 0.2);
     grasp_with_force(node, 0.01, 40.0);
-    
+    //稳固等待
+    RCLCPP_INFO(node->get_logger(), "抓取动作已经发送，等待2秒确保稳固");
+    rclcpp::sleep_for(std::chrono::seconds(2));
+    //执行抬起动作
     move_linear(arm, 0.15, 0.3, 0.3);
     geometry_msgs::msg::Pose h_place = task.place_pose;
     h_place.position.z += GRIPPER_HEIGHT + 0.15;
@@ -186,42 +189,38 @@ int main(int argc, char** argv) {
     moveit::planning_interface::MoveGroupInterface hand(node, "hand");
     moveit::planning_interface::PlanningSceneInterface psi;
 
+    // 增加规划容忍度
+    arm.setPlanningTime(10.0);
+    arm.setNumPlanningAttempts(5);
+    arm.setGoalPositionTolerance(0.005)
+
     RCLCPP_INFO(node->get_logger(), "正在初始化规划场景...");
     setup_planning_scene(psi);
 
-    // 获取任务总数
-    int total_tasks = 0;
-    try {
-        YAML::Node config = YAML::LoadFile(TASKS_YAML);
-        total_tasks = config["tasks"].size();
-    } catch (...) {
-        RCLCPP_ERROR(node->get_logger(), "无法加载 tasks.yaml 确定任务总数。");
-        return -1;
-    }
-
-    RCLCPP_INFO(node->get_logger(), ">>> 准备就绪。循环执行 %d 个任务...", total_tasks);
-
-    for (int i = 0; i < total_tasks; ++i) {
-        if (!rclcpp::ok()) break;
-
+   // 使用 while 循环替代 for 循环，不再依赖总任务数
+    while (rclcpp::ok()) {
         Task current_task;
-        // 1. 等待视觉节点写出 active_task.yaml
+        
+        // 1. 只要发现文件就执行
         if (wait_for_any_task(current_task)) {
-            RCLCPP_INFO(node->get_logger(), "[任务进度 %d/%d]", i + 1, total_tasks);
-            
-            // 2. 执行动作
-            execute_single_task(node, arm, hand, current_task);
+            // 2. 执行任务并获取是否成功
+            bool success = execute_single_task(node, arm, hand, current_task);
 
-            // 3. 握手清理：动作完成后删除文件，触发 Python 节点识别下一个
+            // 3. 无论成功失败，都清理掉文件，防止原地反复执行
             if (std::filesystem::exists(RESULT_FILE)) {
                 std::filesystem::remove(RESULT_FILE);
-                RCLCPP_INFO(node->get_logger(), "🎊 积木 [%s] 任务完成，清理信号。", current_task.name.c_str());
+                if (success) {
+                    RCLCPP_INFO(node->get_logger(), "🎊 任务 [%s] 处理完毕。", current_task.name.c_str());
+                } else {
+                    RCLCPP_WARN(node->get_logger(), "⚠️ 任务 [%s] 执行中途失败，已清理信号。建议检查机器人位姿。", current_task.name.c_str());
+                }
             }
+            
+            // 给系统一秒钟喘息时间，防止文件系统读取太快
             rclcpp::sleep_for(std::chrono::seconds(1));
         }
     }
 
-    RCLCPP_INFO(node->get_logger(), "### 所有同步任务已完成！ ###");
     rclcpp::shutdown();
     if (executor_thread.joinable()) executor_thread.join();
     return 0;
