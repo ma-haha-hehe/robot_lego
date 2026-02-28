@@ -4,26 +4,23 @@
 #include <geometry_msgs/msg/pose.hpp>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
 #include <franka_msgs/action/grasp.hpp>
+#include <franka_msgs/action/move.hpp>
 #include <rclcpp_action/rclcpp_action.hpp>
 #include <yaml-cpp/yaml.h>
 #include <filesystem>
 #include <vector>
 #include <thread>
-#include <franka_msgs/action/move.hpp>
-using GripperMoveAction = franka_msgs::action::Move;
 
-// 时间参数化相关头文件，确保速度缩放生效
+// 时间参数化相关头文件
 #include <moveit/trajectory_processing/iterative_time_parameterization.h>
 #include <moveit_msgs/msg/robot_trajectory.hpp>
 
 using GraspAction = franka_msgs::action::Grasp;
+using GripperMoveAction = franka_msgs::action::Move;
 
 // ================= 配置区域 =================
 const std::string RESULT_FILE = "/home/i6user/Desktop/robot_lego/src/panda_pick/src/active_task.yaml";
-const std::string TASKS_YAML = "/home/i6user/Desktop/robot_lego/src/panda_pick/src/tasks.yaml";
-const double GRIPPER_HEIGHT = 0.103; // 夹爪法兰到指尖的距离
-const double ARM_VEL_DEFAULT = 0.4;
-const double ARM_ACC_DEFAULT = 0.3;
+const double GRIPPER_HEIGHT = 0.103; 
 
 struct Task {
     std::string name;
@@ -31,34 +28,33 @@ struct Task {
     geometry_msgs::msg::Pose place_pose;
 };
 
-// ================= 1. YAML 监听与解析逻辑 =================
-// 核心改动：不再检查名称，只要发现文件就解析并返回
+// ================= 辅助函数：安全返回初始位姿 =================
+bool go_home(moveit::planning_interface::MoveGroupInterface& arm) {
+    RCLCPP_INFO(rclcpp::get_logger("executor"), "🔄 任务受阻，正在返回初始位姿 (Ready) 以便重新规划...");
+    arm.setNamedTarget("ready"); 
+    auto result = arm.move();
+    return (result == moveit::core::MoveItErrorCode::SUCCESS);
+}
+
+// ================= 1. YAML 监听逻辑 =================
 bool wait_for_any_task(Task& current_task) {
-    auto logger = rclcpp::get_logger("yaml_listener");
     while (rclcpp::ok()) {
         if (std::filesystem::exists(RESULT_FILE)) {
             try {
                 YAML::Node res = YAML::LoadFile(RESULT_FILE);
                 current_task.name = res["name"].as<std::string>();
-
-                // 解析位姿并强制设定夹爪向下 (Quaternion: 1,0,0,0)
                 auto fill_pose = [](YAML::Node node, geometry_msgs::msg::Pose& pose) {
                     pose.position.x = node["pos"][0].as<double>();
                     pose.position.y = node["pos"][1].as<double>();
                     pose.position.z = node["pos"][2].as<double>();
-                    // 强制姿态向下
-                    pose.orientation.x = 1.0;
-                    pose.orientation.y = 0.0;
-                    pose.orientation.z = 0.0;
-                    pose.orientation.w = 0.0;
+                    pose.orientation.x = 1.0; pose.orientation.y = 0.0;
+                    pose.orientation.z = 0.0; pose.orientation.w = 0.0;
                 };
-
                 fill_pose(res["pick"], current_task.pick_pose);
                 fill_pose(res["place"], current_task.place_pose);
-                RCLCPP_INFO(logger, "✅ 发现任务文件 [%s]，开始执行...", current_task.name.c_str());
                 return true;
-            } catch (const std::exception& e) {
-                // 文件可能正在写入，忽略并重试
+            } catch (...) {
+                // 文件可能正在写入，稍后重试
             }
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
@@ -66,117 +62,87 @@ bool wait_for_any_task(Task& current_task) {
     return false;
 }
 
-// ================= 场景构建函数 (保持原样) =================
-void setup_planning_scene(moveit::planning_interface::PlanningSceneInterface& psi) {
-    std::vector<moveit_msgs::msg::CollisionObject> collision_objects;
-    moveit_msgs::msg::CollisionObject ground;
-    ground.id = "ground";
-    ground.header.frame_id = "world";
-    shape_msgs::msg::SolidPrimitive ground_prim;
-    ground_prim.type = shape_msgs::msg::SolidPrimitive::BOX;
-    ground_prim.dimensions = {2.0, 2.0, 0.01};
-    geometry_msgs::msg::Pose ground_pose;
-    ground_pose.position.z = -0.005;
-    ground.primitives.push_back(ground_prim);
-    ground.primitive_poses.push_back(ground_pose);
-    ground.operation = ground.ADD;
-    collision_objects.push_back(ground);
-    psi.applyCollisionObjects(collision_objects);
-}
-
-// ================= 2. 持续力抓取 (保持原样) =================
+// ================= 2. 夹爪控制 =================
 bool grasp_with_force(rclcpp::Node::SharedPtr node, double target_width, double force) {
     auto client = rclcpp_action::create_client<GraspAction>(node, "/panda_gripper/grasp");
     if (!client->wait_for_action_server(std::chrono::seconds(5))) return false;
-    GraspAction::Goal goal_msg;
-    goal_msg.width = target_width;
-    goal_msg.speed = 0.05;
-    goal_msg.force = force;
-    goal_msg.epsilon.inner = 0.05;
-    goal_msg.epsilon.outer = 0.05;
-    RCLCPP_INFO(node->get_logger(), ">>> 执行持续力抓取: %.1f N", force);
-    auto future = client->async_send_goal(goal_msg);
+    GraspAction::Goal goal;
+    goal.width = target_width; goal.force = force; goal.speed = 0.05;
+    goal.epsilon.inner = 0.05; goal.epsilon.outer = 0.05;
+    client->async_send_goal(goal);
     rclcpp::sleep_for(std::chrono::seconds(1));
     return true;
 }
-// ================= 新增：使用 Action 强制释放夹爪 =================
+
 bool release_gripper(rclcpp::Node::SharedPtr node, double width) {
     auto client = rclcpp_action::create_client<GripperMoveAction>(node, "/panda_gripper/move");
-    
-    if (!client->wait_for_action_server(std::chrono::seconds(2))) {
-        RCLCPP_ERROR(node->get_logger(), "无法连接到夹爪 Move Action 服务器");
-        return false;
-    }
-
-    auto goal_msg = GripperMoveAction::Goal();
-    goal_msg.width = width;
-    goal_msg.speed = 0.1;
-
-    RCLCPP_INFO(node->get_logger(), ">>> 正在通过 Action 释放夹爪 (宽度: %.2f)...", width);
-    auto future = client->async_send_goal(goal_msg);
-    
-    // 强制物理等待，确保夹爪动作完成
+    if (!client->wait_for_action_server(std::chrono::seconds(2))) return false;
+    GripperMoveAction::Goal goal;
+    goal.width = width; goal.speed = 0.1;
+    client->async_send_goal(goal);
     rclcpp::sleep_for(std::chrono::seconds(1));
     return true;
 }
 
-// ================= 3. 线性移动函数 (保持原样) =================
-bool move_linear(moveit::planning_interface::MoveGroupInterface& arm, 
-                 double z_delta, double vel_scale, double acc_scale) {
+// ================= 3. 线性移动 (带失败检查) =================
+bool move_linear_safe(moveit::planning_interface::MoveGroupInterface& arm, double z_delta) {
     std::vector<geometry_msgs::msg::Pose> waypoints;
     geometry_msgs::msg::Pose target = arm.getCurrentPose().pose;
     target.position.z += z_delta;
     waypoints.push_back(target);
-    moveit_msgs::msg::RobotTrajectory trajectory_msg;
-    double fraction = arm.computeCartesianPath(waypoints, 0.005, 0.0, trajectory_msg);
+
+    moveit_msgs::msg::RobotTrajectory traj;
+    double fraction = arm.computeCartesianPath(waypoints, 0.01, 0.0, traj);
     if (fraction < 0.9) return false;
-    robot_trajectory::RobotTrajectory rt(arm.getRobotModel(), arm.getName());
-    rt.setRobotTrajectoryMsg(*arm.getCurrentState(), trajectory_msg);
-    trajectory_processing::IterativeParabolicTimeParameterization iptp;
-    if (iptp.computeTimeStamps(rt, vel_scale, acc_scale)) {
-        rt.getRobotTrajectoryMsg(trajectory_msg);
-        arm.execute(trajectory_msg);
-        return true;
-    }
-    return false;
+
+    auto res = arm.execute(traj);
+    return (res == moveit::core::MoveItErrorCode::SUCCESS);
 }
 
-// ================= 4. 单个积木执行逻辑 (保持原样) =================
-void execute_single_task(rclcpp::Node::SharedPtr node,
+// ================= 4. 执行逻辑 (含重试准备) =================
+bool execute_single_task(rclcpp::Node::SharedPtr node,
                          moveit::planning_interface::MoveGroupInterface& arm,
-                         moveit::planning_interface::MoveGroupInterface& hand,
                          const Task& task) {
-    RCLCPP_INFO(node->get_logger(), "### 正在处理积木: %s ###", task.name.c_str());
+    RCLCPP_INFO(node->get_logger(), "🚀 执行任务: %s", task.name.c_str());
+    arm.setStartStateToCurrentState();
+
+    // 定义错误处理闭包
+    auto on_failure = [&](const std::string& msg) {
+        RCLCPP_ERROR(node->get_logger(), "❌ %s，准备重试...", msg.c_str());
+        go_home(arm);
+        return false;
+    };
+
+    // STEP 1: 预抓取
     geometry_msgs::msg::Pose h_pick = task.pick_pose;
     h_pick.position.z += GRIPPER_HEIGHT + 0.15;
     arm.setPoseTarget(h_pick);
-    arm.move();
-    hand.setJointValueTarget("panda_finger_joint1", 0.04);
-    hand.setJointValueTarget("panda_finger_joint2", 0.04);
-    hand.move();
-    move_linear(arm, -0.15, 0.2, 0.2);
+    if (arm.move() != moveit::core::MoveItErrorCode::SUCCESS) return on_failure("预抓取规划失败");
+
+    // STEP 2: 下降并抓取
+    release_gripper(node, 0.08);
+    if (!move_linear_safe(arm, -0.15)) return on_failure("线性下降失败");
     grasp_with_force(node, 0.01, 40.0);
-    //稳固等待
-    RCLCPP_INFO(node->get_logger(), "抓取动作已经发送，等待2秒确保稳固");
     rclcpp::sleep_for(std::chrono::seconds(2));
-    //执行抬起动作
-    move_linear(arm, 0.15, 0.3, 0.3);
+
+    // STEP 3: 抬起并前往放置点
+    if (!move_linear_safe(arm, 0.15)) return on_failure("抬起动作失败");
+    
     geometry_msgs::msg::Pose h_place = task.place_pose;
     h_place.position.z += GRIPPER_HEIGHT + 0.15;
     arm.setPoseTarget(h_place);
-    arm.move();
-    move_linear(arm, -0.11,0.2,0.2);
-    move_linear(arm, -0.04,0.02, 0.02);
+    if (arm.move() != moveit::core::MoveItErrorCode::SUCCESS) return on_failure("移动到放置点失败");
 
-    // --- 核心修复点：替换 hand.move() ---
-    RCLCPP_INFO(node->get_logger(), ">>> 执行释放动作...");
-    
-    // 直接使用 Action 控制硬件，无视 MoveIt 的规划限制
+    // STEP 4: 放置并释放
+    if (!move_linear_safe(arm, -0.15)) return on_failure("放置下降失败");
     release_gripper(node, 0.08);
-    move_linear(arm, 0.15, 0.3, 0.3);
+    
+    // STEP 5: 撤回
+    move_linear_safe(arm, 0.15);
+    return true; 
 }
 
-// ================= 5. MAIN 主函数 =================
+// ================= 5. MAIN (重试逻辑核心) =================
 int main(int argc, char** argv) {
     rclcpp::init(argc, argv);
     auto node = rclcpp::Node::make_shared("lego_batch_executor");
@@ -186,42 +152,39 @@ int main(int argc, char** argv) {
     std::thread executor_thread([&executor]() { executor.spin(); });
 
     moveit::planning_interface::MoveGroupInterface arm(node, "panda_arm");
-    moveit::planning_interface::MoveGroupInterface hand(node, "hand");
     moveit::planning_interface::PlanningSceneInterface psi;
 
-    // 增加规划容忍度
+    // 优化参数
     arm.setPlanningTime(10.0);
-    arm.setNumPlanningAttempts(5);
-    arm.setGoalPositionTolerance(0.005)
+    arm.setGoalPositionTolerance(0.01);
 
-    RCLCPP_INFO(node->get_logger(), "正在初始化规划场景...");
-    setup_planning_scene(psi);
+    // 清空场景避免碰撞误报
+    std::vector<std::string> object_ids = psi.getKnownObjectNames();
+    psi.removeCollisionObjects(object_ids);
 
-   // 使用 while 循环替代 for 循环，不再依赖总任务数
+    RCLCPP_INFO(node->get_logger(), ">>> 系统就绪，监听视觉信号...");
+
     while (rclcpp::ok()) {
         Task current_task;
-        
-        // 1. 只要发现文件就执行
         if (wait_for_any_task(current_task)) {
-            // 2. 执行任务并获取是否成功
-            bool success = execute_single_task(node, arm, hand, current_task);
+            // 尝试执行任务
+            bool success = execute_single_task(node, arm, current_task);
 
-            // 3. 无论成功失败，都清理掉文件，防止原地反复执行
-            if (std::filesystem::exists(RESULT_FILE)) {
-                std::filesystem::remove(RESULT_FILE);
-                if (success) {
-                    RCLCPP_INFO(node->get_logger(), "🎊 任务 [%s] 处理完毕。", current_task.name.c_str());
-                } else {
-                    RCLCPP_WARN(node->get_logger(), "⚠️ 任务 [%s] 执行中途失败，已清理信号。建议检查机器人位姿。", current_task.name.c_str());
+            if (success) {
+                // 只有成功才删除文件，进入下一个任务
+                if (std::filesystem::exists(RESULT_FILE)) {
+                    std::filesystem::remove(RESULT_FILE);
+                    RCLCPP_INFO(node->get_logger(), "✅ 任务 [%s] 成功完成，清理信号。", current_task.name.c_str());
                 }
+            } else {
+                // 失败不删除文件，下一轮循环会重新读取 RESULT_FILE 进行重试
+                RCLCPP_WARN(node->get_logger(), "🔁 任务 [%s] 失败，信号文件已保留，即将重新规划重试...", current_task.name.c_str());
+                rclcpp::sleep_for(std::chrono::seconds(2)); // 重试前的缓冲
             }
-            
-            // 给系统一秒钟喘息时间，防止文件系统读取太快
-            rclcpp::sleep_for(std::chrono::seconds(1));
         }
     }
 
     rclcpp::shutdown();
-    if (executor_thread.joinable()) executor_thread.join();
+    executor_thread.join();
     return 0;
 }

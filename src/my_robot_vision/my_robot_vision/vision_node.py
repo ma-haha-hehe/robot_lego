@@ -22,7 +22,7 @@ RESULT_FILE = "/shared_data/active_task.yaml"  # 握手信号文件
 TASKS_YAML = "/vision_code/tasks.yaml"        # 任务列表
 CAMERA_PARAMS_YAML = "/vision_code/camera_params.yaml" # 相机外参矩阵
 MESH_DIR = "/FoundationPose/meshes"           # STL模型存放处
-ASSEMBLY_CENTER_BASE = np.array([0.45, -0.20, 0.02]) # 组装区基准中心
+ASSEMBLY_CENTER_BASE = np.array([0.25,0, 0.0]) # 组装区基准中心
 
 if FP_REPO not in sys.path:
     sys.path.append(FP_REPO)
@@ -87,7 +87,7 @@ class RobotVisionNode:
         
         # 初始化 SAM (Segment Anything)
         if SAM_AVAILABLE:
-            sam = sam_model_registry["vit_t"](checkpoint="/weights/sam_vit_t.pth").to("cuda")
+            sam = sam_model_registry["vit_h"](checkpoint="/FoundationPose/weights/sam_vit_h_4b8939.pth").to("cuda")
             self.sam_predictor = SamPredictor(sam)
 
         # 初始化 FoundationPose
@@ -173,12 +173,17 @@ class RobotVisionNode:
                 
                 cv2.imshow("Robot Assembly Vision", img); cv2.waitKey(1)
 
-            if len(pose_samples) < 5:
-                print("❌ 位姿精炼失败。"); continue
-
-            # 取最后 10 帧均值，过滤传感器噪声
-            T_cam_obj = np.mean(pose_samples[-10:], axis=0)
-            self.send_to_robot(name, T_cam_obj, task)
+            if len(pose_samples) > 0:
+                # 提取精炼循环结束时的最新位姿
+                T_cam_obj = pose_samples[-1] 
+                
+                # 打印最终结果用于调试
+                t = T_cam_obj[:3, 3]
+                print(f"🎯 最终输出位姿 (End Point): X:{t[0]:.3f} Y:{t[1]:.3f} Z:{t[2]:.3f}")
+                
+                self.send_to_robot(name, T_cam_obj, task)
+            else:
+                print("❌ 未捕获到有效的位姿样本。")
 
     def visualize_result(self, image, T_cam_obj):
         """ 综合可视化：绘制姿态轴和 Base 空间坐标 """
