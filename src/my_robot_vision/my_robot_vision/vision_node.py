@@ -157,56 +157,52 @@ class RobotVisionNode:
         cv2.line(image, pts_2d[0], pts_2d[1], (0,0,255), 2)
         cv2.line(image, pts_2d[0], pts_2d[2], (0,255,0), 2)
         cv2.line(image, pts_2d[0], pts_2d[3], (255,0,0), 2)
-        
+
     def send_to_robot(self, name, T_cam_obj, task_cfg):
         """ 
-        Pick Orientation 合成逻辑：
-        结果 = 绕基座Z轴旋转(视觉Yaw) * 任务表预设位姿(向下+0/90度Spin)
+        核心逻辑：
+        1. Pick Pos: 视觉实时中心
+        2. Pick Orn: 强制 Roll=180, Pitch=0, Yaw = 视觉偏差 + 任务表预设 (0或90)
+        3. Place Pos: 原始逻辑 (ASSEMBLY_CENTER_BASE + 任务偏移)
+        4. Place Orn: 与 Pick 保持一致
         """
-        # 1. 计算视觉测出的物体在基座坐标系下的位姿
+        # A. 提取视觉实时位姿
         T_base_vision = self.T_base_camera @ T_cam_obj
         r_vision = R.from_matrix(T_base_vision[:3, :3])
-        
-        # 2. 提取视觉检测到的实时偏航角 (Yaw)
-        # 我们只取绕 Z 轴的角度，忽略积木可能存在的轻微倾斜（Pitch/Roll）
+        # 视觉检测到的 Yaw (弧度)
         detected_yaw = r_vision.as_euler('zyx', degrees=False)[0]
 
-        # 3. 获取任务表中对该积木预设的抓取位姿 (已包含垂直向下和0/90度决策)
+        # B. 提取任务表预设 Yaw (0度或90度避障决策)
         yaml_pick_quat = task_cfg['pick']['orientation']
-        r_yaml_pick = R.from_quat(yaml_pick_quat)
+        yaml_yaw = R.from_quat(yaml_pick_quat).as_euler('zyx', degrees=False)[0]
 
-        # 4. 【关键合成】
-        # 将视觉偏差应用到预设姿态上。注意顺序：先做预设姿态，再绕基座Z轴转动
-        r_combined_pick = R.from_euler('z', detected_yaw, degrees=False) * r_yaml_pick
-        combined_pick_orn = r_combined_pick.as_quat().tolist()
+        # C. 合成最终姿态：强制锁定垂直，只累加 Yaw
+        # 这里就是你要求的：不管视觉怎么歪，Roll=pi, Pitch=0 必须死守 
+        final_yaw = detected_yaw + yaml_yaw
+        r_final = R.from_euler('xyz', [np.pi, 0, final_yaw], degrees=False)
+        final_quat = r_final.as_quat().tolist()
 
-        # 5. 处理 Place 姿态 (同样的逻辑：基座基准 + 视觉Yaw)
-        # 确保放下时的角度和抓取时的积木偏转一致
-        original_place_orn = R.from_euler('xyz', [np.pi, 0, detected_yaw], degrees=False).as_quat().tolist()
-        
-        # 6. 计算绝对位置
+        # D. 计算坐标
         vision_pick_pos = T_base_vision[:3, 3].tolist()
-        # Place Pos 依然保持原始逻辑：基准 + YAML偏移
+        # Place 坐标：基准 + 规划偏移
         original_place_pos = (ASSEMBLY_CENTER_BASE + np.array(task_cfg['place']['pos'])).tolist()
 
         data = {
             'name': name,
             'pick': {
                 'pos': vision_pick_pos, 
-                'orientation': combined_pick_orn 
+                'orientation': final_quat 
             },
             'place': {
                 'pos': original_place_pos, 
-                'orientation': original_place_orn 
+                'orientation': final_quat 
             }
         }
         
         with open(RESULT_FILE, 'w') as f:
             yaml.dump(data, f)
             
-        print(f"✅ 姿态合成完成！")
-        print(f"   - 视觉测出偏角: {np.degrees(detected_yaw):.2f}°")
-        print(f"   - 最终 Pick 姿态已结合 YAML 预设的抓取相位。")
+        print(f"✅ 信号已发送：视觉修正角 {np.degrees(detected_yaw):.1f}° 已应用。姿态锁定为垂直向下。")
         
         while os.path.exists(RESULT_FILE):
             time.sleep(0.5)
