@@ -157,53 +157,56 @@ class RobotVisionNode:
         cv2.line(image, pts_2d[0], pts_2d[1], (0,0,255), 2)
         cv2.line(image, pts_2d[0], pts_2d[2], (0,255,0), 2)
         cv2.line(image, pts_2d[0], pts_2d[3], (255,0,0), 2)
+        
     def send_to_robot(self, name, T_cam_obj, task_cfg):
         """ 
-        组合逻辑：
-        Pick: 视觉实时位置 + (视觉实时角度 叠加 YAML 预设姿态)
-        Place: 保持原始逻辑 (基准中心 + 视觉实时角度)
+        Pick Orientation 合成逻辑：
+        结果 = 绕基座Z轴旋转(视觉Yaw) * 任务表预设位姿(向下+0/90度Spin)
         """
-        # 1. 基础变换：将视觉结果转换到机器人基座坐标系
+        # 1. 计算视觉测出的物体在基座坐标系下的位姿
         T_base_vision = self.T_base_camera @ T_cam_obj
         r_vision = R.from_matrix(T_base_vision[:3, :3])
         
-        # 提取视觉检测到的偏航角 (Yaw)
+        # 2. 提取视觉检测到的实时偏航角 (Yaw)
+        # 我们只取绕 Z 轴的角度，忽略积木可能存在的轻微倾斜（Pitch/Roll）
         detected_yaw = r_vision.as_euler('zyx', degrees=False)[0]
 
-        # 2. 【核心修改】合成 Pick 姿态
-        # 获取 YAML 中预设的 Pick 姿态 (包含 Roll=180 和 0/90度 Spin)
+        # 3. 获取任务表中对该积木预设的抓取位姿 (已包含垂直向下和0/90度决策)
         yaml_pick_quat = task_cfg['pick']['orientation']
         r_yaml_pick = R.from_quat(yaml_pick_quat)
-        
-        # 将视觉角度旋转应用到预设姿态上
-        # 逻辑：绕基座 Z 轴旋转检测到的角度
+
+        # 4. 【关键合成】
+        # 将视觉偏差应用到预设姿态上。注意顺序：先做预设姿态，再绕基座Z轴转动
         r_combined_pick = R.from_euler('z', detected_yaw, degrees=False) * r_yaml_pick
         combined_pick_orn = r_combined_pick.as_quat().tolist()
-        
-        # 3. 构造结果数据
-        # Pick Pos: 使用视觉中心
-        # Place Pos: 使用原始基准中心 + YAML偏移
-        original_place_pos = (ASSEMBLY_CENTER_BASE + np.array(task_cfg['place']['pos'])).tolist()
-        
-        # Place Orientation: 原始逻辑 (垂直向下 + 视觉 Yaw)
+
+        # 5. 处理 Place 姿态 (同样的逻辑：基座基准 + 视觉Yaw)
+        # 确保放下时的角度和抓取时的积木偏转一致
         original_place_orn = R.from_euler('xyz', [np.pi, 0, detected_yaw], degrees=False).as_quat().tolist()
+        
+        # 6. 计算绝对位置
+        vision_pick_pos = T_base_vision[:3, 3].tolist()
+        # Place Pos 依然保持原始逻辑：基准 + YAML偏移
+        original_place_pos = (ASSEMBLY_CENTER_BASE + np.array(task_cfg['place']['pos'])).tolist()
 
         data = {
             'name': name,
             'pick': {
-                'pos': T_base_vision[:3, 3].tolist(),  # 视觉实时中心
-                'orientation': combined_pick_orn       # 视觉角度 + YAML 预设
+                'pos': vision_pick_pos, 
+                'orientation': combined_pick_orn 
             },
             'place': {
-                'pos': original_place_pos,             # 原始逻辑位置
-                'orientation': original_place_orn      # 原始逻辑姿态
+                'pos': original_place_pos, 
+                'orientation': original_place_orn 
             }
         }
         
         with open(RESULT_FILE, 'w') as f:
             yaml.dump(data, f)
-        
-        print(f"✅ 姿态已合成：视觉补偿角度 {np.degrees(detected_yaw):.1f}° 已应用至 Pick 任务。")
+            
+        print(f"✅ 姿态合成完成！")
+        print(f"   - 视觉测出偏角: {np.degrees(detected_yaw):.2f}°")
+        print(f"   - 最终 Pick 姿态已结合 YAML 预设的抓取相位。")
         
         while os.path.exists(RESULT_FILE):
             time.sleep(0.5)
