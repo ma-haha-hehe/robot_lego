@@ -163,45 +163,52 @@ class RobotVisionNode:
 
     def send_to_robot(self, name, T_cam_obj, task_cfg):
         """ 
-        排除法版本逻辑：
-        1. Pick Pos: 视觉实时解算的中心点 (保持你的要求：不改变)
-        2. Pick Orientation: 直接复制 tasks.yaml 里的值 (不再叠加视觉检测的角度)
+        核心逻辑：
+        1. Pick Pos: 视觉实时中心 (Vision Center)
+        2. Pick Orn: 完全听从视觉检测到的 Yaw (锁定垂直向下)
         3. Place Pos: 原始逻辑 (ASSEMBLY_CENTER_BASE + 任务偏移)
-        4. Place Orientation: 直接复制 tasks.yaml 里的值
+        4. Place Orn: 与抓取时一致 (完全听从视觉检测到的 Yaw)
         """
-        # A. 提取视觉中心位置 (Vision Position)
+        # A. 提取视觉实时位姿并转换到机器人基座坐标系
         T_base_vision = self.T_base_camera @ T_cam_obj
-        vision_pick_pos = T_base_vision[:3, 3].tolist() 
+        r_vision = R.from_matrix(T_base_vision[:3, :3])
+        
+        # 提取视觉检测到的实时偏航角 (Yaw) 
+        # 忽略任务表里的任何角度建议，只看现场看到的
+        detected_yaw = r_vision.as_euler('zyx', degrees=False)[0]
 
-        # B. 从任务表中直接读取预设姿态 (Orientation)
-        # 这包含了你在 plan.py 里定好的 [Roll=180, Pitch=0, Yaw=0/90]
-        yaml_pick_orn = task_cfg['pick']['orientation']
-        yaml_place_orn = task_cfg['place']['orientation']
+        # B. 【核心修改】构造姿态：强制锁定垂直，Yaw 完全取自视觉
+        # Roll = pi (180度), Pitch = 0, Yaw = detected_yaw
+        # 这样能保证夹爪永远垂直，且完全对齐视觉看到的积木角度
+        r_final = R.from_euler('xyz', [np.pi, 0, detected_yaw], degrees=False)
+        final_quat = r_final.as_quat().tolist()
 
-        # C. 计算放置位置 (Place Position)
-        # 保持你原始的逻辑：基准中心 + 规划中的相对偏移
+        # C. 提取位置信息
+        vision_pick_pos = T_base_vision[:3, 3].tolist() # 视觉中心点
+        
+        # Place 坐标保持原始逻辑：基准 + YAML 中的相对偏移量
         original_place_pos = (ASSEMBLY_CENTER_BASE + np.array(task_cfg['place']['pos'])).tolist()
 
-        # D. 封装数据发送
+        # D. 构造最终数据
         data = {
             'name': name,
             'pick': {
-                'pos': vision_pick_pos,       # 听视觉的
-                'orientation': yaml_pick_orn  # 完全听 tasks.yaml 的
+                'pos': vision_pick_pos,      # 听视觉的
+                'orientation': final_quat     # 听视觉的 (锁定垂直)
             },
             'place': {
                 'pos': original_place_pos,    # 听原始逻辑的
-                'orientation': yaml_place_orn # 完全听 tasks.yaml 的
+                'orientation': final_quat     # 听视觉的 (保证放下的角度和抓的时候一样)
             }
         }
         
         with open(RESULT_FILE, 'w') as f:
             yaml.dump(data, f)
             
-        print(f"⚠️ 模式：姿态锁定。Pick 使用视觉中心，但姿态完全遵循 YAML 规划。")
-        print(f"   - 发送的 Pick 坐标: {vision_pick_pos}")
+        print(f"✅ 视觉全驱动模式：已应用检测角度 {np.degrees(detected_yaw):.1f}°")
+        print(f"   - 抓取位置: {vision_pick_pos}")
         
-        # 等待 C++ 节点处理
+        # 等待 C++ 节点读取文件并执行
         while os.path.exists(RESULT_FILE):
             time.sleep(0.5)
 
