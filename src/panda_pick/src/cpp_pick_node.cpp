@@ -30,7 +30,7 @@ struct Task {
 
 // ================= 辅助函数：安全返回初始位姿 =================
 bool go_home(moveit::planning_interface::MoveGroupInterface& arm) {
-    RCLCPP_INFO(rclcpp::get_logger("executor"), "🔄 任务受阻，正在返回初始位姿 (Ready) 以便重新规划...");
+    RCLCPP_INFO(rclcpp::get_logger("executor"), "🔄 返回初始位姿 (Ready) 以便重新尝试当前步骤...");
     arm.setNamedTarget("ready"); 
     auto result = arm.move();
     return (result == moveit::core::MoveItErrorCode::SUCCESS);
@@ -53,13 +53,42 @@ bool wait_for_any_task(Task& current_task) {
                 fill_pose(res["pick"], current_task.pick_pose);
                 fill_pose(res["place"], current_task.place_pose);
                 return true;
-            } catch (...) {
-                // 文件可能正在写入，稍后重试
-            }
+            } catch (...) {}
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
     return false;
+}
+
+//碰撞场景布置
+void setup_planning_scene(moveit::planning_interface::PlanningSceneInterface& psi) {
+    std::vector<moveit_msgs::msg::CollisionObject> collision_objects;
+
+    // --- 定义桌子 ---
+    moveit_msgs::msg::CollisionObject table;
+    table.id = "table";
+    table.header.frame_id = "world"; // 确保这与你的机械臂基座坐标系一致
+
+    shape_msgs::msg::SolidPrimitive primitive;
+    primitive.type = shape_msgs::msg::SolidPrimitive::BOX;
+    primitive.dimensions = {2.0, 2.0, 0.1}; // 宽2m, 深2m, 厚0.1m
+
+    geometry_msgs::msg::Pose table_pose;
+    table_pose.orientation.w = 1.0;
+    table_pose.position.x = 0.0;
+    table_pose.position.y = 0.0;
+    // 关键：盒子厚0.1m，中心放在-0.05m，则盒子顶部表面恰好在 Z = 0
+    table_pose.position.z = -0.051; // 稍微多往下放1mm，防止起始状态因浮点误差判定为碰撞
+
+    table.primitives.push_back(primitive);
+    table.primitive_poses.push_back(table_pose);
+    table.operation = table.ADD;
+
+    collision_objects.push_back(table);
+
+    // 将桌子应用到场景
+    psi.applyCollisionObjects(collision_objects);
+    RCLCPP_INFO(rclcpp::get_logger("executor"), "✅ 桌面碰撞约束已添加 (Z=0)");
 }
 
 // ================= 2. 夹爪控制 =================
@@ -99,50 +128,75 @@ bool move_linear_safe(moveit::planning_interface::MoveGroupInterface& arm, doubl
     return (res == moveit::core::MoveItErrorCode::SUCCESS);
 }
 
-// ================= 4. 执行逻辑 (含重试准备) =================
+// ================= 4. 执行逻辑 (分阶段重试) =================
 bool execute_single_task(rclcpp::Node::SharedPtr node,
                          moveit::planning_interface::MoveGroupInterface& arm,
                          const Task& task) {
-    RCLCPP_INFO(node->get_logger(), "🚀 执行任务: %s", task.name.c_str());
-    arm.setStartStateToCurrentState();
+    RCLCPP_INFO(node->get_logger(), "🚀 开始任务流程: %s", task.name.c_str());
 
-    // 定义错误处理闭包
-    auto on_failure = [&](const std::string& msg) {
-        RCLCPP_ERROR(node->get_logger(), "❌ %s，准备重试...", msg.c_str());
-        go_home(arm);
-        return false;
-    };
+    // --- 阶段一：抓取循环 (Pick Stage) ---
+    bool pick_finished = false;
+    while (!pick_finished && rclcpp::ok()) {
+        RCLCPP_INFO(node->get_logger(), "📍 [阶段: 抓取] 正在规划抓取路径...");
+        arm.setStartStateToCurrentState();
+        
+        // 1.1 移动到抓取点上方
+        geometry_msgs::msg::Pose h_pick = task.pick_pose;
+        h_pick.position.z += GRIPPER_HEIGHT + 0.15;
+        arm.setPoseTarget(h_pick);
+        if (arm.move() != moveit::core::MoveItErrorCode::SUCCESS) {
+            RCLCPP_ERROR(node->get_logger(), "❌ 预抓取规划失败，回原点重试抓取...");
+            go_home(arm); continue; 
+        }
 
-    // STEP 1: 预抓取
-    geometry_msgs::msg::Pose h_pick = task.pick_pose;
-    h_pick.position.z += GRIPPER_HEIGHT + 0.15;
-    arm.setPoseTarget(h_pick);
-    if (arm.move() != moveit::core::MoveItErrorCode::SUCCESS) return on_failure("预抓取规划失败");
+        // 1.2 执行抓取动作
+        release_gripper(node, 0.08);
+        if (!move_linear_safe(arm, -0.15)) {
+            RCLCPP_ERROR(node->get_logger(), "❌ 下降抓取失败，回原点重试抓取...");
+            go_home(arm); continue;
+        }
+        grasp_with_force(node, 0.01, 40.0);
+        rclcpp::sleep_for(std::chrono::seconds(2));
+        
+        pick_finished = true; // 抓取成功
+    }
 
-    // STEP 2: 下降并抓取
-    release_gripper(node, 0.08);
-    if (!move_linear_safe(arm, -0.15)) return on_failure("线性下降失败");
-    grasp_with_force(node, 0.01, 40.0);
-    rclcpp::sleep_for(std::chrono::seconds(2));
+    // --- 阶段二：放置循环 (Place Stage) ---
+    bool place_finished = false;
+    while (!place_finished && rclcpp::ok()) {
+        RCLCPP_INFO(node->get_logger(), "📍 [阶段: 放置] 正在规划放置路径...");
+        arm.setStartStateToCurrentState();
 
-    // STEP 3: 抬起并前往放置点
-    if (!move_linear_safe(arm, 0.15)) return on_failure("抬起动作失败");
-    
-    geometry_msgs::msg::Pose h_place = task.place_pose;
-    h_place.position.z += GRIPPER_HEIGHT + 0.15;
-    arm.setPoseTarget(h_place);
-    if (arm.move() != moveit::core::MoveItErrorCode::SUCCESS) return on_failure("移动到放置点失败");
+        // 2.1 抬起动作 (如果是从 Home 重新开始，这步也会尝试执行)
+        if (!move_linear_safe(arm, 0.15)) {
+            RCLCPP_ERROR(node->get_logger(), "❌ 抬起失败，回原点重新规划放置...");
+            go_home(arm); continue; 
+        }
 
-    // STEP 4: 放置并释放
-    if (!move_linear_safe(arm, -0.15)) return on_failure("放置下降失败");
-    release_gripper(node, 0.08);
-    
-    // STEP 5: 撤回
-    move_linear_safe(arm, 0.15);
+        // 2.2 移动到放置点上方
+        geometry_msgs::msg::Pose h_place = task.place_pose;
+        h_place.position.z += GRIPPER_HEIGHT + 0.15;
+        arm.setPoseTarget(h_place);
+        if (arm.move() != moveit::core::MoveItErrorCode::SUCCESS) {
+            RCLCPP_ERROR(node->get_logger(), "❌ 放置点规划失败，回原点重新规划放置...");
+            go_home(arm); continue; 
+        }
+
+        // 2.3 放置积木
+        if (!move_linear_safe(arm, -0.15)) {
+            RCLCPP_ERROR(node->get_logger(), "❌ 放置下降失败，回原点重新规划放置...");
+            go_home(arm); continue; 
+        }
+        release_gripper(node, 0.08);
+        move_linear_safe(arm, 0.15); // 撤回
+
+        place_finished = true; // 放置成功
+    }
+
     return true; 
 }
 
-// ================= 5. MAIN (重试逻辑核心) =================
+// ================= 5. MAIN =================
 int main(int argc, char** argv) {
     rclcpp::init(argc, argv);
     auto node = rclcpp::Node::make_shared("lego_batch_executor");
@@ -152,35 +206,35 @@ int main(int argc, char** argv) {
     std::thread executor_thread([&executor]() { executor.spin(); });
 
     moveit::planning_interface::MoveGroupInterface arm(node, "panda_arm");
-    moveit::planning_interface::PlanningSceneInterface psi;
+    moveit::planning_interface::PlanningSceneInterface psi; //场景的布置
 
-    // 优化参数
     arm.setPlanningTime(10.0);
     arm.setGoalPositionTolerance(0.01);
 
-    // 清空场景避免碰撞误报
+    // 初始清空场景
+    //std::vector<std::string> object_ids = psi.getKnownObjectNames();
+    // 1. 先彻底清理旧的残留物体
     std::vector<std::string> object_ids = psi.getKnownObjectNames();
-    psi.removeCollisionObjects(object_ids);
+    if (!object_ids.empty()) {
+    psi.removeCollisionObjects(object_ids);}
+
+    //添加桌面约束
+    setup_planning_scene(psi);
 
     RCLCPP_INFO(node->get_logger(), ">>> 系统就绪，监听视觉信号...");
 
     while (rclcpp::ok()) {
         Task current_task;
         if (wait_for_any_task(current_task)) {
-            // 尝试执行任务
-            bool success = execute_single_task(node, arm, current_task);
-
-            if (success) {
-                // 只有成功才删除文件，进入下一个任务
+            // 执行任务（内部包含分阶段重试逻辑）
+            if (execute_single_task(node, arm, current_task)) {
+                // 整个任务（Pick+Place）全部成功后才删除信号文件
                 if (std::filesystem::exists(RESULT_FILE)) {
                     std::filesystem::remove(RESULT_FILE);
-                    RCLCPP_INFO(node->get_logger(), "✅ 任务 [%s] 成功完成，清理信号。", current_task.name.c_str());
+                    RCLCPP_INFO(node->get_logger(), "✅ 任务 [%s] 已彻底完成。", current_task.name.c_str());
                 }
-            } else {
-                // 失败不删除文件，下一轮循环会重新读取 RESULT_FILE 进行重试
-                RCLCPP_WARN(node->get_logger(), "🔁 任务 [%s] 失败，信号文件已保留，即将重新规划重试...", current_task.name.c_str());
-                rclcpp::sleep_for(std::chrono::seconds(2)); // 重试前的缓冲
             }
+            rclcpp::sleep_for(std::chrono::seconds(1));
         }
     }
 

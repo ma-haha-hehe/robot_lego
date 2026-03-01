@@ -1,126 +1,124 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 import numpy as np
 import yaml
 import os
 import copy
 from scipy.spatial.transform import Rotation as R
 
-# ================= 1. 配置逻辑 =================
-# 碰撞检测依然需要一个虚拟空间来判断，我们假设在局部空间进行
-SAFE_RADIUS = 0.045        
-SAFE_Z_DIFF = 0.025        
-TOLERANCE = 0.002          
+# 禁用 YAML 锚点/别名功能，确保输出完整的列表数据
+yaml.Dumper.ignore_aliases = lambda *args: True
+
+# ================= 1. 配置区域 =================
+TABLE_HEIGHT = 0.42       
+ASSEMBLY_CENTER = np.array([0.35, 0.0, TABLE_HEIGHT]) 
+SAFE_RADIUS = 0.045       
+
+SOURCE_LOCATIONS = {
+    "base_4x2_lvl1":    [0.55,  0.25],
+    "support_2x2_left": [0.55,  0.10],
+    "support_2x2_right":[0.55, -0.10],
+    "mid_4x2_lvl3":     [0.55, -0.25],
+    "top_4x2_lvl4":     [0.62,  0.00]
+}
 
 # ================= 2. 工具函数 =================
-
 def to_native(obj):
     if isinstance(obj, (np.integer, int)): return int(obj)
     elif isinstance(obj, (np.floating, float)): return float(obj)
     elif isinstance(obj, (np.ndarray, list)): return [to_native(x) for x in obj]
     else: return obj
 
-def is_blocked_local(test_offset, self_name, other_blocks):
-    """
-    在局部/图纸坐标系下检查碰撞
-    test_offset: 抓取点相对于该积木中心的偏移
-    """
-    tx, ty, tz = test_offset
-    # 这里简单模拟：检查抓取点是否会撞到图纸中已有的其它积木
-    # 实际项目中，这里应结合 place 坐标进行逻辑判断
-    return False 
-
-def get_action_quaternion(yaw_angle=0.0):
-    """
-    生成动作姿态四元数。
-    注意：这里的四元数是相对于物体坐标系的。
-    """
-    # 基础姿态：夹爪垂直向下
-    base = R.from_euler('x', 180, degrees=True) * R.from_euler('z', -45, degrees=True)
-    spin = R.from_euler('z', yaw_angle, degrees=True)
-    final = base * spin 
+def get_quaternion(obj_yaw_deg, grasp_spin_90=False):
+    base = R.from_euler('x', 180, degrees=True)
+    spin = R.from_euler('z', 90 if grasp_spin_90 else 0, degrees=True)
+    obj_rot = R.from_euler('z', obj_yaw_deg, degrees=True)
+    final = base * obj_rot * spin 
     return to_native(final.as_quat().tolist())
 
-# ================= 3. 抓取候选生成 =================
+# ================= 3. 核心：逆向拆卸逻辑 =================
 
-def generate_candidates(dims):
-    """根据积木尺寸生成相对于中心点的偏移组"""
-    dx, dy, dz = dims
-    candidates = []
-    
-    # 针对 2x4 这种长条积木的典型偏移逻辑
-    # 0.4 倍率代表往边缘挪一点
-    x_off = dx * 0.4
-    y_off = dy * 0.4
-    
-    # 优先级 1: 抓长边中心 (Yaw 90 或 0 视具体朝向)
-    candidates.append({"offset": [0, 0, 0], "yaw": 90, "desc": "Center Side"})
-    
-    # 优先级 2: 抓两头
-    candidates.append({"offset": [x_off, 0, 0], "yaw": 0, "desc": "Edge X+"})
-    candidates.append({"offset": [-x_off, 0, 0], "yaw": 0, "desc": "Edge X-"})
-    
-    return candidates
+def check_accessibility(test_pos, scene_blocks, self_name):
+    """ 在拆卸过程中检查：夹爪在 test_pos 处是否会撞到场景中“还没被拆掉”的其他积木 """
+    for blk in scene_blocks:
+        if blk['name'] == self_name: continue
+        ox, oy, oz = blk['abs_pos']
+        dist_xy = np.sqrt((test_pos[0] - ox)**2 + (test_pos[1] - oy)**2)
+        # 只要 Z 轴有重叠或在上方，且平面距离太近，就认为会碰撞
+        if abs(test_pos[2] - oz) < 0.03 and dist_xy < SAFE_RADIUS:
+            return False
+    return True
 
-# ================= 4. 主干逻辑 =================
+def process_blueprint(input_yaml, output_yaml):
+    with open(input_yaml, 'r') as f:
+        blueprint = yaml.safe_load(f)
 
-def process(input_yaml, output_yaml):
-    if not os.path.exists(input_yaml):
-        print(f"❌ 找不到输入文件: {input_yaml}")
-        return
-        
-    with open(input_yaml, 'r') as f: 
-        data = yaml.safe_load(f)
-    
-    # 获取原始积木列表
-    blocks = copy.deepcopy(data.get('blocks', []))
-    
-    # 依然需要根据高度排序，确定装配顺序
-    blocks.sort(key=lambda x: x['pos'][2]) 
-    
-    tasks = []
-    
-    print("🚀 正在生成几何动作序列...")
-    for i, blk in enumerate(blocks):
-        name = blk['name']
-        dims = blk.get('dims', [0.03, 0.03, 0.03])
-        
-        # 1. 获取候选偏移点
-        candidates = generate_candidates(dims)
-        
-        # 2. 简单挑选（这里你可以加入 is_blocked_local 的逻辑）
-        best_cand = candidates[0] 
-        
-        # 3. 构建任务项
-        # pick: 仅存储相对于物体中心的偏移 [dx, dy, dz]
-        # place: 存储 final_product.yaml 里的绝对坐标 [x, y, z] + 偏移
-        
-        raw_pos = blk['pos'] # 图纸里的原始坐标
-        offset = best_cand['offset']
-        
-        # 计算带偏移的放置坐标 (图纸坐标系下)
-        final_place_pos = [
-            raw_pos[0] + offset[0],
-            raw_pos[1] + offset[1],
-            raw_pos[2] + offset[2]
-        ]
+    # 初始状态：所有积木都在场
+    all_blocks = []
+    for b in blueprint.get('blocks', []):
+        b['abs_pos'] = ASSEMBLY_CENTER + np.array(b['pos'])
+        b['abs_pos'][2] = TABLE_HEIGHT + b['pos'][2]
+        all_blocks.append(b)
 
-        tasks.append({
-            "id": i,
+    # 存放拆卸顺序的列表
+    disassembly_tasks = []
+    remaining_blocks = copy.deepcopy(all_blocks)
+
+    print("--- 开始逆向拆卸规划 (从上往下) ---")
+    
+    while len(remaining_blocks) > 0:
+        # 1. 寻找当前剩余积木中最顶层的（Z 最大的）
+        remaining_blocks.sort(key=lambda x: x['abs_pos'][2], reverse=True)
+        target = remaining_blocks[0]
+        name = target['name']
+        
+        # 2. 尝试 0 度和 90 度抓取方案
+        # 在“当前所有积木都在”的情况下检查可达性
+        need_spin_90 = False
+        if not check_accessibility(target['abs_pos'], remaining_blocks, name):
+            need_spin_90 = True
+            print(f"  [拆卸] {name}: 0度受阻，切换90度")
+        else:
+            print(f"  [拆卸] {name}: 0度可达")
+
+        # 3. 记录这个动作
+        rot_rpy = target.get('rotation', [0, 0, 0])
+        obj_yaw = rot_rpy[2] if isinstance(rot_rpy, list) else rot_rpy
+        common_orn = get_quaternion(obj_yaw, need_spin_90)
+        
+        src_xy = SOURCE_LOCATIONS.get(name, [0.5, 0.0])
+        dims = target.get('dims', [0.032, 0.032, 0.03])
+        
+        disassembly_tasks.append({
             "name": name,
-            "strategy": best_cand['desc'],
             "pick": {
-                "pos": to_native(offset), # 相对于物体中心的偏移
-                "orientation": get_action_quaternion(best_cand['yaw'])
+                "pos": to_native([src_xy[0], src_xy[1], TABLE_HEIGHT + dims[2]/2]),
+                "orientation": common_orn
             },
             "place": {
-                "pos": to_native(final_place_pos), # 图纸坐标系下的绝对坐标
-                "orientation": get_action_quaternion(best_cand['yaw'])
-            }
+                "pos": to_native(target['abs_pos'].tolist()),
+                "orientation": common_orn
+            },
+            "relative_offset": [0, 0, 0]
         })
-        print(f"  [OK] {name} -> 策略: {best_cand['desc']}")
 
+        # 4. “拆掉”这块积木，继续规划剩下的
+        remaining_blocks.pop(0)
+
+    # --- 关键：将拆卸序列反转，得到装配序列 ---
+    assembly_tasks = disassembly_tasks[::-1]
+    for i, task in enumerate(assembly_tasks):
+        task['id'] = i  # 重新分配 ID
+
+    # 保存结果，禁止别名
     with open(output_yaml, 'w') as f:
-        yaml.dump({"tasks": tasks}, f, sort_keys=False)
-    print(f"\n✅ 纯几何任务清单已生成: {output_yaml}")
+        yaml.dump({"tasksh": assembly_tasks}, f, default_flow_style=None, sort_keys=False)
+    
+    print(f"\n✅ 逆向规划完成！输出文件: {output_yaml}")
 
 if __name__ == "__main__":
-    process("final_product.yaml", "tasks.yaml")
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    input_file = os.path.join(base_dir, "final_product_simple.yaml")
+    output_file = os.path.join(base_dir, "tasksh.yaml")
+    process_blueprint(input_file, output_file)
