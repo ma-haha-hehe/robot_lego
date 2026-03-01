@@ -36,25 +36,52 @@ bool go_home(moveit::planning_interface::MoveGroupInterface& arm) {
     return (result == moveit::core::MoveItErrorCode::SUCCESS);
 }
 
+#include <filesystem>
+#include <fstream>
+#include <yaml-cpp/yaml.h>
+
 // ================= 1. YAML 监听逻辑 =================
 bool wait_for_any_task(Task& current_task) {
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "等待视觉节点发送信号 (active_task.yaml)...");
+
     while (rclcpp::ok()) {
         if (std::filesystem::exists(RESULT_FILE)) {
             try {
+                // 1. 加载文件
                 YAML::Node res = YAML::LoadFile(RESULT_FILE);
                 current_task.name = res["name"].as<std::string>();
+
+                // 2. 修改 fill_pose：从 YAML 中动态读取四元数
                 auto fill_pose = [](YAML::Node node, geometry_msgs::msg::Pose& pose) {
+                    // 读取位置 (pos)
                     pose.position.x = node["pos"][0].as<double>();
                     pose.position.y = node["pos"][1].as<double>();
                     pose.position.z = node["pos"][2].as<double>();
-                    pose.orientation.x = 1.0; pose.orientation.y = 0.0;
-                    pose.orientation.z = 0.0; pose.orientation.w = 0.0;
+
+                    // 读取方向 (orientation: [x, y, z, w])
+                    // 注意：Python 的 scipy 导出的顺序通常是 [x, y, z, w]
+                    pose.orientation.x = node["orientation"][0].as<double>();
+                    pose.orientation.y = node["orientation"][1].as<double>();
+                    pose.orientation.z = node["orientation"][2].as<double>();
+                    pose.orientation.w = node["orientation"][3].as<double>();
                 };
+
                 fill_pose(res["pick"], current_task.pick_pose);
                 fill_pose(res["place"], current_task.place_pose);
+
+                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "✅ 收到任务: %s", current_task.name.c_str());
+
+                // 3. 【重要】消费掉该文件，实现握手信号机制
+                // 这样 vision_node.py 就会停止等待，开始寻找下一个物体
+                std::filesystem::remove(RESULT_FILE);
+                
                 return true;
-            } catch (...) {}
+
+            } catch (const std::exception& e) {
+                RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "解析 YAML 失败: %s", e.what());
+            }
         }
+        // 降低 CPU 占用
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
     return false;
