@@ -163,49 +163,45 @@ class RobotVisionNode:
 
     def send_to_robot(self, name, T_cam_obj, task_cfg):
         """ 
-        重点逻辑说明：
-        1. Pick Pos: 始终等于视觉得出的物体中心 (Vision Position)，不改变。
-        2. Pick Orientation: 结合视觉偏航角与任务预设。
+        排除法版本逻辑：
+        1. Pick Pos: 视觉实时解算的中心点 (保持你的要求：不改变)
+        2. Pick Orientation: 直接复制 tasks.yaml 里的值 (不再叠加视觉检测的角度)
+        3. Place Pos: 原始逻辑 (ASSEMBLY_CENTER_BASE + 任务偏移)
+        4. Place Orientation: 直接复制 tasks.yaml 里的值
         """
-        # A. 计算视觉识别结果在机器人基座系下的坐标
+        # A. 提取视觉中心位置 (Vision Position)
         T_base_vision = self.T_base_camera @ T_cam_obj
-        
-        # 获取纯净的视觉中心坐标 (X, Y, Z)
         vision_pick_pos = T_base_vision[:3, 3].tolist() 
 
-        # B. 提取视觉偏航角 (Yaw)
-        r_vision = R.from_matrix(T_base_vision[:3, :3])
-        detected_yaw = r_vision.as_euler('zyx', degrees=False)[0]
+        # B. 从任务表中直接读取预设姿态 (Orientation)
+        # 这包含了你在 plan.py 里定好的 [Roll=180, Pitch=0, Yaw=0/90]
+        yaml_pick_orn = task_cfg['pick']['orientation']
+        yaml_place_orn = task_cfg['place']['orientation']
 
-        # C. 提取任务表预设偏航角 (来自 plan.py 的 0/90度决策)
-        yaml_pick_quat = task_cfg['pick']['orientation']
-        yaml_yaw = R.from_quat(yaml_pick_quat).as_euler('zyx', degrees=False)[0]
-
-        # D. 合成最终姿态：强制锁定 Roll=180, Pitch=0，只叠加旋转角
-        final_yaw = detected_yaw + yaml_yaw
-        r_final = R.from_euler('xyz', [np.pi, 0, final_yaw], degrees=False)
-        final_quat = r_final.as_quat().tolist()
-
-        # E. Place 坐标逻辑：基准 + 规划偏移
+        # C. 计算放置位置 (Place Position)
+        # 保持你原始的逻辑：基准中心 + 规划中的相对偏移
         original_place_pos = (ASSEMBLY_CENTER_BASE + np.array(task_cfg['place']['pos'])).tolist()
 
+        # D. 封装数据发送
         data = {
             'name': name,
             'pick': {
-                'pos': vision_pick_pos,      # ！！！此处就是你要的视觉原始中心，没有任何改变
-                'orientation': final_quat 
+                'pos': vision_pick_pos,       # 听视觉的
+                'orientation': yaml_pick_orn  # 完全听 tasks.yaml 的
             },
             'place': {
-                'pos': original_place_pos, 
-                'orientation': final_quat 
+                'pos': original_place_pos,    # 听原始逻辑的
+                'orientation': yaml_place_orn # 完全听 tasks.yaml 的
             }
         }
         
         with open(RESULT_FILE, 'w') as f:
             yaml.dump(data, f)
             
-        print(f"✅ 信号已发送：Pick Pos 使用实时视觉中心 {vision_pick_pos}")
+        print(f"⚠️ 模式：姿态锁定。Pick 使用视觉中心，但姿态完全遵循 YAML 规划。")
+        print(f"   - 发送的 Pick 坐标: {vision_pick_pos}")
         
+        # 等待 C++ 节点处理
         while os.path.exists(RESULT_FILE):
             time.sleep(0.5)
 
