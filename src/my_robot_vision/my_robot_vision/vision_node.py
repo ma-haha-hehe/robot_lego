@@ -22,7 +22,8 @@ RESULT_FILE = "/shared_data/active_task.yaml"
 TASKS_YAML = "/vision_code/tasks.yaml"        
 CAMERA_PARAMS_YAML = "/vision_code/camera_params.yaml" 
 MESH_DIR = "/FoundationPose/meshes"           
-ASSEMBLY_CENTER_BASE = np.array([0.25, 0, 0.0]) # 原始代码中的组装区基准
+# 组装区基准：用于 Place 坐标计算
+ASSEMBLY_CENTER_BASE = np.array([0.25, 0, 0.0]) 
 
 if FP_REPO not in sys.path:
     sys.path.append(FP_REPO)
@@ -72,7 +73,9 @@ class RobotVisionNode:
         self.T_base_camera = np.array(params['extrinsic_matrix']).reshape(4, 4)
         
         with open(TASKS_YAML, 'r') as f:
-            self.task_list = yaml.safe_load(f)['tasks']
+            # 读取任务列表，注意键名需与你的 plan 生成的文件一致
+            data = yaml.safe_load(f)
+            self.task_list = data.get('tasksh', data.get('tasks', []))
 
         self.init_realsense()
         self.detector = pipeline(model="IDEA-Research/grounding-dino-tiny", task="zero-shot-object-detection", device="cuda")
@@ -96,7 +99,7 @@ class RobotVisionNode:
     def run(self):
         for task in self.task_list:
             name = task['name']
-            print(f"\n" + "="*60 + f"\n🎯 当前任务: {name}")
+            print(f"\n" + "="*60 + f"\n🎯 正在识别: {name}")
             
             mesh_path = self.get_mesh_path(name)
             self.pose_est.update_mesh(mesh_path)
@@ -160,37 +163,36 @@ class RobotVisionNode:
 
     def send_to_robot(self, name, T_cam_obj, task_cfg):
         """ 
-        核心逻辑：
-        1. Pick Pos: 视觉实时中心
-        2. Pick Orn: 强制 Roll=180, Pitch=0, Yaw = 视觉偏差 + 任务表预设 (0或90)
-        3. Place Pos: 原始逻辑 (ASSEMBLY_CENTER_BASE + 任务偏移)
-        4. Place Orn: 与 Pick 保持一致
+        重点逻辑说明：
+        1. Pick Pos: 始终等于视觉得出的物体中心 (Vision Position)，不改变。
+        2. Pick Orientation: 结合视觉偏航角与任务预设。
         """
-        # A. 提取视觉实时位姿
+        # A. 计算视觉识别结果在机器人基座系下的坐标
         T_base_vision = self.T_base_camera @ T_cam_obj
+        
+        # 获取纯净的视觉中心坐标 (X, Y, Z)
+        vision_pick_pos = T_base_vision[:3, 3].tolist() 
+
+        # B. 提取视觉偏航角 (Yaw)
         r_vision = R.from_matrix(T_base_vision[:3, :3])
-        # 视觉检测到的 Yaw (弧度)
         detected_yaw = r_vision.as_euler('zyx', degrees=False)[0]
 
-        # B. 提取任务表预设 Yaw (0度或90度避障决策)
+        # C. 提取任务表预设偏航角 (来自 plan.py 的 0/90度决策)
         yaml_pick_quat = task_cfg['pick']['orientation']
         yaml_yaw = R.from_quat(yaml_pick_quat).as_euler('zyx', degrees=False)[0]
 
-        # C. 合成最终姿态：强制锁定垂直，只累加 Yaw
-        # 这里就是你要求的：不管视觉怎么歪，Roll=pi, Pitch=0 必须死守 
+        # D. 合成最终姿态：强制锁定 Roll=180, Pitch=0，只叠加旋转角
         final_yaw = detected_yaw + yaml_yaw
         r_final = R.from_euler('xyz', [np.pi, 0, final_yaw], degrees=False)
         final_quat = r_final.as_quat().tolist()
 
-        # D. 计算坐标
-        vision_pick_pos = T_base_vision[:3, 3].tolist()
-        # Place 坐标：基准 + 规划偏移
+        # E. Place 坐标逻辑：基准 + 规划偏移
         original_place_pos = (ASSEMBLY_CENTER_BASE + np.array(task_cfg['place']['pos'])).tolist()
 
         data = {
             'name': name,
             'pick': {
-                'pos': vision_pick_pos, 
+                'pos': vision_pick_pos,      # ！！！此处就是你要的视觉原始中心，没有任何改变
                 'orientation': final_quat 
             },
             'place': {
@@ -202,7 +204,7 @@ class RobotVisionNode:
         with open(RESULT_FILE, 'w') as f:
             yaml.dump(data, f)
             
-        print(f"✅ 信号已发送：视觉修正角 {np.degrees(detected_yaw):.1f}° 已应用。姿态锁定为垂直向下。")
+        print(f"✅ 信号已发送：Pick Pos 使用实时视觉中心 {vision_pick_pos}")
         
         while os.path.exists(RESULT_FILE):
             time.sleep(0.5)
