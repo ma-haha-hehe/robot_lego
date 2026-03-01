@@ -149,66 +149,66 @@ class RobotVisionNode:
                 self.send_to_robot(name, pose_samples[-1], task)
 
     def visualize_result(self, image, T_cam_obj):
+        """ 综合可视化：绘制姿态轴并在画面上标注实时数值 """
         length = 0.05
         axis_pts_3d = np.float32([[0,0,0], [length,0,0], [0,length,0], [0,0,length]])
+        
+        # 转换到相机系下的 2D 投影点
         pts_cam = (T_cam_obj[:3, :3] @ axis_pts_3d.T).T + T_cam_obj[:3, 3]
         pts_2d = []
         for p in pts_cam:
             u = int(self.K_MATRIX[0,0] * p[0]/p[2] + self.K_MATRIX[0,2])
             v = int(self.K_MATRIX[1,1] * p[1]/p[2] + self.K_MATRIX[1,2])
             pts_2d.append((u, v))
-        cv2.line(image, pts_2d[0], pts_2d[1], (0,0,255), 2)
-        cv2.line(image, pts_2d[0], pts_2d[2], (0,255,0), 2)
-        cv2.line(image, pts_2d[0], pts_2d[3], (255,0,0), 2)
+        
+        # 1. 绘制 RGB 坐标轴
+        cv2.line(image, pts_2d[0], pts_2d[1], (0,0,255), 2) # X - 红
+        cv2.line(image, pts_2d[0], pts_2d[2], (0,255,0), 2) # Y - 绿
+        cv2.line(image, pts_2d[0], pts_2d[3], (255,0,0), 2) # Z - 蓝
+
+        # 2. 计算物体的 Base 坐标和偏航角用于画面显示
+        T_base_vision = self.T_base_camera @ T_cam_obj
+        bx, by, bz = T_base_vision[:3, 3]
+        r_vision = R.from_matrix(T_base_vision[:3, :3])
+        yaw_deg = np.degrees(r_vision.as_euler('zyx', degrees=False)[0])
+
+        # 3. 在画面左上角实时绘制调试文字 
+        info_txt = f"X:{bx:.3f} Y:{by:.3f} Z:{bz:.3f} Yaw:{yaw_deg:.1f}deg"
+        cv2.putText(image, info_txt, (20, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 0), 2)
+        cv2.circle(image, pts_2d[0], 4, (255, 255, 255), -1)
 
     def send_to_robot(self, name, T_cam_obj, task_cfg):
-        """ 
-        核心逻辑：
-        1. Pick Pos: 视觉实时中心 (Vision Center)
-        2. Pick Orn: 完全听从视觉检测到的 Yaw (锁定垂直向下)
-        3. Place Pos: 原始逻辑 (ASSEMBLY_CENTER_BASE + 任务偏移)
-        4. Place Orn: 与抓取时一致 (完全听从视觉检测到的 Yaw)
-        """
-        # A. 提取视觉实时位姿并转换到机器人基座坐标系
+        """ 坐标变换、发送信号并打印详细调试信息 """
         T_base_vision = self.T_base_camera @ T_cam_obj
         r_vision = R.from_matrix(T_base_vision[:3, :3])
         
-        # 提取视觉检测到的实时偏航角 (Yaw) 
-        # 忽略任务表里的任何角度建议，只看现场看到的
+        # 提取位置和旋转
+        vision_pick_pos = T_base_vision[:3, 3].tolist()
         detected_yaw = r_vision.as_euler('zyx', degrees=False)[0]
+        yaw_deg = np.degrees(detected_yaw)
 
-        # B. 【核心修改】构造姿态：强制锁定垂直，Yaw 完全取自视觉
-        # Roll = pi (180度), Pitch = 0, Yaw = detected_yaw
-        # 这样能保证夹爪永远垂直，且完全对齐视觉看到的积木角度
+        # 锁定垂直姿态并生成四元数
         r_final = R.from_euler('xyz', [np.pi, 0, detected_yaw], degrees=False)
         final_quat = r_final.as_quat().tolist()
 
-        # C. 提取位置信息
-        vision_pick_pos = T_base_vision[:3, 3].tolist() # 视觉中心点
-        
-        # Place 坐标保持原始逻辑：基准 + YAML 中的相对偏移量
-        original_place_pos = (ASSEMBLY_CENTER_BASE + np.array(task_cfg['place']['pos'])).tolist()
+        # 打印调试信息到终端
+        print(f"\n--- 🛠️  调试信息: {name} ---")
+        print(f"📍 中心坐标 (Base系): [X: {vision_pick_pos[0]:.4f}, Y: {vision_pick_pos[1]:.4f}, Z: {vision_pick_pos[2]:.4f}]")
+        print(f"🔄 旋转角度 (Yaw): {yaw_deg:.2f}° (相对于STL模型 $0^\circ$ 状态)")
+        print(f"📦 最终四元数 [x,y,z,w]: {final_quat}")
+        print(f"---------------------------------\n")
 
-        # D. 构造最终数据
+        # 构造并保存任务
+        original_place_pos = (ASSEMBLY_CENTER_BASE + np.array(task_cfg['place']['pos'])).tolist()
         data = {
             'name': name,
-            'pick': {
-                'pos': vision_pick_pos,      # 听视觉的
-                'orientation': final_quat     # 听视觉的 (锁定垂直)
-            },
-            'place': {
-                'pos': original_place_pos,    # 听原始逻辑的
-                'orientation': final_quat     # 听视觉的 (保证放下的角度和抓的时候一样)
-            }
+            'pick': {'pos': vision_pick_pos, 'orientation': final_quat},
+            'place': {'pos': original_place_pos, 'orientation': final_quat}
         }
         
         with open(RESULT_FILE, 'w') as f:
             yaml.dump(data, f)
-            
-        print(f"✅ 视觉全驱动模式：已应用检测角度 {np.degrees(detected_yaw):.1f}°")
-        print(f"   - 抓取位置: {vision_pick_pos}")
         
-        # 等待 C++ 节点读取文件并执行
         while os.path.exists(RESULT_FILE):
             time.sleep(0.5)
 
