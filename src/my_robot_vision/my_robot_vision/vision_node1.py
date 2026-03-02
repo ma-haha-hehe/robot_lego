@@ -163,9 +163,12 @@ class RobotVisionNode:
                 self.send_to_robot(name, pose_samples[-1], task)
 
     def visualize_result(self, image, T_cam_obj):
-        # --- 1. 投影绘制坐标轴 (保持不变，因为你确认它是对的) ---
+        """ 综合可视化：绘制姿态轴并显示修正后的实时数值 """
         length = 0.05
+        # 定义 3D 坐标轴端点 (X-红, Y-绿, Z-蓝)
         axis_pts_3d = np.float32([[0,0,0], [length,0,0], [0,length,0], [0,0,length]])
+        
+        # 1. 投影 3D 点到图像平面
         pts_cam = (T_cam_obj[:3, :3] @ axis_pts_3d.T).T + T_cam_obj[:3, 3]
         pts_2d = []
         for p in pts_cam:
@@ -173,47 +176,72 @@ class RobotVisionNode:
             v = int(self.K_MATRIX[1,1] * p[1]/p[2] + self.K_MATRIX[1,2])
             pts_2d.append((u, v))
         
-        cv2.line(image, pts_2d[0], pts_2d[1], (0,0,255), 3) # 红轴 (X)
-        cv2.line(image, pts_2d[0], pts_2d[2], (0,255,0), 2) # 绿轴 (Y)
-        cv2.line(image, pts_2d[0], pts_2d[3], (255,0,0), 2) # 蓝轴 (Z)
+        # 绘制轴线
+        cv2.line(image, pts_2d[0], pts_2d[1], (0,0,255), 2) # X轴
+        cv2.line(image, pts_2d[0], pts_2d[2], (0,255,0), 2) # Y轴
+        cv2.line(image, pts_2d[0], pts_2d[3], (255,0,0), 2) # Z轴
 
-        # --- 2. 严格按照“红轴投影”计算 Yaw ---
+        # 2. 核心：计算修正后的 Yaw 角度用于显示
         T_base_vision = self.T_base_camera @ T_cam_obj
-        R_base_obj = T_base_vision[:3, :3]
-        
-        # 提取红轴在基座下的 X 和 Y 分量
-        red_axis_x = R_base_obj[0, 0]
-        red_axis_y = R_base_obj[1, 0]
-        
-        # 使用 atan2 计算红轴相对于机器人基座 X 轴的角度
-        raw_yaw_deg = np.degrees(np.arctan2(red_axis_y, red_axis_x))
-        
-        # 归一化处理：针对 180 度对称性稳定读数 (不改变方向)
-        stable_yaw_deg = ((raw_yaw_deg + 90) % 180) - 90
-
-        # --- 3. 显示位姿数据 ---
         bx, by, bz = T_base_vision[:3, 3]
-        info_txt = f"X:{bx:.3f} Y:{by:.3f} Z:{bz:.3f} Yaw:{stable_yaw_deg:.1f}deg"
-        cv2.putText(image, info_txt, (20, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 0), 2)
+        r_vision = R.from_matrix(T_base_vision[:3, :3])
+        raw_yaw = r_vision.as_euler('zyx', degrees=True)[0]
+        
+        # 角度修正逻辑：补偿 90 度偏差并利用 180 度对称性
+        corrected_yaw = ((raw_yaw + 90 + 90) % 180) - 90
+
+        # 3. 画面标注调试文字 
+        info_txt = f"X:{bx:.3f} Y:{by:.3f} Z:{bz:.3f} Yaw:{corrected_yaw:.1f}deg"
+        cv2.putText(image, info_txt, (20, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 0), 2)
+        cv2.circle(image, pts_2d[0], 4, (255, 255, 255), -1)
 
     def send_to_robot(self, name, T_cam_obj, task_cfg):
+        """ 
+        核心指令下发逻辑：
+        1. 严格按照检测出的红轴(视觉X)作为长边(STL X)提取角度。
+        2. Pick 位姿：基于视觉实时检测。
+        3. Place 位姿：基于物理组装中心基准 + 蓝图相对坐标。
+        """
+        # --- 1. 坐标系转换：从相机系转到机器人基座(Base)系 ---
         T_base_vision = self.T_base_camera @ T_cam_obj
+        
+        # 提取位置 (Pick Position)
+        vision_center_pos = T_base_vision[:3, 3].tolist() 
+        
+        # 提取旋转矩阵 (3x3)
         R_base_obj = T_base_vision[:3, :3]
 
-        # 1. 严格提取红轴偏角
+        # --- 2. 角度提取：严格计算红轴(物体X轴)相对于基座X轴的角度 ---
+        # 原理：R_base_obj 的第一列 [R00, R10, R20] 就是物体红轴在基座下的方向向量。
+        # 我们使用 atan2(Y分量, X分量) 得到其在水平面上的投影角度。
         raw_yaw_rad = np.arctan2(R_base_obj[1, 0], R_base_obj[0, 0])
         raw_yaw_deg = np.degrees(raw_yaw_rad)
-        
-        # 2. 归一化 (让 -179.9 变为 0.1 这种稳定数值)
+
+        # --- 3. 归一化处理：解决 180 度对称性导致的数值跳变 ---
+        # 逻辑：对于 4x2 积木，长边指向前方(0°)和后方(180°)在抓取上是等效的。
+        # 此公式将角度强制锁定在 [-90, 90] 区间，解决如 -179.9° 突变为 0.1° 的问题。
         stable_yaw_deg = ((raw_yaw_deg + 90) % 180) - 90
-        final_yaw_rad = np.radians(stable_yaw_deg)
+        final_detected_yaw_rad = np.radians(stable_yaw_deg)
 
-        # 3. 混合任务旋转 (0或90度) 并生成四元数
+        # --- 4. 合成抓取姿态 (Pick Orientation) ---
+        # 策略：锁定夹爪垂直向下 (Rx=180°) + 现场检测到的 Yaw 角 + 任务指定的额外旋转
         grasp_spin_rad = np.radians(task_cfg.get('grasp_spin', 0))
-        pick_quat = R.from_euler('xyz', [np.pi, 0, final_yaw_rad + grasp_spin_rad]).as_quat().tolist()
+        final_pick_yaw = final_detected_yaw_rad + grasp_spin_rad
+        
+        # 生成四元数 [x, y, z, w]
+        pick_quat = R.from_euler('xyz', [np.pi, 0, final_pick_yaw], degrees=False).as_quat().tolist()
 
-        # 4. 下发位置 (Pick Position)
-        pick_pos = T_base_vision[:3, 3].tolist()
+        # --- 5. 计算放置位姿 (Place Pose) ---
+        # 5.1 位置 = 物理组装区中心 + 蓝图定义的相对偏移
+        rel_pos = np.array(task_cfg['place']['pos'])
+        final_place_pos = (ASSEMBLY_CENTER_BASE + rel_pos).tolist()
+
+        # 5.2 姿态 = 锁定垂直向下 + 蓝图定义的 Yaw 角
+        blueprint_orientation = task_cfg['place']['orientation']
+        # 如果蓝图给的是 [R, P, Y] 列表，取最后一个值；如果是单个数值，直接使用。
+        blueprint_yaw = blueprint_orientation[2] if isinstance(blueprint_orientation, list) else blueprint_orientation
+        place_quat = R.from_euler('xyz', [np.pi, 0, np.radians(blueprint_yaw)], degrees=False).as_quat().tolist()
+
         # --- 6. 生成并下发 YAML 指令 ---
         data = {
             'name': name,
@@ -240,7 +268,7 @@ class RobotVisionNode:
         # 握手逻辑：等待 C++ 节点读取并删除该文件后，再继续下一个任务
         while os.path.exists(RESULT_FILE):
             time.sleep(0.5)
-
+            
     def get_mesh_path(self, task_name):
         """ 根据任务名关键字自动匹配对应的 STL 模型文件 """
         keyword = "4x2" if "2x4" in task_name or "4x2" in task_name else "2x2"
