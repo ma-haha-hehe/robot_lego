@@ -197,64 +197,78 @@ class RobotVisionNode:
 
     def send_to_robot(self, name, T_cam_obj, task_cfg):
         """ 
-        核心融合逻辑：
-        Pick = 视觉现实位姿 + 修正补偿
-        Place = 物理中心基准 + 蓝图设计数据
+        核心指令下发逻辑：
+        1. 严格按照检测出的红轴(视觉X)作为长边(STL X)提取角度。
+        2. Pick 位姿：基于视觉实时检测。
+        3. Place 位姿：基于物理组装中心基准 + 蓝图相对坐标。
         """
-        # 1. 转换到 Robot Base 坐标系
+        # --- 1. 坐标系转换：从相机系转到机器人基座(Base)系 ---
         T_base_vision = self.T_base_camera @ T_cam_obj
-        vision_center_pos = T_base_vision[:3, 3].tolist() # 抓取位置：以视觉中心为准
         
-        # 2. 提取并修正视觉偏航角 (Yaw)
-        r_vision = R.from_matrix(T_base_vision[:3, :3])
-        raw_yaw_deg = r_vision.as_euler('zyx', degrees=True)[0]
+        # 提取位置 (Pick Position)
+        vision_center_pos = T_base_vision[:3, 3].tolist() 
         
-        # --- 核心修正点 ---
-        # 补偿 90 度定义差 (由于红轴在短边而 STL X 在长边)
-        # 并通过模运算处理 180 度对称性，解决 -179.9 度跳变问题
-        corrected_yaw_deg = ((raw_yaw_deg + 90 + 90) % 180) - 90 
-        final_detected_yaw_rad = np.radians(corrected_yaw_deg)
+        # 提取旋转矩阵 (3x3)
+        R_base_obj = T_base_vision[:3, :3]
 
-        # 3. 合成 Pick Orientation (机械臂抓取姿态)
-        # 逻辑：锁定垂直向下 (Rx=180°) + 现场修正角 + Planner 决策的 0/90° 旋转
+        # --- 2. 角度提取：严格计算红轴(物体X轴)相对于基座X轴的角度 ---
+        # 原理：R_base_obj 的第一列 [R00, R10, R20] 就是物体红轴在基座下的方向向量。
+        # 我们使用 atan2(Y分量, X分量) 得到其在水平面上的投影角度。
+        raw_yaw_rad = np.arctan2(R_base_obj[1, 0], R_base_obj[0, 0])
+        raw_yaw_deg = np.degrees(raw_yaw_rad)
+
+        # --- 3. 归一化处理：解决 180 度对称性导致的数值跳变 ---
+        # 逻辑：对于 4x2 积木，长边指向前方(0°)和后方(180°)在抓取上是等效的。
+        # 此公式将角度强制锁定在 [-90, 90] 区间，解决如 -179.9° 突变为 0.1° 的问题。
+        stable_yaw_deg = ((raw_yaw_deg + 90) % 180) - 90
+        final_detected_yaw_rad = np.radians(stable_yaw_deg)
+
+        # --- 4. 合成抓取姿态 (Pick Orientation) ---
+        # 策略：锁定夹爪垂直向下 (Rx=180°) + 现场检测到的 Yaw 角 + 任务指定的额外旋转
         grasp_spin_rad = np.radians(task_cfg.get('grasp_spin', 0))
         final_pick_yaw = final_detected_yaw_rad + grasp_spin_rad
+        
+        # 生成四元数 [x, y, z, w]
         pick_quat = R.from_euler('xyz', [np.pi, 0, final_pick_yaw], degrees=False).as_quat().tolist()
 
-        # 4. 计算 Place Pose (放置目标)
-        # 逻辑：完全遵循蓝图相对坐标，叠加物理组装区的绝对位置
+        # --- 5. 计算放置位姿 (Place Pose) ---
+        # 5.1 位置 = 物理组装区中心 + 蓝图定义的相对偏移
         rel_pos = np.array(task_cfg['place']['pos'])
         final_place_pos = (ASSEMBLY_CENTER_BASE + rel_pos).tolist()
 
-        # 放置角度：遵循蓝图设计值，强制锁定垂直向下
-        blueprint_rpy = task_cfg['place']['orientation']
-        blueprint_yaw = blueprint_rpy[2] if isinstance(blueprint_rpy, list) else blueprint_rpy
+        # 5.2 姿态 = 锁定垂直向下 + 蓝图定义的 Yaw 角
+        blueprint_orientation = task_cfg['place']['orientation']
+        # 如果蓝图给的是 [R, P, Y] 列表，取最后一个值；如果是单个数值，直接使用。
+        blueprint_yaw = blueprint_orientation[2] if isinstance(blueprint_orientation, list) else blueprint_orientation
         place_quat = R.from_euler('xyz', [np.pi, 0, np.radians(blueprint_yaw)], degrees=False).as_quat().tolist()
 
-        # 5. 生成 YAML 指令并落盘 (握手交互)
+        # --- 6. 生成并下发 YAML 指令 ---
         data = {
             'name': name,
             'pick': {
-                'pos': vision_center_pos,      # 修正后的中心点
-                'orientation': pick_quat       # 修正后的四元数
+                'pos': vision_center_pos,
+                'orientation': pick_quat
             },
             'place': {
-                'pos': final_place_pos,        # 目标位置
-                'orientation': place_quat      # 目标角度
+                'pos': final_place_pos,
+                'orientation': place_quat
             }
         }
         
         with open(RESULT_FILE, 'w') as f:
             yaml.dump(data, f)
             
-        print(f"✅ 指令已下发！")
-        print(f"   [Pick] 视觉原始: {raw_yaw_deg:.1f}°, 修正后: {corrected_yaw_deg:.1f}°")
-        print(f"   [Place] 目标坐标: {final_place_pos}")
+        print(f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+        print(f"✅ 指令已生成: {name}")
+        print(f"📍 Pick  Pos: [{vision_center_pos[0]:.3f}, {vision_center_pos[1]:.3f}, {vision_center_pos[2]:.3f}]")
+        print(f"🌀 Pick  Yaw: {stable_yaw_deg:.2f}° (原始红轴读数: {raw_yaw_deg:.2f}°)")
+        print(f"🎯 Place Pos: [{final_place_pos[0]:.3f}, {final_place_pos[1]:.3f}, {final_place_pos[2]:.3f}]")
+        print(f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
         
-        # 阻塞等待 C++ 节点消费文件 (握手机制)
+        # 握手逻辑：等待 C++ 节点读取并删除该文件后，再继续下一个任务
         while os.path.exists(RESULT_FILE):
             time.sleep(0.5)
-
+            
     def get_mesh_path(self, task_name):
         """ 根据任务名关键字自动匹配对应的 STL 模型文件 """
         keyword = "4x2" if "2x4" in task_name or "4x2" in task_name else "2x2"
