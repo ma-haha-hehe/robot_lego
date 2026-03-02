@@ -96,7 +96,7 @@ void setup_planning_scene(moveit::planning_interface::PlanningSceneInterface& ps
     table_pose.orientation.w = 1.0;
     table_pose.position.x = 0.0;
     table_pose.position.y = 0.0;
-    table_pose.position.z = -0.051; // 顶部表面恰好在 Z = 0 略下方
+    table_pose.position.z = 0.07; // 顶部表面恰好在 Z = 0 略下方
 
     table.primitives.push_back(primitive);
     table.primitive_poses.push_back(table_pose);
@@ -168,7 +168,7 @@ bool execute_single_task(rclcpp::Node::SharedPtr node,
                          const Task& task) {
     RCLCPP_INFO(node->get_logger(), "🚀 开始任务流程: %s", task.name.c_str());
 
-    const double OFFSET_Z = 0.15;    // 悬停偏移高度
+    const double OFFSET_Z = 0.15+GRIPPER_HEIGHT;//停偏移高度
     const double NORMAL_SPEED = 0.2; // 正常速度
     const double SLOW_SPEED = 0.01;  // 慢速下降速度
 
@@ -190,7 +190,7 @@ bool execute_single_task(rclcpp::Node::SharedPtr node,
         release_gripper(node, 0.08);
 
         RCLCPP_INFO(node->get_logger(), "⬇️ 线性下降中...");
-        if (!move_linear(arm, -OFFSET_Z, NORMAL_SPEED, NORMAL_SPEED)) {
+        if (!move_linear(arm, -0.15, NORMAL_SPEED, NORMAL_SPEED)) {
             RCLCPP_ERROR(node->get_logger(), "❌ 线性下降失败，重试...");
             go_home(arm); continue;
         }
@@ -220,7 +220,7 @@ bool execute_single_task(rclcpp::Node::SharedPtr node,
         }
 
         RCLCPP_INFO(node->get_logger(), "⬇️ 慢速下降放置中 (Speed: %.2f)...", SLOW_SPEED);
-        if (!move_linear(arm, -OFFSET_Z, SLOW_SPEED, SLOW_SPEED)) {
+        if (!move_linear(arm, -0.15,SLOW_SPEED,SLOW_SPEED)){
             RCLCPP_ERROR(node->get_logger(), "❌ 放置下降失败，重试...");
             go_home(arm); continue; 
         }
