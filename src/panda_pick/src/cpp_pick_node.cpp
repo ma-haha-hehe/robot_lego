@@ -140,88 +140,159 @@ bool release_gripper(rclcpp::Node::SharedPtr node, double width) {
     return true;
 }
 
-// ================= 3. 线性移动 (带失败检查) =================
-bool move_linear_safe(moveit::planning_interface::MoveGroupInterface& arm, double z_delta) {
+// ================= 1. 核心工具：链式线性规划 (含速度缩放) =================
+// 作用：基于一个“虚拟”的起始状态规划直线路径，并应用 IPTP 时间参数化
+bool plan_linear_chain(moveit::planning_interface::MoveGroupInterface& arm,
+                       const moveit::core::RobotState& start_state,
+                       double z_delta, double vel_scale,
+                       moveit_msgs::msg::RobotTrajectory& trajectory_msg) {
+    
+    // 创建虚拟起始状态
+    moveit::core::RobotStatePtr virtual_start_state(new moveit::core::RobotState(start_state));
+    
+    // 计算目标位姿
+    std::vector<geometry_msgs::msg::Pose> waypoints;
+    geometry_msgs::msg::Pose start_pose;
+    tf2::fromMsg(virtual_start_state->getGlobalLinkTransform(arm.getEndEffectorLink()), start_pose);
+    
+    geometry_msgs::msg::Pose target_pose = start_pose;
+    target_pose.position.z += z_delta;
+    waypoints.push_back(target_pose);
+
+    // 计算笛卡尔路径 (必须 100% 成功，即 fraction == 1.0)
+    // 这样如果下降会撞到 Z=0 的桌面或者撞到关节极限，规划就会直接返回 false
+    double fraction = arm.computeCartesianPath(waypoints, 0.005, 0.0, trajectory_msg, true);
+    if (fraction < 1.0) return false;
+
+    // 应用你原有的 IPTP 时间参数化逻辑进行速度/加速度缩放
+    robot_trajectory::RobotTrajectory rt(arm.getRobotModel(), arm.getName());
+    rt.setRobotTrajectoryMsg(*virtual_start_state, trajectory_msg);
+    trajectory_processing::IterativeParabolicTimeParameterization iptp;
+    
+    return iptp.computeTimeStamps(rt, vel_scale, vel_scale) && (rt.getRobotTrajectoryMsg(trajectory_msg), true);
+}
+
+// ================= 2. 完善后的执行函数 (全流程闭环) =================
+bool execute_single_task(rclcpp::Node::SharedPtr node,
+                         moveit::planning_interface::MoveGroupInterface& arm,
+                         const Task& task) {
+    RCLCPP_INFO(node->get_logger(), "🚀 开始全序列模拟规划: %s", task.name.c_str());
+
+    const double HOVER_Z = 0.15;
+    const double SPEED_NORMAL = 0.2;
+    const double SPEED_SLOW = 0.01; // 你要求的放置下降慢速
+
+    // ------------------- 阶段一：Pick 序列 (验证 Hover->Down->Up) -------------------
+    bool pick_ok = false;
+    while (!pick_ok && rclcpp::ok()) {
+        arm.setStartStateToCurrentState();
+        
+        // 1.1 规划 Hover 点
+        geometry_msgs::msg::Pose h_pick = task.pick_pose;
+        h_pick.position.z += HOVER_Z;
+        arm.setPoseTarget(h_pick);
+        moveit::planning_interface::MoveGroupInterface::Plan p1_hover;
+        if (arm.plan(p1_hover) != moveit::core::MoveItErrorCode::SUCCESS) {
+            RCLCPP_ERROR(node->get_logger(), "❌ Pick Hover 不可达，回 Ready 重试...");
+            go_home(arm); continue;
+        }
+
+        // 模拟到达 Hover 后的状态
+        moveit::core::RobotState hover_state(*arm.getCurrentState());
+        hover_state.setJointGroupPositions(arm.getName(), p1_hover.trajectory_.joint_trajectory.points.back().positions);
+
+        // 1.2 规划线性下降 (Normal Speed)
+        moveit_msgs::msg::RobotTrajectory p2_down;
+        if (!plan_linear_chain(arm, hover_state, -HOVER_Z, SPEED_NORMAL, p2_down)) {
+            RCLCPP_ERROR(node->get_logger(), "❌ 下降路径检测到关节极限或桌面碰撞，重试路径...");
+            continue; // 这里不 go_home，直接重新 plan p1 寻找新的关节解
+        }
+
+        // 1.3 规划线性抬起
+        moveit::core::RobotState pick_state(hover_state);
+        pick_state.setJointGroupPositions(arm.getName(), p2_down.joint_trajectory.points.back().positions);
+        moveit_msgs::msg::RobotTrajectory p3_up;
+        if (!plan_linear_chain(arm, pick_state, HOVER_Z, SPEED_NORMAL, p3_up)) continue;
+
+        // 【Pick 执行】
+        RCLCPP_INFO(node->get_logger(), "✅ Pick 序列验证通过。");
+        release_gripper(node, 0.08);
+        arm.execute(p1_hover);
+        arm.execute(p2_down);
+        grasp_with_force(node, 0.015, 40.0);
+        rclcpp::sleep_for(std::chrono::seconds(1));
+        arm.execute(p3_up);
+        pick_ok = true;
+    }
+
+    // ------------------- 阶段二：Place 序列 (验证 Hover->Down->Up) -------------------
+    bool place_ok = false;
+    while (!place_ok && rclcpp::ok()) {
+        arm.setStartStateToCurrentState();
+
+        // 2.1 规划 Hover 点
+        geometry_msgs::msg::Pose h_place = task.place_pose;
+        h_place.position.z += HOVER_Z;
+        arm.setPoseTarget(h_place);
+        moveit::planning_interface::MoveGroupInterface::Plan p1_hover;
+        if (arm.plan(p1_hover) != moveit::core::MoveItErrorCode::SUCCESS) {
+            RCLCPP_ERROR(node->get_logger(), "❌ Place Hover 不可达，重试...");
+            go_home(arm); continue;
+        }
+
+        moveit::core::RobotState hover_state(*arm.getCurrentState());
+        hover_state.setJointGroupPositions(arm.getName(), p1_hover.trajectory_.joint_trajectory.points.back().positions);
+
+        // 2.2 规划慢速下降 (SPEED_SLOW = 0.01)
+        moveit_msgs::msg::RobotTrajectory p2_down;
+        if (!plan_linear_chain(arm, hover_state, -HOVER_Z, SPEED_SLOW, p2_down)) {
+            RCLCPP_ERROR(node->get_logger(), "❌ 放置下降路径受阻，重试...");
+            continue;
+        }
+
+        // 2.3 规划抬起
+        moveit::core::RobotState place_state(hover_state);
+        place_state.setJointGroupPositions(arm.getName(), p2_down.joint_trajectory.points.back().positions);
+        moveit_msgs::msg::RobotTrajectory p3_up;
+        if (!plan_linear_chain(arm, place_state, HOVER_Z, SPEED_NORMAL, p3_up)) continue;
+
+        // 【Place 执行】
+        RCLCPP_INFO(node->get_logger(), "✅ Place 序列验证通过，开始慢速放置。");
+        arm.execute(p1_hover);
+        arm.execute(p2_down); // 执行 0.01 倍速的慢速下降
+        release_gripper(node, 0.08);
+        rclcpp::sleep_for(std::chrono::seconds(1));
+        arm.execute(p3_up);
+        place_ok = true;
+    }
+
+    return true;
+}
+
+// ================= 3. 线性移动函数 (含速度缩放) =================
+bool move_linear(moveit::planning_interface::MoveGroupInterface& arm, 
+                 double z_delta, double vel_scale, double acc_scale) {
     std::vector<geometry_msgs::msg::Pose> waypoints;
     geometry_msgs::msg::Pose target = arm.getCurrentPose().pose;
     target.position.z += z_delta;
     waypoints.push_back(target);
 
-    moveit_msgs::msg::RobotTrajectory traj;
-    double fraction = arm.computeCartesianPath(waypoints, 0.01, 0.0, traj);
+    moveit_msgs::msg::RobotTrajectory trajectory_msg;
+    double fraction = arm.computeCartesianPath(waypoints, 0.005, 0.0, trajectory_msg);
     if (fraction < 0.9) return false;
 
-    auto res = arm.execute(traj);
-    return (res == moveit::core::MoveItErrorCode::SUCCESS);
+    // 时间参数化：让速度缩放对直线运动生效
+    robot_trajectory::RobotTrajectory rt(arm.getRobotModel(), arm.getName());
+    rt.setRobotTrajectoryMsg(*arm.getCurrentState(), trajectory_msg);
+    trajectory_processing::IterativeParabolicTimeParameterization iptp;
+    if (iptp.computeTimeStamps(rt, vel_scale, acc_scale)) {
+        rt.getRobotTrajectoryMsg(trajectory_msg);
+        arm.execute(trajectory_msg);
+        return true;
+    }
+    return false;
 }
 
-// ================= 4. 执行逻辑 (分阶段重试) =================
-bool execute_single_task(rclcpp::Node::SharedPtr node,
-                         moveit::planning_interface::MoveGroupInterface& arm,
-                         const Task& task) {
-    RCLCPP_INFO(node->get_logger(), "🚀 开始任务流程: %s", task.name.c_str());
-
-    // --- 阶段一：抓取循环 (Pick Stage) ---
-    bool pick_finished = false;
-    while (!pick_finished && rclcpp::ok()) {
-        RCLCPP_INFO(node->get_logger(), "📍 [阶段: 抓取] 正在规划抓取路径...");
-        arm.setStartStateToCurrentState();
-        
-        // 1.1 移动到抓取点上方
-        geometry_msgs::msg::Pose h_pick = task.pick_pose;
-        h_pick.position.z += GRIPPER_HEIGHT + 0.15;
-        arm.setPoseTarget(h_pick);
-        if (arm.move() != moveit::core::MoveItErrorCode::SUCCESS) {
-            RCLCPP_ERROR(node->get_logger(), "❌ 预抓取规划失败，回原点重试抓取...");
-            go_home(arm); continue; 
-        }
-
-        // 1.2 执行抓取动作
-        release_gripper(node, 0.08);
-        if (!move_linear_safe(arm, -0.15)) {
-            RCLCPP_ERROR(node->get_logger(), "❌ 下降抓取失败，回原点重试抓取...");
-            go_home(arm); continue;
-        }
-        grasp_with_force(node, 0.01, 40.0);
-        rclcpp::sleep_for(std::chrono::seconds(2));
-        
-        pick_finished = true; // 抓取成功
-    }
-
-    // --- 阶段二：放置循环 (Place Stage) ---
-    bool place_finished = false;
-    while (!place_finished && rclcpp::ok()) {
-        RCLCPP_INFO(node->get_logger(), "📍 [阶段: 放置] 正在规划放置路径...");
-        arm.setStartStateToCurrentState();
-
-        // 2.1 抬起动作 (如果是从 Home 重新开始，这步也会尝试执行)
-        if (!move_linear_safe(arm, 0.15)) {
-            RCLCPP_ERROR(node->get_logger(), "❌ 抬起失败，回原点重新规划放置...");
-            go_home(arm); continue; 
-        }
-
-        // 2.2 移动到放置点上方
-        geometry_msgs::msg::Pose h_place = task.place_pose;
-        h_place.position.z += GRIPPER_HEIGHT + 0.15;
-        arm.setPoseTarget(h_place);
-        if (arm.move() != moveit::core::MoveItErrorCode::SUCCESS) {
-            RCLCPP_ERROR(node->get_logger(), "❌ 放置点规划失败，回原点重新规划放置...");
-            go_home(arm); continue; 
-        }
-
-        // 2.3 放置积木
-        if (!move_linear_safe(arm, -0.15)) {
-            RCLCPP_ERROR(node->get_logger(), "❌ 放置下降失败，回原点重新规划放置...");
-            go_home(arm); continue; 
-        }
-        release_gripper(node, 0.08);
-        move_linear_safe(arm, 0.15); // 撤回
-
-        place_finished = true; // 放置成功
-    }
-
-    return true; 
-}
 
 // ================= 5. MAIN =================
 int main(int argc, char** argv) {

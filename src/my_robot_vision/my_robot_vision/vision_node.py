@@ -178,37 +178,58 @@ class RobotVisionNode:
         cv2.circle(image, pts_2d[0], 4, (255, 255, 255), -1)
 
     def send_to_robot(self, name, T_cam_obj, task_cfg):
-        """ 坐标变换、发送信号并打印详细调试信息 """
+        """ 
+        核心融合逻辑：
+        Pick = 视觉现实 + 规划策略
+        Place = 物理中心 + 蓝图数据
+        """
+        # 1. 计算物体在 Base 系下的实时位姿 
         T_base_vision = self.T_base_camera @ T_cam_obj
-        r_vision = R.from_matrix(T_base_vision[:3, :3])
+        vision_center_pos = T_base_vision[:3, 3].tolist() # 👈 Pick Pos: 完全听视觉的
         
-        # 提取位置和旋转
-        vision_pick_pos = T_base_vision[:3, 3].tolist()
-        detected_yaw = r_vision.as_euler('zyx', degrees=False)[0]
-        yaw_deg = np.degrees(detected_yaw)
+        r_vision = R.from_matrix(T_base_vision[:3, :3])
+        detected_yaw = r_vision.as_euler('zyx', degrees=False)[0] # 👈 积木在桌上实际歪的角度
 
-        # 锁定垂直姿态并生成四元数
-        r_final = R.from_euler('xyz', [np.pi, 0, detected_yaw], degrees=False)
-        final_quat = r_final.as_quat().tolist()
+        # 2. 读取任务表里的离线决策
+        grasp_spin_rad = np.radians(task_cfg.get('grasp_spin', 0)) # 0或90度选择
+        
+        # 3. 计算合成 Pick Orientation (锁定垂直向下)
+        # 旋转 = 现场偏角 + 0/90度选择 
+        final_pick_yaw = detected_yaw + grasp_spin_rad
+        pick_quat = R.from_euler('xyz', [np.pi, 0, final_pick_yaw], degrees=False).as_quat().tolist()
 
-        # 打印调试信息到终端
-        print(f"\n--- 🛠️  调试信息: {name} ---")
-        print(f"📍 中心坐标 (Base系): [X: {vision_pick_pos[0]:.4f}, Y: {vision_pick_pos[1]:.4f}, Z: {vision_pick_pos[2]:.4f}]")
-        print(f"🔄 旋转角度 (Yaw): {yaw_deg:.2f}° (相对于STL模型 $0^\circ$ 状态)")
-        print(f"📦 最终四元数 [x,y,z,w]: {final_quat}")
-        print(f"---------------------------------\n")
+        # 4. 计算 Place Pose (按照你的要求：完全听从蓝图原始值)
+        # 位置 = 真实组装中心 + 蓝图相对坐标
+        rel_pos = np.array(task_cfg['place']['pos'])
+        final_place_pos = (ASSEMBLY_CENTER_BASE + rel_pos).tolist()
 
-        # 构造并保存任务
-        original_place_pos = (ASSEMBLY_CENTER_BASE + np.array(task_cfg['place']['pos'])).tolist()
+        # 姿态 = 蓝图原始欧拉角 (通常取 Z 轴转角)
+        blueprint_rpy = task_cfg['place']['orientation']
+        blueprint_yaw = blueprint_rpy[2] if isinstance(blueprint_rpy, list) else blueprint_rpy
+        # 强制锁定垂直，仅应用蓝图转角
+        place_quat = R.from_euler('xyz', [np.pi, 0, np.radians(blueprint_yaw)], degrees=False).as_quat().tolist()
+
+        # 5. 生成最终指令文件
         data = {
             'name': name,
-            'pick': {'pos': vision_pick_pos, 'orientation': final_quat},
-            'place': {'pos': original_place_pos, 'orientation': final_quat}
+            'pick': {
+                'pos': vision_center_pos,      # 实时位置
+                'orientation': pick_quat       # 混合姿态
+            },
+            'place': {
+                'pos': final_place_pos,        # 物理目标位置
+                'orientation': place_quat      # 蓝图目标姿态
+            }
         }
         
         with open(RESULT_FILE, 'w') as f:
             yaml.dump(data, f)
+            
+        print(f"✅ 指令已下发！")
+        print(f"   [Pick] 坐标: {vision_center_pos}, 偏角补偿: {np.degrees(detected_yaw):.1f}°")
+        print(f"   [Place] 坐标: {final_place_pos}, 蓝图角度: {blueprint_yaw}°")
         
+        # 握手逻辑：等待 C++ 节点执行并删除文件
         while os.path.exists(RESULT_FILE):
             time.sleep(0.5)
 

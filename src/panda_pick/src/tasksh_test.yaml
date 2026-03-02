@@ -1,0 +1,66 @@
+tasksh:
+- name: white 4x2 brick
+  grasp_spin: 0
+  blueprint_yaw: 0
+  place:
+    pos:
+    - 0.0
+    - 0.0
+    - 0.015
+    orientation:
+    - 0
+    - 0
+    - 0
+  id: 0
+- name: blue 2x2 brick
+  grasp_spin: 0
+  blueprint_yaw: 0
+  place:
+    pos:
+    - 0.0
+    - -0.016
+    - 0.045
+    orientation:
+    - 0
+    - 0
+    - 0
+  id: 1
+- name: blue 2x2 brick
+  grasp_spin: 0
+  blueprint_yaw: 0
+  place:
+    pos:
+    - 0.0
+    - 0.016
+    - 0.045
+    orientation:
+    - 0
+    - 0
+    - 0
+  id: 2
+- name: yellow 4x2 brick
+  grasp_spin: 0
+  blueprint_yaw: 90
+  place:
+    pos:
+    - 0.0
+    - 0.0
+    - 0.075
+    orientation:
+    - 0
+    - 0
+    - 90
+  id: 3
+- name: white 4x2 brick
+  grasp_spin: 0
+  blueprint_yaw: 0
+  place:
+    pos:
+    - 0.0
+    - 0.0
+    - 0.105
+    orientation:
+    - 0
+    - 0
+    - 0
+  id: 4
