@@ -192,9 +192,13 @@ class RobotVisionNode:
         
         pick_q = R.from_euler('xyz', [np.pi, 0, np.radians(final_robot_yaw_deg)]).as_quat().tolist()
         
+       # 3. Place 阶段角度补偿
+        # 读取蓝图中的 Yaw (欧拉角索引 2)，并应用相同的 -45度偏移
         place_yaw_abs = task_cfg['place']['orientation'][2] if isinstance(task_cfg['place']['orientation'], list) else 0
-        place_q = R.from_euler('xyz', [np.pi, 0, np.radians(place_yaw_abs - ROBOT_READY_YAW_OFFSET)]).as_quat().tolist()
-
+        final_place_yaw_deg = place_yaw_abs - ROBOT_READY_YAW_OFFSET
+        final_place_yaw_deg = (final_place_yaw_deg + 180) % 360 - 180
+        place_q = R.from_euler('xyz', [np.pi, 0, np.radians(final_place_yaw_deg)]).as_quat().tolist()
+        
         data = {
             'name': name,
             'pick': {'pos': T_base_obj[:3, 3].tolist(), 'orientation': pick_q},
