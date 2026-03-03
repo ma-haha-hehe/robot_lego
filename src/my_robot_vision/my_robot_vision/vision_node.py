@@ -104,15 +104,20 @@ class RobotVisionNode:
         self.align = rs.align(rs.stream.color)
 
     def run(self):
-        """ 主循环：遍历任务列表并依次识别物体 """
         for task in self.task_list:
             name = task['name']
-            print(f"\n" + "="*60 + f"\n🎯 正在识别: {name}")
+            print(f"\n" + "="*60 + f"\n🎯 准备识别下一个目标: {name}")
+
+            # --- 【关键修改：刷新相机缓冲区】 ---
+            # 在开始新任务前，先连续读取并丢弃 30-50 帧，确保画面是当下的
+            print("🧹 正在清理相机缓存...")
+            for _ in range(30):
+                self.pipeline.wait_for_frames() 
             
             mesh_path = self.get_mesh_path(name)
             self.pose_est.update_mesh(mesh_path)
 
-            # --- 阶段 1: 目标检测 (Detection) ---
+            # --- 阶段 1: 目标检测 (此时读取到的就是刷新后的实时画面) ---
             obs_start = time.time()
             best_det = None
             max_score = -1
