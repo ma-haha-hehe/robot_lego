@@ -178,24 +178,23 @@ class RobotVisionNode:
         cv2.line(image, pts_2d[0], pts_2d[3], (255,0,0), 2)
 
     def send_to_robot(self, name, T_cam_obj, task_cfg):
-        """ 
-        修正版：物体偏转 + 抓取点偏转(grasp_spin) + 45度补偿 
-        """
         T_base_obj = self.T_base_camera @ T_cam_obj
         R_base = T_base_obj[:3, :3]
         
-        # 1. 提取物体绝对 Yaw (红轴角度)
+        # 1. 提取原始 Yaw 角度
         raw_yaw_deg = np.degrees(np.arctan2(R_base[1, 0], R_base[0, 0]))
+
+        # --- 核心修复：如果模型红轴偏了 90 度，在此扣除 ---
+        # 如果看到水平输出 90，在此减去 90 即可归零
+        raw_yaw_deg -= 90.0 
+
+        # 2. 180度归一化处理
         stable_yaw_deg = ((raw_yaw_deg + 90) % 180) - 90
         
-        # 2. 读取抓取策略偏移 (从 tasks.yaml 读取 grasp_spin)
-        # 如果蓝图里写 90，夹爪就会横着抓；如果写 0，就顺着抓
+        # 3. 抓取策略偏移 (0.0) 和 机器人偏置 (-45.0) 补偿
         grasp_strategy_spin = float(task_cfg.get('grasp_spin', 0))
-
-        # 3. 核心：Pick 阶段角度合成
-        # 公式：指令值 = 物体绝对角 + 抓取策略角 - 初始 Ready 偏移(-45)
         final_pick_yaw_deg = stable_yaw_deg + grasp_strategy_spin - ROBOT_READY_YAW_OFFSET
-        
+            
         # 归一化到 [-180, 180]
         final_pick_yaw_deg = (final_pick_yaw_deg + 180) % 360 - 180
         pick_q = R.from_euler('xyz', [np.pi, 0, np.radians(final_pick_yaw_deg)]).as_quat().tolist()
@@ -223,7 +222,7 @@ class RobotVisionNode:
         
         while os.path.exists(RESULT_FILE):
             time.sleep(0.5)
-            
+
     def get_mesh_path(self, task_name):
         keyword = "4x2" if ("2x4" in task_name or "4x2" in task_name) else "2x2"
         for f in os.listdir(MESH_DIR):
