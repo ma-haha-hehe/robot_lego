@@ -200,7 +200,7 @@ bool execute_single_task(rclcpp::Node::SharedPtr node,
         }
 
         RCLCPP_INFO(node->get_logger(), "⬇️ 慢速下降放置中 (Speed: %.2f)...", SLOW_SPEED);
-        if (!move_linear(arm, -0.05,SLOW_SPEED,SLOW_SPEED)){
+        if (!move_linear(arm, -0.06,SLOW_SPEED,SLOW_SPEED)){
             RCLCPP_ERROR(node->get_logger(), "❌ 放置下降失败，重试...");
             go_home(arm); continue; 
         }
