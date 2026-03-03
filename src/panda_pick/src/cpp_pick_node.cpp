@@ -56,9 +56,6 @@ bool wait_for_any_task(Task& current_task) {
                 fill_pose(res["place"], current_task.place_pose);
 
                 RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "✅ 收到任务: %s", current_task.name.c_str());
-
-                // 消费信号文件
-                std::filesystem::remove(RESULT_FILE);
                 return true; 
             } catch (const std::exception& e) {
                 RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "解析 YAML 失败: %s", e.what());
@@ -213,6 +210,11 @@ bool execute_single_task(rclcpp::Node::SharedPtr node,
         move_linear(arm, OFFSET_Z, NORMAL_SPEED, NORMAL_SPEED);
 
         place_finished = true; 
+    }
+    // --- 【关键修改】所有动作成功，删除信号文件，通知视觉节点 ---
+    if (std::filesystem::exists(RESULT_FILE)) {
+        std::filesystem::remove(RESULT_FILE);
+        RCLCPP_INFO(node->get_logger(), "🗑️ 任务圆满完成，已删除信号文件。");
     }
 
     RCLCPP_INFO(node->get_logger(), "✅ 任务 [%s] 执行成功", task.name.c_str());
