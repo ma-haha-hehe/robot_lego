@@ -19,7 +19,7 @@ from scipy.spatial.transform import Rotation as R
 # ================= 1. 路径与环境配置 =================
 FP_REPO = "/FoundationPose"
 RESULT_FILE = "/shared_data/active_task.yaml"  # 握手信号文件
-TASKS_YAML = "/vision_code/tasksh.yaml"         # 任务清单
+TASKS_YAML = "/vision_code/tasksh_true.yaml"         # 任务清单
 CAMERA_PARAMS_YAML = "/vision_code/camera_params.yaml" 
 MESH_DIR = "/FoundationPose/meshes"            
 ASSEMBLY_CENTER_BASE = np.array([0.25, 0, 0.0]) 
