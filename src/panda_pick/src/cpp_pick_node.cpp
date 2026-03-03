@@ -80,31 +80,65 @@ bool wait_for_any_task(Task& current_task) {
     return false;
 }
 
-// ================= 3. 碰撞场景布置 =================
+// ================= 3. 碰撞场景布置 (含桌面与左右限位板) =================
 void setup_planning_scene(moveit::planning_interface::PlanningSceneInterface& psi) {
     std::vector<moveit_msgs::msg::CollisionObject> collision_objects;
 
+    // 1. 桌面约束
     moveit_msgs::msg::CollisionObject table;
     table.id = "table";
     table.header.frame_id = "world";
-
-    shape_msgs::msg::SolidPrimitive primitive;
-    primitive.type = shape_msgs::msg::SolidPrimitive::BOX;
-    primitive.dimensions = {2.0, 2.0, 0.1}; 
-
+    shape_msgs::msg::SolidPrimitive table_primitive;
+    table_primitive.type = shape_msgs::msg::SolidPrimitive::BOX;
+    table_primitive.dimensions = {2.0, 2.0, 0.1}; 
     geometry_msgs::msg::Pose table_pose;
     table_pose.orientation.w = 1.0;
-    table_pose.position.x = 0.0;
-    table_pose.position.y = 0.0;
-    table_pose.position.z = 0.07; // 顶部表面恰好在 Z = 0 略下方
-
-    table.primitives.push_back(primitive);
+    table_pose.position.z = -0.051; // 表面在 Z=0 处
+    table.primitives.push_back(table_primitive);
     table.primitive_poses.push_back(table_pose);
     table.operation = table.ADD;
-
     collision_objects.push_back(table);
+
+    // 定义板子的共同尺寸：长 2m, 厚 2cm, 高 1m
+    const double BOARD_LENGTH = 2.0;
+    const double BOARD_THICKNESS = 0.02;
+    const double BOARD_HEIGHT = 1.0;
+
+    // 2. 左侧限位板 (Left Board: Y = +0.4m)
+    moveit_msgs::msg::CollisionObject left_board;
+    left_board.id = "left_board";
+    left_board.header.frame_id = "world";
+    shape_msgs::msg::SolidPrimitive board_primitive;
+    board_primitive.type = shape_msgs::msg::SolidPrimitive::BOX;
+    board_primitive.dimensions = {BOARD_LENGTH, BOARD_THICKNESS, BOARD_HEIGHT};
+
+    geometry_msgs::msg::Pose left_pose;
+    left_pose.orientation.w = 1.0;
+    left_pose.position.x = 0.0;
+    left_pose.position.y = 0.40;  // 距离中心左侧 40cm
+    left_pose.position.z = BOARD_HEIGHT / 2.0; // 底端对齐桌面
+    left_board.primitives.push_back(board_primitive);
+    left_board.primitive_poses.push_back(left_pose);
+    left_board.operation = left_board.ADD;
+    collision_objects.push_back(left_board);
+
+    // 3. 右侧限位板 (Right Board: Y = -0.4m)
+    moveit_msgs::msg::CollisionObject right_board;
+    right_board.id = "right_board";
+    right_board.header.frame_id = "world";
+    geometry_msgs::msg::Pose right_pose;
+    right_pose.orientation.w = 1.0;
+    right_pose.position.x = 0.0;
+    right_pose.position.y = -0.40; // 距离中心右侧 40cm
+    right_pose.position.z = BOARD_HEIGHT / 2.0;
+    right_board.primitives.push_back(board_primitive);
+    right_board.primitive_poses.push_back(right_pose);
+    right_board.operation = right_board.ADD;
+    collision_objects.push_back(right_board);
+
+    // 应用所有碰撞物体到场景
     psi.applyCollisionObjects(collision_objects);
-    RCLCPP_INFO(rclcpp::get_logger("executor"), "✅ 桌面碰撞约束已添加 (Z=0)");
+    RCLCPP_INFO(rclcpp::get_logger("executor"), "✅ 已成功添加桌面及左右侧限位板 (Y = ±0.4m)");
 }
 
 // ================= 4. 夹爪动作控制 =================
@@ -219,8 +253,14 @@ bool execute_single_task(rclcpp::Node::SharedPtr node,
             go_home(arm); continue; 
         }
 
+        RCLCPP_INFO(node->get_logger(), "⬇️ 线性下降中...");
+        if (!move_linear(arm, -0.10, NORMAL_SPEED, NORMAL_SPEED)) {
+            RCLCPP_ERROR(node->get_logger(), "❌ 线性下降失败，重试...");
+            go_home(arm); continue;
+        }
+
         RCLCPP_INFO(node->get_logger(), "⬇️ 慢速下降放置中 (Speed: %.2f)...", SLOW_SPEED);
-        if (!move_linear(arm, -0.15,SLOW_SPEED,SLOW_SPEED)){
+        if (!move_linear(arm, -0.05,SLOW_SPEED,SLOW_SPEED)){
             RCLCPP_ERROR(node->get_logger(), "❌ 放置下降失败，重试...");
             go_home(arm); continue; 
         }
