@@ -15,11 +15,11 @@ from dataclasses import dataclass
 from typing import Optional
 from transformers import pipeline
 from scipy.spatial.transform import Rotation as R
-
+ROBOT_READY_YAW_OFFSET = 45.0 
 # ================= 1. 路径与环境配置 =================
 FP_REPO = "/FoundationPose"
 RESULT_FILE = "/shared_data/active_task.yaml"  # 发送给 C++ 节点的信号文件
-TASKS_YAML = "/vision_code/tasks.yaml"         # 存储由 planner 生成的任务列表
+TASKS_YAML = "/vision_code/tasksh.yaml"        # 存储由 planner 生成的任务列表
 CAMERA_PARAMS_YAML = "/vision_code/camera_params.yaml" 
 MESH_DIR = "/FoundationPose/meshes"            # 存放积木 STL 模型的目录
 # 组装区基准坐标 (Base系)：用于 Place 阶段的全局坐标计算
@@ -104,16 +104,20 @@ class RobotVisionNode:
         self.align = rs.align(rs.stream.color)
 
     def run(self):
-        """ 主循环：遍历任务列表并依次识别物体 """
         for task in self.task_list:
             name = task['name']
-            print(f"\n" + "="*60 + f"\n🎯 正在识别: {name}")
+            print(f"\n" + "="*60 + f"\n🎯 准备识别下一个目标: {name}")
+
+            # --- 【关键修改：刷新相机缓冲区】 ---
+            # 在开始新任务前，先连续读取并丢弃 30-50 帧，确保画面是当下的
+            print("🧹 正在清理相机缓存...")
+            for _ in range(30):
+                self.pipeline.wait_for_frames() 
             
             mesh_path = self.get_mesh_path(name)
             self.pose_est.update_mesh(mesh_path)
 
-            # --- 阶段 1: 目标检测 (Detection) ---
-            # 持续观察 8 秒以获得最高置信度的检测框
+            # --- 阶段 1: 目标检测 (此时读取到的就是刷新后的实时画面) ---
             obs_start = time.time()
             best_det = None
             max_score = -1
@@ -143,7 +147,6 @@ class RobotVisionNode:
                 refined_mask[best_det.box.ymin:best_det.box.ymax, best_det.box.xmin:best_det.box.xmax] = True
 
             # --- 阶段 3: 6D 姿态精炼 (Pose Refinement) ---
-            # 持续精炼 4 秒以获得稳定的位姿输出
             pose_samples = []
             refine_start = time.time()
             while (time.time() - refine_start) < 4.0:
@@ -151,7 +154,6 @@ class RobotVisionNode:
                 aligned = self.align.process(frames)
                 img = np.asanyarray(aligned.get_color_frame().get_data())
                 depth_m = np.asanyarray(aligned.get_depth_frame().get_data()).astype(np.float32) / 1000.0
-                # FoundationPose 核心注册函数
                 T_curr = self.pose_est.estimator.register(K=self.K_MATRIX, rgb=img, depth=depth_m, ob_mask=refined_mask, iteration=30)
                 if T_curr is not None:
                     pose_samples.append(T_curr)
@@ -159,7 +161,6 @@ class RobotVisionNode:
                 cv2.imshow("Robot Assembly Vision", img); cv2.waitKey(1)
 
             if pose_samples:
-                # 使用最后一次精炼结果作为输出
                 self.send_to_robot(name, pose_samples[-1], task)
 
     def visualize_result(self, image, T_cam_obj):
@@ -187,95 +188,53 @@ class RobotVisionNode:
         r_vision = R.from_matrix(T_base_vision[:3, :3])
         raw_yaw = r_vision.as_euler('zyx', degrees=True)[0]
         
-        # 角度修正逻辑：补偿 90 度偏差并利用 180 度对称性
         corrected_yaw = ((raw_yaw + 90 + 90) % 180) - 90
 
-        # 3. 画面标注调试文字 
         info_txt = f"X:{bx:.3f} Y:{by:.3f} Z:{bz:.3f} Yaw:{corrected_yaw:.1f}deg"
         cv2.putText(image, info_txt, (20, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 0), 2)
         cv2.circle(image, pts_2d[0], 4, (255, 255, 255), -1)
 
     def send_to_robot(self, name, T_cam_obj, task_cfg):
-        """ 
-        核心指令下发逻辑：
-        1. 严格按照检测出的红轴(视觉X)作为长边(STL X)提取角度。
-        2. Pick 位姿：基于视觉实时检测。
-        3. Place 位姿：基于物理组装中心基准 + 蓝图相对坐标。
-        """
-        # --- 1. 坐标系转换：从相机系转到机器人基座(Base)系 ---
+        """ 连续角度输出 + 45度初始偏移补偿 """
         T_base_vision = self.T_base_camera @ T_cam_obj
-        
-        # 提取位置 (Pick Position)
-        vision_center_pos = T_base_vision[:3, 3].tolist() 
-        
-        # 提取旋转矩阵 (3x3)
         R_base_obj = T_base_vision[:3, :3]
 
-        # --- 2. 角度提取：严格计算红轴(物体X轴)相对于基座X轴的角度 ---
-        # 原理：R_base_obj 的第一列 [R00, R10, R20] 就是物体红轴在基座下的方向向量。
-        # 我们使用 atan2(Y分量, X分量) 得到其在水平面上的投影角度。
+        # 1. 提取检测到的连续偏航角
         raw_yaw_rad = np.arctan2(R_base_obj[1, 0], R_base_obj[0, 0])
         raw_yaw_deg = np.degrees(raw_yaw_rad)
 
-        # --- 3. 归一化处理：解决 180 度对称性导致的数值跳变 ---
-        # 逻辑：对于 4x2 积木，长边指向前方(0°)和后方(180°)在抓取上是等效的。
-        # 此公式将角度强制锁定在 [-90, 90] 区间，解决如 -179.9° 突变为 0.1° 的问题。
+        # 2. 180度对称归一化 (锁定在 [-90, 90])
         stable_yaw_deg = ((raw_yaw_deg + 90) % 180) - 90
-        final_detected_yaw_rad = np.radians(stable_yaw_deg)
 
-        # --- 4. 合成抓取姿态 (Pick Orientation) ---
-        # 策略：锁定夹爪垂直向下 (Rx=180°) + 现场检测到的 Yaw 角 + 任务指定的额外旋转
-        grasp_spin_rad = np.radians(task_cfg.get('grasp_spin', 0))
-        final_pick_yaw = final_detected_yaw_rad + grasp_spin_rad
+        # 3. 核心：补偿 45 度初始偏移
+        final_robot_yaw_deg = stable_yaw_deg - ROBOT_READY_YAW_OFFSET
+        final_robot_yaw_deg = (final_robot_yaw_deg + 180) % 360 - 180
         
-        # 生成四元数 [x, y, z, w]
-        pick_quat = R.from_euler('xyz', [np.pi, 0, final_pick_yaw], degrees=False).as_quat().tolist()
+        # 4. 生成四元数 (Rx=180 翻转)
+        pick_quat = R.from_euler('xyz', [np.pi, 0, np.radians(final_robot_yaw_deg)]).as_quat().tolist()
 
-        # --- 5. 计算放置位姿 (Place Pose) ---
-        # 5.1 位置 = 物理组装区中心 + 蓝图定义的相对偏移
-        rel_pos = np.array(task_cfg['place']['pos'])
-        final_place_pos = (ASSEMBLY_CENTER_BASE + rel_pos).tolist()
-
-        # 5.2 姿态 = 锁定垂直向下 + 蓝图定义的 Yaw 角
-        blueprint_orientation = task_cfg['place']['orientation']
-        # 如果蓝图给的是 [R, P, Y] 列表，取最后一个值；如果是单个数值，直接使用。
-        blueprint_yaw = blueprint_orientation[2] if isinstance(blueprint_orientation, list) else blueprint_orientation
-        place_quat = R.from_euler('xyz', [np.pi, 0, np.radians(blueprint_yaw)], degrees=False).as_quat().tolist()
-
-        # --- 6. 生成并下发 YAML 指令 ---
         data = {
             'name': name,
-            'pick': {
-                'pos': vision_center_pos,
-                'orientation': pick_quat
-            },
+            'pick': {'pos': T_base_vision[:3, 3].tolist(), 'orientation': pick_quat},
             'place': {
-                'pos': final_place_pos,
-                'orientation': place_quat
+                'pos': (ASSEMBLY_CENTER_BASE + np.array(task_cfg['place']['pos'])).tolist(),
+                'orientation': R.from_euler('xyz', [np.pi, 0, np.radians(0 - ROBOT_READY_YAW_OFFSET)]).as_quat().tolist()
             }
         }
         
         with open(RESULT_FILE, 'w') as f:
             yaml.dump(data, f)
-            
-        print(f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-        print(f"✅ 指令已生成: {name}")
-        print(f"📍 Pick  Pos: [{vision_center_pos[0]:.3f}, {vision_center_pos[1]:.3f}, {vision_center_pos[2]:.3f}]")
-        print(f"🌀 Pick  Yaw: {stable_yaw_deg:.2f}° (原始红轴读数: {raw_yaw_deg:.2f}°)")
-        print(f"🎯 Place Pos: [{final_place_pos[0]:.3f}, {final_place_pos[1]:.3f}, {final_place_pos[2]:.3f}]")
-        print(f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+        print(f"✅ 指令生成！视觉 Yaw: {stable_yaw_deg:.1f}°, 补偿后发送: {final_robot_yaw_deg:.1f}°")
         
-        # 握手逻辑：等待 C++ 节点读取并删除该文件后，再继续下一个任务
+        # 握手机制：等待 C++ 节点消费文件
         while os.path.exists(RESULT_FILE):
             time.sleep(0.5)
-            
+
     def get_mesh_path(self, task_name):
-        """ 根据任务名关键字自动匹配对应的 STL 模型文件 """
-        keyword = "4x2" if "2x4" in task_name or "4x2" in task_name else "2x2"
+        keyword = "4x2" if "4x2" in task_name else "2x2"
         for f in os.listdir(MESH_DIR):
             if keyword in f and f.endswith(".stl"): return os.path.join(MESH_DIR, f)
         return ""
-
 if __name__ == "__main__":
     node = RobotVisionNode()
     node.run()
