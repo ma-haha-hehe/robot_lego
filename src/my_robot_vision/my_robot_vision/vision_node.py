@@ -193,7 +193,7 @@ class RobotVisionNode:
         
         # 3. 抓取策略偏移 (0.0) 和 机器人偏置 (-45.0) 补偿
         grasp_strategy_spin = float(task_cfg.get('grasp_spin', 0))
-        final_pick_yaw_deg = stable_yaw_deg + grasp_strategy_spin - ROBOT_READY_YAW_OFFSET
+        final_pick_yaw_deg = stable_yaw_deg + grasp_strategy_spin + ROBOT_READY_YAW_OFFSET
             
         # 归一化到 [-180, 180]
         final_pick_yaw_deg = (final_pick_yaw_deg + 180) % 360 - 180
