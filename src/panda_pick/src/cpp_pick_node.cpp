@@ -202,7 +202,7 @@ bool execute_single_task(rclcpp::Node::SharedPtr node,
     RCLCPP_INFO(node->get_logger(), "🚀 开始任务流程: %s", task.name.c_str());
 
     const double OFFSET_Z = 0.15 + GRIPPER_HEIGHT; //停偏移高度
-    const double NORMAL_SPEED = 0.15; // 正常速度
+    const double NORMAL_SPEED = 0.1; // 正常速度
     const double SLOW_SPEED = 0.01;  // 慢速下降速度
 
     // --- 阶段一：抓取循环 (Pick Stage) ---
