@@ -178,27 +178,34 @@ class RobotVisionNode:
         cv2.line(image, pts_2d[0], pts_2d[3], (255,0,0), 2)
 
     def send_to_robot(self, name, T_cam_obj, task_cfg):
-        """ 连续角度下发 + 45度补偿 """
+        """ 
+        修正版：物体偏转 + 抓取点偏转(grasp_spin) + 45度补偿 
+        """
         T_base_obj = self.T_base_camera @ T_cam_obj
         R_base = T_base_obj[:3, :3]
         
-        # 1. 提取连续 Yaw (红轴角度)
+        # 1. 提取物体绝对 Yaw (红轴角度)
         raw_yaw_deg = np.degrees(np.arctan2(R_base[1, 0], R_base[0, 0]))
-        # 2. 180度归一化
         stable_yaw_deg = ((raw_yaw_deg + 90) % 180) - 90
-        # 3. 45度初始偏移补偿
-        final_robot_yaw_deg = stable_yaw_deg - ROBOT_READY_YAW_OFFSET
-        final_robot_yaw_deg = (final_robot_yaw_deg + 180) % 360 - 180
         
-        pick_q = R.from_euler('xyz', [np.pi, 0, np.radians(final_robot_yaw_deg)]).as_quat().tolist()
+        # 2. 读取抓取策略偏移 (从 tasks.yaml 读取 grasp_spin)
+        # 如果蓝图里写 90，夹爪就会横着抓；如果写 0，就顺着抓
+        grasp_strategy_spin = float(task_cfg.get('grasp_spin', 0))
+
+        # 3. 核心：Pick 阶段角度合成
+        # 公式：指令值 = 物体绝对角 + 抓取策略角 - 初始 Ready 偏移(-45)
+        final_pick_yaw_deg = stable_yaw_deg + grasp_strategy_spin - ROBOT_READY_YAW_OFFSET
         
-       # 3. Place 阶段角度补偿
-        # 读取蓝图中的 Yaw (欧拉角索引 2)，并应用相同的 -45度偏移
+        # 归一化到 [-180, 180]
+        final_pick_yaw_deg = (final_pick_yaw_deg + 180) % 360 - 180
+        pick_q = R.from_euler('xyz', [np.pi, 0, np.radians(final_pick_yaw_deg)]).as_quat().tolist()
+        
+        # 4. Place 阶段角度补偿 (放置通常不需要 grasp_spin，只需遵循蓝图角度)
         place_yaw_abs = task_cfg['place']['orientation'][2] if isinstance(task_cfg['place']['orientation'], list) else 0
         final_place_yaw_deg = place_yaw_abs - ROBOT_READY_YAW_OFFSET
         final_place_yaw_deg = (final_place_yaw_deg + 180) % 360 - 180
         place_q = R.from_euler('xyz', [np.pi, 0, np.radians(final_place_yaw_deg)]).as_quat().tolist()
-        
+
         data = {
             'name': name,
             'pick': {'pos': T_base_obj[:3, 3].tolist(), 'orientation': pick_q},
@@ -208,14 +215,15 @@ class RobotVisionNode:
         with open(RESULT_FILE, 'w') as f:
             yaml.dump(data, f)
             
-        print(f"✅ 指令已写入信号文件: {name} (检测角: {stable_yaw_deg:.1f}°, 下发角: {final_robot_yaw_deg:.1f}°)")
-        print(f"🛑 视觉节点进入阻塞，等待 C++ 完成并删除文件...")
+        print(f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+        print(f"✅ 指令生成完毕: {name}")
+        print(f"🌀 物体绝对角: {stable_yaw_deg:.1f}° | 抓取点偏转: {grasp_strategy_spin:.1f}°")
+        print(f"⚙️ 最终 Pick 下发值: {final_pick_yaw_deg:.1f}°")
+        print(f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
         
-        # 严格阻塞，直到 C++ 删除文件
         while os.path.exists(RESULT_FILE):
             time.sleep(0.5)
-        print("🔓 检测到信号文件已删除，开始准备下一个任务...")
-
+            
     def get_mesh_path(self, task_name):
         keyword = "4x2" if ("2x4" in task_name or "4x2" in task_name) else "2x2"
         for f in os.listdir(MESH_DIR):
