@@ -15,11 +15,11 @@ from dataclasses import dataclass
 from typing import Optional
 from transformers import pipeline
 from scipy.spatial.transform import Rotation as R
-
+ROBOT_READY_YAW_OFFSET = 45.0 
 # ================= 1. 路径与环境配置 =================
 FP_REPO = "/FoundationPose"
 RESULT_FILE = "/shared_data/active_task.yaml"  # 发送给 C++ 节点的信号文件
-TASKS_YAML = "/vision_code/tasks.yaml"         # 存储由 planner 生成的任务列表
+TASKS_YAML = "/vision_code/tasksh.yaml"        # 存储由 planner 生成的任务列表
 CAMERA_PARAMS_YAML = "/vision_code/camera_params.yaml" 
 MESH_DIR = "/FoundationPose/meshes"            # 存放积木 STL 模型的目录
 # 组装区基准坐标 (Base系)：用于 Place 阶段的全局坐标计算
@@ -190,73 +190,46 @@ class RobotVisionNode:
         cv2.circle(image, pts_2d[0], 4, (255, 255, 255), -1)
 
     def send_to_robot(self, name, T_cam_obj, task_cfg):
-        """ 
-        核心指令下发逻辑 (离散化方向版)：
-        Pick Orientation 仅输出 0 或 90 度
-        """
-        # --- 1. 坐标系转换 ---
+        """ 连续角度输出 + 45度初始偏移补偿 """
         T_base_vision = self.T_base_camera @ T_cam_obj
-        vision_center_pos = T_base_vision[:3, 3].tolist() 
         R_base_obj = T_base_vision[:3, :3]
 
-        # --- 2. 角度提取与二值化逻辑 ---
-        # 提取红轴(物体X)相对于机器人Base X的角度
+        # 1. 提取检测到的连续偏航角
         raw_yaw_rad = np.arctan2(R_base_obj[1, 0], R_base_obj[0, 0])
         raw_yaw_deg = np.degrees(raw_yaw_rad)
-        # 归一化到 [-90, 90]
+
+        # 2. 180度对称归一化 (锁定在 [-90, 90])
         stable_yaw_deg = ((raw_yaw_deg + 90) % 180) - 90
 
-        # 判断：x轴平行于机器人X轴输出90度，垂直输出0度
-        # abs(stable_yaw_deg) <= 45 意味着长轴基本指向机器人前方/后方 (平行趋势)
-        if abs(stable_yaw_deg) <= 45:
-            final_pick_yaw_deg = 90.0  # 平行时夹爪旋转90度抓取
-        else:
-            final_pick_yaw_deg = 0.0   # 垂直时夹爪保持0度直接抓取
+        # 3. 核心：补偿 45 度初始偏移
+        final_robot_yaw_deg = stable_yaw_deg - ROBOT_READY_YAW_OFFSET
+        final_robot_yaw_deg = (final_robot_yaw_deg + 180) % 360 - 180
         
-        final_pick_yaw_rad = np.radians(final_pick_yaw_deg)
-        
-        # 生成四元数 [x, y, z, w]
-        pick_quat = R.from_euler('xyz', [np.pi, 0, final_pick_yaw_rad], degrees=False).as_quat().tolist()
+        # 4. 生成四元数 (Rx=180 翻转)
+        pick_quat = R.from_euler('xyz', [np.pi, 0, np.radians(final_robot_yaw_deg)]).as_quat().tolist()
 
-        # --- 3. 计算放置位姿 ---
-        rel_pos = np.array(task_cfg['place']['pos'])
-        final_place_pos = (ASSEMBLY_CENTER_BASE + rel_pos).tolist()
-
-        blueprint_orientation = task_cfg['place']['orientation']
-        blueprint_yaw = blueprint_orientation[2] if isinstance(blueprint_orientation, list) else blueprint_orientation
-        place_quat = R.from_euler('xyz', [np.pi, 0, np.radians(blueprint_yaw)], degrees=False).as_quat().tolist()
-
-        # --- 4. 生成 YAML ---
         data = {
             'name': name,
-            'pick': {
-                'pos': vision_center_pos,
-                'orientation': pick_quat
-            },
+            'pick': {'pos': T_base_vision[:3, 3].tolist(), 'orientation': pick_quat},
             'place': {
-                'pos': final_place_pos,
-                'orientation': place_quat
+                'pos': (ASSEMBLY_CENTER_BASE + np.array(task_cfg['place']['pos'])).tolist(),
+                'orientation': R.from_euler('xyz', [np.pi, 0, np.radians(0 - ROBOT_READY_YAW_OFFSET)]).as_quat().tolist()
             }
         }
         
         with open(RESULT_FILE, 'w') as f:
             yaml.dump(data, f)
-            
-        print(f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-        print(f"✅ 指令已生成: {name}")
-        print(f"🌀 检测角度: {stable_yaw_deg:.2f}° | 输出方向: {final_pick_yaw_deg}°")
-        print(f"📍 Pick Pos: [{vision_center_pos[0]:.3f}, {vision_center_pos[1]:.3f}, {vision_center_pos[2]:.3f}]")
-        print(f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+        print(f"✅ 指令生成！视觉 Yaw: {stable_yaw_deg:.1f}°, 补偿后发送: {final_robot_yaw_deg:.1f}°")
         
+        # 握手机制：等待 C++ 节点消费文件
         while os.path.exists(RESULT_FILE):
             time.sleep(0.5)
-            
+
     def get_mesh_path(self, task_name):
-        keyword = "4x2" if "2x4" in task_name or "4x2" in task_name else "2x2"
+        keyword = "4x2" if "4x2" in task_name else "2x2"
         for f in os.listdir(MESH_DIR):
             if keyword in f and f.endswith(".stl"): return os.path.join(MESH_DIR, f)
         return ""
-
 if __name__ == "__main__":
     node = RobotVisionNode()
     node.run()
