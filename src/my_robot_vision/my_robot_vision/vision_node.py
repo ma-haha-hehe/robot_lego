@@ -178,50 +178,49 @@ class RobotVisionNode:
         cv2.line(image, pts_2d[0], pts_2d[3], (255,0,0), 2)
 
     def send_to_robot(self, name, T_cam_obj, task_cfg):
+        # --- 1. 获取基础坐标 ---
         T_base_obj = self.T_base_camera @ T_cam_obj
         R_base = T_base_obj[:3, :3]
         
-        # 1. 提取原始 Yaw 角度
-        raw_yaw_deg = np.degrees(np.arctan2(R_base[1, 0], R_base[0, 0]))
-
-        # --- 核心修复：如果模型红轴偏了 90 度，在此扣除 ---
-        # 如果看到水平输出 90，在此减去 90 即可归零
-        raw_yaw_deg -= 90.0 
-
-        # 2. 180度归一化处理
-        stable_yaw_deg = ((raw_yaw_deg + 90) % 180) - 90
+        # --- 2. 提取视觉实测偏差 (Stable Yaw) ---
+        # 假设模型红轴需要修正 90度
+        raw_yaw_deg = np.degrees(np.arctan2(R_base[1, 0], R_base[0, 0])) - 90.0 
+        stable_yaw_vision = ((raw_yaw_deg + 90) % 180) - 90
         
-        # 3. 抓取策略偏移 (0.0) 和 机器人偏置 (-45.0) 补偿
-        grasp_strategy_spin = float(task_cfg.get('grasp_spin', 0))
-        final_pick_yaw_deg = stable_yaw_deg + grasp_strategy_spin + ROBOT_READY_YAW_OFFSET
-            
-        # 归一化到 [-180, 180]
-        final_pick_yaw_deg = (final_pick_yaw_deg + 180) % 360 - 180
-        pick_q = R.from_euler('xyz', [np.pi, 0, np.radians(final_pick_yaw_deg)]).as_quat().tolist()
+        # --- 3. 提取规划器中的策略与蓝图数据 ---
+        # 从 tasks.yaml 读取 0 或 90
+        strategy_spin = float(task_cfg.get('grasp_spin', 0)) 
+        # 蓝图要求的原始放置角度 (需在 Planner 中显式输出 blueprint_yaw)
+        blueprint_yaw = float(task_cfg.get('blueprint_yaw', 0)) 
         
-        # 4. Place 阶段角度补偿 (放置通常不需要 grasp_spin，只需遵循蓝图角度)
-        place_yaw_abs = task_cfg['place']['orientation'][2] if isinstance(task_cfg['place']['orientation'], list) else 0
-        final_place_yaw_deg = place_yaw_abs - ROBOT_READY_YAW_OFFSET
-        final_place_yaw_deg = (final_place_yaw_deg + 180) % 360 - 180
-        place_q = R.from_euler('xyz', [np.pi, 0, np.radians(final_place_yaw_deg)]).as_quat().tolist()
+        # --- 4. 计算最终 Pick 角度 (核心公式) ---
+        # 视觉实测 + 0/90策略 + -45度补偿
+        final_pick_yaw = stable_yaw_vision + strategy_spin + ROBOT_READY_YAW_OFFSET
+        final_pick_yaw = (final_pick_yaw + 180) % 360 - 180
+        pick_q = R.from_euler('xyz', [180, 0, final_pick_yaw], degrees=True).as_quat().tolist()
+        
+        # --- 5. 计算最终 Place 角度 ---
+        # 蓝图角度 + 0/90策略 + -45度补偿
+        final_place_yaw = blueprint_yaw + strategy_spin + ROBOT_READY_YAW_OFFSET
+        final_place_yaw = (final_place_yaw + 180) % 360 - 180
+        place_q = R.from_euler('xyz', [180, 0, final_place_yaw], degrees=True).as_quat().tolist()
 
+        # --- 6. 整合输出内容 ---
         data = {
             'name': name,
-            'pick': {'pos': T_base_obj[:3, 3].tolist(), 'orientation': pick_q},
-            'place': {'pos': (ASSEMBLY_CENTER_BASE + np.array(task_cfg['place']['pos'])).tolist(), 'orientation': place_q}
+            'pick': {
+                'pos': T_base_obj[:3, 3].tolist(),      # 视觉预测出的中心点
+                'orientation': pick_q                   # 复合补偿后的四元数
+            },
+            'place': {
+                'pos': (ASSEMBLY_CENTER_BASE + np.array(task_cfg['place']['pos'])).tolist(), 
+                'orientation': place_q                  # 对应蓝图且包含 spin 的四元数
+            }
         }
         
         with open(RESULT_FILE, 'w') as f:
             yaml.dump(data, f)
             
-        print(f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-        print(f"✅ 指令生成完毕: {name}")
-        print(f"🌀 物体绝对角: {stable_yaw_deg:.1f}° | 抓取点偏转: {grasp_strategy_spin:.1f}°")
-        print(f"⚙️ 最终 Pick 下发值: {final_pick_yaw_deg:.1f}°")
-        print(f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-        
-        while os.path.exists(RESULT_FILE):
-            time.sleep(0.5)
 
     def get_mesh_path(self, task_name):
         keyword = "4x2" if ("2x4" in task_name or "4x2" in task_name) else "2x2"

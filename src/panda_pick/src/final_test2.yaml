@@ -1,7 +1,6 @@
 tasksh:
 - name: support_2x2_left
   grasp_spin: 90
-  blueprint_yaw: 0
   pick:
     pos:
     - 0.55
@@ -24,32 +23,30 @@ tasksh:
     - 4.329780281177467e-17
   id: 0
 - name: base_4x2_lvl1
-  grasp_spin: 0
-  blueprint_yaw: 0
+  grasp_spin: 90
   pick:
     pos:
     - 0.55
     - 0.25
     - 0.435
     orientation:
-    - 1.0
-    - 0.0
-    - 0.0
-    - 6.123233995736766e-17
+    - 0.7071067811865476
+    - 0.7071067811865475
+    - 4.329780281177466e-17
+    - 4.329780281177467e-17
   place:
     pos:
     - 0.0
     - 0.0
     - 0.0
     orientation:
-    - 1.0
-    - 0.0
-    - 0.0
-    - 6.123233995736766e-17
+    - 0.7071067811865476
+    - 0.7071067811865475
+    - 4.329780281177466e-17
+    - 4.329780281177467e-17
   id: 1
 - name: top_4x2_lvl4
   grasp_spin: 90
-  blueprint_yaw: 0
   pick:
     pos:
     - 0.62
