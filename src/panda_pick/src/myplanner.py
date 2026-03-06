@@ -179,4 +179,4 @@ def process_blueprint(input_yaml, output_yaml):
     print("="*50 + "\n")
 
 if __name__ == "__main__":
-    process_blueprint("final_product.yaml", "tasksh.yaml")
+    process_blueprint("final_test.yaml", "task_test.yaml")
