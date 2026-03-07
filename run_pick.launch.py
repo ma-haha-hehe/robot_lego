@@ -8,6 +8,7 @@ def generate_launch_description():
     robot_xacro_filepath = '/home/i6user/Desktop/robot_lego/src/franka_ros2/franka_description/robots/panda_arm.urdf.xacro'
     srdf_filepath = '/home/i6user/Desktop/robot_lego/src/franka_ros2/franka_moveit_config/srdf/panda_arm.srdf.xacro'
 
+
     # 2. 解析 URDF (Xacro)
     robot_description_config = xacro.process_file(
         robot_xacro_filepath, 
