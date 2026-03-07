@@ -83,18 +83,25 @@ bool wait_for_any_task(Task& current_task) {
 void setup_planning_scene(moveit::planning_interface::PlanningSceneInterface& psi) {
     std::vector<moveit_msgs::msg::CollisionObject> collision_objects;
 
-    // 1. 桌面约束
+    // 1. 定义地平面 (Table at Z=0)
     moveit_msgs::msg::CollisionObject table;
     table.id = "table";
     table.header.frame_id = "world";
-    shape_msgs::msg::SolidPrimitive table_primitive;
-    table_primitive.type = shape_msgs::msg::SolidPrimitive::BOX;
-    table_primitive.dimensions = {2.0, 2.0, 0.1};
-    geometry_msgs::msg::Pose table_pose;
-    table_pose.orientation.w = 1.0;
-    table_pose.position.z = -0.051; // 表面在 Z=0 处
-    table.primitives.push_back(table_primitive);
-    table.primitive_poses.push_back(table_pose);
+
+    // 使用 shape_msgs::msg::Plane 而不是 SolidPrimitive::BOX
+    shape_msgs::msg::Plane plane;
+    
+    // 平面方程: ax + by + cz + d = 0
+    // 我们设定为 0x + 0y + 1z + 0 = 0，即 Z = 0
+    plane.coef = {0.0, 0.0, 1.0, 0.0}; 
+
+    table.planes.push_back(plane);
+    
+    // 平面的位姿设定为单位矩阵（因为方程已经定义了位置）
+    geometry_msgs::msg::Pose plane_pose;
+    plane_pose.orientation.w = 1.0;
+    table.plane_poses.push_back(plane_pose);
+
     table.operation = table.ADD;
     collision_objects.push_back(table);
 
@@ -195,42 +202,53 @@ bool move_linear(moveit::planning_interface::MoveGroupInterface& arm,
     return false;
 }
 
-// ================= 6. 核心执行逻辑 (Pick & Place) =================
+// ================= 6. 核心执行逻辑 (Pick & Place - Pilz PTP + Cartesian 混合版) =================
 bool execute_single_task(rclcpp::Node::SharedPtr node,
                          moveit::planning_interface::MoveGroupInterface& arm,
                          const Task& task) {
     RCLCPP_INFO(node->get_logger(), "🚀 开始任务流程: %s", task.name.c_str());
 
-    const double OFFSET_Z = 0.15 + GRIPPER_HEIGHT; //停偏移高度
-    const double NORMAL_SPEED = 0.1; // 正常速度
-    const double SLOW_SPEED = 0.05;// 慢速下降速度
+    // 【核心修改】全局切换到 Pilz 工业规划管线
+    // 这将确保后续的 setPlannerId("PTP") 在正确的插件下运行
+    arm.setPlanningPipelineId("pilz_industrial_motion_planner");
+
+    const double OFFSET_Z = 0.15 + GRIPPER_HEIGHT; // 巡航偏移高度
+    const double NORMAL_SPEED = 0.1;               // 正常直线速度
+    const double SLOW_SPEED = 0.02;                // 组装对接慢速
 
     // --- 阶段一：抓取循环 (Pick Stage) ---
     bool pick_finished = false;
     while (!pick_finished && rclcpp::ok()) {
-        RCLCPP_INFO(node->get_logger(), "📍 [阶段: 抓取] 正在移至抓取点上方...");
+        RCLCPP_INFO(node->get_logger(), "📍 [阶段: 抓取] 正在通过 PTP 移至抓取点上方...");
         arm.setStartStateToCurrentState();
+
+        // 使用 Pilz PTP 规划：路径确定且平滑，不再诡异
+        arm.setPlannerId("PTP");
 
         geometry_msgs::msg::Pose h_pick = task.pick_pose;
         h_pick.position.z += OFFSET_Z;
 
         arm.setPoseTarget(h_pick);
         if (arm.move() != moveit::core::MoveItErrorCode::SUCCESS) {
-            RCLCPP_ERROR(node->get_logger(), "❌ 预抓取位姿规划失败，重试...");
+            RCLCPP_ERROR(node->get_logger(), "❌ 预抓取位姿 PTP 规划失败，返回 Ready 重试...");
             go_home(arm); continue;
         }
 
+        // 预准备：张开夹爪
         release_gripper(node, 0.08);
 
+        // 【保留】原有笛卡尔直线下降
         RCLCPP_INFO(node->get_logger(), "⬇️ 线性下降中...");
         if (!move_linear(arm, -0.15, NORMAL_SPEED, NORMAL_SPEED)) {
             RCLCPP_ERROR(node->get_logger(), "❌ 线性下降失败，重试...");
             go_home(arm); continue;
         }
 
+        // 物理抓取
         grasp_with_force(node, 0.02, 40.0);
         rclcpp::sleep_for(std::chrono::seconds(2));
 
+        // 【保留】原有笛卡尔直线抬起
         RCLCPP_INFO(node->get_logger(), "⬆️ 抓取后抬起...");
         move_linear(arm, OFFSET_Z, NORMAL_SPEED, NORMAL_SPEED);
 
@@ -240,24 +258,29 @@ bool execute_single_task(rclcpp::Node::SharedPtr node,
     // --- 阶段二：放置循环 (Place Stage) ---
     bool place_finished = false;
     while (!place_finished && rclcpp::ok()) {
-        RCLCPP_INFO(node->get_logger(), "📍 [阶段: 放置] 正在移至放置点上方...");
+        RCLCPP_INFO(node->get_logger(), "📍 [阶段: 放置] 正在通过 PTP 移至放置点上方...");
         arm.setStartStateToCurrentState();
+
+        // 再次显式指定 PTP，确保大范围移动的质量
+        arm.setPlannerId("PTP");
 
         geometry_msgs::msg::Pose h_place = task.place_pose;
         h_place.position.z += OFFSET_Z;
 
         arm.setPoseTarget(h_place);
         if (arm.move() != moveit::core::MoveItErrorCode::SUCCESS) {
-            RCLCPP_ERROR(node->get_logger(), "❌ 放置点上方规划失败，重试...");
+            RCLCPP_ERROR(node->get_logger(), "❌ 放置点上方 PTP 规划失败，重试...");
             go_home(arm); continue;
         }
 
-        RCLCPP_INFO(node->get_logger(), "⬇️ 线性下降中...");
+        // 【保留】原有笛卡尔线性下降 (第一段：快速)
+        RCLCPP_INFO(node->get_logger(), "⬇️ 线性快降中...");
         if (!move_linear(arm, -0.10, NORMAL_SPEED, NORMAL_SPEED)) {
             RCLCPP_ERROR(node->get_logger(), "❌ 线性下降失败，重试...");
             go_home(arm); continue;
         }
 
+        // 【保留】原有笛卡尔线性下降 (第二段：慢速对接)
         RCLCPP_INFO(node->get_logger(), "⬇️ 慢速下降放置中 (Speed: %.2f)...", SLOW_SPEED);
         if (!move_linear(arm, -0.05, SLOW_SPEED, SLOW_SPEED)) {
             RCLCPP_ERROR(node->get_logger(), "❌ 放置下降失败，重试...");
@@ -268,12 +291,14 @@ bool execute_single_task(rclcpp::Node::SharedPtr node,
         release_gripper(node, 0.08);
         rclcpp::sleep_for(std::chrono::seconds(1));
 
+        // 【保留】原有线性撤回
         RCLCPP_INFO(node->get_logger(), "⬆️ 放置完成，线性撤回...");
         move_linear(arm, OFFSET_Z, NORMAL_SPEED, NORMAL_SPEED);
 
         place_finished = true;
     }
-    // --- 【关键修改】所有动作成功，删除信号文件，通知视觉节点 ---
+
+    // 任务完成，握手信号清理
     if (std::filesystem::exists(RESULT_FILE)) {
         std::filesystem::remove(RESULT_FILE);
         RCLCPP_INFO(node->get_logger(), "🗑️ 任务圆满完成，已删除信号文件。");
@@ -293,11 +318,18 @@ int main(int argc, char** argv) {
     std::thread executor_thread([&executor]() { executor.spin(); });
 
     moveit::planning_interface::MoveGroupInterface arm(node, "panda_arm");
+
+    // 【关键修改】切换到 Pilz 规划管线
+    // 注意：在 ROS 2 中，通常在运行节点时通过参数指定 pipeline，
+    // 但也可以在代码中尝试显式设定。如果默认没有加载，需确保 launch 文件中配置了它。
+    arm.setPlanningPipelineId("pilz_industrial_motion_planner");
+    
+    // 设定默认指令为 PTP (点对点，最快到达)
+    arm.setPlannerId("PTP");
+    arm.setPlanningTime(2.0);
+    arm.setGoalPositionTolerance(0.001);
+
     moveit::planning_interface::PlanningSceneInterface psi;
-
-    arm.setPlanningTime(10.0);
-    arm.setGoalPositionTolerance(0.01);
-
     // 清理旧场景并添加桌面
     std::vector<std::string> object_ids = psi.getKnownObjectNames();
     if (!object_ids.empty()) {
