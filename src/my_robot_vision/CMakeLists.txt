@@ -3,7 +3,7 @@ project(my_robot_vision)
 
 find_package(ament_cmake REQUIRED)
 find_package(rclpy REQUIRED)
-find_package(my_robot_interfaces REQUIRED)
+#find_package(my_robot_interfaces REQUIRED)
 
 # 安装 Python 脚本到 lib 下
 install(PROGRAMS

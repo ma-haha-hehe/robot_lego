@@ -19,7 +19,7 @@
 using GripperCommand = control_msgs::action::GripperCommand;
 
 // ================= 0. 配置区域 =================
-const std::string RESULT_FILE = "/shared_data/active_task.yaml";
+const std::string RESULT_FILE = "/home/aaa/robot_lego/src/panda_pick/src/active_task.yaml";
 const std::string MESH_BASE_PATH = "/home/aaa/robot/FoundationPose/meshes/"; 
 const double GRIPPER_HEIGHT = 0.1034;
 
@@ -81,6 +81,46 @@ void spawn_detected_brick(moveit::planning_interface::PlanningSceneInterface& ps
     
     psi.applyCollisionObject(obj);
 }
+// ================= 1. YAML 解析增强 =================
+bool parse_task(Task& t) {
+    try {
+        YAML::Node config = YAML::LoadFile(RESULT_FILE);
+        
+        // 1. 基本信息
+        t.name = config["name"].as<std::string>();
+        // 🔥 注意：你的 YAML 没写 mesh_file，这里先给个默认值，否则会报错
+        t.mesh_file = "base_2x4_lvl2.stl"; 
+
+        // 2. 解析 pick (对应你 YAML 里的 pick 节点)
+        auto pick_node = config["pick"];
+        t.pick_pose.position.x = pick_node["pos"][0].as<double>();
+        t.pick_pose.position.y = pick_node["pos"][1].as<double>();
+        t.pick_pose.position.z = pick_node["pos"][2].as<double>();
+        
+        // 四元数顺序通常为 [x, y, z, w]，请确认你视觉输出的顺序
+        t.pick_pose.orientation.x = pick_node["orientation"][0].as<double>();
+        t.pick_pose.orientation.y = pick_node["orientation"][1].as<double>();
+        t.pick_pose.orientation.z = pick_node["orientation"][2].as<double>();
+        t.pick_pose.orientation.w = pick_node["orientation"][3].as<double>();
+
+        // 3. 解析 place (对应你 YAML 里的 place 节点)
+        auto place_node = config["place"];
+        t.place_pose.position.x = place_node["pos"][0].as<double>();
+        t.place_pose.position.y = place_node["pos"][1].as<double>();
+        t.place_pose.position.z = place_node["pos"][2].as<double>();
+        
+        t.place_pose.orientation.x = place_node["orientation"][0].as<double>();
+        t.place_pose.orientation.y = place_node["orientation"][1].as<double>();
+        t.place_pose.orientation.z = place_node["orientation"][2].as<double>();
+        t.place_pose.orientation.w = place_node["orientation"][3].as<double>();
+
+        return true;
+    } catch (const std::exception& e) {
+        // 打印具体错误原因，方便调试
+        std::cerr << "YAML 解析具体错误: " << e.what() << std::endl;
+        return false;
+    }
+}
 
 // ================= 4. 核心执行逻辑 =================
 bool execute_single_task(rclcpp::Node::SharedPtr node,
@@ -123,55 +163,49 @@ bool execute_single_task(rclcpp::Node::SharedPtr node,
     return true;
 }
 
-// ================= 5. 主函数 =================
 int main(int argc, char** argv) {
     rclcpp::init(argc, argv);
+    
+    // 🔥 修正 1: 必须与 Launch 文件中的 use_sim_time 保持一致 (False)
     rclcpp::NodeOptions node_options;
-    node_options.append_parameter_override("use_sim_time", true);
+    node_options.append_parameter_override("use_sim_time", false);
     auto node = rclcpp::Node::make_shared("lego_sim_sync_executor", node_options);
 
-    rclcpp::executors::MultiThreadedExecutor executor;
-    executor.add_node(node);
-    std::thread executor_thread([&executor]() { executor.spin(); });
+    // 开启异步线程处理 MoveGroup 回调
+    std::thread spin_thread([node]() { rclcpp::spin(node); });
 
     moveit::planning_interface::MoveGroupInterface arm(node, "panda_arm");
     moveit::planning_interface::PlanningSceneInterface psi;
 
-    // 1. 设置速度与规划时间
-    arm.setPlanningTime(10.0);
-    arm.setMaxVelocityScalingFactor(0.2);
+    arm.setPlanningTime(5.0);
+    arm.setMaxVelocityScalingFactor(0.5);
 
-    // 2. 初始姿态校正：强制从直立切换为弯曲 Ready
     RCLCPP_INFO(node->get_logger(), "🔄 正在初始化：切换至 Ready 姿态...");
     arm.setNamedTarget("ready");
     arm.move();
 
-    // 3. 生成静态环境 (桌面)
-    moveit_msgs::msg::CollisionObject table;
-    table.id = "table"; table.header.frame_id = "world";
-    shape_msgs::msg::SolidPrimitive box; box.type = box.BOX; box.dimensions = {1.2, 1.2, 0.02};
-    geometry_msgs::msg::Pose p; p.position.z = -0.011;
-    table.primitives.push_back(box); table.primitive_poses.push_back(p);
-    table.operation = table.ADD;
-    psi.applyCollisionObject(table);
-
-    RCLCPP_INFO(node->get_logger(), ">>> 视觉同步仿真系统就绪...");
+    RCLCPP_INFO(node->get_logger(), ">>> 视觉同步仿真系统就绪，监听路径: %s", RESULT_FILE.c_str());
 
     while (rclcpp::ok()) {
         if (std::filesystem::exists(RESULT_FILE)) {
+            RCLCPP_INFO(node->get_logger(), "🔔 检测到新任务文件！");
             Task t;
-            try {
-                YAML::Node res = YAML::LoadFile(RESULT_FILE);
-                t.name = res["name"].as<std::string>();
-                t.mesh_file = res["mesh_file"].as<std::string>(); // 需要视觉节点提供此字段
-                // ... 填充 pick/place pose ...
+            if (parse_task(t)) {
+                RCLCPP_INFO(node->get_logger(), "🚀 开始执行任务: %s", t.name.c_str());
                 execute_single_task(node, arm, psi, t);
-            } catch (...) {}
+                
+                // 任务完成后删除文件，防止重复执行
+                std::filesystem::remove(RESULT_FILE);
+                RCLCPP_INFO(node->get_logger(), "✅ 任务完成，等待下一个视觉信号...");
+            } else {
+                RCLCPP_ERROR(node->get_logger(), "❌ YAML 解析失败，请检查格式！");
+                std::this_thread::sleep_for(std::chrono::seconds(2));
+            }
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
 
     rclcpp::shutdown();
-    executor_thread.join();
+    spin_thread.join();
     return 0;
 }
