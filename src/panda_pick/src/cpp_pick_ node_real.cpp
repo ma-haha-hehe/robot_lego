@@ -37,41 +37,51 @@ bool go_home(moveit::planning_interface::MoveGroupInterface& arm) {
     return (result == moveit::core::MoveItErrorCode::SUCCESS);
 }
 
-// ================= 2. YAML 监听逻辑 =================
 bool wait_for_any_task(Task& current_task) {
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "等待视觉节点发送信号 (active_task.yaml)...");
 
     while (rclcpp::ok()) {
         if (std::filesystem::exists(RESULT_FILE)) {
+            // 🔥 关键：等待文件写入完成，防止读到空文件
+            std::this_thread::sleep_for(std::chrono::milliseconds(200)); 
+
             try {
-                // 1. 加载文件
                 YAML::Node res = YAML::LoadFile(RESULT_FILE);
+                
+                // 检查顶级字段
+                if (!res["name"] || !res["pick"] || !res["place"]) {
+                    throw std::runtime_error("文件缺少 name, pick 或 place 字段");
+                }
+
                 current_task.name = res["name"].as<std::string>();
 
-                // 2. 匿名函数 fill_pose：从 YAML 中动态读取位姿
-                auto fill_pose = [](YAML::Node node, geometry_msgs::msg::Pose& pose) {
-                    // 读取位置 (pos)
+                auto fill_pose = [](YAML::Node node, geometry_msgs::msg::Pose& pose, const std::string& label) {
+                    if (!node["pos"] || node["pos"].size() < 3) 
+                        throw std::runtime_error(label + " 缺少 pos 数组或长度不足");
+                    if (!node["orientation"] || node["orientation"].size() < 4) 
+                        throw std::runtime_error(label + " 缺少 orientation 数组或长度不足");
+
                     pose.position.x = node["pos"][0].as<double>();
                     pose.position.y = node["pos"][1].as<double>();
                     pose.position.z = node["pos"][2].as<double>();
 
-                    // 读取方向 (orientation: [x, y, z, w])
                     pose.orientation.x = node["orientation"][0].as<double>();
                     pose.orientation.y = node["orientation"][1].as<double>();
                     pose.orientation.z = node["orientation"][2].as<double>();
                     pose.orientation.w = node["orientation"][3].as<double>();
                 };
 
-                fill_pose(res["pick"], current_task.pick_pose);
-                fill_pose(res["place"], current_task.place_pose);
+                fill_pose(res["pick"], current_task.pick_pose, "pick");
+                fill_pose(res["place"], current_task.place_pose, "place");
 
                 RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "✅ 收到任务: %s", current_task.name.c_str());
-
-            
                 return true;
 
             } catch (const std::exception& e) {
-                RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "解析 YAML 失败: %s", e.what());
+                // 如果解析失败，打印具体哪个字段错了
+                RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "解析异常: %s", e.what());
+                // 解析失败通常是因为文件还没写完，给点时间，不要直接退出
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
             }
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(500));

@@ -1,0 +1,14 @@
+tasks:
+  # --- 左侧立柱 (3块) ---
+  - { name: "pillar_L_1", grasp_spin: 0, blueprint_yaw: 0, place: { pos: [-0.048, 0.0, 0.0] } }
+  - { name: "pillar_L_2", grasp_spin: 0, blueprint_yaw: 0, place: { pos: [-0.048, 0.0, 0.0192] } }
+  - { name: "pillar_L_3", grasp_spin: 0, blueprint_yaw: 0, place: { pos: [-0.048, 0.0, 0.0384] } }
+
+  # --- 右侧立柱 (3块) ---
+  - { name: "pillar_R_1", grasp_spin: 0, blueprint_yaw: 0, place: { pos: [0.048, 0.0, 0.0] } }
+  - { name: "pillar_R_2", grasp_spin: 0, blueprint_yaw: 0, place: { pos: [0.048, 0.0, 0.0192] } }
+  - { name: "pillar_R_3", grasp_spin: 0, blueprint_yaw: 0, place: { pos: [0.048, 0.0, 0.0384] } }
+
+  # --- 顶部横梁 (2块旋转90度横跨) ---
+  - { name: "bridge_1", grasp_spin:90, blueprint_yaw: 90, place: { pos: [-0.032, 0.0, 0.0576] } }
+  - { name: "bridge_2", grasp_spin:90, blueprint_yaw: 90, place: { pos: [0.032, 0.0, 0.0576] } }

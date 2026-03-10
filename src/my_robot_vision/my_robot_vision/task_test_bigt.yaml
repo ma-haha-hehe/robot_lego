@@ -1,0 +1,18 @@
+tasks:
+  # --- 第一层 (底层 4 块) ---
+  - { name: "brick_4x2_L1_1", grasp_spin: 0, blueprint_yaw: 0, place: { pos: [-0.048, 0.0, 0.0] } }
+  - { name: "brick_4x2_L1_2", grasp_spin: 0, blueprint_yaw: 0, place: { pos: [-0.016, 0.0, 0.0] } }
+  - { name: "brick_4x2_L1_3", grasp_spin: 0, blueprint_yaw: 0, place: { pos: [0.016, 0.0, 0.0] } }
+  - { name: "brick_4x2_L1_4", grasp_spin: 0, blueprint_yaw: 0, place: { pos: [0.048, 0.0, 0.0] } }
+
+  # --- 第二层 (3 块) ---
+  - { name: "brick_4x2_L2_1", grasp_spin: 0, blueprint_yaw: 0, place: { pos: [-0.032, 0.0, 0.0192] } }
+  - { name: "brick_4x2_L2_2", grasp_spin: 0, blueprint_yaw: 0, place: { pos: [0.0, 0.0, 0.0192] } }
+  - { name: "brick_4x2_L2_3", grasp_spin: 0, blueprint_yaw: 0, place: { pos: [0.032, 0.0, 0.0192] } }
+
+  # --- 第三层 (2 块) ---
+  - { name: "brick_4x2_L3_1", grasp_spin: 0, blueprint_yaw: 0, place: { pos: [-0.016, 0.0, 0.0384] } }
+  - { name: "brick_4x2_L3_2", grasp_spin: 0, blueprint_yaw: 0, place: { pos: [0.016, 0.0, 0.0384] } }
+
+  # --- 第四层 (顶层 1 块) ---
+  - { name: "brick_4x2_L4_1", grasp_spin: 0, blueprint_yaw: 0, place: { pos: [0.0, 0.0, 0.0576] } }

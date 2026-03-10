@@ -1,0 +1,39 @@
+tasks:
+  # --- 第一层 (底层 3 块) ---
+  - name: "brick_4x2_L1_1"
+    grasp_spin: 0
+    blueprint_yaw: 0
+    place:
+      pos: [-0.032, 0.0, 0.0]  # 左侧
+
+  - name: "brick_4x2_L1_2"
+    grasp_spin: 0
+    blueprint_yaw: 0
+    place:
+      pos: [0.0, 0.0, 0.0]     # 中间中心点
+
+  - name: "brick_4x2_L1_3"
+    grasp_spin: 0
+    blueprint_yaw: 0
+    place:
+      pos: [0.032, 0.0, 0.0]   # 右侧
+
+  # --- 第二层 (中间 2 块) ---
+  - name: "brick_4x2_L2_1"
+    grasp_spin: 0
+    blueprint_yaw: 0
+    place:
+      pos: [-0.016, 0.0, 0.0192] # 压在左边两个的缝隙上
+
+  - name: "brick_4x2_L2_2"
+    grasp_spin: 0
+    blueprint_yaw: 0
+    place:
+      pos: [0.016, 0.0, 0.0192]  # 压在右边两个的缝隙上
+
+  # --- 第三层 (顶层 1 块) ---
+  - name: "brick_4x2_L3_1"
+    grasp_spin: 0
+    blueprint_yaw: 0
+    place:
+      pos: [0.0, 0.0, 0.0384]    # 最终顶点 (0.0192 * 2)

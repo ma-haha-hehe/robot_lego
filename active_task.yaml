@@ -1,22 +1,7 @@
-id: 0
-name: white 2x4 brick.
+name: "door_R1"
 pick:
-  orientation:
-  - 0
-  - 0
-  - 0
-  - 0
-  pos:
-  - 0
-  - 0
-  - 0
+  pos: [0.45, 0.0, 0.02]
+  orientation: [0.9238795, 0.3826834, 0.0, 0.0]
 place:
-  orientation:
-  - 0
-  - 0
-  - 0
-  - 0
-  pos:
-  - 0
-  - 0
-  - 0
+  pos: [0.398, 0.2, 0.025]
+  orientation: [0.9238795, 0.3826834, 0.0, 0.0]
