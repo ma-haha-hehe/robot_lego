@@ -19,12 +19,12 @@ from scipy.spatial.transform import Rotation as R
 # ================= 1. 路径与环境配置 =================
 FP_REPO = "/FoundationPose"
 RESULT_FILE = "/shared_data/active_task.yaml"
-TASKS_YAML = "/vision_code/tasksh_true.yaml"#t and bigt
+TASKS_YAML = "/vision_code/task_test_t.yaml"#t and bigt
 CAMERA_PARAMS_YAML = "/vision_code/camera_params.yaml"
 MESH_DIR = "/FoundationPose/meshes"
 ASSEMBLY_CENTER_BASE = np.array([0.35, 0.2, 0.025])
 
-# 🔥 仿真修正：删除 -45度补偿，设为 0.0
+#  仿真修正：删除 -45度补偿，设为 0.0
 ROBOT_READY_YAW_OFFSET = -45
 
 if FP_REPO not in sys.path:
@@ -101,115 +101,122 @@ class RobotVisionNode:
             self.pipeline.wait_for_frames()
 
     def run(self):
-        for task in self.task_list:
-            name = task['name']
-            while os.path.exists(RESULT_FILE):
-                print("⏳ 等待旧任务完成信号清除...")
-                time.sleep(1.0)
-
-            self.clear_buffer()
-            print(f"\n🎯 [新任务] 目标: {name}")
-            mesh_path = self.get_mesh_path(name)
-            self.pose_est.update_mesh(mesh_path)
-
-            # --- 阶段 1: 扫描所有可能的候选者 (GroundingDINO) ---
-            print("👁️ 阶段 1: 正在扫描桌面所有目标...")
-            frames = self.pipeline.wait_for_frames()
-            img_bgr = np.asanyarray(self.align.process(frames).get_color_frame().get_data())
-            img_pil = Image.fromarray(cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB))
+            """
+            全流程视觉控制逻辑：从任务读取到 6D 位姿输出
+            """
+            # 定义硬过滤容差：比例偏差超过 0.3 (30%) 则判定为错误积木
+            RATIO_TOLERANCE = 0.3 
             
-            # 获取所有候选结果
-            results = self.detector(img_pil, candidate_labels=[name, "lego block"], threshold=0.2)
-            
-            candidates = []
-            viz_all = img_bgr.copy() # 用于展示所有选手的初始得分
+            for task in self.task_list:
+                name = task['name']  # 任务名，例如 "brick_4x2_L1_1"
+                
+                # --- 0. 任务同步：等待机器人完成上一个动作 ---
+                while os.path.exists(RESULT_FILE):
+                    print("⏳ 正在等待机器人清除旧任务信号...")
+                    time.sleep(0.5)
 
-            for r in results:
-                box = BoundingBox(**r['box'])
-                # 在初始画面画出所有检测到的物体 (蓝色)
-                cv2.rectangle(viz_all, (box.xmin, box.ymin), (box.xmax, box.ymax), (255, 0, 0), 2)
-                cv2.putText(viz_all, f"Det: {r['score']:.2f}", (box.xmin, box.ymin-5), 
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 1)
+                print(f"\n🎯 [视觉启动] 正在寻找目标: {name}")
+                
+                # 根据任务名加载对应的 3D 模型 (2x2 或 2x4)
+                mesh_path = self.get_mesh_path(name)
+                self.pose_est.update_mesh(mesh_path)
+                
+                # 确定期望的物理比例：2x4 -> 2.0, 2x2 -> 1.0
+                target_ratio = 2.0 if ("4x2" in name or "2x4" in name) else 1.0
 
-                # --- 阶段 2: 对每个候选者运行 SAM 并计算真实几何比例 ---
-                if SAM_AVAILABLE:
+                # --- 1. 图像采集与全图检测 ---
+                self.clear_buffer() # 确保拿到的是最新的一帧
+                frames = self.pipeline.wait_for_frames()
+                aligned_frames = self.align.process(frames)
+                img_bgr = np.asanyarray(aligned_frames.get_color_frame().get_data())
+                img_pil = Image.fromarray(cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB))
+                
+                # 使用 DINO 找出场景中所有的候选积木
+                results = self.detector(img_pil, candidate_labels=["lego block"], threshold=0.15)
+                
+                valid_candidates = []
+                viz_frame = img_bgr.copy()
+
+                # --- 2. 几何校验：硬过滤（Hard Reject）逻辑 ---
+                for r in results:
+                    box = [r['box']['xmin'], r['box']['ymin'], r['box']['xmax'], r['box']['ymax']]
+                    
+                    # A. 调用 SAM 获取精确掩码
                     self.sam_predictor.set_image(cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB))
-                    masks, _, _ = self.sam_predictor.predict(box=np.array(box.xyxy), multimask_output=False)
+                    masks, _, _ = self.sam_predictor.predict(box=np.array(box), multimask_output=False)
                     mask = masks[0]
                     
-                    # 使用最小外接矩形 (OBB) 计算物理比例，无视旋转
+                    # B. 计算最小外接矩形 (OBB) 得到真实长宽比
                     contours, _ = cv2.findContours(mask.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
                     if not contours: continue
-                    cnt = max(contours, key=cv2.contourArea)
-                    rect = cv2.minAreaRect(cnt)
-                    (w, h) = rect[1]
+                    rect = cv2.minAreaRect(max(contours, key=cv2.contourArea))
+                    w, h = rect[1]
+                    actual_ratio = max(w, h) / (min(w, h) + 1e-6)
                     
-                    actual_w = max(w, h)
-                    actual_h = min(w, h)
-                    if actual_h == 0: continue
-                    aspect_ratio = actual_w / actual_h 
+                    # C. 比例对比与硬过滤
+                    ratio_diff = abs(actual_ratio - target_ratio)
+                    if ratio_diff > RATIO_TOLERANCE:
+                        # 比例不对，直接在图中画红色 X 并跳过
+                        cv2.rectangle(viz_frame, (int(box[0]), int(box[1])), (int(box[2]), int(box[3])), (0, 0, 255), 2)
+                        cv2.putText(viz_frame, f"REJECT:{actual_ratio:.1f}", (int(box[0]), int(box[1])-5), 
+                                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1)
+                        continue 
                     
-                    # 评分逻辑：2x4 目标比例 2.0，2x2 目标比例 1.0
-                    target_ratio = 2.0 if ("4x2" in name or "2x4" in name) else 1.0
-                    geo_score = 1.0 / (abs(aspect_ratio - target_ratio) + 0.1)
+                    # D. 只有通过过滤的才加入候选集
+                    # 评分逻辑：DINO 置信度 * 几何契合度
+                    match_score = r['score'] * (1.0 / (ratio_diff + 0.1))
+                    valid_candidates.append({'mask': mask, 'score': match_score, 'ratio': actual_ratio, 'box': box})
                     
-                    # 综合得分 = 语义分 * 几何分
-                    total_score = geo_score * r['score']
-                    candidates.append({'det': r, 'mask': mask, 'total_score': total_score})
+                    # 在图中标记候选者
+                    cv2.rectangle(viz_frame, (int(box[0]), int(box[1])), (int(box[2]), int(box[3])), (255, 0, 0), 2)
 
-            if not candidates:
-                print("❌ 未发现符合条件的积木。")
-                continue
+                # --- 3. 择优录取 ---
+                if not valid_candidates:
+                    print(f"❌ 未找到符合比例 {target_ratio} 的积木。")
+                    cv2.imshow("Detection Logic", viz_frame); cv2.waitKey(1000)
+                    continue
 
-            # --- 决策可视化: 选出“冠军”并展示 ---
-            best_candidate = max(candidates, key=lambda x: x['total_score'])
-            box_win = BoundingBox(**best_candidate['det']['box'])
-            
-            # 高亮胜出者 (黄色)
-            cv2.rectangle(viz_all, (box_win.xmin, box_win.ymin), (box_win.xmax, box_win.ymax), (0, 255, 255), 4)
-            cv2.putText(viz_all, f"WINNER: {name} ({best_candidate['total_score']:.2f})", 
-                        (box_win.xmin, box_win.ymin-25), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 2)
-            
-            # 在胜出者上叠加绿色掩码
-            viz_all[best_candidate['mask']] = viz_all[best_candidate['mask']] * 0.6 + np.array([0, 255, 0], dtype=np.uint8) * 0.4
-            
-            cv2.imshow("Vision - Ranking & Selection", viz_all)
-            print(f"✅ 胜出目标: {name}，展示决策中...")
-            cv2.waitKey(2000) # 🔥 停留 2 秒展示“选妃”结果
-
-            # --- 阶段 3: 6D 姿态精炼 (FoundationPose) ---
-            print("📏 阶段 3: 正在精炼 6D 姿态...")
-            pose_samples = []; refine_start = time.time()
-            final_viz = None
-
-            while (time.time() - refine_start) < 4.0:
-                frames = self.pipeline.wait_for_frames()
-                aligned = self.align.process(frames)
-                img = np.asanyarray(aligned.get_color_frame().get_data())
-                depth_m = np.asanyarray(aligned.get_depth_frame().get_data()).astype(np.float32) / 1000.0
+                # 选出得分最高的一个作为最终目标
+                winner = max(valid_candidates, key=lambda x: x['score'])
                 
-                # 🔥 关键修复：使用 best_candidate 的 mask
-                T_curr = self.pose_est.estimator.register(
-                    K=self.K_MATRIX, rgb=img, depth=depth_m, 
-                    ob_mask=best_candidate['mask'], iteration=30
-                )
-                
-                if T_curr is not None:
-                    pose_samples.append(T_curr)
-                    self.visualize_result(img, T_curr)
-                    final_viz = img.copy()
-                
-                cv2.imshow("Vision - 6D Pose", img)
-                cv2.waitKey(1)
+                # 可视化演示：高亮绿色并停顿 2 秒
+                cv2.rectangle(viz_frame, (int(winner['box'][0]), int(winner['box'][1])), 
+                            (int(winner['box'][2]), int(winner['box'][3])), (0, 255, 0), 4)
+                cv2.putText(viz_frame, "WINNER: RATIO MATCHED", (int(winner['box'][0]), int(winner['box'][1])-20), 
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+                cv2.imshow("Detection Logic", viz_frame)
+                cv2.waitKey(2000) 
 
-            if pose_samples:
-                if final_viz is not None:
-                    cv2.putText(final_viz, "READY TO GRASP", (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-                    cv2.imshow("Vision - 6D Pose", final_viz)
+                # --- 4. 6D 姿态追踪 (FoundationPose) ---
+                print("📐 正在精炼 6D 位姿...")
+                pose_samples = []
+                start_time = time.time()
                 
-                print(f"🚀 流程结束，发送数据。")
-                cv2.waitKey(2000) # 🔥 最终姿态停留 2 秒
-                self.send_to_robot(name, pose_samples[-1], task)
+                # 持续追踪 4 秒以获得稳定的结果
+                while (time.time() - start_time) < 4.0:
+                    frames = self.pipeline.wait_for_frames()
+                    aligned = self.align.process(frames)
+                    rgb = np.asanyarray(aligned.get_color_frame().get_data())
+                    depth = np.asanyarray(aligned.get_depth_frame().get_data()).astype(np.float32) / 1000.0 # 转为米
+                    
+                    # 使用胜出者的掩码进行配准
+                    T_curr = self.pose_est.estimator.register(
+                        K=self.K_MATRIX, rgb=rgb, depth=depth, 
+                        ob_mask=winner['mask'], iteration=20
+                    )
+                    
+                    if T_curr is not None:
+                        pose_samples.append(T_curr)
+                        self.visualize_result(rgb, T_curr) # 实时画出 3D 坐标轴
+                    
+                    cv2.imshow("6D Pose Tracking", rgb)
+                    if cv2.waitKey(1) & 0xFF == ord('q'): break
+
+                # --- 5. 数据输出：将结果发送给 C++ 节点 ---
+                if pose_samples:
+                    print(f"✅ 位姿解算成功，正在保存任务...")
+                    cv2.waitKey(1500) # 展示最后的追踪结果
+                    self.send_to_robot(name, pose_samples[-1], task)
 
     def visualize_result(self, image, T_cam_obj):
         length = 0.05
