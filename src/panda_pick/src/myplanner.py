@@ -53,16 +53,16 @@ def check_accessibility(test_pos, scene_blocks, self_name, check_mode=90):
                 # 0度抓：检查 Y 轴轨道 (要求 X 坐标相同)
                 if dx < 0.016: # 在同一条纵向线上
                     if dy < THRESHOLD:
-                        print(f"      [❌ 碰撞] {mode_str} 轨道受阻！邻居: {blk['name']} | 距离 dy={dy:.3f} < {THRESHOLD}")
+                        print(f"[ 碰撞] {mode_str} 轨道受阻！邻居: {blk['name']} | 距离 dy={dy:.3f} < {THRESHOLD}")
                         return False
             elif check_mode == 90:
                 # 90度抓：检查 X 轴轨道 (要求 Y 坐标相同)
                 if dy < 0.016: # 在同一条横向线上
                     if dx < THRESHOLD:
-                        print(f"      [❌ 碰撞] {mode_str} 轨道受阻！邻居: {blk['name']} | 距离 dx={dx:.3f} < {THRESHOLD}")
+                        print(f" [碰撞] {mode_str} 轨道受阻！邻居: {blk['name']} | 距离 dx={dx:.3f} < {THRESHOLD}")
                         return False
     
-    print(f"      [✅ 安全] {mode_str} 路径清空")
+    print(f"      [ 安全] {mode_str} 路径清空")
     return True
 
 def is_covered(target, remaining_blocks):
@@ -80,7 +80,7 @@ def check_balance(target, remaining_blocks):
     for blk in remaining_blocks:
         if blk == target: continue
         ox, oy, oz = blk['abs_pos']
-        if abs(tz - (oz + 0.03)) < 0.005:
+        if abs(tz - (oz + 0.015)) < 0.005:
             if abs(tx - ox) < 0.0165 and abs(ty - oy) < 0.0165:
                 return True 
     return False
@@ -100,7 +100,7 @@ def process_blueprint(input_yaml, output_yaml):
 
     disassembly_tasks = []
     print(f"\n" + "="*50)
-    print(f"🚀 开始逆向推理规划 | 避障阈值: {THRESHOLD}m")
+    print(f" 开始逆向推理规划 | 避障阈值: {THRESHOLD}m")
     print(f"逻辑设定: 0度看Y轴轨道, 90度看X轴轨道")
     print("="*50)
 
@@ -137,11 +137,11 @@ def process_blueprint(input_yaml, output_yaml):
                 print(f"    - 判定结果: 采用 0 度抓取")
                 break
             
-            print(f"    - ❌ 错误: 该积木在所有相位下均会发生碰撞")
+            print(f"  -  错误: 该积木在所有相位下均会发生碰撞")
 
         if target is None:
             target, final_spin = remaining_blocks[0], 90
-            print(f"  [⚠️ 警告] 无法找到完美避障路径，强制拆卸最高块: {target['name']}")
+            print(f"  [警告] 无法找到完美避障路径，强制拆卸最高块: {target['name']}")
 
         # 记录拆卸任务
         rot_rpy = target.get('rotation', [0, 0, 0])
@@ -163,20 +163,20 @@ def process_blueprint(input_yaml, output_yaml):
         })
         
         # 模拟物理移除
-        print(f"  ✨ 确认拆卸: {target['name']} | 轨道已清空")
+        print(f"  确认拆卸: {target['name']} | 轨道已清空")
         remaining_blocks.remove(target)
 
     # 将逆向拆卸顺序转为正向装配顺序
     print(f"\n" + "="*50)
-    print(f"✅ 所有积木处理完毕，正在生成正向装配清单...")
+    print(f" 所有积木处理完毕，正在生成正向装配清单...")
     assembly_tasks = disassembly_tasks[::-1]
     for i, task in enumerate(assembly_tasks):
         task['id'] = i
 
     with open(output_yaml, 'w') as f:
         yaml.dump({"tasksh": assembly_tasks}, f, sort_keys=False)
-    print(f"🎉 最终文件已生成: {output_yaml}")
+    print(f"最终文件已生成: {output_yaml}")
     print("="*50 + "\n")
 
 if __name__ == "__main__":
-    process_blueprint("final_test.yaml", "task_test.yaml")
+    process_blueprint("final_product_t.yaml", "task_test_t2.yaml")

@@ -125,7 +125,7 @@ def launch_setup(context, *args, **kwargs):
         arguments=["panda_arm_controller", "--controller-manager", "/controller_manager"],
     )
 
-    # 3. 🔥 核心修正：单独为夹爪创建一个加载节点
+    # 3.  核心修正：单独为夹爪创建一个加载节点
     # 这将启动 panda_hand_controller，解决 Action Server 连不上的报错
     hand_controller = Node(
         package="controller_manager", 
@@ -140,7 +140,7 @@ def launch_setup(context, *args, **kwargs):
         output="screen",
         parameters=[
             moveit_config.to_dict(), 
-            joint_limit_params,  # 💡 传入修正参数，防止 IK 报错
+            joint_limit_params,  #  传入修正参数，防止 IK 报错
             {"use_sim_time": False}
         ],
         prefix='bash -c "sleep 8.0; $0 $@"'
@@ -153,7 +153,7 @@ def launch_setup(context, *args, **kwargs):
         ros2_control_node,
         js_broadcaster,
         arm_controller,
-        hand_controller, # 👈 确保这里添加了 hand_controller
+        hand_controller, #  确保这里添加了 hand_controller
         rviz_node,
         pick_node
     ]

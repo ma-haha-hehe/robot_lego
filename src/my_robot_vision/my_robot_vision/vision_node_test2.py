@@ -24,7 +24,7 @@ CAMERA_PARAMS_YAML = "/vision_code/camera_params.yaml"
 MESH_DIR = "/FoundationPose/meshes"
 ASSEMBLY_CENTER_BASE = np.array([0.35, 0.2, 0.025])
 
-# 🔥 仿真修正：删除 -45度补偿，设为 0.0
+#  仿真修正：删除 -45度补偿，设为 0.0
 ROBOT_READY_YAW_OFFSET = -45
 
 if FP_REPO not in sys.path:
@@ -133,7 +133,7 @@ class RobotVisionNode:
                 print(" no target,skip 未能检测到目标，跳过任务。")
                 continue
             
-            # 🔥 展示检测结果并停顿 2 秒
+            #  展示检测结果并停顿 2 秒
             viz_det = best_img_bgr.copy()
             cv2.rectangle(viz_det, (best_det.box.xmin, best_det.box.ymin), (best_det.box.xmax, best_det.box.ymax), (0, 255, 255), 3)
             cv2.putText(viz_det, f"DETECTED: {name}", (best_det.box.xmin, best_det.box.ymin - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 2)
@@ -148,7 +148,7 @@ class RobotVisionNode:
                 masks, _, _ = self.sam_predictor.predict(box=np.array(best_det.box.xyxy), multimask_output=False)
                 refined_mask = masks[0]
                 
-                # 🔥 展示分割结果并停顿 2 秒
+                #  展示分割结果并停顿 2 秒
                 mask_viz = best_img_bgr.copy()
                 mask_viz[refined_mask] = mask_viz[refined_mask] * 0.5 + np.array([0, 255, 0], dtype=np.uint8) * 0.5
                 cv2.imshow("Vision", mask_viz)
@@ -176,7 +176,7 @@ class RobotVisionNode:
                 cv2.imshow("Vision", img); cv2.waitKey(1)
 
             if pose_samples:
-                # 🔥 展示最终位姿结果并停顿 2 秒
+                #  展示最终位姿结果并停顿 2 秒
                 if final_viz_img is not None:
                     cv2.putText(final_viz_img, "POSE ESTIMATED", (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
                     cv2.imshow("Vision", final_viz_img)

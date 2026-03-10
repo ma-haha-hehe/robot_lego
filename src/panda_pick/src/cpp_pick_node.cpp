@@ -21,6 +21,10 @@
 #include <moveit/trajectory_processing/iterative_time_parameterization.h>
 #include <moveit_msgs/msg/robot_trajectory.hpp>
 
+#include <moveit/trajectory_processing/time_optimal_trajectory_generation.h>
+#include <moveit/robot_trajectory/robot_trajectory.h>
+
+
 const double GRIPPER_HEIGHT = 0.104;
 
 using GripperCommand = control_msgs::action::GripperCommand;
@@ -62,7 +66,7 @@ bool driveGripperAction(rclcpp::Node::SharedPtr node, double pos) {
 
     auto goal = GripperCommand::Goal();
     goal.command.position = pos;
-    goal.command.max_effort = 40.0;
+    goal.command.max_effort = 20.0;
     client->async_send_goal(goal);
     std::this_thread::sleep_for(std::chrono::milliseconds(2500));
     return true;
@@ -144,97 +148,114 @@ bool wait_for_task(Task& t) {
 }
 
 
-bool move_linear(moveit::planning_interface::MoveGroupInterface& arm, double z_delta) {
+bool move_linear(moveit::planning_interface::MoveGroupInterface& arm, double z_delta, double speed_scale = 0.1) {
     std::vector<geometry_msgs::msg::Pose> waypoints;
     geometry_msgs::msg::Pose target = arm.getCurrentPose().pose;
     target.position.z += z_delta;
     waypoints.push_back(target);
 
-    moveit_msgs::msg::RobotTrajectory traj;
-    // 参数：路径点, 步长(1mm), 跳变阈值(禁用), 轨迹输出, 避障(关闭)
-    double fraction = arm.computeCartesianPath(waypoints, 0.001, 0.0, traj, false);
+    moveit_msgs::msg::RobotTrajectory trajectory_msg;
+    // 1. 计算笛卡尔路径点
+    double fraction = arm.computeCartesianPath(waypoints, 0.001, 0.0, trajectory_msg, false);
     
     if (fraction > 0.1) {
-        arm.execute(traj);
-        return true;
+        // 2. 将消息转换为 RobotTrajectory 对象，以便进行时间参数化
+        robot_trajectory::RobotTrajectory rt(arm.getRobotModel(), arm.getName());
+        rt.setRobotTrajectoryMsg(*arm.getCurrentState(), trajectory_msg);
+
+        // 3. 使用 TOTG 算法计算时间戳、速度和加速度
+        // 参数：轨迹, 速度缩放, 加速度缩放
+        trajectory_processing::TimeOptimalTrajectoryGeneration totg;
+        bool success = totg.computeTimeStamps(rt, speed_scale, speed_scale);
+
+        if (success) {
+            rt.getRobotTrajectoryMsg(trajectory_msg);
+            arm.execute(trajectory_msg);
+            return true;
+        }
     }
-    RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "直线移动失败！");
+    RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "直线平移规划或调速失败！");
     return false;
 }
 
-
+/**
+ * @brief 执行单次抓放任务 - 动态速度控制版
+ */
 bool execute_single_task(rclcpp::Node::SharedPtr node,
                          moveit::planning_interface::MoveGroupInterface& arm,
                          moveit::planning_interface::PlanningSceneInterface& psi,
                          const Task& task) {
     
-    RCLCPP_INFO(node->get_logger(), " 执行任务（防止掉落模式）: %s", task.name.c_str());
+    RCLCPP_INFO(node->get_logger(), "开始任务: %s [动态调速模式]", task.name.c_str());
 
-    const double GRIPPER_OFFSET = 0.1234; // 法兰盘到指尖的高度
-    const double HOVER = 0.15;           // 15cm 悬停
-    const double SAFE_PICK_Z = 0.015;    //  稍微调高到 3.5cm，防止手指尖打翻积木
+    const double GRIPPER_OFFSET = 0.1234; 
+    const double HOVER = 0.15;           
 
-    // 1. 生成并彻底豁免碰撞
+    // 1. 环境准备 (略过 Collision 设置，保持原有逻辑)
     moveit_msgs::msg::CollisionObject brick;
     brick.id = task.name; brick.header.frame_id = arm.getPlanningFrame();
     brick.meshes.push_back(load_stl_mesh(MESH_PATH + task.mesh_file));
     brick.mesh_poses.push_back(task.brick_pose); 
     brick.operation = brick.ADD;
     psi.applyCollisionObject(brick);
-    
     allow_all_collisions(node, task.name);
 
     // --- [抓取序列] ---
-    // A. 到达 15cm 悬停位
+
+    // A. 快速接近悬停位 (PTP 运动)
+    RCLCPP_INFO(node->get_logger(), ">>> 快速接近...");
+    arm.setMaxVelocityScalingFactor(0.4); // 设置较快速度
     geometry_msgs::msg::Pose p_hover = task.gripper_pick;
     p_hover.position.z += (GRIPPER_OFFSET + HOVER);
     arm.setPoseTarget(p_hover);
     arm.move();
 
-    driveGripperAction(node, 0.04); // 完全张开
-    std::this_thread::sleep_for(std::chrono::seconds(1)); // 💡 额外等待：确保手指完全张开
+    driveGripperAction(node, 0.04); 
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 
-    // B. 下降到物体上方 3.5cm (15 - 3.5 = 11.5cm)
-    RCLCPP_INFO(node->get_logger(), " 下降中...");
-    move_linear(arm, -0.155); 
+    // B. 慢速线性下降
+    RCLCPP_INFO(node->get_logger(), ">>> 慢速下降...");
+    // 调用 move_linear，最后一个参数 0.05 代表 5% 的极低速，确保不撞翻物体
+    move_linear(arm, -0.155, 0.05); 
 
-    // C. 关键步骤：先 Attach，再闭合，防止物理引擎判定积木掉落
-    // 定义哪些部分可以接触积木
-    std::vector<std::string> touch_links = {"panda_leftfinger", "panda_rightfinger", "panda_hand", "panda_link8"};
-    
-    RCLCPP_INFO(node->get_logger(), " 正在闭合夹爪并锁定物体...");
-    driveGripperAction(node, 0.01); // 闭合到 2cm
-    arm.attachObject(task.name, "panda_hand", touch_links); // 逻辑绑定
-    
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));//给物理引擎缓冲时间
+    // C. 抓取与 Attach
+    RCLCPP_INFO(node->get_logger(), ">>> 闭合夹爪...");
+    std::vector<std::string> touch_links = {"panda_leftfinger", "panda_rightfinger", "panda_hand"};
+    driveGripperAction(node, 0.02); 
+    arm.attachObject(task.name, "panda_hand", touch_links); 
+    std::this_thread::sleep_for(std::chrono::milliseconds(800));
 
-    // D. 抬起 (抬起 15cm)
-    move_linear(arm, HOVER); 
+    // D. 中速抬起
+    RCLCPP_INFO(node->get_logger(), ">>> 抬起...");
+    move_linear(arm, HOVER, 0.2); // 20% 速度抬起
 
     // --- [放置序列] ---
-    RCLCPP_INFO(node->get_logger(), " 移动到放置位...");
+
+    // E. 快速移动到放置点上方
+    RCLCPP_INFO(node->get_logger(), ">>> 移动至目标上方...");
+    arm.setMaxVelocityScalingFactor(0.4); 
     geometry_msgs::msg::Pose p_place = task.place_pose;
     p_place.position.z += (GRIPPER_OFFSET + HOVER);
     
-    // 再次强制豁免，防止搬运途中撞到其他积木
     allow_all_collisions(node, task.name);
-    
     arm.setPoseTarget(p_place);
     arm.move();
 
-    // 下降到目标高度 (15cm)
-    move_linear(arm, -HOVER); 
+    // F. 极慢速放置
+    RCLCPP_INFO(node->get_logger(), ">>> 慢速放置...");
+    move_linear(arm, -HOVER, 0.03); // 3% 速度，最精细的放置
 
-    // 释放
-    RCLCPP_INFO(node->get_logger(), " 释放物体");
+    // G. 释放
+    RCLCPP_INFO(node->get_logger(), ">>> 释放...");
     arm.detachObject(task.name);   
     driveGripperAction(node, 0.04); 
     
-    // 撤离
-    move_linear(arm, HOVER); 
+    // H. 快速撤离
+    RCLCPP_INFO(node->get_logger(), ">>> 撤离...");
+    arm.setMaxVelocityScalingFactor(0.5);
+    move_linear(arm, HOVER, 0.3); 
 
     if (std::filesystem::exists(RESULT_FILE)) std::filesystem::remove(RESULT_FILE);
-    RCLCPP_INFO(node->get_logger(), " 任务完成");
     return true;
 }
 int main(int argc, char** argv) {
@@ -269,8 +290,8 @@ int main(int argc, char** argv) {
 
         // 设置全局运动参数
         arm.setPlanningTime(20.0);           // 增加规划时间，应对复杂环境
-        arm.setMaxVelocityScalingFactor(0.5); // 限制全局最大速度
-        arm.setMaxAccelerationScalingFactor(0.5);
+        arm.setMaxVelocityScalingFactor(0.3); // 限制全局最大速度 slow down
+        arm.setMaxAccelerationScalingFactor(0.1);
 
         // 5. 初始化环境场景：添加桌面
         // 建议在循环开始前添加一次即可

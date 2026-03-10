@@ -1,0 +1,34 @@
+# final_product.yaml (Planning 之前的原始输入)
+blocks:
+  # --- 第一层 ---
+  - name: "base_4x2_lvl1"     # 对应原材料区的 ID
+    type: "brick_4x2"
+    pos: [-0.032, 0.0, 0.0]
+    rotation: [0, 0, 0]
+
+  - name: "base_4x2_lvl1"
+    type: "brick_4x2"
+    pos: [0.0, 0.0, 0.0]
+    rotation: [0, 0, 0]
+
+  - name: "base_4x2_lvl1"
+    type: "brick_4x2"
+    pos: [0.032, 0.0, 0.0]
+    rotation: [0, 0, 0]
+
+  # --- 第二层 ---
+  - name: "base_4x2_lvl1"     # 这里假设原材料区所有 4x2 都叫这个名字
+    type: "brick_4x2"
+    pos: [-0.016, 0.0, 0.0192]
+    rotation: [0, 0, 0]
+
+  - name: "base_4x2_lvl1"
+    type: "brick_4x2"
+    pos: [0.016, 0.0, 0.0192]
+    rotation: [0, 0, 0]
+
+  # --- 第三层 ---
+  - name: "top_4x2_lvl4"      # 对应原材料区特定的顶部积木
+    type: "brick_4x2"
+    pos: [0.0, 0.0, 0.0384]
+    rotation: [0, 0, 0]
