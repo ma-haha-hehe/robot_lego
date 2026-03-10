@@ -93,14 +93,14 @@ bool wait_for_task(Task& t) {
         std::string name = res["name"].as<std::string>();
         t.name = name;
 
-        // 💡 动态选择 STL 模型
+        //  动态选择 STL 模型
         if (name.find("2x4") != std::string::npos || name.find("4x2") != std::string::npos) {
             t.mesh_file = "LEGO_Duplo_brick_4x2.stl";
-            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "📦 匹配到 4x2 积木模型");
+            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), " 匹配到 4x2 积木模型");
         } 
         else if (name.find("2x2") != std::string::npos) {
             t.mesh_file = "LEGO_Duplo_brick_2x2.stl";
-            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "📦 匹配到 2x2 积木模型");
+            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), " 匹配到 2x2 积木模型");
         } 
         else {
             t.mesh_file = "LEGO_Duplo_brick_4x2.stl"; // 默认
@@ -117,10 +117,10 @@ bool wait_for_task(Task& t) {
         t.brick_pose.orientation.w = res["brick_info"]["orientation"][3].as<double>();
 
         // 3. 设定抓取位姿 (Robot Pick)
-        // 💡 关键：Position 直接复用 brick_info 的坐标
+        //  关键：Position 直接复用 brick_info 的坐标
         t.gripper_pick.position = t.brick_pose.position;
 
-        // 💡 关键：Orientation 读取 robot_pick 专属的四元数
+        //  关键：Orientation 读取 robot_pick 专属的四元数
         t.gripper_pick.orientation.x = res["robot_pick"]["orientation"][0].as<double>();
         t.gripper_pick.orientation.y = res["robot_pick"]["orientation"][1].as<double>();
         t.gripper_pick.orientation.z = res["robot_pick"]["orientation"][2].as<double>();
@@ -168,11 +168,11 @@ bool execute_single_task(rclcpp::Node::SharedPtr node,
                          moveit::planning_interface::PlanningSceneInterface& psi,
                          const Task& task) {
     
-    RCLCPP_INFO(node->get_logger(), "🚀 执行任务（防止掉落模式）: %s", task.name.c_str());
+    RCLCPP_INFO(node->get_logger(), " 执行任务（防止掉落模式）: %s", task.name.c_str());
 
     const double GRIPPER_OFFSET = 0.1234; // 法兰盘到指尖的高度
     const double HOVER = 0.15;           // 15cm 悬停
-    const double SAFE_PICK_Z = 0.015;    // 🔥 稍微调高到 3.5cm，防止手指尖打翻积木
+    const double SAFE_PICK_Z = 0.015;    //  稍微调高到 3.5cm，防止手指尖打翻积木
 
     // 1. 生成并彻底豁免碰撞
     moveit_msgs::msg::CollisionObject brick;
@@ -195,14 +195,14 @@ bool execute_single_task(rclcpp::Node::SharedPtr node,
     std::this_thread::sleep_for(std::chrono::seconds(1)); // 💡 额外等待：确保手指完全张开
 
     // B. 下降到物体上方 3.5cm (15 - 3.5 = 11.5cm)
-    RCLCPP_INFO(node->get_logger(), "📍 下降中...");
+    RCLCPP_INFO(node->get_logger(), " 下降中...");
     move_linear(arm, -0.155); 
 
     // C. 关键步骤：先 Attach，再闭合，防止物理引擎判定积木掉落
     // 定义哪些部分可以接触积木
     std::vector<std::string> touch_links = {"panda_leftfinger", "panda_rightfinger", "panda_hand", "panda_link8"};
     
-    RCLCPP_INFO(node->get_logger(), "📍 正在闭合夹爪并锁定物体...");
+    RCLCPP_INFO(node->get_logger(), " 正在闭合夹爪并锁定物体...");
     driveGripperAction(node, 0.01); // 闭合到 2cm
     arm.attachObject(task.name, "panda_hand", touch_links); // 逻辑绑定
     
@@ -212,7 +212,7 @@ bool execute_single_task(rclcpp::Node::SharedPtr node,
     move_linear(arm, HOVER); 
 
     // --- [放置序列] ---
-    RCLCPP_INFO(node->get_logger(), "📍 移动到放置位...");
+    RCLCPP_INFO(node->get_logger(), " 移动到放置位...");
     geometry_msgs::msg::Pose p_place = task.place_pose;
     p_place.position.z += (GRIPPER_OFFSET + HOVER);
     
@@ -226,7 +226,7 @@ bool execute_single_task(rclcpp::Node::SharedPtr node,
     move_linear(arm, -HOVER); 
 
     // 释放
-    RCLCPP_INFO(node->get_logger(), "📍 释放物体");
+    RCLCPP_INFO(node->get_logger(), " 释放物体");
     arm.detachObject(task.name);   
     driveGripperAction(node, 0.04); 
     
@@ -234,7 +234,7 @@ bool execute_single_task(rclcpp::Node::SharedPtr node,
     move_linear(arm, HOVER); 
 
     if (std::filesystem::exists(RESULT_FILE)) std::filesystem::remove(RESULT_FILE);
-    RCLCPP_INFO(node->get_logger(), "✅ 任务完成");
+    RCLCPP_INFO(node->get_logger(), " 任务完成");
     return true;
 }
 int main(int argc, char** argv) {
@@ -303,14 +303,14 @@ int main(int argc, char** argv) {
             
             // 轮询：检查是否有新的任务产生
             if (wait_for_task(current_task)) {
-                RCLCPP_INFO(node->get_logger(), "🔔 收到新任务: %s", current_task.name.c_str());
+                RCLCPP_INFO(node->get_logger(), " 收到新任务: %s", current_task.name.c_str());
                 
                 // 执行抓取与放置序列 (含 15cm->3cm 下降及慢速放置)
                 try {
                     execute_single_task(node, arm, psi, current_task);
-                    RCLCPP_INFO(node->get_logger(), "✅ 任务执行成功。");
+                    RCLCPP_INFO(node->get_logger(), " 任务执行成功。");
                 } catch (const std::exception& e) {
-                    RCLCPP_ERROR(node->get_logger(), "❌ 任务执行异常: %s", e.what());
+                    RCLCPP_ERROR(node->get_logger(), " 任务执行异常: %s", e.what());
                 }
             }
 
