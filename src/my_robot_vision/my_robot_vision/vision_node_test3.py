@@ -19,7 +19,7 @@ from scipy.spatial.transform import Rotation as R
 # ================= 1. 路径与环境配置 =================
 FP_REPO = "/FoundationPose"
 RESULT_FILE = "/shared_data/active_task.yaml"
-TASKS_YAML = "/vision_code/task_test_door.yaml"#t and bigt
+TASKS_YAML = "/vision_code/tasksh_true.yaml"#t and bigt
 CAMERA_PARAMS_YAML = "/vision_code/camera_params.yaml"
 MESH_DIR = "/FoundationPose/meshes"
 ASSEMBLY_CENTER_BASE = np.array([0.35, 0.2, 0.025])
@@ -96,7 +96,7 @@ class RobotVisionNode:
         self.align = rs.align(rs.stream.color)
 
     def clear_buffer(self):
-        print("扫清相机缓存，获取新鲜实时画面...")
+        print("get new view 扫清相机缓存，获取新鲜实时画面...")
         for _ in range(30):
             self.pipeline.wait_for_frames()
 
@@ -104,54 +104,111 @@ class RobotVisionNode:
         for task in self.task_list:
             name = task['name']
             while os.path.exists(RESULT_FILE):
-                print(" 等待旧任务完成信号清除...")
+                print("⏳ 等待旧任务完成信号清除...")
                 time.sleep(1.0)
 
             self.clear_buffer()
-            print(f"\n 下一目标: {name}")
+            print(f"\n🎯 [新任务] 目标: {name}")
             mesh_path = self.get_mesh_path(name)
             self.pose_est.update_mesh(mesh_path)
 
-            # --- 目标检测 ---
-            obs_start = time.time()
-            best_det = None; max_score = -1; best_img_bgr = None
-            while (time.time() - obs_start) < 8.0:
-                frames = self.pipeline.wait_for_frames()
-                img = np.asanyarray(self.align.process(frames).get_color_frame().get_data())
-                img_pil = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-                results = self.detector(img_pil, candidate_labels=[name, "lego block."], threshold=0.3)
-                for r in results:
-                    if r['score'] > max_score:
-                        max_score = r['score']
-                        best_det = DetectionResult(r['score'], r['label'], BoundingBox(**r['box']))
-                        best_img_bgr = img.copy()
-                cv2.imshow("Vision", img); cv2.waitKey(1)
+            # --- 阶段 1: 扫描所有可能的候选者 (GroundingDINO) ---
+            print("👁️ 阶段 1: 正在扫描桌面所有目标...")
+            frames = self.pipeline.wait_for_frames()
+            img_bgr = np.asanyarray(self.align.process(frames).get_color_frame().get_data())
+            img_pil = Image.fromarray(cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB))
+            
+            # 获取所有候选结果
+            results = self.detector(img_pil, candidate_labels=[name, "lego block"], threshold=0.2)
+            
+            candidates = []
+            viz_all = img_bgr.copy() # 用于展示所有选手的初始得分
 
-            if not best_det: continue
+            for r in results:
+                box = BoundingBox(**r['box'])
+                # 在初始画面画出所有检测到的物体 (蓝色)
+                cv2.rectangle(viz_all, (box.xmin, box.ymin), (box.xmax, box.ymax), (255, 0, 0), 2)
+                cv2.putText(viz_all, f"Det: {r['score']:.2f}", (box.xmin, box.ymin-5), 
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 1)
 
-            # --- 分割 ---
-            if SAM_AVAILABLE:
-                self.sam_predictor.set_image(cv2.cvtColor(best_img_bgr, cv2.COLOR_BGR2RGB))
-                masks, _, _ = self.sam_predictor.predict(box=np.array(best_det.box.xyxy), multimask_output=False)
-                refined_mask = masks[0]
-            else:
-                refined_mask = np.zeros(best_img_bgr.shape[:2], dtype=bool)
-                refined_mask[best_det.box.ymin:best_det.box.ymax, best_det.box.xmin:best_det.box.xmax] = True
+                # --- 阶段 2: 对每个候选者运行 SAM 并计算真实几何比例 ---
+                if SAM_AVAILABLE:
+                    self.sam_predictor.set_image(cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB))
+                    masks, _, _ = self.sam_predictor.predict(box=np.array(box.xyxy), multimask_output=False)
+                    mask = masks[0]
+                    
+                    # 使用最小外接矩形 (OBB) 计算物理比例，无视旋转
+                    contours, _ = cv2.findContours(mask.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+                    if not contours: continue
+                    cnt = max(contours, key=cv2.contourArea)
+                    rect = cv2.minAreaRect(cnt)
+                    (w, h) = rect[1]
+                    
+                    actual_w = max(w, h)
+                    actual_h = min(w, h)
+                    if actual_h == 0: continue
+                    aspect_ratio = actual_w / actual_h 
+                    
+                    # 评分逻辑：2x4 目标比例 2.0，2x2 目标比例 1.0
+                    target_ratio = 2.0 if ("4x2" in name or "2x4" in name) else 1.0
+                    geo_score = 1.0 / (abs(aspect_ratio - target_ratio) + 0.1)
+                    
+                    # 综合得分 = 语义分 * 几何分
+                    total_score = geo_score * r['score']
+                    candidates.append({'det': r, 'mask': mask, 'total_score': total_score})
 
-            # --- 6D 姿态精炼 ---
+            if not candidates:
+                print("❌ 未发现符合条件的积木。")
+                continue
+
+            # --- 决策可视化: 选出“冠军”并展示 ---
+            best_candidate = max(candidates, key=lambda x: x['total_score'])
+            box_win = BoundingBox(**best_candidate['det']['box'])
+            
+            # 高亮胜出者 (黄色)
+            cv2.rectangle(viz_all, (box_win.xmin, box_win.ymin), (box_win.xmax, box_win.ymax), (0, 255, 255), 4)
+            cv2.putText(viz_all, f"WINNER: {name} ({best_candidate['total_score']:.2f})", 
+                        (box_win.xmin, box_win.ymin-25), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 2)
+            
+            # 在胜出者上叠加绿色掩码
+            viz_all[best_candidate['mask']] = viz_all[best_candidate['mask']] * 0.6 + np.array([0, 255, 0], dtype=np.uint8) * 0.4
+            
+            cv2.imshow("Vision - Ranking & Selection", viz_all)
+            print(f"✅ 胜出目标: {name}，展示决策中...")
+            cv2.waitKey(2000) # 🔥 停留 2 秒展示“选妃”结果
+
+            # --- 阶段 3: 6D 姿态精炼 (FoundationPose) ---
+            print("📏 阶段 3: 正在精炼 6D 姿态...")
             pose_samples = []; refine_start = time.time()
+            final_viz = None
+
             while (time.time() - refine_start) < 4.0:
                 frames = self.pipeline.wait_for_frames()
                 aligned = self.align.process(frames)
                 img = np.asanyarray(aligned.get_color_frame().get_data())
                 depth_m = np.asanyarray(aligned.get_depth_frame().get_data()).astype(np.float32) / 1000.0
-                T_curr = self.pose_est.estimator.register(K=self.K_MATRIX, rgb=img, depth=depth_m, ob_mask=refined_mask, iteration=30)
+                
+                # 🔥 关键修复：使用 best_candidate 的 mask
+                T_curr = self.pose_est.estimator.register(
+                    K=self.K_MATRIX, rgb=img, depth=depth_m, 
+                    ob_mask=best_candidate['mask'], iteration=30
+                )
+                
                 if T_curr is not None:
                     pose_samples.append(T_curr)
                     self.visualize_result(img, T_curr)
-                cv2.imshow("Vision", img); cv2.waitKey(1)
+                    final_viz = img.copy()
+                
+                cv2.imshow("Vision - 6D Pose", img)
+                cv2.waitKey(1)
 
             if pose_samples:
+                if final_viz is not None:
+                    cv2.putText(final_viz, "READY TO GRASP", (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+                    cv2.imshow("Vision - 6D Pose", final_viz)
+                
+                print(f"🚀 流程结束，发送数据。")
+                cv2.waitKey(2000) # 🔥 最终姿态停留 2 秒
                 self.send_to_robot(name, pose_samples[-1], task)
 
     def visualize_result(self, image, T_cam_obj):
