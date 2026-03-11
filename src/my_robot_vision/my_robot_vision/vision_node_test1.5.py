@@ -172,7 +172,7 @@ class RobotVisionNode:
 
             # --- 3. 择优录取 ---
             if not valid_candidates:
-                print(f"❌ 未找到符合比例 {target_ratio} 的积木。")
+                print(f" 未找到符合比例 {target_ratio} 的积木。")
                 cv2.imshow("Detection Logic", viz_frame); cv2.waitKey(1000)
                 continue
 
@@ -214,7 +214,7 @@ class RobotVisionNode:
 
             # --- 5. 数据输出：将结果发送给 C++ 节点 ---
             if pose_samples:
-                print(f"✅ 位姿解算成功，正在保存任务...")
+                print(f" 位姿解算成功，正在保存任务...")
                 cv2.waitKey(1500) # 展示最后的追踪结果
                 self.send_to_robot(name, pose_samples[-1], task)
 
