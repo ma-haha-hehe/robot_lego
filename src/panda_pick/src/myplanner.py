@@ -179,4 +179,6 @@ def process_blueprint(input_yaml, output_yaml):
     print("="*50 + "\n")
 
 if __name__ == "__main__":
-    process_blueprint("final_product_flower.yaml", "task_test_flower.yaml")
+    # 修改后的输出绝对路径
+    output_file = "/home/i6user/Desktop/robot_lego/src/my_robot_vision/my_robot_vision/task_test_flower.yaml"
+    process_blueprint("final_product_flower.yaml", output_file)
