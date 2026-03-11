@@ -51,13 +51,13 @@ def check_accessibility(test_pos, scene_blocks, self_name, check_mode=90):
 
             if check_mode == 0:
                 # 0度抓：检查 Y 轴轨道 (要求 X 坐标相同)
-                if dx < 0.016: # 在同一条纵向线上
+                if dx < 0.005:#在同一条纵向线上
                     if dy < THRESHOLD:
                         print(f"[ 碰撞] {mode_str} 轨道受阻！邻居: {blk['name']} | 距离 dy={dy:.3f} < {THRESHOLD}")
                         return False
             elif check_mode == 90:
                 # 90度抓：检查 X 轴轨道 (要求 Y 坐标相同)
-                if dy < 0.016: # 在同一条横向线上
+                if dy < 0.005:#同一条横向线上
                     if dx < THRESHOLD:
                         print(f" [碰撞] {mode_str} 轨道受阻！邻居: {blk['name']} | 距离 dx={dx:.3f} < {THRESHOLD}")
                         return False
@@ -80,7 +80,7 @@ def check_balance(target, remaining_blocks):
     for blk in remaining_blocks:
         if blk == target: continue
         ox, oy, oz = blk['abs_pos']
-        if abs(tz - (oz + 0.015)) < 0.005:
+        if abs(tz - (oz + 0.01)) < 0.005:
             if abs(tx - ox) < 0.0165 and abs(ty - oy) < 0.0165:
                 return True 
     return False
@@ -117,12 +117,12 @@ def process_blueprint(input_yaml, output_yaml):
             print(f"  ▶ 检查积木: {cand['name']} (相对高度: {cand['pos'][2]})")
             
             # 1. 检查物理可行性
-            if is_covered(cand, remaining_blocks):
-                print(f"    - 跳过: 上方有积木遮挡")
-                continue
-            if not check_balance(cand, remaining_blocks):
-                print(f"    - 跳过: 拆掉后下方无支撑点或重心不稳")
-                continue
+            #if is_covered(cand, remaining_blocks):
+            #    print(f"    - 跳过: 上方有积木遮挡")
+            #    continue
+            #if not check_balance(cand, remaining_blocks):
+            #  print(f"    - 跳过: 拆掉后下方无支撑点或重心不稳")
+            #    continue
             
             # 2. 尝试 90 度抓取 (优先策略)
             if check_accessibility(cand['abs_pos'], remaining_blocks, cand['name'], check_mode=90):
@@ -179,4 +179,4 @@ def process_blueprint(input_yaml, output_yaml):
     print("="*50 + "\n")
 
 if __name__ == "__main__":
-    process_blueprint("final_product_t.yaml", "task_test_t2.yaml")
+    process_blueprint("final_product_flower.yaml", "task_test_flower.yaml")

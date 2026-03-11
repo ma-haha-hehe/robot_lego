@@ -1,0 +1,70 @@
+# 乐高组装蓝图 - 阶梯纪念碑 (精简格式)
+# 注意：name 必须与 Python 脚本中 SOURCE_LOCATIONS 的 Key 一一对应
+blocks:
+  # --- 第一层：底部基座 ---
+  - name: "4x2_brick_1"
+    type: "brick_4x2"
+    pos: [0.0, 0.0, 0.0]
+    rotation: [0, 0, 0]
+
+  - name: "4x2_brick_2"
+    type: "brick_4x2"
+    pos: [0.0, 0.0, 0.020]
+    rotation: [0, 0, 0]
+
+  # --- 第二层 ---
+  - name: "2x2_brick_3"
+    type: "brick_2x2"
+    pos: [0.0, 0.0, 0.04]
+    rotation: [0, 0, 0]
+
+  # --- 第四层 ---
+  - name: "4x2_brick_5"
+    type: "brick_4x2"
+    pos: [0.0, -0.0150,0.06]
+    rotation: [0, 0, 0]
+
+  # --- 第五层 ---
+  - name: "2x2_brick_6"
+    type: "brick_2x2"
+    pos: [0.0, -0.045, 0.08]
+    rotation: [0, 0, 0]
+
+  - name: "2x2_brick_7"
+    type: "brick_2x2"
+    pos: [0.0, 0.0, 0.08]
+    rotation: [0, 0, 0]
+
+  # --- 第六层 ---
+  - name: "4x2_brick_8"
+    type: "brick_4x2"
+    pos: [0.0,0.015, 0.100]
+    rotation: [0, 0, 0]
+
+  - name: "2x2_brick_15"
+    type: "brick_2x2"
+    pos: [0.0, -0.045, 0.10]
+    rotation: [0, 0, 0]
+
+  - name: "2x2_brick_9"
+    type: "brick_2x2"
+    pos: [0.0, 0.045,0.120]
+    rotation: [0, 0, 0]
+
+  - name: "2x2_brick_11"
+    type: "brick_2x2"
+    pos: [0.0, 0.000, 0.12]
+    rotation: [0, 0, 0]
+
+  - name: "2x2_brick_12"
+    type: "brick_2x2"
+    pos: [0.0, 0.0, 0.14]
+    rotation: [0, 0, 0]
+
+  # --- 第八层 (顶端) ---
+  - name: "2x2_brick_13"
+    type: "brick_2x2"
+    pos: [0.0, 0.045,0.14]
+    rotation: [0, 0, 0]
+
+

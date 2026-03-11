@@ -1,5 +1,5 @@
 tasksh:
-- name: white 2x2 brick
+- name: 2x2 brick
   grasp_spin: 90           # 保持 90 度抓取策略
   blueprint_yaw: 90        # 蓝图原始角度改为 90
   pick:
@@ -11,7 +11,7 @@ tasksh:
     orientation: [0, 0, 90] # 放置目标角度改为 90
   id: 0
 
-- name: blue 2x2 brick
+- name:  2x2 brick
   grasp_spin: 90
   blueprint_yaw: -45
   pick:
@@ -23,7 +23,7 @@ tasksh:
     orientation: [0, 0, -45]
   id: 1
 
-- name: blue 2x2 brick
+- name: 2x2 brick
   grasp_spin: 90
   blueprint_yaw: -45
   pick:

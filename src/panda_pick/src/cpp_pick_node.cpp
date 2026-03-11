@@ -94,7 +94,7 @@ bool wait_for_task(Task& t) {
         YAML::Node res = YAML::LoadFile(RESULT_FILE);
         
         // 1. 解析任务名称
-        std::string name = res["name"].as<std::string>();
+        std::string name = res["name"].as<std::string>(); 
         t.name = name;
 
         //  动态选择 STL 模型
@@ -204,7 +204,7 @@ bool execute_single_task(rclcpp::Node::SharedPtr node,
 
     // A. 快速接近悬停位 (PTP 运动)
     RCLCPP_INFO(node->get_logger(), ">>> 快速接近...");
-    arm.setMaxVelocityScalingFactor(0.4); // 设置较快速度
+    arm.setMaxVelocityScalingFactor(0.7); // 设置较快速度
     geometry_msgs::msg::Pose p_hover = task.gripper_pick;
     p_hover.position.z += (GRIPPER_OFFSET + HOVER);
     arm.setPoseTarget(p_hover);
@@ -216,7 +216,7 @@ bool execute_single_task(rclcpp::Node::SharedPtr node,
     // B. 慢速线性下降
     RCLCPP_INFO(node->get_logger(), ">>> 慢速下降...");
     // 调用 move_linear，最后一个参数 0.05 代表 5% 的极低速，确保不撞翻物体
-    move_linear(arm, -0.155, 0.05); 
+    move_linear(arm, -0.155, 0.08); 
 
     // C. 抓取与 Attach
     RCLCPP_INFO(node->get_logger(), ">>> 闭合夹爪...");
@@ -227,13 +227,13 @@ bool execute_single_task(rclcpp::Node::SharedPtr node,
 
     // D. 中速抬起
     RCLCPP_INFO(node->get_logger(), ">>> 抬起...");
-    move_linear(arm, HOVER, 0.2); // 20% 速度抬起
+    move_linear(arm, HOVER, 0.4); // 20% 速度抬起
 
     // --- [放置序列] ---
 
     // E. 快速移动到放置点上方
     RCLCPP_INFO(node->get_logger(), ">>> 移动至目标上方...");
-    arm.setMaxVelocityScalingFactor(0.4); 
+    arm.setMaxVelocityScalingFactor(0.7); 
     geometry_msgs::msg::Pose p_place = task.place_pose;
     p_place.position.z += (GRIPPER_OFFSET + HOVER);
     
@@ -248,12 +248,13 @@ bool execute_single_task(rclcpp::Node::SharedPtr node,
     // G. 释放
     RCLCPP_INFO(node->get_logger(), ">>> 释放...");
     arm.detachObject(task.name);   
+    rclcpp::sleep_for(std::chrono::milliseconds(300)); // 给场景更新留出 0.5s
     driveGripperAction(node, 0.04); 
     
     // H. 快速撤离
     RCLCPP_INFO(node->get_logger(), ">>> 撤离...");
     arm.setMaxVelocityScalingFactor(0.5);
-    move_linear(arm, HOVER, 0.3); 
+    move_linear(arm, HOVER, 0.4); 
 
     if (std::filesystem::exists(RESULT_FILE)) std::filesystem::remove(RESULT_FILE);
     return true;
