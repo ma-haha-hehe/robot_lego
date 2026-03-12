@@ -24,7 +24,7 @@ CAMERA_PARAMS_YAML = "/vision_code/camera_params.yaml"
 MESH_DIR = "/FoundationPose/meshes"
 ASSEMBLY_CENTER_BASE = np.array([0.35, 0.2, 0.025])
 
-#  仿真修正：删除 -45度补偿，设为 0.0
+#  仿真修正：删除 -45度补偿， 设为 0.0
 ROBOT_READY_YAW_OFFSET = -45
 
 if FP_REPO not in sys.path:

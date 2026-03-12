@@ -1,12 +1,13 @@
-tasksh:
-- name: blue 4x2_brick_1
+tasks:
+- name: 4x2_brick_1_1
+  type: brick_4x2
   grasp_spin: 90
   blueprint_yaw: 0
   pick:
     pos:
     - 0.5
     - 0.0
-    - 0.435
+    - 0.44
     orientation:
     - 0.7071067811865476
     - 0.7071067811865475
@@ -23,14 +24,15 @@ tasksh:
     - 4.329780281177466e-17
     - 4.329780281177467e-17
   id: 0
-- name: yellow 4x2_brick_2
+- name: 4x2_brick_2_1
+  type: brick_4x2
   grasp_spin: 90
   blueprint_yaw: 0
   pick:
     pos:
     - 0.5
     - 0.0
-    - 0.435
+    - 0.44
     orientation:
     - 0.7071067811865476
     - 0.7071067811865475
@@ -47,14 +49,15 @@ tasksh:
     - 4.329780281177466e-17
     - 4.329780281177467e-17
   id: 1
-- name: red 2x2_brick_3
+- name: 2x2_brick_3_1
+  type: brick_2x2
   grasp_spin: 90
   blueprint_yaw: 0
   pick:
     pos:
     - 0.5
     - 0.0
-    - 0.435
+    - 0.44
     orientation:
     - 0.7071067811865476
     - 0.7071067811865475
@@ -71,14 +74,15 @@ tasksh:
     - 4.329780281177466e-17
     - 4.329780281177467e-17
   id: 2
-- name: 4x2_brick_5
+- name: 4x2_brick_5_1
+  type: brick_4x2
   grasp_spin: 90
   blueprint_yaw: 0
   pick:
     pos:
     - 0.5
     - 0.0
-    - 0.435
+    - 0.44
     orientation:
     - 0.7071067811865476
     - 0.7071067811865475
@@ -95,14 +99,15 @@ tasksh:
     - 4.329780281177466e-17
     - 4.329780281177467e-17
   id: 3
-- name: 2x2_brick_7
+- name: 2x2_brick_7_1
+  type: brick_2x2
   grasp_spin: 90
   blueprint_yaw: 0
   pick:
     pos:
     - 0.5
     - 0.0
-    - 0.435
+    - 0.44
     orientation:
     - 0.7071067811865476
     - 0.7071067811865475
@@ -119,14 +124,15 @@ tasksh:
     - 4.329780281177466e-17
     - 4.329780281177467e-17
   id: 4
-- name: 2x2_brick_6
+- name: 2x2_brick_6_1
+  type: brick_2x2
   grasp_spin: 90
   blueprint_yaw: 0
   pick:
     pos:
     - 0.5
     - 0.0
-    - 0.435
+    - 0.44
     orientation:
     - 0.7071067811865476
     - 0.7071067811865475
@@ -143,14 +149,15 @@ tasksh:
     - 4.329780281177466e-17
     - 4.329780281177467e-17
   id: 5
-- name: 2x2_brick_15
+- name: 2x2_brick_15_1
+  type: brick_2x2
   grasp_spin: 90
   blueprint_yaw: 0
   pick:
     pos:
     - 0.5
     - 0.0
-    - 0.435
+    - 0.44
     orientation:
     - 0.7071067811865476
     - 0.7071067811865475
@@ -167,14 +174,15 @@ tasksh:
     - 4.329780281177466e-17
     - 4.329780281177467e-17
   id: 6
-- name: 4x2_brick_8
+- name: 4x2_brick_8_1
+  type: brick_4x2
   grasp_spin: 90
   blueprint_yaw: 0
   pick:
     pos:
     - 0.5
     - 0.0
-    - 0.435
+    - 0.44
     orientation:
     - 0.7071067811865476
     - 0.7071067811865475
@@ -191,14 +199,15 @@ tasksh:
     - 4.329780281177466e-17
     - 4.329780281177467e-17
   id: 7
-- name: 2x2_brick_11
+- name: 2x2_brick_11_1
+  type: brick_2x2
   grasp_spin: 90
   blueprint_yaw: 0
   pick:
     pos:
     - 0.5
     - 0.0
-    - 0.435
+    - 0.44
     orientation:
     - 0.7071067811865476
     - 0.7071067811865475
@@ -215,14 +224,15 @@ tasksh:
     - 4.329780281177466e-17
     - 4.329780281177467e-17
   id: 8
-- name: 2x2_brick_9
+- name: 2x2_brick_9_1
+  type: brick_2x2
   grasp_spin: 90
   blueprint_yaw: 0
   pick:
     pos:
     - 0.5
     - 0.0
-    - 0.435
+    - 0.44
     orientation:
     - 0.7071067811865476
     - 0.7071067811865475
@@ -239,14 +249,15 @@ tasksh:
     - 4.329780281177466e-17
     - 4.329780281177467e-17
   id: 9
-- name: 2x2_brick_13
+- name: 2x2_brick_13_1
+  type: brick_2x2
   grasp_spin: 90
   blueprint_yaw: 0
   pick:
     pos:
     - 0.5
-    - 0.15
-    - 0.435
+    - 0.0
+    - 0.44
     orientation:
     - 0.7071067811865476
     - 0.7071067811865475
@@ -263,14 +274,15 @@ tasksh:
     - 4.329780281177466e-17
     - 4.329780281177467e-17
   id: 10
-- name: 2x2_brick_12
+- name: 2x2_brick_12_1
+  type: brick_2x2
   grasp_spin: 90
   blueprint_yaw: 0
   pick:
     pos:
     - 0.5
     - 0.0
-    - 0.435
+    - 0.44
     orientation:
     - 0.7071067811865476
     - 0.7071067811865475
