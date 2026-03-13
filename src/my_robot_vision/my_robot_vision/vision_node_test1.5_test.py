@@ -55,6 +55,8 @@ def get_color_distance(c1, c2):
     """计算两个 HSV 颜色之间的欧几里得距离，并考虑 Hue 的循环性"""
     h1, s1, v1 = c1
     h2, s2, v2 = c2
+
+hand get_
     
     # Hue 是圆形的 (0 和 180 是相连的)
     dh = min(abs(h1 - h2), 180 - abs(h1 - h2))
