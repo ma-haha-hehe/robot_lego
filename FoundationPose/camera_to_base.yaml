@@ -1,0 +1,28 @@
+T_base_cam:
+- - 1.0
+  - 0.0
+  - 0.0
+  - 0.5
+- - -0.0
+  - 0.24253563582897186
+  - 0.9701425433158875
+  - -0.30000001192092896
+- - 0.0
+  - 0.9701425433158875
+  - -0.24253563582897186
+  - 0.12999999523162842
+- - 0.0
+  - 0.0
+  - 0.0
+  - 1.0
+base_frame: panda_link0
+cam_pos_m:
+- 0.5
+- -0.30000001192092896
+- 0.12999999523162842
+camera_frame: camera_color_optical_frame
+note: Rough extrinsic from manual measurement; camera is front-right, looking to robot-left
+target_m:
+- 0.5
+- 0.699999988079071
+- -0.12000000476837158
