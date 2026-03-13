@@ -1,1 +1,2 @@
-/home/i6user/Desktop/robot_lego/build/panda_pick/ament_cmake_environment_hooks/local_setup.dsv
+source;share/panda_pick/environment/ament_prefix_path.sh
+source;share/panda_pick/environment/path.sh

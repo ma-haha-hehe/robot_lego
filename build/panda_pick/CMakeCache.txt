@@ -25,7 +25,7 @@ AMENT_CMAKE_ENVIRONMENT_PARENT_PREFIX_PATH_GENERATION:BOOL=ON
 
 //Replace the CMake install command with a custom implementation
 // using symlinks instead of copying resources
-AMENT_CMAKE_SYMLINK_INSTALL:BOOL=1
+AMENT_CMAKE_SYMLINK_INSTALL:BOOL=OFF
 
 //Generate an uninstall target to revert the effects of the install
 // step
@@ -35,7 +35,7 @@ AMENT_CMAKE_UNINSTALL_TARGET:BOOL=ON
 AMENT_TEST_RESULTS_DIR:PATH=/home/i6user/Desktop/robot_lego/build/panda_pick/test_results
 
 //Build the testing tree.
-BUILD_TESTING:BOOL=ON
+BUILD_TESTING:BOOL=OFF
 
 //Path to a library.
 BULLET_COLLISION_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libBulletCollision.so
@@ -1070,8 +1070,6 @@ _Python3_INTERPRETER_SIGNATURE:INTERNAL=0f3e53742e142b1d9e50e4ca5b901dd8
 _Python3_Interpreter_REASON_FAILURE:INTERNAL=
 //NumPy reason failure
 _Python3_NumPy_REASON_FAILURE:INTERNAL=
-//Index for unique symlink install targets
-__AMENT_CMAKE_SYMLINK_INSTALL_TARGETS_INDEX:INTERNAL=1
 __pkg_config_arguments_PC_CURL:INTERNAL=QUIET;libcurl
 __pkg_config_arguments__OPENSSL:INTERNAL=QUIET;openssl
 __pkg_config_checked_PC_CURL:INTERNAL=1
