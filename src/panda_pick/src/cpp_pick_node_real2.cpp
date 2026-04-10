@@ -186,8 +186,10 @@ bool execute_single_task(rclcpp::Node::SharedPtr node,
                          moveit::planning_interface::PlanningSceneInterface& psi,
                          const Task& task) {
     
-    RCLCPP_INFO(node->get_logger(), "开始任务: %s [动态调速模式]", task.name.c_str());
+    RCLCPP_INFO(node->get_logger(), "开始任务: %s [使用 IK Seed 优化方案]", task.name.c_str());
 
+    
+//基础偏移量
     const double GRIPPER_OFFSET = 0.1234; 
     const double HOVER = 0.15;           
 
@@ -202,16 +204,36 @@ bool execute_single_task(rclcpp::Node::SharedPtr node,
 
     // --- [抓取序列] ---
 
-    // A. 快速接近悬停位 (PTP 运动)
-    RCLCPP_INFO(node->get_logger(), ">>> 快速接近...");
-    arm.setMaxVelocityScalingFactor(0.9); // 设置较快速度
+    // A. 快速接近悬停位 (PTP 运动 使用seeded IK)
+    RCLCPP_INFO(node->get_logger(), ">>> 正在计算平滑IK 目标...");
+
+    // 1. 获取当前状态作为 Seed
+    moveit::core::RobotStatePtr current_state = arm.getCurrentState(10.0); // 等待10秒确保获取成功
+    const moveit::core::JointModelGroup* joint_model_group = arm.getRobotModel()->getJointModelGroup(arm.getName());
+
+    // 2. 设置目标笛卡尔 Pose
     geometry_msgs::msg::Pose p_hover = task.gripper_pick;
     p_hover.position.z += (GRIPPER_OFFSET + HOVER);
-    arm.setPoseTarget(p_hover);
-    arm.move();
 
-    driveGripperAction(node, 0.04); 
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    // 3. 手动求解 IK (关键点！)
+    // 我们强制要求求解器从 current_state 开始找解
+    double timeout = 0.1; // 100ms 求解时间
+    bool found_ik = current_state->setFromIK(joint_model_group, p_hover, timeout);
+
+    if (found_ik) {
+        RCLCPP_INFO(node->get_logger(), ">>> IK 求解成功，正在规划平滑路径...");
+        
+        // 4. 将求解出的关节角度设为目标 (Joint Space Target)
+        // 这样做 Planner 就会在关节空间内走最短路，不会出现无谓的翻转
+        arm.setJointValueTarget(*current_state);
+        
+        arm.setMaxVelocityScalingFactor(0.9);
+        arm.move();
+    } else {
+        RCLCPP_ERROR(node->get_logger(), ">>> IK 求解失败！尝试回退到普通 Pose 目标...");
+        arm.setPoseTarget(p_hover);
+        arm.move();
+    }
 
     // B. 慢速线性下降
     RCLCPP_INFO(node->get_logger(), ">>> 慢速下降...");
